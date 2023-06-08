@@ -12,7 +12,7 @@ class Contact
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    private ?int $ID_Contact = null;
+    private ?int $id = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $DateModification = null;
@@ -88,7 +88,7 @@ class Contact
 
     public function getIDContact(): ?int
     {
-        return $this->ID_Contact;
+        return $this->id;
     }
 
     public function getDateModification(): ?\DateTimeInterface

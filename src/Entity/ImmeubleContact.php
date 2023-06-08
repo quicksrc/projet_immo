@@ -12,7 +12,7 @@ class ImmeubleContact
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    private ?int $id_immeublecontact = null;
+    private ?int $id = null;
 
     #[ORM\Column(length: 200)]
     private ?string $qualite = null;
@@ -34,7 +34,7 @@ class ImmeubleContact
 
     public function getIdImmeublecontact(): ?int
     {
-        return $this->id_immeublecontact;
+        return $this->id;
     }
 
     public function getQualite(): ?string

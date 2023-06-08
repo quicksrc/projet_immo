@@ -14,7 +14,7 @@ class Adresse
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    private ?int $ID_Adresse = null;
+    private ?int $id = null;
 
     #[ORM\Column(length: 20)]
     private ?string $NumPrincipal = null;
@@ -37,9 +37,18 @@ class Adresse
     #[ORM\Column(length: 200)]
     private ?string $Pays = null;
 
+    #[ORM\OneToMany(mappedBy: 'adresse', targetEntity: VendeurSociete::class)]
+    #[ORM\JoinTable(name: 'adresse')]
+    private Collection $vendeurSocietes;
+
+    public function __construct()
+    {
+        $this->vendeurSocietes = new ArrayCollection();
+    }
+
     public function getIDAdresse(): ?int
     {
-        return $this->ID_Adresse;
+        return $this->id;
     }
 
     public function getNumPrincipal(): ?string
@@ -122,6 +131,36 @@ class Adresse
     public function setPays(string $Pays): self
     {
         $this->Pays = $Pays;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, VendeurSociete>
+     */
+    public function getVendeurSocietes(): Collection
+    {
+        return $this->vendeurSocietes;
+    }
+
+    public function addVendeurSociete(VendeurSociete $vendeurSociete): self
+    {
+        if (!$this->vendeurSocietes->contains($vendeurSociete)) {
+            $this->vendeurSocietes->add($vendeurSociete);
+            $vendeurSociete->setAdresse($this);
+        }
+
+        return $this;
+    }
+
+    public function removeVendeurSociete(VendeurSociete $vendeurSociete): self
+    {
+        if ($this->vendeurSocietes->removeElement($vendeurSociete)) {
+            // set the owning side to null (unless already changed)
+            if ($vendeurSociete->getAdresse() === $this) {
+                $vendeurSociete->setAdresse(null);
+            }
+        }
 
         return $this;
     }

@@ -12,7 +12,7 @@ class SocieteContact
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    private ?int $id_societecontact = null;
+    private ?int $id = null;
 
     #[ORM\Column(length: 200)]
     private ?string $qualite = null;
@@ -28,7 +28,7 @@ class SocieteContact
 
     public function getIdSocietecontact(): ?int
     {
-        return $this->id_societecontact;
+        return $this->id;
     }
 
     public function getQualite(): ?string

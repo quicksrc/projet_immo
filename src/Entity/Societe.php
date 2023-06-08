@@ -12,7 +12,7 @@ class Societe
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    private ?int $societe_id = null;
+    private ?int $id = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $DateCreation = null;
@@ -34,51 +34,6 @@ class Societe
 
     #[ORM\Column(length: 200)]
     private ?string $Responsable = null;
-
-    #[ORM\Column(length: 510)]
-    private ?string $VendeurRaisonSoc = null;
-
-    #[ORM\Column(length: 510)]
-    private ?string $VendeurAdresse = null;
-
-    #[ORM\Column(length: 40)]
-    private ?string $VendeurCP = null;
-
-    #[ORM\Column(length: 200)]
-    private ?string $VendeurVille = null;
-
-    #[ORM\Column(length: 200)]
-    private ?string $VendeurPays = null;
-
-    #[ORM\Column(length: 40)]
-    private ?string $VendeurTelephone = null;
-
-    #[ORM\Column(length: 40, nullable: true)]
-    private ?string $VendeurFaxSociete = null;
-
-    #[ORM\Column(length: 100, nullable: true)]
-    private ?string $VendeurRCS = null;
-
-    #[ORM\Column]
-    private ?float $VendeurCapital = null;
-
-    #[ORM\Column(length: 200)]
-    private ?string $VendeurNomDirige = null;
-
-    #[ORM\Column(length: 40, nullable: true)]
-    private ?string $VendeurTelPortable = null;
-
-    #[ORM\Column(length: 40, nullable: true)]
-    private ?string $VendeurTelPerso = null;
-
-    #[ORM\Column(length: 510)]
-    private ?string $VendeurEmail = null;
-
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $VendeurDateNaissance = null;
-
-    #[ORM\Column(length: 510)]
-    private ?string $VendeurAdresseFo = null;
 
     #[ORM\Column(length: 200)]
     private ?string $ActiviteFdsCommerce = null;
@@ -139,7 +94,7 @@ class Societe
 
     public function getIDSociete(): ?int
     {
-        return $this->societe_id;
+        return $this->id;
     }
 
     public function getDateCreation(): ?\DateTimeInterface
@@ -222,186 +177,6 @@ class Societe
     public function setResponsable(string $Responsable): self
     {
         $this->Responsable = $Responsable;
-
-        return $this;
-    }
-
-    public function getVendeurRaisonSoc(): ?string
-    {
-        return $this->VendeurRaisonSoc;
-    }
-
-    public function setVendeurRaisonSoc(string $VendeurRaisonSoc): self
-    {
-        $this->VendeurRaisonSoc = $VendeurRaisonSoc;
-
-        return $this;
-    }
-
-    public function getVendeurAdresse(): ?string
-    {
-        return $this->VendeurAdresse;
-    }
-
-    public function setVendeurAdresse(string $VendeurAdresse): self
-    {
-        $this->VendeurAdresse = $VendeurAdresse;
-
-        return $this;
-    }
-
-    public function getVendeurCP(): ?string
-    {
-        return $this->VendeurCP;
-    }
-
-    public function setVendeurCP(string $VendeurCP): self
-    {
-        $this->VendeurCP = $VendeurCP;
-
-        return $this;
-    }
-
-    public function getVendeurVille(): ?string
-    {
-        return $this->VendeurVille;
-    }
-
-    public function setVendeurVille(string $VendeurVille): self
-    {
-        $this->VendeurVille = $VendeurVille;
-
-        return $this;
-    }
-
-    public function getVendeurPays(): ?string
-    {
-        return $this->VendeurPays;
-    }
-
-    public function setVendeurPays(string $VendeurPays): self
-    {
-        $this->VendeurPays = $VendeurPays;
-
-        return $this;
-    }
-
-    public function getVendeurTelephone(): ?string
-    {
-        return $this->VendeurTelephone;
-    }
-
-    public function setVendeurTelephone(string $VendeurTelephone): self
-    {
-        $this->VendeurTelephone = $VendeurTelephone;
-
-        return $this;
-    }
-
-    public function getVendeurFaxSociete(): ?string
-    {
-        return $this->VendeurFaxSociete;
-    }
-
-    public function setVendeurFaxSociete(?string $VendeurFaxSociete): self
-    {
-        $this->VendeurFaxSociete = $VendeurFaxSociete;
-
-        return $this;
-    }
-
-    public function getVendeurRCS(): ?string
-    {
-        return $this->VendeurRCS;
-    }
-
-    public function setVendeurRCS(string $VendeurRCS): self
-    {
-        $this->VendeurRCS = $VendeurRCS;
-
-        return $this;
-    }
-
-    public function getVendeurCapital(): ?float
-    {
-        return $this->VendeurCapital;
-    }
-
-    public function setVendeurCapital(float $VendeurCapital): self
-    {
-        $this->VendeurCapital = $VendeurCapital;
-
-        return $this;
-    }
-
-    public function getVendeurNomDirige(): ?string
-    {
-        return $this->VendeurNomDirige;
-    }
-
-    public function setVendeurNomDirige(string $VendeurNomDirige): self
-    {
-        $this->VendeurNomDirige = $VendeurNomDirige;
-
-        return $this;
-    }
-
-    public function getVendeurTelPortable(): ?string
-    {
-        return $this->VendeurTelPortable;
-    }
-
-    public function setVendeurTelPortable(?string $VendeurTelPortable): self
-    {
-        $this->VendeurTelPortable = $VendeurTelPortable;
-
-        return $this;
-    }
-
-    public function getVendeurTelPerso(): ?string
-    {
-        return $this->VendeurTelPerso;
-    }
-
-    public function setVendeurTelPerso(?string $VendeurTelPerso): self
-    {
-        $this->VendeurTelPerso = $VendeurTelPerso;
-
-        return $this;
-    }
-
-    public function getVendeurEmail(): ?string
-    {
-        return $this->VendeurEmail;
-    }
-
-    public function setVendeurEmail(string $VendeurEmail): self
-    {
-        $this->VendeurEmail = $VendeurEmail;
-
-        return $this;
-    }
-
-    public function getVendeurDateNaissance(): ?\DateTimeInterface
-    {
-        return $this->VendeurDateNaissance;
-    }
-
-    public function setVendeurDateNaissance(\DateTimeInterface $VendeurDateNaissance): self
-    {
-        $this->VendeurDateNaissance = $VendeurDateNaissance;
-
-        return $this;
-    }
-
-    public function getVendeurAdresseFo(): ?string
-    {
-        return $this->VendeurAdresseFo;
-    }
-
-    public function setVendeurAdresseFo(string $VendeurAdresseFo): self
-    {
-        $this->VendeurAdresseFo = $VendeurAdresseFo;
 
         return $this;
     }

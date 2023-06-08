@@ -12,7 +12,7 @@ class Opportunite
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    private ?int $id_opportunite = null;
+    private ?int $id = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $date = null;
@@ -22,7 +22,7 @@ class Opportunite
 
     public function getIdOpportunite(): ?int
     {
-        return $this->id_opportunite;
+        return $this->id;
     }
 
     public function getDate(): ?\DateTimeInterface

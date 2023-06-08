@@ -12,7 +12,7 @@ class Immeuble
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    private ?int $ID_Immeuble = null;
+    private ?int $id = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $DateEnquete = null;
@@ -100,7 +100,7 @@ class Immeuble
 
     public function getIDImmeuble(): ?int
     {
-        return $this->ID_Immeuble;
+        return $this->id;
     }
 
     public function getDateEnquete(): ?\DateTimeInterface
