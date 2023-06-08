@@ -41,9 +41,21 @@ class Adresse
     #[ORM\JoinTable(name: 'adresse')]
     private Collection $vendeurSocietes;
 
+    #[ORM\OneToMany(mappedBy: 'adresse_id', targetEntity: Contact::class)]
+    private Collection $contacts;
+
+    #[ORM\OneToMany(mappedBy: 'adresse', targetEntity: AdresseImmeuble::class)]
+    private Collection $adresseImmeubles;
+
+    #[ORM\OneToMany(mappedBy: 'adresse', targetEntity: Societe::class)]
+    private Collection $societes;
+
     public function __construct()
     {
         $this->vendeurSocietes = new ArrayCollection();
+        $this->contacts = new ArrayCollection();
+        $this->adresseImmeubles = new ArrayCollection();
+        $this->societes = new ArrayCollection();
     }
 
     public function getIDAdresse(): ?int
@@ -159,6 +171,96 @@ class Adresse
             // set the owning side to null (unless already changed)
             if ($vendeurSociete->getAdresse() === $this) {
                 $vendeurSociete->setAdresse(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Contact>
+     */
+    public function getContacts(): Collection
+    {
+        return $this->contacts;
+    }
+
+    public function addContact(Contact $contact): self
+    {
+        if (!$this->contacts->contains($contact)) {
+            $this->contacts->add($contact);
+            $contact->setAdresse($this);
+        }
+
+        return $this;
+    }
+
+    public function removeContact(Contact $contact): self
+    {
+        if ($this->contacts->removeElement($contact)) {
+            // set the owning side to null (unless already changed)
+            if ($contact->getAdresse() === $this) {
+                $contact->setAdresse(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, AdresseImmeuble>
+     */
+    public function getAdresseImmeubles(): Collection
+    {
+        return $this->adresseImmeubles;
+    }
+
+    public function addAdresseImmeuble(AdresseImmeuble $adresseImmeuble): self
+    {
+        if (!$this->adresseImmeubles->contains($adresseImmeuble)) {
+            $this->adresseImmeubles->add($adresseImmeuble);
+            $adresseImmeuble->setAdresse($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAdresseImmeuble(AdresseImmeuble $adresseImmeuble): self
+    {
+        if ($this->adresseImmeubles->removeElement($adresseImmeuble)) {
+            // set the owning side to null (unless already changed)
+            if ($adresseImmeuble->getAdresse() === $this) {
+                $adresseImmeuble->setAdresse(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Societe>
+     */
+    public function getSocietes(): Collection
+    {
+        return $this->societes;
+    }
+
+    public function addSociete(Societe $societe): self
+    {
+        if (!$this->societes->contains($societe)) {
+            $this->societes->add($societe);
+            $societe->setAdresse($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSociete(Societe $societe): self
+    {
+        if ($this->societes->removeElement($societe)) {
+            // set the owning side to null (unless already changed)
+            if ($societe->getAdresse() === $this) {
+                $societe->setAdresse(null);
             }
         }
 

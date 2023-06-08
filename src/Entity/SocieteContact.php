@@ -26,6 +26,14 @@ class SocieteContact
     #[ORM\Column(type: Types::SMALLINT)]
     private ?int $principal = null;
 
+    #[ORM\ManyToOne(inversedBy: 'societeContacts')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Contact $contact = null;
+
+    #[ORM\ManyToOne(inversedBy: 'societeContacts')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Societe $societe = null;
+
     public function getIdSocietecontact(): ?int
     {
         return $this->id;
@@ -75,6 +83,30 @@ class SocieteContact
     public function setPrincipal(int $principal): self
     {
         $this->principal = $principal;
+
+        return $this;
+    }
+
+    public function getContact(): ?Contact
+    {
+        return $this->contact;
+    }
+
+    public function setContact(?Contact $contact): self
+    {
+        $this->contact = $contact;
+
+        return $this;
+    }
+
+    public function getSociete(): ?Societe
+    {
+        return $this->societe;
+    }
+
+    public function setSociete(?Societe $societe): self
+    {
+        $this->societe = $societe;
 
         return $this;
     }

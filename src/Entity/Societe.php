@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\SocieteRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -91,6 +93,30 @@ class Societe
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $Commentaire = null;
+
+    #[ORM\ManyToOne(inversedBy: 'societes')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Adresse $adresse = null;
+
+    #[ORM\OneToMany(mappedBy: 'societe', targetEntity: SocieteContact::class)]
+    private Collection $societeContacts;
+
+    #[ORM\OneToMany(mappedBy: 'societe', targetEntity: OpportuniteSocieteImmeubleContact::class)]
+    private Collection $opportuniteSocieteImmeubleContacts;
+
+    #[ORM\ManyToMany(targetEntity: Recherche::class, mappedBy: 'societe')]
+    private Collection $recherches;
+
+    #[ORM\ManyToMany(targetEntity: ActiviteImmeubleContactSociete::class, mappedBy: 'societe')]
+    private Collection $activiteImmeubleContactSocietes;
+
+    public function __construct()
+    {
+        $this->societeContacts = new ArrayCollection();
+        $this->opportuniteSocieteImmeubleContacts = new ArrayCollection();
+        $this->recherches = new ArrayCollection();
+        $this->activiteImmeubleContactSocietes = new ArrayCollection();
+    }
 
     public function getIDSociete(): ?int
     {
@@ -405,6 +431,132 @@ class Societe
     public function setCommentaire(?string $Commentaire): self
     {
         $this->Commentaire = $Commentaire;
+
+        return $this;
+    }
+
+    public function getAdresse(): ?Adresse
+    {
+        return $this->adresse;
+    }
+
+    public function setAdresse(?Adresse $adresse): self
+    {
+        $this->adresse = $adresse;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, SocieteContact>
+     */
+    public function getSocieteContacts(): Collection
+    {
+        return $this->societeContacts;
+    }
+
+    public function addSocieteContact(SocieteContact $societeContact): self
+    {
+        if (!$this->societeContacts->contains($societeContact)) {
+            $this->societeContacts->add($societeContact);
+            $societeContact->setSociete($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSocieteContact(SocieteContact $societeContact): self
+    {
+        if ($this->societeContacts->removeElement($societeContact)) {
+            // set the owning side to null (unless already changed)
+            if ($societeContact->getSociete() === $this) {
+                $societeContact->setSociete(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, OpportuniteSocieteImmeubleContact>
+     */
+    public function getOpportuniteSocieteImmeubleContacts(): Collection
+    {
+        return $this->opportuniteSocieteImmeubleContacts;
+    }
+
+    public function addOpportuniteSocieteImmeubleContact(OpportuniteSocieteImmeubleContact $opportuniteSocieteImmeubleContact): self
+    {
+        if (!$this->opportuniteSocieteImmeubleContacts->contains($opportuniteSocieteImmeubleContact)) {
+            $this->opportuniteSocieteImmeubleContacts->add($opportuniteSocieteImmeubleContact);
+            $opportuniteSocieteImmeubleContact->setSociete($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOpportuniteSocieteImmeubleContact(OpportuniteSocieteImmeubleContact $opportuniteSocieteImmeubleContact): self
+    {
+        if ($this->opportuniteSocieteImmeubleContacts->removeElement($opportuniteSocieteImmeubleContact)) {
+            // set the owning side to null (unless already changed)
+            if ($opportuniteSocieteImmeubleContact->getSociete() === $this) {
+                $opportuniteSocieteImmeubleContact->setSociete(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Recherche>
+     */
+    public function getRecherches(): Collection
+    {
+        return $this->recherches;
+    }
+
+    public function addRecherche(Recherche $recherche): self
+    {
+        if (!$this->recherches->contains($recherche)) {
+            $this->recherches->add($recherche);
+            $recherche->addSociete($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRecherche(Recherche $recherche): self
+    {
+        if ($this->recherches->removeElement($recherche)) {
+            $recherche->removeSociete($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ActiviteImmeubleContactSociete>
+     */
+    public function getActiviteImmeubleContactSocietes(): Collection
+    {
+        return $this->activiteImmeubleContactSocietes;
+    }
+
+    public function addActiviteImmeubleContactSociete(ActiviteImmeubleContactSociete $activiteImmeubleContactSociete): self
+    {
+        if (!$this->activiteImmeubleContactSocietes->contains($activiteImmeubleContactSociete)) {
+            $this->activiteImmeubleContactSocietes->add($activiteImmeubleContactSociete);
+            $activiteImmeubleContactSociete->addSociete($this);
+        }
+
+        return $this;
+    }
+
+    public function removeActiviteImmeubleContactSociete(ActiviteImmeubleContactSociete $activiteImmeubleContactSociete): self
+    {
+        if ($this->activiteImmeubleContactSocietes->removeElement($activiteImmeubleContactSociete)) {
+            $activiteImmeubleContactSociete->removeSociete($this);
+        }
 
         return $this;
     }

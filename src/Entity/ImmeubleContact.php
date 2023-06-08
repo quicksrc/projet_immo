@@ -32,6 +32,12 @@ class ImmeubleContact
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $date_nvp = null;
 
+    #[ORM\ManyToOne(inversedBy: 'immeubleContacts')]
+    private ?Immeuble $immeuble = null;
+
+    #[ORM\ManyToOne(inversedBy: 'immeubleContacts')]
+    private ?Contact $contact = null;
+
     public function getIdImmeublecontact(): ?int
     {
         return $this->id;
@@ -105,6 +111,30 @@ class ImmeubleContact
     public function setDateNvp(\DateTimeInterface $date_nvp): self
     {
         $this->date_nvp = $date_nvp;
+
+        return $this;
+    }
+
+    public function getImmeuble(): ?Immeuble
+    {
+        return $this->immeuble;
+    }
+
+    public function setImmeuble(?Immeuble $immeuble): self
+    {
+        $this->immeuble = $immeuble;
+
+        return $this;
+    }
+
+    public function getContact(): ?Contact
+    {
+        return $this->contact;
+    }
+
+    public function setContact(?Contact $contact): self
+    {
+        $this->contact = $contact;
 
         return $this;
     }

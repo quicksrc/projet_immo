@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ImmeubleRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -62,41 +64,37 @@ class Immeuble
     #[ORM\Column(type: Types::TEXT)]
     private ?string $Commentaire = null;
 
-    #[ORM\Column]
-    private ?int $NumPrincipal = null;
-
-    #[ORM\Column(length: 20)]
-    private ?string $NumSecondaire = null;
-
-    #[ORM\Column(length: 40)]
-    private ?string $TypeVoie = null;
-
-    #[ORM\Column(length: 510)]
-    private ?string $NomRue = null;
-
-    #[ORM\Column(length: 510)]
-    private ?string $Adresse = null;
-
-    #[ORM\Column(length: 510)]
-    private ?string $CP = null;
-
-    #[ORM\Column(length: 510)]
-    private ?string $Ville = null;
-
     #[ORM\Column(length: 200)]
     private ?string $ContactPrincipal = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $Photo1 = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $Photo2 = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $DateVisite = null;
 
     #[ORM\Column(length: 100)]
     private ?string $RegroupementAct = null;
+
+    #[ORM\OneToMany(mappedBy: 'immeuble', targetEntity: PJ::class)]
+    private Collection $PJs;
+
+    #[ORM\ManyToOne(inversedBy: 'immeuble')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?AdresseImmeuble $adresseImmeuble = null;
+
+    #[ORM\OneToMany(mappedBy: 'immeuble', targetEntity: OpportuniteSocieteImmeubleContact::class)]
+    private Collection $opportuniteSocieteImmeubleContacts;
+
+    #[ORM\OneToMany(mappedBy: 'immeuble', targetEntity: ImmeubleContact::class)]
+    private Collection $immeubleContacts;
+
+    #[ORM\ManyToOne(inversedBy: 'immeuble')]
+    private ?Recherche $recherche = null;
+
+    public function __construct()
+    {
+        $this->PJs = new ArrayCollection();
+        $this->opportuniteSocieteImmeubleContacts = new ArrayCollection();
+        $this->immeubleContacts = new ArrayCollection();
+    }
 
     public function getIDImmeuble(): ?int
     {
@@ -295,90 +293,6 @@ class Immeuble
         return $this;
     }
 
-    public function getNumPrincipal(): ?int
-    {
-        return $this->NumPrincipal;
-    }
-
-    public function setNumPrincipal(int $NumPrincipal): self
-    {
-        $this->NumPrincipal = $NumPrincipal;
-
-        return $this;
-    }
-
-    public function getNumSecondaire(): ?string
-    {
-        return $this->NumSecondaire;
-    }
-
-    public function setNumSecondaire(string $NumSecondaire): self
-    {
-        $this->NumSecondaire = $NumSecondaire;
-
-        return $this;
-    }
-
-    public function getTypeVoie(): ?string
-    {
-        return $this->TypeVoie;
-    }
-
-    public function setTypeVoie(string $TypeVoie): self
-    {
-        $this->TypeVoie = $TypeVoie;
-
-        return $this;
-    }
-
-    public function getNomRue(): ?string
-    {
-        return $this->NomRue;
-    }
-
-    public function setNomRue(string $NomRue): self
-    {
-        $this->NomRue = $NomRue;
-
-        return $this;
-    }
-
-    public function getAdresse(): ?string
-    {
-        return $this->Adresse;
-    }
-
-    public function setAdresse(string $Adresse): self
-    {
-        $this->Adresse = $Adresse;
-
-        return $this;
-    }
-
-    public function getCP(): ?string
-    {
-        return $this->CP;
-    }
-
-    public function setCP(string $CP): self
-    {
-        $this->CP = $CP;
-
-        return $this;
-    }
-
-    public function getVille(): ?string
-    {
-        return $this->Ville;
-    }
-
-    public function setVille(string $Ville): self
-    {
-        $this->Ville = $Ville;
-
-        return $this;
-    }
-
     public function getContactPrincipal(): ?string
     {
         return $this->ContactPrincipal;
@@ -387,30 +301,6 @@ class Immeuble
     public function setContactPrincipal(string $ContactPrincipal): self
     {
         $this->ContactPrincipal = $ContactPrincipal;
-
-        return $this;
-    }
-
-    public function getPhoto1(): ?string
-    {
-        return $this->Photo1;
-    }
-
-    public function setPhoto1(?string $Photo1): self
-    {
-        $this->Photo1 = $Photo1;
-
-        return $this;
-    }
-
-    public function getPhoto2(): ?string
-    {
-        return $this->Photo2;
-    }
-
-    public function setPhoto2(?string $Photo2): self
-    {
-        $this->Photo2 = $Photo2;
 
         return $this;
     }
@@ -435,6 +325,120 @@ class Immeuble
     public function setRegroupementAct(string $RegroupementAct): self
     {
         $this->RegroupementAct = $RegroupementAct;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, PJ>
+     */
+    public function getPJs(): Collection
+    {
+        return $this->PJs;
+    }
+
+    public function addPJ(PJ $pJ): self
+    {
+        if (!$this->PJs->contains($pJ)) {
+            $this->PJs->add($pJ);
+            $pJ->setImmeuble($this);
+        }
+
+        return $this;
+    }
+
+    public function removePJ(PJ $pJ): self
+    {
+        if ($this->PJs->removeElement($pJ)) {
+            // set the owning side to null (unless already changed)
+            if ($pJ->getImmeuble() === $this) {
+                $pJ->setImmeuble(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getAdresseImmeuble(): ?AdresseImmeuble
+    {
+        return $this->adresseImmeuble;
+    }
+
+    public function setAdresseImmeuble(?AdresseImmeuble $adresseImmeuble): self
+    {
+        $this->adresseImmeuble = $adresseImmeuble;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, OpportuniteSocieteImmeubleContact>
+     */
+    public function getOpportuniteSocieteImmeubleContacts(): Collection
+    {
+        return $this->opportuniteSocieteImmeubleContacts;
+    }
+
+    public function addOpportuniteSocieteImmeubleContact(OpportuniteSocieteImmeubleContact $opportuniteSocieteImmeubleContact): self
+    {
+        if (!$this->opportuniteSocieteImmeubleContacts->contains($opportuniteSocieteImmeubleContact)) {
+            $this->opportuniteSocieteImmeubleContacts->add($opportuniteSocieteImmeubleContact);
+            $opportuniteSocieteImmeubleContact->setImmeuble($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOpportuniteSocieteImmeubleContact(OpportuniteSocieteImmeubleContact $opportuniteSocieteImmeubleContact): self
+    {
+        if ($this->opportuniteSocieteImmeubleContacts->removeElement($opportuniteSocieteImmeubleContact)) {
+            // set the owning side to null (unless already changed)
+            if ($opportuniteSocieteImmeubleContact->getImmeuble() === $this) {
+                $opportuniteSocieteImmeubleContact->setImmeuble(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ImmeubleContact>
+     */
+    public function getImmeubleContacts(): Collection
+    {
+        return $this->immeubleContacts;
+    }
+
+    public function addImmeubleContact(ImmeubleContact $immeubleContact): self
+    {
+        if (!$this->immeubleContacts->contains($immeubleContact)) {
+            $this->immeubleContacts->add($immeubleContact);
+            $immeubleContact->setImmeuble($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImmeubleContact(ImmeubleContact $immeubleContact): self
+    {
+        if ($this->immeubleContacts->removeElement($immeubleContact)) {
+            // set the owning side to null (unless already changed)
+            if ($immeubleContact->getImmeuble() === $this) {
+                $immeubleContact->setImmeuble(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getRecherche(): ?Recherche
+    {
+        return $this->recherche;
+    }
+
+    public function setRecherche(?Recherche $recherche): self
+    {
+        $this->recherche = $recherche;
 
         return $this;
     }
