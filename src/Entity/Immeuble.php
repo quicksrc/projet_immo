@@ -16,68 +16,68 @@ class Immeuble
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $DateEnquete = null;
 
     #[ORM\Column]
     private ?int $ReferenceProprio = null;
 
-    #[ORM\Column(length: 20)]
+    #[ORM\Column(length: 20, nullable: true)]
     private ?string $NumPlancheCadast = null;
 
-    #[ORM\Column(type: Types::SMALLINT)]
+    #[ORM\Column(type: Types::SMALLINT, nullable: true)]
     private ?int $SMS = null;
 
-    #[ORM\Column(length: 200)]
+    #[ORM\Column(length: 200, nullable: true)]
     private ?string $EtatDossier = null;
 
-    #[ORM\Column(length: 200)]
+    #[ORM\Column(length: 200, nullable: true)]
     private ?string $Enquete = null;
 
-    #[ORM\Column(length: 300)]
+    #[ORM\Column(length: 300, nullable: true)]
     private ?string $NomGardien = null;
 
-    #[ORM\Column(length: 200)]
+    #[ORM\Column(length: 200, nullable: true)]
     private ?string $Description = null;
 
-    #[ORM\Column(length: 200)]
+    #[ORM\Column(length: 200, nullable: true)]
     private ?string $SuiviPar = null;
 
-    #[ORM\Column(type: Types::SMALLINT)]
+    #[ORM\Column(type: Types::SMALLINT, nullable: true)]
     private ?int $Vendu = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $DateVente = null;
 
-    #[ORM\Column(length: 510)]
+    #[ORM\Column(length: 510, nullable: true)]
     private ?string $OrigineContact = null;
 
-    #[ORM\Column(length: 510)]
+    #[ORM\Column(length: 510, nullable: true)]
     private ?string $Intermediaire = null;
 
-    #[ORM\Column(type: Types::SMALLINT)]
+    #[ORM\Column(type: Types::SMALLINT, nullable: true)]
     private ?int $NCPCF = null;
 
-    #[ORM\Column(type: Types::SMALLINT)]
+    #[ORM\Column(type: Types::SMALLINT, nullable: true)]
     private ?int $Visite = null;
 
-    #[ORM\Column(type: Types::TEXT)]
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $Commentaire = null;
 
-    #[ORM\Column(length: 200)]
+    #[ORM\Column(length: 200, nullable: true)]
     private ?string $ContactPrincipal = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $DateVisite = null;
 
-    #[ORM\Column(length: 100)]
+    #[ORM\Column(length: 100, nullable: true)]
     private ?string $RegroupementAct = null;
 
     #[ORM\OneToMany(mappedBy: 'immeuble', targetEntity: PJ::class)]
     private Collection $PJs;
 
     #[ORM\ManyToOne(inversedBy: 'immeuble')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private ?AdresseImmeuble $adresseImmeuble = null;
 
     #[ORM\OneToMany(mappedBy: 'immeuble', targetEntity: OpportuniteSocieteImmeubleContact::class)]
@@ -96,7 +96,7 @@ class Immeuble
         $this->immeubleContacts = new ArrayCollection();
     }
 
-    public function getIDImmeuble(): ?int
+    public function getId(): ?int
     {
         return $this->id;
     }

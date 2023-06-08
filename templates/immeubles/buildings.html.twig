@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Projet Immo | Immeubles
+{% endblock %}
+
+{% block body %}
+	<section class="section-immeuble">
+		<h1>Immeubles</h1>
+		<div
+			class="row">
+			<!-- Immeuble -->
+			{% for immeuble in immeubles %}
+				<div class="card w-25 m-5">
+					<img src="https://picsum.photos/200/200" class="img-fluid" alt="Image de l'immeuble">
+					<div class="card-body">
+						<h4 class="card-title"></h4>
+						<p class="card-text">{{ immeuble.description }}</p>
+						<a href="{{ path('immeubles_detail', {'id': immeuble.id}) }}" class="btn btn-primary btn-sm">Détail</a>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</section>
+{% endblock body %}
