@@ -33,6 +33,9 @@ class Recherche
     #[ORM\ManyToMany(targetEntity: Opportunite::class, inversedBy: 'recherches')]
     private Collection $opportunite;
 
+    #[ORM\Column(length: 255)]
+    private ?string $description = null;
+
     public function __construct()
     {
         $this->immeuble = new ArrayCollection();
@@ -181,6 +184,18 @@ class Recherche
     public function removeOpportunite(Opportunite $opportunite): self
     {
         $this->opportunite->removeElement($opportunite);
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): self
+    {
+        $this->description = $description;
 
         return $this;
     }
