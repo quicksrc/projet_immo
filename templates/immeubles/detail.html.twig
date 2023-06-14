@@ -6,14 +6,7 @@
 
 {% block body %}
 	<section class="section-immeuble">
-		<div id="returnTable" class="mt-5 mb-3">
-			<button id="btnToReturn" class="btn btn-light">
-				<a href="{{ path('immeubles') }}" class="text-decoration-none">
-					<i class="fa-solid fa-arrow-left-long"></i>
-					Recheche Avancée</a>
-
-			</button>
-		</div>
+		{% include 'shared/_btnreturn.html.twig' %}
 		<h1>Immeuble :
 			{{ immeuble.id }}</h1>
 		<div

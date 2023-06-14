@@ -36,6 +36,12 @@ class Recherche
     #[ORM\Column(length: 255)]
     private ?string $description = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?int $referenceProprio = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?bool $vendu = null;
+
     public function __construct()
     {
         $this->immeuble = new ArrayCollection();
@@ -196,6 +202,30 @@ class Recherche
     public function setDescription(string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getReferenceProprio(): ?int
+    {
+        return $this->referenceProprio;
+    }
+
+    public function setReferenceProprio(?int $referenceProprio): self
+    {
+        $this->referenceProprio = $referenceProprio;
+
+        return $this;
+    }
+
+    public function isVendu(): ?bool
+    {
+        return $this->vendu;
+    }
+
+    public function setVendu(?bool $vendu): self
+    {
+        $this->vendu = $vendu;
 
         return $this;
     }

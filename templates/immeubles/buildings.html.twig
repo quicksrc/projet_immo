@@ -34,18 +34,26 @@
 							<th>{{ immeuble.id }}</th>
 							<th>{{ immeuble.description }}</th>
 							<th>{{ immeuble.referenceProprio }}</th>
-							<th>{{ immeuble.vendu }}</th>
+							{% if immeuble.vendu == 0 %}
+								<th class="text-danger">
+									<i class="fa-solid fa-xmark"></i>
+								</th>
+							{% elseif immeuble.vendu == 1 %}
+								<th class="text-success">
+									<i class="fa-solid fa-check"></i>
+								</th>
+							{% endif %}
 							<th>
 								<a href="{{ path('immeubles_detail', {'id': immeuble.id}) }}" class="btn btn-info btn-sm">Détail</a>
 							</th>
 						</tr>
 						{# <div class="card w-25 m-5">
-																																																							<img src="https://picsum.photos/200/200" class="img-fluid" alt="Image de l'immeuble">
-																																																							<div class="card-body">
-																																																								<h4 class="card-title"></h4>
-																																																								<p class="card-text">{{ immeuble.description }}</p>
-																																																							</div>
-																																																						</div> #}
+																																																																																																							<img src="https://picsum.photos/200/200" class="img-fluid" alt="Image de l'immeuble">
+																																																																																																							<div class="card-body">
+																																																																																																								<h4 class="card-title"></h4>
+																																																																																																								<p class="card-text">{{ immeuble.description }}</p>
+																																																																																																							</div>
+																																																																																																						</div> #}
 					{% endfor %}
 				</tbody>
 			</table>
