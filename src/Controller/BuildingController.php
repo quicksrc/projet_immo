@@ -16,6 +16,22 @@ class BuildingController extends AbstractController
     #[Route('/', name: 'home')]
     public function index(ImmeubleRepository $immeubleRepository, Request $request): Response
     {
+        return $this->render('home/index.html.twig');
+    }
+
+    #[Route('/buildings', name: 'immeubles')]
+    public function immeubles(ImmeubleRepository $immeubleRepository): Response
+    {
+        $immeubles = $immeubleRepository->findAll();
+
+        return $this->render('immeubles/buildings.html.twig', [
+            'immeubles' => $immeubles
+        ]);
+    }
+
+    #[Route('/buildings/search', name: 'immeubles_recherche')]
+    public function searchBuilding(ImmeubleRepository $immeubleRepository, Request $request): Response
+    {
         $recherche = new Recherche();
         $form = $this->createForm(SearchType::class, $recherche);
         $form->handleRequest($request);
@@ -29,27 +45,18 @@ class BuildingController extends AbstractController
             } else {
                 $immeubles = $immeubleRepository->findAll();
             }
-            // dd($immeubles);
         }
-        return $this->render('home/index.html.twig', [
+        return $this->render('immeubles/search.html.twig', [
+            'immeubles' => $immeubles,
             'form' => $form->createView(),
-            'immeubles' => $immeubles
-        ]);
-    }
-
-    #[Route('/buildings', name: 'immeubles')]
-    public function immeubles(ImmeubleRepository $immeubleRepository): Response
-    {
-        $immeubles = $immeubleRepository->findAll();
-
-        return $this->render('immeubles/buildings.html.twig', [
-            'immeubles' => $immeubles
         ]);
     }
 
     #[Route('/buildings/{id}', name: 'immeubles_detail')]
     public function detail(Immeuble $immeuble): Response
     {
-        return $this->redirectToRoute('immeubles_detail', ['id' => $immeuble->getId()]);
+        return $this->render('immeubles/detail.html.twig', [
+            'immeuble' => $immeuble
+        ]);
     }
 }

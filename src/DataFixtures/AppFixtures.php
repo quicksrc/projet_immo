@@ -16,7 +16,8 @@ class AppFixtures extends Fixture
         for ($i = 0; $i < 100; $i++) {
             $immeuble = new Immeuble;
             $immeuble->setDescription($faker->sentence())
-                ->setReferenceProprio(mt_rand(100, 200));
+                ->setReferenceProprio(mt_rand(100, 200))
+                ->setVendu(rand(0, 1));
 
             $manager->persist($immeuble);
         }

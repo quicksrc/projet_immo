@@ -10,16 +10,45 @@
 		<div
 			class="row">
 			<!-- Immeuble -->
-			{% for immeuble in immeubles %}
-				<div class="card w-25 m-5">
-					<img src="https://picsum.photos/200/200" class="img-fluid" alt="Image de l'immeuble">
-					<div class="card-body">
-						<h4 class="card-title"></h4>
-						<p class="card-text">{{ immeuble.description }}</p>
-						<a href="{{ path('immeubles_detail', {'id': immeuble.id}) }}" class="btn btn-primary btn-sm">Détail</a>
-					</div>
-				</div>
-			{% endfor %}
+			<div id="toolbar" class="me-4 mb-3">
+				<button id="advancedSearch" class="btn btn-light">
+					<a href="{{ path('immeubles_recherche') }}" class="text-decoration-none">
+						<i class="fa-brands fa-searchengin"></i>
+						Recheche Avancée</a>
+
+				</button>
+			</div>
+			<table id="table" data-toolbar="#toolbar" data-search="true" data-toggle="table" data-sortable="true" data-pagination="true" data-search-align="left" class="table table-list table-bordered m-auto">
+				<thead>
+					<tr>
+						<th data-field="id" data-sortable="true" scope="col">ID</th>
+						<th data-field="description" data-sortable="true" scope="col">Description</th>
+						<th data-field="referenceProprio" data-sortable="true" scope="col">Référence Proprio</th>
+						<th data-field="vendu" data-sortable="true" scope="col">Vendu</th>
+						<th data-field="detail" data-sortable="false" scope="col">Détail</th>
+					</tr>
+				</thead>
+				<tbody class="table-group-divider">
+					{% for immeuble in immeubles %}
+						<tr>
+							<th>{{ immeuble.id }}</th>
+							<th>{{ immeuble.description }}</th>
+							<th>{{ immeuble.referenceProprio }}</th>
+							<th>{{ immeuble.vendu }}</th>
+							<th>
+								<a href="{{ path('immeubles_detail', {'id': immeuble.id}) }}" class="btn btn-info btn-sm">Détail</a>
+							</th>
+						</tr>
+						{# <div class="card w-25 m-5">
+																																																							<img src="https://picsum.photos/200/200" class="img-fluid" alt="Image de l'immeuble">
+																																																							<div class="card-body">
+																																																								<h4 class="card-title"></h4>
+																																																								<p class="card-text">{{ immeuble.description }}</p>
+																																																							</div>
+																																																						</div> #}
+					{% endfor %}
+				</tbody>
+			</table>
 		</div>
 	</section>
 {% endblock body %}

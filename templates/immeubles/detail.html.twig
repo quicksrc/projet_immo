@@ -6,16 +6,29 @@
 
 {% block body %}
 	<section class="section-immeuble">
-		<h1>{{ immeuble.id }}</h1>
+		<div id="returnTable" class="mt-5 mb-3">
+			<button id="btnToReturn" class="btn btn-light">
+				<a href="{{ path('immeubles') }}" class="text-decoration-none">
+					<i class="fa-solid fa-arrow-left-long"></i>
+					Recheche Avancée</a>
+
+			</button>
+		</div>
+		<h1>Immeuble :
+			{{ immeuble.id }}</h1>
 		<div
 			class="row">
 			<!-- Immeuble -->
-			<div class="card w-50 m-5">
-				<img src="https://picsum.photos/200/200" class="img-fluid" alt="Image de l'immeuble">
-				<div class="card-body">
-					<h4 class="card-title"></h4>
-					<p class="card-text">{{ immeuble.description }}</p>
-					<a href="" class="btn btn-primary btn-sm">Détail</a>
+			<div class="card border-info w-50 m-5">
+				<div class="card-header">{{ immeuble.description }}</div>
+				<div class="card-body text-center">
+					<img src="https://picsum.photos/200/200" class="img-fluid w-50 rounded mx-auto d-block" alt="Image de l'immeuble">
+					<h4 class="card-title">{{ immeuble.referenceProprio }}</h4>
+					{% if immeuble.vendu == 0 %}
+						<p class="card-text">Vendu : Non</p>
+					{% elseif immeuble.vendu == 1 %}
+						<p class="card-text">Vendu : Oui</p>
+					{% endif %}
 				</div>
 			</div>
 		</div>
