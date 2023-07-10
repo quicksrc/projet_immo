@@ -34,3 +34,9 @@ $(function () {
     })
     .trigger("change");
 });
+
+$(function () {
+  $("<i class='bi bi-download'></i>").replaceAll(
+    "<i class='fa-solid fa-download'></i>"
+  );
+});

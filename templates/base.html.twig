@@ -16,10 +16,10 @@
 	<body>
 		<header>
 			{# <nav>
-																																																						{% if is_granted('ROLE_ADMIN') %}
-																																																							<a href="{{ path('admin_home')}}" class="nav-admin nav-animated">Page Admin</a>
-																																																						{% endif %}
-																																																																</nav> #}
+																																																												{% if is_granted('ROLE_ADMIN') %}
+																																																													<a href="{{ path('admin_home')}}" class="nav-admin nav-animated">Page Admin</a>
+																																																												{% endif %}
+																																																																						</nav> #}
 			{% include "shared/_navbar.html.twig" %}
 		</header>
 		<div class="container pt-5"> {% block body %}{% endblock %}
@@ -32,7 +32,7 @@
 			<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js' integrity='sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==' crossorigin='anonymous'></script>
 			<script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.21.4/bootstrap-table.min.js' integrity='sha512-rZAhvMayqW5e/N+xdp011tYAIdxgMMJtKxUXx7scO4iBPSUXAKdkrKIPRu6tLr0O9V6Bs9QujJF3MqmgSNfYPA==' crossorigin='anonymous'></script>
 			<script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.21.4/extensions/export/bootstrap-table-export.js' integrity='sha512-P/+GsfMkNQd8zMycqSNiG6YLhMRZycmcENnnoFr7e3lfw/qm21Q3xLWBnNrVjDIT/vqN8uisa1RBGJUCkdWPEQ==' crossorigin='anonymous'></script>
-			<script src="/public/js/buildingsTableExport.js"></script>
+			<script src="js/buildingsTableExport.js"></script>
 			<script src='https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js' integrity='sha512-Qlv6VSKh1gDKGoJbnyA5RMXYcvnpIqhO++MhIM2fStMcGT9i2T//tSwYFlcyoRRDcDZ+TYHpH8azBBCyhpSeqw==' crossorigin='anonymous'></script>
 		</body>
 	</html>
