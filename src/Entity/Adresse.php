@@ -3,8 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\AdresseRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -14,53 +12,36 @@ class Adresse
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    private ?int $id = null;
+    private ?int $IDAdresse = null;
 
-    #[ORM\Column(length: 20)]
+    #[ORM\Column(length: 10, nullable: true)]
     private ?string $NumPrincipal = null;
 
-    #[ORM\Column(length: 20)]
+    #[ORM\Column(length: 10, nullable: true)]
     private ?string $NumSecondaire = null;
 
-    #[ORM\Column(length: 40)]
+    #[ORM\Column(length: 20, nullable: true)]
     private ?string $TypeVoie = null;
 
-    #[ORM\Column(length: 510)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $Adresse = null;
 
-    #[ORM\Column(length: 40)]
+    #[ORM\Column(length: 20, nullable: true)]
     private ?string $CP = null;
 
-    #[ORM\Column(length: 200)]
+    #[ORM\Column(length: 100, nullable: true)]
     private ?string $Ville = null;
 
-    #[ORM\Column(length: 200)]
-    private ?string $Pays = null;
+    #[ORM\Column(type: Types::SMALLINT, nullable: true)]
+    private ?int $AdressePrincipale = null;
 
-    #[ORM\OneToMany(mappedBy: 'adresse', targetEntity: VendeurSociete::class)]
-    #[ORM\JoinTable(name: 'adresse')]
-    private Collection $vendeurSocietes;
+    #[ORM\ManyToOne(inversedBy: 'adresses')]
+    #[ORM\JoinColumn(name: "IDImmeuble", referencedColumnName: "IDImmeuble")]
+    private ?Immeuble $IDImmeuble = null;
 
-    #[ORM\OneToMany(mappedBy: 'adresse_id', targetEntity: Contact::class)]
-    private Collection $contacts;
-
-    #[ORM\OneToMany(mappedBy: 'adresse', targetEntity: AdresseImmeuble::class)]
-    private Collection $adresseImmeubles;
-
-    #[ORM\OneToMany(mappedBy: 'adresse', targetEntity: Societe::class)]
-    private Collection $societes;
-
-    public function __construct()
+    public function getId(): ?int
     {
-        $this->vendeurSocietes = new ArrayCollection();
-        $this->contacts = new ArrayCollection();
-        $this->adresseImmeubles = new ArrayCollection();
-        $this->societes = new ArrayCollection();
-    }
-
-    public function getIDAdresse(): ?int
-    {
-        return $this->id;
+        return $this->IDAdresse;
     }
 
     public function getNumPrincipal(): ?string
@@ -68,7 +49,7 @@ class Adresse
         return $this->NumPrincipal;
     }
 
-    public function setNumPrincipal(string $NumPrincipal): self
+    public function setNumPrincipal(?string $NumPrincipal): self
     {
         $this->NumPrincipal = $NumPrincipal;
 
@@ -80,7 +61,7 @@ class Adresse
         return $this->NumSecondaire;
     }
 
-    public function setNumSecondaire(string $NumSecondaire): self
+    public function setNumSecondaire(?string $NumSecondaire): self
     {
         $this->NumSecondaire = $NumSecondaire;
 
@@ -92,7 +73,7 @@ class Adresse
         return $this->TypeVoie;
     }
 
-    public function setTypeVoie(string $TypeVoie): self
+    public function setTypeVoie(?string $TypeVoie): self
     {
         $this->TypeVoie = $TypeVoie;
 
@@ -104,7 +85,7 @@ class Adresse
         return $this->Adresse;
     }
 
-    public function setAdresse(string $Adresse): self
+    public function setAdresse(?string $Adresse): self
     {
         $this->Adresse = $Adresse;
 
@@ -116,7 +97,7 @@ class Adresse
         return $this->CP;
     }
 
-    public function setCP(string $CP): self
+    public function setCP(?string $CP): self
     {
         $this->CP = $CP;
 
@@ -128,141 +109,33 @@ class Adresse
         return $this->Ville;
     }
 
-    public function setVille(string $Ville): self
+    public function setVille(?string $Ville): self
     {
         $this->Ville = $Ville;
 
         return $this;
     }
 
-    public function getPays(): ?string
+    public function getAdressePrincipale(): ?int
     {
-        return $this->Pays;
+        return $this->AdressePrincipale;
     }
 
-    public function setPays(string $Pays): self
+    public function setAdressePrincipale(?int $AdressePrincipale): self
     {
-        $this->Pays = $Pays;
+        $this->AdressePrincipale = $AdressePrincipale;
 
         return $this;
     }
 
-    /**
-     * @return Collection<int, VendeurSociete>
-     */
-    public function getVendeurSocietes(): Collection
+    public function getIDImmeuble(): ?Immeuble
     {
-        return $this->vendeurSocietes;
+        return $this->IDImmeuble;
     }
 
-    public function addVendeurSociete(VendeurSociete $vendeurSociete): self
+    public function setIDImmeuble(?Immeuble $IDImmeuble): self
     {
-        if (!$this->vendeurSocietes->contains($vendeurSociete)) {
-            $this->vendeurSocietes->add($vendeurSociete);
-            $vendeurSociete->setAdresse($this);
-        }
-
-        return $this;
-    }
-
-    public function removeVendeurSociete(VendeurSociete $vendeurSociete): self
-    {
-        if ($this->vendeurSocietes->removeElement($vendeurSociete)) {
-            // set the owning side to null (unless already changed)
-            if ($vendeurSociete->getAdresse() === $this) {
-                $vendeurSociete->setAdresse(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Contact>
-     */
-    public function getContacts(): Collection
-    {
-        return $this->contacts;
-    }
-
-    public function addContact(Contact $contact): self
-    {
-        if (!$this->contacts->contains($contact)) {
-            $this->contacts->add($contact);
-            $contact->setAdresse($this);
-        }
-
-        return $this;
-    }
-
-    public function removeContact(Contact $contact): self
-    {
-        if ($this->contacts->removeElement($contact)) {
-            // set the owning side to null (unless already changed)
-            if ($contact->getAdresse() === $this) {
-                $contact->setAdresse(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, AdresseImmeuble>
-     */
-    public function getAdresseImmeubles(): Collection
-    {
-        return $this->adresseImmeubles;
-    }
-
-    public function addAdresseImmeuble(AdresseImmeuble $adresseImmeuble): self
-    {
-        if (!$this->adresseImmeubles->contains($adresseImmeuble)) {
-            $this->adresseImmeubles->add($adresseImmeuble);
-            $adresseImmeuble->setAdresse($this);
-        }
-
-        return $this;
-    }
-
-    public function removeAdresseImmeuble(AdresseImmeuble $adresseImmeuble): self
-    {
-        if ($this->adresseImmeubles->removeElement($adresseImmeuble)) {
-            // set the owning side to null (unless already changed)
-            if ($adresseImmeuble->getAdresse() === $this) {
-                $adresseImmeuble->setAdresse(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Societe>
-     */
-    public function getSocietes(): Collection
-    {
-        return $this->societes;
-    }
-
-    public function addSociete(Societe $societe): self
-    {
-        if (!$this->societes->contains($societe)) {
-            $this->societes->add($societe);
-            $societe->setAdresse($this);
-        }
-
-        return $this;
-    }
-
-    public function removeSociete(Societe $societe): self
-    {
-        if ($this->societes->removeElement($societe)) {
-            // set the owning side to null (unless already changed)
-            if ($societe->getAdresse() === $this) {
-                $societe->setAdresse(null);
-            }
-        }
+        $this->IDImmeuble = $IDImmeuble;
 
         return $this;
     }

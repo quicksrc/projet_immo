@@ -2,26 +2,26 @@
 
 namespace App\Repository;
 
-use App\Entity\OpportuniteSocieteImmeubleContact;
+use App\Entity\OrigineContact;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<OpportuniteSocieteImmeubleContact>
+ * @extends ServiceEntityRepository<OrigineContact>
  *
- * @method OpportuniteSocieteImmeubleContact|null find($id, $lockMode = null, $lockVersion = null)
- * @method OpportuniteSocieteImmeubleContact|null findOneBy(array $criteria, array $orderBy = null)
- * @method OpportuniteSocieteImmeubleContact[]    findAll()
- * @method OpportuniteSocieteImmeubleContact[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method OrigineContact|null find($id, $lockMode = null, $lockVersion = null)
+ * @method OrigineContact|null findOneBy(array $criteria, array $orderBy = null)
+ * @method OrigineContact[]    findAll()
+ * @method OrigineContact[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class OpportuniteSocieteImmeubleContactRepository extends ServiceEntityRepository
+class OrigineContactRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, OpportuniteSocieteImmeubleContact::class);
+        parent::__construct($registry, OrigineContact::class);
     }
 
-    public function save(OpportuniteSocieteImmeubleContact $entity, bool $flush = false): void
+    public function save(OrigineContact $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +30,7 @@ class OpportuniteSocieteImmeubleContactRepository extends ServiceEntityRepositor
         }
     }
 
-    public function remove(OpportuniteSocieteImmeubleContact $entity, bool $flush = false): void
+    public function remove(OrigineContact $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
@@ -40,7 +40,7 @@ class OpportuniteSocieteImmeubleContactRepository extends ServiceEntityRepositor
     }
 
 //    /**
-//     * @return OpportuniteSocieteImmeubleContact[] Returns an array of OpportuniteSocieteImmeubleContact objects
+//     * @return OrigineContact[] Returns an array of OrigineContact objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -54,7 +54,7 @@ class OpportuniteSocieteImmeubleContactRepository extends ServiceEntityRepositor
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?OpportuniteSocieteImmeubleContact
+//    public function findOneBySomeField($value): ?OrigineContact
 //    {
 //        return $this->createQueryBuilder('o')
 //            ->andWhere('o.exampleField = :val')

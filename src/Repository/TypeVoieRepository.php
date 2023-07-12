@@ -2,26 +2,26 @@
 
 namespace App\Repository;
 
-use App\Entity\TypeContact;
+use App\Entity\TypeVoie;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<TypeContact>
+ * @extends ServiceEntityRepository<TypeVoie>
  *
- * @method TypeContact|null find($id, $lockMode = null, $lockVersion = null)
- * @method TypeContact|null findOneBy(array $criteria, array $orderBy = null)
- * @method TypeContact[]    findAll()
- * @method TypeContact[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method TypeVoie|null find($id, $lockMode = null, $lockVersion = null)
+ * @method TypeVoie|null findOneBy(array $criteria, array $orderBy = null)
+ * @method TypeVoie[]    findAll()
+ * @method TypeVoie[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class TypeContactRepository extends ServiceEntityRepository
+class TypeVoieRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, TypeContact::class);
+        parent::__construct($registry, TypeVoie::class);
     }
 
-    public function save(TypeContact $entity, bool $flush = false): void
+    public function save(TypeVoie $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +30,7 @@ class TypeContactRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(TypeContact $entity, bool $flush = false): void
+    public function remove(TypeVoie $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
@@ -40,7 +40,7 @@ class TypeContactRepository extends ServiceEntityRepository
     }
 
 //    /**
-//     * @return TypeContact[] Returns an array of TypeContact objects
+//     * @return TypeVoie[] Returns an array of TypeVoie objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -54,7 +54,7 @@ class TypeContactRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?TypeContact
+//    public function findOneBySomeField($value): ?TypeVoie
 //    {
 //        return $this->createQueryBuilder('t')
 //            ->andWhere('t.exampleField = :val')

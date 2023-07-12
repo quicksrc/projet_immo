@@ -3,8 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\ActiviteRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ActiviteRepository::class)]
@@ -13,93 +12,147 @@ class Activite
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    private ?int $id = null;
+    private ?int $IDActivite = null;
 
-    #[ORM\Column(length: 200)]
-    private ?string $theme = null;
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $DateActivite = null;
 
-    #[ORM\ManyToMany(targetEntity: Recherche::class, mappedBy: 'activite')]
-    private Collection $recherches;
+    #[ORM\Column(length: 100, nullable: true)]
+    private ?string $Theme = null;
 
-    #[ORM\OneToMany(mappedBy: 'activite', targetEntity: ActiviteImmeubleContactSociete::class)]
-    private Collection $activiteImmeubleContactSocietes;
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $Commentaire = null;
 
-    public function __construct()
-    {
-        $this->recherches = new ArrayCollection();
-        $this->activiteImmeubleContactSocietes = new ArrayCollection();
-    }
+    #[ORM\Column(length: 100, nullable: true)]
+    private ?string $Action = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $NomFichier = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $Icone = null;
+
+    #[ORM\ManyToOne(targetEntity: "Immeuble", inversedBy: 'activites')]
+    #[ORM\JoinColumn(name: "IDImmeuble", referencedColumnName: "IDImmeuble")]
+    private ?Immeuble $IDImmeuble = null;
+
+    #[ORM\ManyToOne(inversedBy: 'activites')]
+    #[ORM\JoinColumn(name: "IDContact", referencedColumnName: "IDContact")]
+    private ?Contact $IDContact = null;
+
+    #[ORM\ManyToOne(inversedBy: 'activites')]
+    #[ORM\JoinColumn(name: "IDSociete", referencedColumnName: "IDSociete")]
+    private ?Societe $IDSociete = null;
 
     public function getId(): ?int
     {
-        return $this->id;
+        return $this->IDActivite;
+    }
+
+    public function getDateActivite(): ?\DateTimeInterface
+    {
+        return $this->DateActivite;
+    }
+
+    public function setDateActivite(?\DateTimeInterface $DateActivite): self
+    {
+        $this->DateActivite = $DateActivite;
+
+        return $this;
     }
 
     public function getTheme(): ?string
     {
-        return $this->theme;
+        return $this->Theme;
     }
 
-    public function setTheme(string $theme): self
+    public function setTheme(?string $Theme): self
     {
-        $this->theme = $theme;
+        $this->Theme = $Theme;
 
         return $this;
     }
 
-    /**
-     * @return Collection<int, Rechercher>
-     */
-    public function getRecherchers(): Collection
+    public function getCommentaire(): ?string
     {
-        return $this->recherches;
+        return $this->Commentaire;
     }
 
-    public function addRechercher(Recherche $recherche): self
+    public function setCommentaire(?string $Commentaire): self
     {
-        if (!$this->recherches->contains($recherche)) {
-            $this->recherches->add($recherche);
-            $recherche->addActivite($this);
-        }
+        $this->Commentaire = $Commentaire;
 
         return $this;
     }
 
-    public function removeRechercher(Recherche $recherche): self
+    public function getAction(): ?string
     {
-        if ($this->recherches->removeElement($recherche)) {
-            $recherche->removeActivite($this);
-        }
+        return $this->Action;
+    }
+
+    public function setAction(?string $Action): self
+    {
+        $this->Action = $Action;
 
         return $this;
     }
 
-    /**
-     * @return Collection<int, ActiviteImmeubleContactSociete>
-     */
-    public function getActiviteImmeubleContactSocietes(): Collection
+    public function getNomFichier(): ?string
     {
-        return $this->activiteImmeubleContactSocietes;
+        return $this->NomFichier;
     }
 
-    public function addActiviteImmeubleContactSociete(ActiviteImmeubleContactSociete $activiteImmeubleContactSociete): self
+    public function setNomFichier(?string $NomFichier): self
     {
-        if (!$this->activiteImmeubleContactSocietes->contains($activiteImmeubleContactSociete)) {
-            $this->activiteImmeubleContactSocietes->add($activiteImmeubleContactSociete);
-            $activiteImmeubleContactSociete->setActivite($this);
-        }
+        $this->NomFichier = $NomFichier;
 
         return $this;
     }
 
-    public function removeActiviteImmeubleContactSociete(ActiviteImmeubleContactSociete $activiteImmeubleContactSociete): self
+    public function getIcone(): ?string
     {
-        if ($this->activiteImmeubleContactSocietes->removeElement($activiteImmeubleContactSociete)) {
-            // set the owning side to null (unless already changed)
-            if ($activiteImmeubleContactSociete->getActivite() === $this) {
-                $activiteImmeubleContactSociete->setActivite(null);
-            }
-        }
+        return $this->Icone;
+    }
+
+    public function setIcone(?string $Icone): self
+    {
+        $this->Icone = $Icone;
+
+        return $this;
+    }
+
+    public function getIDImmeuble(): ?Immeuble
+    {
+        return $this->IDImmeuble;
+    }
+
+    public function setIDImmeuble(?Immeuble $IDImmeuble): self
+    {
+        $this->IDImmeuble = $IDImmeuble;
+
+        return $this;
+    }
+
+    public function getIDContact(): ?Contact
+    {
+        return $this->IDContact;
+    }
+
+    public function setIDContact(?Contact $IDContact): self
+    {
+        $this->IDContact = $IDContact;
+
+        return $this;
+    }
+
+    public function getIDSociete(): ?Societe
+    {
+        return $this->IDSociete;
+    }
+
+    public function setIDSociete(?Societe $IDSociete): self
+    {
+        $this->IDSociete = $IDSociete;
 
         return $this;
     }

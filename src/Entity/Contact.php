@@ -14,102 +14,95 @@ class Contact
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    private ?int $id = null;
+    private ?int $IDContact = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $DateModification = null;
 
-    #[ORM\Column(length: 200)]
+    #[ORM\Column(length: 100, nullable: true)]
     private ?string $Civilite = null;
 
-    #[ORM\Column(length: 510)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $Nom = null;
 
-    #[ORM\Column(length: 510)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $Prenom = null;
 
-    #[ORM\Column(length: 510)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $Societe = null;
 
-    #[ORM\Column(length: 510)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $Correspondant = null;
 
-    #[ORM\Column(length: 40)]
-    private ?string $Telephone = null;
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $Adresse = null;
 
-    #[ORM\Column(length: 40, nullable: true)]
-    private ?string $Fax = null;
-
-    #[ORM\Column(length: 40, nullable: true)]
-    private ?string $TelephonePortable = null;
-
-    #[ORM\Column(length: 40, nullable: true)]
-    private ?string $TelephoneDomicile = null;
-
-    #[ORM\Column(type: Types::SMALLINT)]
-    private ?int $ListeRouge = null;
-
-    #[ORM\Column(length: 510)]
-    private ?string $Email = null;
-
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $DateNaissance = null;
-
-    #[ORM\Column(length: 200)]
-    private ?string $Activite = null;
+    #[ORM\Column(length: 20, nullable: true)]
+    private ?string $CP = null;
 
     #[ORM\Column(length: 100, nullable: true)]
+    private ?string $Ville = null;
+
+    #[ORM\Column(length: 100, nullable: true)]
+    private ?string $Pays = null;
+
+    #[ORM\Column(length: 20, nullable: true)]
+    private ?string $Telephone = null;
+
+    #[ORM\Column(length: 20, nullable: true)]
+    private ?string $Fax = null;
+
+    #[ORM\Column(length: 20, nullable: true)]
+    private ?string $TelephonePortable = null;
+
+    #[ORM\Column(length: 20, nullable: true)]
+    private ?string $TelephoneDomicile = null;
+
+    #[ORM\Column(type: Types::SMALLINT, nullable: true)]
+    private ?int $ListeRouge = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $Email = null;
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $DateNaissance = null;
+
+    #[ORM\Column(length: 100, nullable: true)]
+    private ?string $Activite = null;
+
+    #[ORM\Column(length: 50, nullable: true)]
     private ?string $RCS = null;
 
-    #[ORM\Column(type: Types::SMALLINT)]
+    #[ORM\Column(type: Types::SMALLINT, nullable: true)]
     private ?int $AntiMailing = null;
 
-    #[ORM\Column(type: Types::SMALLINT)]
+    #[ORM\Column(type: Types::SMALLINT, nullable: true)]
     private ?int $NPAI = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $Commentaire = null;
 
-    #[ORM\Column(length: 510)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $Fonction = null;
 
-    #[ORM\Column(type: Types::SMALLINT)]
+    #[ORM\Column(type: Types::SMALLINT, nullable: true)]
     private ?int $DCD = null;
 
-    #[ORM\ManyToOne(inversedBy: 'contacts')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Adresse $adresse = null;
+    #[ORM\OneToMany(mappedBy: 'IDContact', targetEntity: Activite::class)]
+    private Collection $activites;
 
-    #[ORM\ManyToOne(inversedBy: 'contacts')]
-    private ?TypeContact $typecontact = null;
-
-    #[ORM\OneToMany(mappedBy: 'contact', targetEntity: SocieteContact::class)]
-    private Collection $societeContacts;
-
-    #[ORM\OneToMany(mappedBy: 'contact', targetEntity: OpportuniteSocieteImmeubleContact::class)]
-    private Collection $opportuniteSocieteImmeubleContacts;
-
-    #[ORM\OneToMany(mappedBy: 'contact', targetEntity: ImmeubleContact::class)]
+    #[ORM\ManyToMany(targetEntity: ImmeubleContact::class, mappedBy: 'IDContact')]
     private Collection $immeubleContacts;
-
-    #[ORM\ManyToMany(targetEntity: Recherche::class, mappedBy: 'contact')]
-    private Collection $recherches;
-
-    #[ORM\OneToMany(mappedBy: 'contact', targetEntity: ActiviteImmeubleContactSociete::class)]
-    private Collection $activiteImmeubleContactSocietes;
 
     public function __construct()
     {
-        $this->societeContacts = new ArrayCollection();
-        $this->opportuniteSocieteImmeubleContacts = new ArrayCollection();
+        $this->activites = new ArrayCollection();
         $this->immeubleContacts = new ArrayCollection();
-        $this->recherches = new ArrayCollection();
-        $this->activiteImmeubleContactSocietes = new ArrayCollection();
     }
 
-    public function getIDContact(): ?int
+    public function getId(): ?int
     {
-        return $this->id;
+        return $this->IDContact;
     }
 
     public function getDateModification(): ?\DateTimeInterface
@@ -117,7 +110,7 @@ class Contact
         return $this->DateModification;
     }
 
-    public function setDateModification(\DateTimeInterface $DateModification): self
+    public function setDateModification(?\DateTimeInterface $DateModification): self
     {
         $this->DateModification = $DateModification;
 
@@ -129,7 +122,7 @@ class Contact
         return $this->Civilite;
     }
 
-    public function setCivilite(string $Civilite): self
+    public function setCivilite(?string $Civilite): self
     {
         $this->Civilite = $Civilite;
 
@@ -141,7 +134,7 @@ class Contact
         return $this->Nom;
     }
 
-    public function setNom(string $Nom): self
+    public function setNom(?string $Nom): self
     {
         $this->Nom = $Nom;
 
@@ -153,7 +146,7 @@ class Contact
         return $this->Prenom;
     }
 
-    public function setPrenom(string $Prenom): self
+    public function setPrenom(?string $Prenom): self
     {
         $this->Prenom = $Prenom;
 
@@ -165,7 +158,7 @@ class Contact
         return $this->Societe;
     }
 
-    public function setSociete(string $Societe): self
+    public function setSociete(?string $Societe): self
     {
         $this->Societe = $Societe;
 
@@ -177,9 +170,57 @@ class Contact
         return $this->Correspondant;
     }
 
-    public function setCorrespondant(string $Correspondant): self
+    public function setCorrespondant(?string $Correspondant): self
     {
         $this->Correspondant = $Correspondant;
+
+        return $this;
+    }
+
+    public function getAdresse(): ?string
+    {
+        return $this->Adresse;
+    }
+
+    public function setAdresse(?string $Adresse): self
+    {
+        $this->Adresse = $Adresse;
+
+        return $this;
+    }
+
+    public function getCP(): ?string
+    {
+        return $this->CP;
+    }
+
+    public function setCP(?string $CP): self
+    {
+        $this->CP = $CP;
+
+        return $this;
+    }
+
+    public function getVille(): ?string
+    {
+        return $this->Ville;
+    }
+
+    public function setVille(?string $Ville): self
+    {
+        $this->Ville = $Ville;
+
+        return $this;
+    }
+
+    public function getPays(): ?string
+    {
+        return $this->Pays;
+    }
+
+    public function setPays(?string $Pays): self
+    {
+        $this->Pays = $Pays;
 
         return $this;
     }
@@ -189,7 +230,7 @@ class Contact
         return $this->Telephone;
     }
 
-    public function setTelephone(string $Telephone): self
+    public function setTelephone(?string $Telephone): self
     {
         $this->Telephone = $Telephone;
 
@@ -237,7 +278,7 @@ class Contact
         return $this->ListeRouge;
     }
 
-    public function setListeRouge(int $ListeRouge): self
+    public function setListeRouge(?int $ListeRouge): self
     {
         $this->ListeRouge = $ListeRouge;
 
@@ -249,7 +290,7 @@ class Contact
         return $this->Email;
     }
 
-    public function setEmail(string $Email): self
+    public function setEmail(?string $Email): self
     {
         $this->Email = $Email;
 
@@ -261,7 +302,7 @@ class Contact
         return $this->DateNaissance;
     }
 
-    public function setDateNaissance(\DateTimeInterface $DateNaissance): self
+    public function setDateNaissance(?\DateTimeInterface $DateNaissance): self
     {
         $this->DateNaissance = $DateNaissance;
 
@@ -273,7 +314,7 @@ class Contact
         return $this->Activite;
     }
 
-    public function setActivite(string $Activite): self
+    public function setActivite(?string $Activite): self
     {
         $this->Activite = $Activite;
 
@@ -297,7 +338,7 @@ class Contact
         return $this->AntiMailing;
     }
 
-    public function setAntiMailing(int $AntiMailing): self
+    public function setAntiMailing(?int $AntiMailing): self
     {
         $this->AntiMailing = $AntiMailing;
 
@@ -309,7 +350,7 @@ class Contact
         return $this->NPAI;
     }
 
-    public function setNPAI(int $NPAI): self
+    public function setNPAI(?int $NPAI): self
     {
         $this->NPAI = $NPAI;
 
@@ -333,7 +374,7 @@ class Contact
         return $this->Fonction;
     }
 
-    public function setFonction(string $Fonction): self
+    public function setFonction(?string $Fonction): self
     {
         $this->Fonction = $Fonction;
 
@@ -345,91 +386,37 @@ class Contact
         return $this->DCD;
     }
 
-    public function setDCD(int $DCD): self
+    public function setDCD(?int $DCD): self
     {
         $this->DCD = $DCD;
 
         return $this;
     }
 
-    public function getAdresse(): ?Adresse
-    {
-        return $this->adresse;
-    }
-
-    public function setAdresse(?Adresse $adresse): self
-    {
-        $this->adresse = $adresse;
-
-        return $this;
-    }
-
-    public function getTypecontact(): ?TypeContact
-    {
-        return $this->typecontact;
-    }
-
-    public function setTypecontact(?TypeContact $typecontact): self
-    {
-        $this->typecontact = $typecontact;
-
-        return $this;
-    }
-
     /**
-     * @return Collection<int, SocieteContact>
+     * @return Collection<int, Activite>
      */
-    public function getSocieteContacts(): Collection
+    public function getActivites(): Collection
     {
-        return $this->societeContacts;
+        return $this->activites;
     }
 
-    public function addSocieteContact(SocieteContact $societeContact): self
+    public function addActivite(Activite $activite): self
     {
-        if (!$this->societeContacts->contains($societeContact)) {
-            $this->societeContacts->add($societeContact);
-            $societeContact->setContact($this);
+        if (!$this->activites->contains($activite)) {
+            $this->activites->add($activite);
+            $activite->setIDContact($this);
         }
 
         return $this;
     }
 
-    public function removeSocieteContact(SocieteContact $societeContact): self
+    public function removeActivite(Activite $activite): self
     {
-        if ($this->societeContacts->removeElement($societeContact)) {
+        if ($this->activites->removeElement($activite)) {
             // set the owning side to null (unless already changed)
-            if ($societeContact->getContact() === $this) {
-                $societeContact->setContact(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, OpportuniteSocieteImmeubleContact>
-     */
-    public function getOpportuniteSocieteImmeubleContacts(): Collection
-    {
-        return $this->opportuniteSocieteImmeubleContacts;
-    }
-
-    public function addOpportuniteSocieteImmeubleContact(OpportuniteSocieteImmeubleContact $opportuniteSocieteImmeubleContact): self
-    {
-        if (!$this->opportuniteSocieteImmeubleContacts->contains($opportuniteSocieteImmeubleContact)) {
-            $this->opportuniteSocieteImmeubleContacts->add($opportuniteSocieteImmeubleContact);
-            $opportuniteSocieteImmeubleContact->setContact($this);
-        }
-
-        return $this;
-    }
-
-    public function removeOpportuniteSocieteImmeubleContact(OpportuniteSocieteImmeubleContact $opportuniteSocieteImmeubleContact): self
-    {
-        if ($this->opportuniteSocieteImmeubleContacts->removeElement($opportuniteSocieteImmeubleContact)) {
-            // set the owning side to null (unless already changed)
-            if ($opportuniteSocieteImmeubleContact->getContact() === $this) {
-                $opportuniteSocieteImmeubleContact->setContact(null);
+            if ($activite->getIDContact() === $this) {
+                $activite->setIDContact(null);
             }
         }
 
@@ -448,7 +435,7 @@ class Contact
     {
         if (!$this->immeubleContacts->contains($immeubleContact)) {
             $this->immeubleContacts->add($immeubleContact);
-            $immeubleContact->setContact($this);
+            $immeubleContact->addIDContact($this);
         }
 
         return $this;
@@ -457,67 +444,7 @@ class Contact
     public function removeImmeubleContact(ImmeubleContact $immeubleContact): self
     {
         if ($this->immeubleContacts->removeElement($immeubleContact)) {
-            // set the owning side to null (unless already changed)
-            if ($immeubleContact->getContact() === $this) {
-                $immeubleContact->setContact(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Recherche>
-     */
-    public function getRecherches(): Collection
-    {
-        return $this->recherches;
-    }
-
-    public function addRecherche(Recherche $recherche): self
-    {
-        if (!$this->recherches->contains($recherche)) {
-            $this->recherches->add($recherche);
-            $recherche->addContact($this);
-        }
-
-        return $this;
-    }
-
-    public function removeRecherche(Recherche $recherche): self
-    {
-        if ($this->recherches->removeElement($recherche)) {
-            $recherche->removeContact($this);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, ActiviteImmeubleContactSociete>
-     */
-    public function getActiviteImmeubleContactSocietes(): Collection
-    {
-        return $this->activiteImmeubleContactSocietes;
-    }
-
-    public function addActiviteImmeubleContactSociete(ActiviteImmeubleContactSociete $activiteImmeubleContactSociete): self
-    {
-        if (!$this->activiteImmeubleContactSocietes->contains($activiteImmeubleContactSociete)) {
-            $this->activiteImmeubleContactSocietes->add($activiteImmeubleContactSociete);
-            $activiteImmeubleContactSociete->setContact($this);
-        }
-
-        return $this;
-    }
-
-    public function removeActiviteImmeubleContactSociete(ActiviteImmeubleContactSociete $activiteImmeubleContactSociete): self
-    {
-        if ($this->activiteImmeubleContactSocietes->removeElement($activiteImmeubleContactSociete)) {
-            // set the owning side to null (unless already changed)
-            if ($activiteImmeubleContactSociete->getContact() === $this) {
-                $activiteImmeubleContactSociete->setContact(null);
-            }
+            $immeubleContact->removeIDContact($this);
         }
 
         return $this;

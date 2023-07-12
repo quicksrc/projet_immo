@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ImmeubleContactRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -12,129 +14,163 @@ class ImmeubleContact
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    private ?int $id = null;
+    private ?int $IDImmeubleContact = null;
 
-    #[ORM\Column(length: 200)]
-    private ?string $qualite = null;
+    #[ORM\Column(length: 100, nullable: true)]
+    private ?string $Qualite = null;
 
-    #[ORM\Column(length: 200)]
-    private ?string $qualite_proprietaire = null;
+    #[ORM\Column(length: 100, nullable: true)]
+    private ?string $QualiteProprietaire = null;
 
-    #[ORM\Column(length: 200)]
-    private ?string $genre = null;
+    #[ORM\Column(length: 100, nullable: true)]
+    private ?string $Genre = null;
 
-    #[ORM\Column(type: Types::SMALLINT)]
-    private ?int $principal = null;
+    #[ORM\Column(type: Types::SMALLINT, nullable: true)]
+    private ?int $Principal = null;
 
-    #[ORM\Column(type: Types::SMALLINT)]
-    private ?int $ne_vend_pas = null;
+    #[ORM\Column(type: Types::SMALLINT, nullable: true)]
+    private ?int $NeVendPas = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $date_nvp = null;
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $DateNVP = null;
 
-    #[ORM\ManyToOne(inversedBy: 'immeubleContacts')]
-    private ?Immeuble $immeuble = null;
+    #[ORM\ManyToMany(targetEntity: Immeuble::class, inversedBy: 'immeubleContacts')]
+    #[ORM\JoinColumn(name: "IDImmeubleContact", referencedColumnName: "IDImmeubleContact")]
+    #[ORM\InverseJoinColumn(name: "IDImmeuble", referencedColumnName: "IDImmeuble")]
+    private Collection $IDImmeuble;
 
-    #[ORM\ManyToOne(inversedBy: 'immeubleContacts')]
-    private ?Contact $contact = null;
+    #[ORM\ManyToMany(targetEntity: Contact::class, inversedBy: 'immeubleContacts')]
+    #[ORM\JoinColumn(name: "IDImmeubleContact", referencedColumnName: "IDImmeubleContact")]
+    #[ORM\InverseJoinColumn(name: "IDContact", referencedColumnName: "IDContact")]
+    private Collection $IDContact;
 
-    public function getIdImmeublecontact(): ?int
+    public function __construct()
     {
-        return $this->id;
+        $this->IDImmeuble = new ArrayCollection();
+        $this->IDContact = new ArrayCollection();
+    }
+
+    public function getId(): ?int
+    {
+        return $this->IDImmeubleContact;
     }
 
     public function getQualite(): ?string
     {
-        return $this->qualite;
+        return $this->Qualite;
     }
 
-    public function setQualite(string $qualite): self
+    public function setQualite(?string $Qualite): self
     {
-        $this->qualite = $qualite;
+        $this->Qualite = $Qualite;
 
         return $this;
     }
 
     public function getQualiteProprietaire(): ?string
     {
-        return $this->qualite_proprietaire;
+        return $this->QualiteProprietaire;
     }
 
-    public function setQualiteProprietaire(string $qualite_proprietaire): self
+    public function setQualiteProprietaire(?string $QualiteProprietaire): self
     {
-        $this->qualite_proprietaire = $qualite_proprietaire;
+        $this->QualiteProprietaire = $QualiteProprietaire;
 
         return $this;
     }
 
     public function getGenre(): ?string
     {
-        return $this->genre;
+        return $this->Genre;
     }
 
-    public function setGenre(string $genre): self
+    public function setGenre(?string $Genre): self
     {
-        $this->genre = $genre;
+        $this->Genre = $Genre;
 
         return $this;
     }
 
     public function getPrincipal(): ?int
     {
-        return $this->principal;
+        return $this->Principal;
     }
 
-    public function setPrincipal(int $principal): self
+    public function setPrincipal(?int $Principal): self
     {
-        $this->principal = $principal;
+        $this->Principal = $Principal;
 
         return $this;
     }
 
     public function getNeVendPas(): ?int
     {
-        return $this->ne_vend_pas;
+        return $this->NeVendPas;
     }
 
-    public function setNeVendPas(int $ne_vend_pas): self
+    public function setNeVendPas(?int $NeVendPas): self
     {
-        $this->ne_vend_pas = $ne_vend_pas;
+        $this->NeVendPas = $NeVendPas;
 
         return $this;
     }
 
-    public function getDateNvp(): ?\DateTimeInterface
+    public function getDateNVP(): ?\DateTimeInterface
     {
-        return $this->date_nvp;
+        return $this->DateNVP;
     }
 
-    public function setDateNvp(\DateTimeInterface $date_nvp): self
+    public function setDateNVP(?\DateTimeInterface $DateNVP): self
     {
-        $this->date_nvp = $date_nvp;
+        $this->DateNVP = $DateNVP;
 
         return $this;
     }
 
-    public function getImmeuble(): ?Immeuble
+    /**
+     * @return Collection<int, Immeuble>
+     */
+    public function getIDImmeuble(): Collection
     {
-        return $this->immeuble;
+        return $this->IDImmeuble;
     }
 
-    public function setImmeuble(?Immeuble $immeuble): self
+    public function addIDImmeuble(Immeuble $iDImmeuble): self
     {
-        $this->immeuble = $immeuble;
+        if (!$this->IDImmeuble->contains($iDImmeuble)) {
+            $this->IDImmeuble->add($iDImmeuble);
+        }
 
         return $this;
     }
 
-    public function getContact(): ?Contact
+    public function removeIDImmeuble(Immeuble $iDImmeuble): self
     {
-        return $this->contact;
+        $this->IDImmeuble->removeElement($iDImmeuble);
+
+        return $this;
     }
 
-    public function setContact(?Contact $contact): self
+    /**
+     * @return Collection<int, Contact>
+     */
+    public function getIDContact(): Collection
     {
-        $this->contact = $contact;
+        return $this->IDContact;
+    }
+
+    public function addIDContact(Contact $iDContact): self
+    {
+        if (!$this->IDContact->contains($iDContact)) {
+            $this->IDContact->add($iDContact);
+        }
+
+        return $this;
+    }
+
+    public function removeIDContact(Contact $iDContact): self
+    {
+        $this->IDContact->removeElement($iDContact);
 
         return $this;
     }

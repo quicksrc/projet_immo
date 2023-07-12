@@ -2,26 +2,26 @@
 
 namespace App\Repository;
 
-use App\Entity\VendeurSociete;
+use App\Entity\Vue;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<VendeurSociete>
+ * @extends ServiceEntityRepository<Vue>
  *
- * @method VendeurSociete|null find($id, $lockMode = null, $lockVersion = null)
- * @method VendeurSociete|null findOneBy(array $criteria, array $orderBy = null)
- * @method VendeurSociete[]    findAll()
- * @method VendeurSociete[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Vue|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Vue|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Vue[]    findAll()
+ * @method Vue[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class VendeurSocieteRepository extends ServiceEntityRepository
+class VueRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, VendeurSociete::class);
+        parent::__construct($registry, Vue::class);
     }
 
-    public function save(VendeurSociete $entity, bool $flush = false): void
+    public function save(Vue $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +30,7 @@ class VendeurSocieteRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(VendeurSociete $entity, bool $flush = false): void
+    public function remove(Vue $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
@@ -40,7 +40,7 @@ class VendeurSocieteRepository extends ServiceEntityRepository
     }
 
 //    /**
-//     * @return VendeurSociete[] Returns an array of VendeurSociete objects
+//     * @return Vue[] Returns an array of Vue objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -54,7 +54,7 @@ class VendeurSocieteRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?VendeurSociete
+//    public function findOneBySomeField($value): ?Vue
 //    {
 //        return $this->createQueryBuilder('v')
 //            ->andWhere('v.exampleField = :val')

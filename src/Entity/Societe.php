@@ -14,113 +14,139 @@ class Societe
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    private ?int $id = null;
+    private ?int $IDSociete = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $DateCreation = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $DateModification = null;
 
-    #[ORM\Column(length: 200)]
-    private ?string $EtatDossier = null;
-
-    #[ORM\Column(length: 200)]
+    #[ORM\Column(length: 100, nullable: true)]
     private ?string $OrigineContact = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $DateEditionJournal = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?int $NumJAL = null;
 
-    #[ORM\Column(length: 200)]
+    #[ORM\Column(length: 100, nullable: true)]
     private ?string $Responsable = null;
 
-    #[ORM\Column(length: 200)]
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $VendeurRaisonSocial = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $VendeurAdresse = null;
+
+    #[ORM\Column(length: 20, nullable: true)]
+    private ?string $VendeurCP = null;
+
+    #[ORM\Column(length: 100, nullable: true)]
+    private ?string $VendeurVille = null;
+
+    #[ORM\Column(length: 100, nullable: true)]
+    private ?string $VendeurPays = null;
+
+    #[ORM\Column(length: 20, nullable: true)]
+    private ?string $VendeurTelephoneSociete = null;
+
+    #[ORM\Column(length: 20, nullable: true)]
+    private ?string $VendeurFaxSociete = null;
+
+    #[ORM\Column(length: 50, nullable: true)]
+    private ?string $VendeurRCS = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?float $VendeurCapital = null;
+
+    #[ORM\Column(length: 100, nullable: true)]
+    private ?string $VendeurNomDirigeant = null;
+
+    #[ORM\Column(length: 20, nullable: true)]
+    private ?string $VendeurTelPortable = null;
+
+    #[ORM\Column(length: 20, nullable: true)]
+    private ?string $VendeurTelPerso = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $VendeurEmail = null;
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $VendeurDateNaissance = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $VendeurAdresseFondsVendu = null;
+
+    #[ORM\Column(length: 100, nullable: true)]
     private ?string $ActiviteFdsCommerce = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $DateActCession = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?float $PrixVente = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?float $Tresorerie = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?float $ReportDeficitaire = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $Immobilier = null;
 
-    #[ORM\Column(length: 510)]
-    private ?string $AcheteurRaisonSoc = null;
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $AcheteurRaisonSociale = null;
 
-    #[ORM\Column(length: 510)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $AcheteurAdresse = null;
 
-    #[ORM\Column(length: 40)]
+    #[ORM\Column(length: 20, nullable: true)]
     private ?string $AcheteurCP = null;
 
-    #[ORM\Column(length: 200)]
+    #[ORM\Column(length: 100, nullable: true)]
     private ?string $AcheteurVille = null;
 
-    #[ORM\Column(length: 200)]
+    #[ORM\Column(length: 100, nullable: true)]
     private ?string $AcheteurPays = null;
 
-    #[ORM\Column(length: 40, nullable: true)]
+    #[ORM\Column(length: 20, nullable: true)]
     private ?string $AcheteurTelephone = null;
 
-    #[ORM\Column(length: 40, nullable: true)]
+    #[ORM\Column(length: 20, nullable: true)]
     private ?string $AcheteurFax = null;
 
-    #[ORM\Column(length: 100, nullable: true)]
+    #[ORM\Column(length: 50, nullable: true)]
     private ?string $AcheteurRCS = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?float $AcheteurCapital = null;
 
-    #[ORM\Column(length: 200)]
-    private ?string $AcheteurNomDirige = null;
+    #[ORM\Column(length: 100, nullable: true)]
+    private ?string $AcheteurNomDirigeant = null;
 
-    #[ORM\Column(length: 40, nullable: true)]
+    #[ORM\Column(length: 20, nullable: true)]
     private ?string $AcheteurTelPortable = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $AcheteurDateNaissance = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $Commentaire = null;
 
-    #[ORM\ManyToOne(inversedBy: 'societes')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Adresse $adresse = null;
-
-    #[ORM\OneToMany(mappedBy: 'societe', targetEntity: SocieteContact::class)]
-    private Collection $societeContacts;
-
-    #[ORM\OneToMany(mappedBy: 'societe', targetEntity: OpportuniteSocieteImmeubleContact::class)]
-    private Collection $opportuniteSocieteImmeubleContacts;
-
-    #[ORM\ManyToMany(targetEntity: Recherche::class, mappedBy: 'societe')]
-    private Collection $recherches;
-
-    #[ORM\ManyToMany(targetEntity: ActiviteImmeubleContactSociete::class, mappedBy: 'societe')]
-    private Collection $activiteImmeubleContactSocietes;
+    #[ORM\OneToMany(mappedBy: 'IDSociete', targetEntity: Activite::class)]
+    private Collection $activites;
 
     public function __construct()
     {
-        $this->societeContacts = new ArrayCollection();
-        $this->opportuniteSocieteImmeubleContacts = new ArrayCollection();
-        $this->recherches = new ArrayCollection();
-        $this->activiteImmeubleContactSocietes = new ArrayCollection();
+        $this->activites = new ArrayCollection();
     }
 
-    public function getIDSociete(): ?int
+    public function getId(): ?int
     {
-        return $this->id;
+        return $this->IDSociete;
     }
 
     public function getDateCreation(): ?\DateTimeInterface
@@ -128,7 +154,7 @@ class Societe
         return $this->DateCreation;
     }
 
-    public function setDateCreation(\DateTimeInterface $DateCreation): self
+    public function setDateCreation(?\DateTimeInterface $DateCreation): self
     {
         $this->DateCreation = $DateCreation;
 
@@ -140,21 +166,9 @@ class Societe
         return $this->DateModification;
     }
 
-    public function setDateModification(\DateTimeInterface $DateModification): self
+    public function setDateModification(?\DateTimeInterface $DateModification): self
     {
         $this->DateModification = $DateModification;
-
-        return $this;
-    }
-
-    public function getEtatDossier(): ?string
-    {
-        return $this->EtatDossier;
-    }
-
-    public function setEtatDossier(string $EtatDossier): self
-    {
-        $this->EtatDossier = $EtatDossier;
 
         return $this;
     }
@@ -164,7 +178,7 @@ class Societe
         return $this->OrigineContact;
     }
 
-    public function setOrigineContact(string $OrigineContact): self
+    public function setOrigineContact(?string $OrigineContact): self
     {
         $this->OrigineContact = $OrigineContact;
 
@@ -176,7 +190,7 @@ class Societe
         return $this->DateEditionJournal;
     }
 
-    public function setDateEditionJournal(\DateTimeInterface $DateEditionJournal): self
+    public function setDateEditionJournal(?\DateTimeInterface $DateEditionJournal): self
     {
         $this->DateEditionJournal = $DateEditionJournal;
 
@@ -188,7 +202,7 @@ class Societe
         return $this->NumJAL;
     }
 
-    public function setNumJAL(int $NumJAL): self
+    public function setNumJAL(?int $NumJAL): self
     {
         $this->NumJAL = $NumJAL;
 
@@ -200,9 +214,189 @@ class Societe
         return $this->Responsable;
     }
 
-    public function setResponsable(string $Responsable): self
+    public function setResponsable(?string $Responsable): self
     {
         $this->Responsable = $Responsable;
+
+        return $this;
+    }
+
+    public function getVendeurRaisonSocial(): ?string
+    {
+        return $this->VendeurRaisonSocial;
+    }
+
+    public function setVendeurRaisonSocial(?string $VendeurRaisonSocial): self
+    {
+        $this->VendeurRaisonSocial = $VendeurRaisonSocial;
+
+        return $this;
+    }
+
+    public function getVendeurAdresse(): ?string
+    {
+        return $this->VendeurAdresse;
+    }
+
+    public function setVendeurAdresse(?string $VendeurAdresse): self
+    {
+        $this->VendeurAdresse = $VendeurAdresse;
+
+        return $this;
+    }
+
+    public function getVendeurCP(): ?string
+    {
+        return $this->VendeurCP;
+    }
+
+    public function setVendeurCP(?string $VendeurCP): self
+    {
+        $this->VendeurCP = $VendeurCP;
+
+        return $this;
+    }
+
+    public function getVendeurVille(): ?string
+    {
+        return $this->VendeurVille;
+    }
+
+    public function setVendeurVille(?string $VendeurVille): self
+    {
+        $this->VendeurVille = $VendeurVille;
+
+        return $this;
+    }
+
+    public function getVendeurPays(): ?string
+    {
+        return $this->VendeurPays;
+    }
+
+    public function setVendeurPays(?string $VendeurPays): self
+    {
+        $this->VendeurPays = $VendeurPays;
+
+        return $this;
+    }
+
+    public function getVendeurTelephoneSociete(): ?string
+    {
+        return $this->VendeurTelephoneSociete;
+    }
+
+    public function setVendeurTelephoneSociete(?string $VendeurTelephoneSociete): self
+    {
+        $this->VendeurTelephoneSociete = $VendeurTelephoneSociete;
+
+        return $this;
+    }
+
+    public function getVendeurFaxSociete(): ?string
+    {
+        return $this->VendeurFaxSociete;
+    }
+
+    public function setVendeurFaxSociete(?string $VendeurFaxSociete): self
+    {
+        $this->VendeurFaxSociete = $VendeurFaxSociete;
+
+        return $this;
+    }
+
+    public function getVendeurRCS(): ?string
+    {
+        return $this->VendeurRCS;
+    }
+
+    public function setVendeurRCS(?string $VendeurRCS): self
+    {
+        $this->VendeurRCS = $VendeurRCS;
+
+        return $this;
+    }
+
+    public function getVendeurCapital(): ?float
+    {
+        return $this->VendeurCapital;
+    }
+
+    public function setVendeurCapital(?float $VendeurCapital): self
+    {
+        $this->VendeurCapital = $VendeurCapital;
+
+        return $this;
+    }
+
+    public function getVendeurNomDirigeant(): ?string
+    {
+        return $this->VendeurNomDirigeant;
+    }
+
+    public function setVendeurNomDirigeant(?string $VendeurNomDirigeant): self
+    {
+        $this->VendeurNomDirigeant = $VendeurNomDirigeant;
+
+        return $this;
+    }
+
+    public function getVendeurTelPortable(): ?string
+    {
+        return $this->VendeurTelPortable;
+    }
+
+    public function setVendeurTelPortable(?string $VendeurTelPortable): self
+    {
+        $this->VendeurTelPortable = $VendeurTelPortable;
+
+        return $this;
+    }
+
+    public function getVendeurTelPerso(): ?string
+    {
+        return $this->VendeurTelPerso;
+    }
+
+    public function setVendeurTelPerso(?string $VendeurTelPerso): self
+    {
+        $this->VendeurTelPerso = $VendeurTelPerso;
+
+        return $this;
+    }
+
+    public function getVendeurEmail(): ?string
+    {
+        return $this->VendeurEmail;
+    }
+
+    public function setVendeurEmail(?string $VendeurEmail): self
+    {
+        $this->VendeurEmail = $VendeurEmail;
+
+        return $this;
+    }
+
+    public function getVendeurDateNaissance(): ?\DateTimeInterface
+    {
+        return $this->VendeurDateNaissance;
+    }
+
+    public function setVendeurDateNaissance(?\DateTimeInterface $VendeurDateNaissance): self
+    {
+        $this->VendeurDateNaissance = $VendeurDateNaissance;
+
+        return $this;
+    }
+
+    public function getVendeurAdresseFondsVendu(): ?string
+    {
+        return $this->VendeurAdresseFondsVendu;
+    }
+
+    public function setVendeurAdresseFondsVendu(?string $VendeurAdresseFondsVendu): self
+    {
+        $this->VendeurAdresseFondsVendu = $VendeurAdresseFondsVendu;
 
         return $this;
     }
@@ -212,7 +406,7 @@ class Societe
         return $this->ActiviteFdsCommerce;
     }
 
-    public function setActiviteFdsCommerce(string $ActiviteFdsCommerce): self
+    public function setActiviteFdsCommerce(?string $ActiviteFdsCommerce): self
     {
         $this->ActiviteFdsCommerce = $ActiviteFdsCommerce;
 
@@ -236,7 +430,7 @@ class Societe
         return $this->PrixVente;
     }
 
-    public function setPrixVente(float $PrixVente): self
+    public function setPrixVente(?float $PrixVente): self
     {
         $this->PrixVente = $PrixVente;
 
@@ -248,7 +442,7 @@ class Societe
         return $this->Tresorerie;
     }
 
-    public function setTresorerie(float $Tresorerie): self
+    public function setTresorerie(?float $Tresorerie): self
     {
         $this->Tresorerie = $Tresorerie;
 
@@ -260,7 +454,7 @@ class Societe
         return $this->ReportDeficitaire;
     }
 
-    public function setReportDeficitaire(float $ReportDeficitaire): self
+    public function setReportDeficitaire(?float $ReportDeficitaire): self
     {
         $this->ReportDeficitaire = $ReportDeficitaire;
 
@@ -279,14 +473,14 @@ class Societe
         return $this;
     }
 
-    public function getAcheteurRaisonSoc(): ?string
+    public function getAcheteurRaisonSociale(): ?string
     {
-        return $this->AcheteurRaisonSoc;
+        return $this->AcheteurRaisonSociale;
     }
 
-    public function setAcheteurRaisonSoc(string $AcheteurRaisonSoc): self
+    public function setAcheteurRaisonSociale(?string $AcheteurRaisonSociale): self
     {
-        $this->AcheteurRaisonSoc = $AcheteurRaisonSoc;
+        $this->AcheteurRaisonSociale = $AcheteurRaisonSociale;
 
         return $this;
     }
@@ -296,7 +490,7 @@ class Societe
         return $this->AcheteurAdresse;
     }
 
-    public function setAcheteurAdresse(string $AcheteurAdresse): self
+    public function setAcheteurAdresse(?string $AcheteurAdresse): self
     {
         $this->AcheteurAdresse = $AcheteurAdresse;
 
@@ -308,7 +502,7 @@ class Societe
         return $this->AcheteurCP;
     }
 
-    public function setAcheteurCP(string $AcheteurCP): self
+    public function setAcheteurCP(?string $AcheteurCP): self
     {
         $this->AcheteurCP = $AcheteurCP;
 
@@ -320,7 +514,7 @@ class Societe
         return $this->AcheteurVille;
     }
 
-    public function setAcheteurVille(string $AcheteurVille): self
+    public function setAcheteurVille(?string $AcheteurVille): self
     {
         $this->AcheteurVille = $AcheteurVille;
 
@@ -332,7 +526,7 @@ class Societe
         return $this->AcheteurPays;
     }
 
-    public function setAcheteurPays(string $AcheteurPays): self
+    public function setAcheteurPays(?string $AcheteurPays): self
     {
         $this->AcheteurPays = $AcheteurPays;
 
@@ -380,21 +574,21 @@ class Societe
         return $this->AcheteurCapital;
     }
 
-    public function setAcheteurCapital(float $AcheteurCapital): self
+    public function setAcheteurCapital(?float $AcheteurCapital): self
     {
         $this->AcheteurCapital = $AcheteurCapital;
 
         return $this;
     }
 
-    public function getAcheteurNomDirige(): ?string
+    public function getAcheteurNomDirigeant(): ?string
     {
-        return $this->AcheteurNomDirige;
+        return $this->AcheteurNomDirigeant;
     }
 
-    public function setAcheteurNomDirige(string $AcheteurNomDirige): self
+    public function setAcheteurNomDirigeant(?string $AcheteurNomDirigeant): self
     {
-        $this->AcheteurNomDirige = $AcheteurNomDirige;
+        $this->AcheteurNomDirigeant = $AcheteurNomDirigeant;
 
         return $this;
     }
@@ -416,7 +610,7 @@ class Societe
         return $this->AcheteurDateNaissance;
     }
 
-    public function setAcheteurDateNaissance(\DateTimeInterface $AcheteurDateNaissance): self
+    public function setAcheteurDateNaissance(?\DateTimeInterface $AcheteurDateNaissance): self
     {
         $this->AcheteurDateNaissance = $AcheteurDateNaissance;
 
@@ -435,127 +629,31 @@ class Societe
         return $this;
     }
 
-    public function getAdresse(): ?Adresse
-    {
-        return $this->adresse;
-    }
-
-    public function setAdresse(?Adresse $adresse): self
-    {
-        $this->adresse = $adresse;
-
-        return $this;
-    }
-
     /**
-     * @return Collection<int, SocieteContact>
+     * @return Collection<int, Activite>
      */
-    public function getSocieteContacts(): Collection
+    public function getActivites(): Collection
     {
-        return $this->societeContacts;
+        return $this->activites;
     }
 
-    public function addSocieteContact(SocieteContact $societeContact): self
+    public function addActivite(Activite $activite): self
     {
-        if (!$this->societeContacts->contains($societeContact)) {
-            $this->societeContacts->add($societeContact);
-            $societeContact->setSociete($this);
+        if (!$this->activites->contains($activite)) {
+            $this->activites->add($activite);
+            $activite->setIDSociete($this);
         }
 
         return $this;
     }
 
-    public function removeSocieteContact(SocieteContact $societeContact): self
+    public function removeActivite(Activite $activite): self
     {
-        if ($this->societeContacts->removeElement($societeContact)) {
+        if ($this->activites->removeElement($activite)) {
             // set the owning side to null (unless already changed)
-            if ($societeContact->getSociete() === $this) {
-                $societeContact->setSociete(null);
+            if ($activite->getIDSociete() === $this) {
+                $activite->setIDSociete(null);
             }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, OpportuniteSocieteImmeubleContact>
-     */
-    public function getOpportuniteSocieteImmeubleContacts(): Collection
-    {
-        return $this->opportuniteSocieteImmeubleContacts;
-    }
-
-    public function addOpportuniteSocieteImmeubleContact(OpportuniteSocieteImmeubleContact $opportuniteSocieteImmeubleContact): self
-    {
-        if (!$this->opportuniteSocieteImmeubleContacts->contains($opportuniteSocieteImmeubleContact)) {
-            $this->opportuniteSocieteImmeubleContacts->add($opportuniteSocieteImmeubleContact);
-            $opportuniteSocieteImmeubleContact->setSociete($this);
-        }
-
-        return $this;
-    }
-
-    public function removeOpportuniteSocieteImmeubleContact(OpportuniteSocieteImmeubleContact $opportuniteSocieteImmeubleContact): self
-    {
-        if ($this->opportuniteSocieteImmeubleContacts->removeElement($opportuniteSocieteImmeubleContact)) {
-            // set the owning side to null (unless already changed)
-            if ($opportuniteSocieteImmeubleContact->getSociete() === $this) {
-                $opportuniteSocieteImmeubleContact->setSociete(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Recherche>
-     */
-    public function getRecherches(): Collection
-    {
-        return $this->recherches;
-    }
-
-    public function addRecherche(Recherche $recherche): self
-    {
-        if (!$this->recherches->contains($recherche)) {
-            $this->recherches->add($recherche);
-            $recherche->addSociete($this);
-        }
-
-        return $this;
-    }
-
-    public function removeRecherche(Recherche $recherche): self
-    {
-        if ($this->recherches->removeElement($recherche)) {
-            $recherche->removeSociete($this);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, ActiviteImmeubleContactSociete>
-     */
-    public function getActiviteImmeubleContactSocietes(): Collection
-    {
-        return $this->activiteImmeubleContactSocietes;
-    }
-
-    public function addActiviteImmeubleContactSociete(ActiviteImmeubleContactSociete $activiteImmeubleContactSociete): self
-    {
-        if (!$this->activiteImmeubleContactSocietes->contains($activiteImmeubleContactSociete)) {
-            $this->activiteImmeubleContactSocietes->add($activiteImmeubleContactSociete);
-            $activiteImmeubleContactSociete->addSociete($this);
-        }
-
-        return $this;
-    }
-
-    public function removeActiviteImmeubleContactSociete(ActiviteImmeubleContactSociete $activiteImmeubleContactSociete): self
-    {
-        if ($this->activiteImmeubleContactSocietes->removeElement($activiteImmeubleContactSociete)) {
-            $activiteImmeubleContactSociete->removeSociete($this);
         }
 
         return $this;

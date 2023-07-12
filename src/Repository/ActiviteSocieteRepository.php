@@ -2,26 +2,26 @@
 
 namespace App\Repository;
 
-use App\Entity\AdresseImmeuble;
+use App\Entity\ActiviteSociete;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<AdresseImmeuble>
+ * @extends ServiceEntityRepository<ActiviteSociete>
  *
- * @method AdresseImmeuble|null find($id, $lockMode = null, $lockVersion = null)
- * @method AdresseImmeuble|null findOneBy(array $criteria, array $orderBy = null)
- * @method AdresseImmeuble[]    findAll()
- * @method AdresseImmeuble[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method ActiviteSociete|null find($id, $lockMode = null, $lockVersion = null)
+ * @method ActiviteSociete|null findOneBy(array $criteria, array $orderBy = null)
+ * @method ActiviteSociete[]    findAll()
+ * @method ActiviteSociete[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class AdresseImmeubleRepository extends ServiceEntityRepository
+class ActiviteSocieteRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, AdresseImmeuble::class);
+        parent::__construct($registry, ActiviteSociete::class);
     }
 
-    public function save(AdresseImmeuble $entity, bool $flush = false): void
+    public function save(ActiviteSociete $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +30,7 @@ class AdresseImmeubleRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(AdresseImmeuble $entity, bool $flush = false): void
+    public function remove(ActiviteSociete $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
@@ -40,7 +40,7 @@ class AdresseImmeubleRepository extends ServiceEntityRepository
     }
 
 //    /**
-//     * @return AdresseImmeuble[] Returns an array of AdresseImmeuble objects
+//     * @return ActiviteSociete[] Returns an array of ActiviteSociete objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -54,7 +54,7 @@ class AdresseImmeubleRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?AdresseImmeuble
+//    public function findOneBySomeField($value): ?ActiviteSociete
 //    {
 //        return $this->createQueryBuilder('a')
 //            ->andWhere('a.exampleField = :val')

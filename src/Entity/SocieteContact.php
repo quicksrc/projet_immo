@@ -12,101 +12,69 @@ class SocieteContact
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    private ?int $id = null;
+    private ?int $IDSocieteContact = null;
 
-    #[ORM\Column(length: 200)]
-    private ?string $qualite = null;
+    #[ORM\Column(nullable: true)]
+    private ?int $Qualite = null;
 
-    #[ORM\Column(length: 200)]
-    private ?string $qualite_proprietaire = null;
+    #[ORM\Column(length: 100, nullable: true)]
+    private ?string $QualiteProprietaire = null;
 
-    #[ORM\Column(length: 200)]
-    private ?string $genre = null;
+    #[ORM\Column(length: 100, nullable: true)]
+    private ?string $Genre = null;
 
-    #[ORM\Column(type: Types::SMALLINT)]
-    private ?int $principal = null;
+    #[ORM\Column(type: Types::SMALLINT, nullable: true)]
+    private ?int $Principal = null;
 
-    #[ORM\ManyToOne(inversedBy: 'societeContacts')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Contact $contact = null;
-
-    #[ORM\ManyToOne(inversedBy: 'societeContacts')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Societe $societe = null;
-
-    public function getIdSocietecontact(): ?int
+    public function getId(): ?int
     {
-        return $this->id;
+        return $this->IDSocieteContact;
     }
 
-    public function getQualite(): ?string
+    public function getQualite(): ?int
     {
-        return $this->qualite;
+        return $this->Qualite;
     }
 
-    public function setQualite(string $qualite): self
+    public function setQualite(?int $Qualite): self
     {
-        $this->qualite = $qualite;
+        $this->Qualite = $Qualite;
 
         return $this;
     }
 
     public function getQualiteProprietaire(): ?string
     {
-        return $this->qualite_proprietaire;
+        return $this->QualiteProprietaire;
     }
 
-    public function setQualiteProprietaire(string $qualite_proprietaire): self
+    public function setQualiteProprietaire(?string $QualiteProprietaire): self
     {
-        $this->qualite_proprietaire = $qualite_proprietaire;
+        $this->QualiteProprietaire = $QualiteProprietaire;
 
         return $this;
     }
 
     public function getGenre(): ?string
     {
-        return $this->genre;
+        return $this->Genre;
     }
 
-    public function setGenre(string $genre): self
+    public function setGenre(?string $Genre): self
     {
-        $this->genre = $genre;
+        $this->Genre = $Genre;
 
         return $this;
     }
 
     public function getPrincipal(): ?int
     {
-        return $this->principal;
+        return $this->Principal;
     }
 
-    public function setPrincipal(int $principal): self
+    public function setPrincipal(?int $Principal): self
     {
-        $this->principal = $principal;
-
-        return $this;
-    }
-
-    public function getContact(): ?Contact
-    {
-        return $this->contact;
-    }
-
-    public function setContact(?Contact $contact): self
-    {
-        $this->contact = $contact;
-
-        return $this;
-    }
-
-    public function getSociete(): ?Societe
-    {
-        return $this->societe;
-    }
-
-    public function setSociete(?Societe $societe): self
-    {
-        $this->societe = $societe;
+        $this->Principal = $Principal;
 
         return $this;
     }

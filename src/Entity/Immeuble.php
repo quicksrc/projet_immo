@@ -14,33 +14,33 @@ class Immeuble
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    private ?int $id = null;
+    private ?int $IDImmeuble = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $DateEnquete = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?int $ReferenceProprio = null;
 
-    #[ORM\Column(length: 20, nullable: true)]
-    private ?string $NumPlancheCadast = null;
+    #[ORM\Column(length: 10, nullable: true)]
+    private ?string $NumPlancheCadastrale = null;
 
     #[ORM\Column(type: Types::SMALLINT, nullable: true)]
     private ?int $SMS = null;
 
-    #[ORM\Column(length: 200, nullable: true)]
+    #[ORM\Column(length: 100, nullable: true)]
     private ?string $EtatDossier = null;
 
-    #[ORM\Column(length: 200, nullable: true)]
+    #[ORM\Column(length: 100, nullable: true)]
     private ?string $Enquete = null;
 
-    #[ORM\Column(length: 300, nullable: true)]
+    #[ORM\Column(length: 150, nullable: true)]
     private ?string $NomGardien = null;
 
-    #[ORM\Column(length: 200, nullable: true)]
+    #[ORM\Column(length: 100, nullable: true)]
     private ?string $Description = null;
 
-    #[ORM\Column(length: 200, nullable: true)]
+    #[ORM\Column(length: 100, nullable: true)]
     private ?string $SuiviPar = null;
 
     #[ORM\Column(type: Types::SMALLINT, nullable: true)]
@@ -49,10 +49,10 @@ class Immeuble
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $DateVente = null;
 
-    #[ORM\Column(length: 510, nullable: true)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $OrigineContact = null;
 
-    #[ORM\Column(length: 510, nullable: true)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $Intermediaire = null;
 
     #[ORM\Column(type: Types::SMALLINT, nullable: true)]
@@ -64,41 +64,61 @@ class Immeuble
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $Commentaire = null;
 
-    #[ORM\Column(length: 200, nullable: true)]
+    #[ORM\Column(nullable: true)]
+    private ?int $NumPrincipal = null;
+
+    #[ORM\Column(length: 10, nullable: true)]
+    private ?string $NumSecondaire = null;
+
+    #[ORM\Column(length: 20, nullable: true)]
+    private ?string $TypeVoie = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $NomRue = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $Adresse = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $CP = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $Ville = null;
+
+    #[ORM\Column(length: 100, nullable: true)]
     private ?string $ContactPrincipal = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $Photo1 = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $Photo2 = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $DateVisite = null;
 
-    #[ORM\Column(length: 100, nullable: true)]
+    #[ORM\Column(length: 50, nullable: true)]
     private ?string $RegroupementAct = null;
 
-    #[ORM\OneToMany(mappedBy: 'immeuble', targetEntity: PJ::class)]
-    private Collection $PJs;
+    #[ORM\OneToMany(mappedBy: 'IDImmeuble', targetEntity: Activite::class)]
+    private Collection $activites;
 
-    #[ORM\ManyToOne(inversedBy: 'immeuble')]
-    #[ORM\JoinColumn(nullable: true)]
-    private ?AdresseImmeuble $adresseImmeuble = null;
+    #[ORM\OneToMany(mappedBy: 'IDImmeuble', targetEntity: Adresse::class)]
+    private Collection $adresses;
 
-    #[ORM\OneToMany(mappedBy: 'immeuble', targetEntity: OpportuniteSocieteImmeubleContact::class)]
-    private Collection $opportuniteSocieteImmeubleContacts;
-
-    #[ORM\OneToMany(mappedBy: 'immeuble', targetEntity: ImmeubleContact::class)]
+    #[ORM\ManyToMany(targetEntity: ImmeubleContact::class, mappedBy: 'IDImmeuble')]
     private Collection $immeubleContacts;
-
-    #[ORM\ManyToOne(inversedBy: 'immeuble')]
-    private ?Recherche $recherche = null;
 
     public function __construct()
     {
-        $this->PJs = new ArrayCollection();
-        $this->opportuniteSocieteImmeubleContacts = new ArrayCollection();
+        $this->activites = new ArrayCollection();
+        $this->adresses = new ArrayCollection();
         $this->immeubleContacts = new ArrayCollection();
     }
 
     public function getId(): ?int
     {
-        return $this->id;
+        return $this->IDImmeuble;
     }
 
     public function getDateEnquete(): ?\DateTimeInterface
@@ -106,7 +126,7 @@ class Immeuble
         return $this->DateEnquete;
     }
 
-    public function setDateEnquete(\DateTimeInterface $DateEnquete): self
+    public function setDateEnquete(?\DateTimeInterface $DateEnquete): self
     {
         $this->DateEnquete = $DateEnquete;
 
@@ -118,21 +138,21 @@ class Immeuble
         return $this->ReferenceProprio;
     }
 
-    public function setReferenceProprio(int $ReferenceProprio): self
+    public function setReferenceProprio(?int $ReferenceProprio): self
     {
         $this->ReferenceProprio = $ReferenceProprio;
 
         return $this;
     }
 
-    public function getNumPlancheCadast(): ?string
+    public function getNumPlancheCadastrale(): ?string
     {
-        return $this->NumPlancheCadast;
+        return $this->NumPlancheCadastrale;
     }
 
-    public function setNumPlancheCadast(string $NumPlancheCadast): self
+    public function setNumPlancheCadastrale(?string $NumPlancheCadastrale): self
     {
-        $this->NumPlancheCadast = $NumPlancheCadast;
+        $this->NumPlancheCadastrale = $NumPlancheCadastrale;
 
         return $this;
     }
@@ -142,7 +162,7 @@ class Immeuble
         return $this->SMS;
     }
 
-    public function setSMS(int $SMS): self
+    public function setSMS(?int $SMS): self
     {
         $this->SMS = $SMS;
 
@@ -154,7 +174,7 @@ class Immeuble
         return $this->EtatDossier;
     }
 
-    public function setEtatDossier(string $EtatDossier): self
+    public function setEtatDossier(?string $EtatDossier): self
     {
         $this->EtatDossier = $EtatDossier;
 
@@ -166,7 +186,7 @@ class Immeuble
         return $this->Enquete;
     }
 
-    public function setEnquete(string $Enquete): self
+    public function setEnquete(?string $Enquete): self
     {
         $this->Enquete = $Enquete;
 
@@ -178,7 +198,7 @@ class Immeuble
         return $this->NomGardien;
     }
 
-    public function setNomGardien(string $NomGardien): self
+    public function setNomGardien(?string $NomGardien): self
     {
         $this->NomGardien = $NomGardien;
 
@@ -190,7 +210,7 @@ class Immeuble
         return $this->Description;
     }
 
-    public function setDescription(string $Description): self
+    public function setDescription(?string $Description): self
     {
         $this->Description = $Description;
 
@@ -202,7 +222,7 @@ class Immeuble
         return $this->SuiviPar;
     }
 
-    public function setSuiviPar(string $SuiviPar): self
+    public function setSuiviPar(?string $SuiviPar): self
     {
         $this->SuiviPar = $SuiviPar;
 
@@ -214,7 +234,7 @@ class Immeuble
         return $this->Vendu;
     }
 
-    public function setVendu(int $Vendu): self
+    public function setVendu(?int $Vendu): self
     {
         $this->Vendu = $Vendu;
 
@@ -226,7 +246,7 @@ class Immeuble
         return $this->DateVente;
     }
 
-    public function setDateVente(\DateTimeInterface $DateVente): self
+    public function setDateVente(?\DateTimeInterface $DateVente): self
     {
         $this->DateVente = $DateVente;
 
@@ -238,7 +258,7 @@ class Immeuble
         return $this->OrigineContact;
     }
 
-    public function setOrigineContact(string $OrigineContact): self
+    public function setOrigineContact(?string $OrigineContact): self
     {
         $this->OrigineContact = $OrigineContact;
 
@@ -250,7 +270,7 @@ class Immeuble
         return $this->Intermediaire;
     }
 
-    public function setIntermediaire(string $Intermediaire): self
+    public function setIntermediaire(?string $Intermediaire): self
     {
         $this->Intermediaire = $Intermediaire;
 
@@ -262,7 +282,7 @@ class Immeuble
         return $this->NCPCF;
     }
 
-    public function setNCPCF(int $NCPCF): self
+    public function setNCPCF(?int $NCPCF): self
     {
         $this->NCPCF = $NCPCF;
 
@@ -274,7 +294,7 @@ class Immeuble
         return $this->Visite;
     }
 
-    public function setVisite(int $Visite): self
+    public function setVisite(?int $Visite): self
     {
         $this->Visite = $Visite;
 
@@ -286,9 +306,93 @@ class Immeuble
         return $this->Commentaire;
     }
 
-    public function setCommentaire(string $Commentaire): self
+    public function setCommentaire(?string $Commentaire): self
     {
         $this->Commentaire = $Commentaire;
+
+        return $this;
+    }
+
+    public function getNumPrincipal(): ?int
+    {
+        return $this->NumPrincipal;
+    }
+
+    public function setNumPrincipal(?int $NumPrincipal): self
+    {
+        $this->NumPrincipal = $NumPrincipal;
+
+        return $this;
+    }
+
+    public function getNumSecondaire(): ?string
+    {
+        return $this->NumSecondaire;
+    }
+
+    public function setNumSecondaire(?string $NumSecondaire): self
+    {
+        $this->NumSecondaire = $NumSecondaire;
+
+        return $this;
+    }
+
+    public function getTypeVoie(): ?string
+    {
+        return $this->TypeVoie;
+    }
+
+    public function setTypeVoie(?string $TypeVoie): self
+    {
+        $this->TypeVoie = $TypeVoie;
+
+        return $this;
+    }
+
+    public function getNomRue(): ?string
+    {
+        return $this->NomRue;
+    }
+
+    public function setNomRue(?string $NomRue): self
+    {
+        $this->NomRue = $NomRue;
+
+        return $this;
+    }
+
+    public function getAdresse(): ?string
+    {
+        return $this->Adresse;
+    }
+
+    public function setAdresse(?string $Adresse): self
+    {
+        $this->Adresse = $Adresse;
+
+        return $this;
+    }
+
+    public function getCP(): ?string
+    {
+        return $this->CP;
+    }
+
+    public function setCP(?string $CP): self
+    {
+        $this->CP = $CP;
+
+        return $this;
+    }
+
+    public function getVille(): ?string
+    {
+        return $this->Ville;
+    }
+
+    public function setVille(?string $Ville): self
+    {
+        $this->Ville = $Ville;
 
         return $this;
     }
@@ -298,9 +402,33 @@ class Immeuble
         return $this->ContactPrincipal;
     }
 
-    public function setContactPrincipal(string $ContactPrincipal): self
+    public function setContactPrincipal(?string $ContactPrincipal): self
     {
         $this->ContactPrincipal = $ContactPrincipal;
+
+        return $this;
+    }
+
+    public function getPhoto1(): ?string
+    {
+        return $this->Photo1;
+    }
+
+    public function setPhoto1(?string $Photo1): self
+    {
+        $this->Photo1 = $Photo1;
+
+        return $this;
+    }
+
+    public function getPhoto2(): ?string
+    {
+        return $this->Photo2;
+    }
+
+    public function setPhoto2(?string $Photo2): self
+    {
+        $this->Photo2 = $Photo2;
 
         return $this;
     }
@@ -322,7 +450,7 @@ class Immeuble
         return $this->RegroupementAct;
     }
 
-    public function setRegroupementAct(string $RegroupementAct): self
+    public function setRegroupementAct(?string $RegroupementAct): self
     {
         $this->RegroupementAct = $RegroupementAct;
 
@@ -330,71 +458,59 @@ class Immeuble
     }
 
     /**
-     * @return Collection<int, PJ>
+     * @return Collection<int, Activite>
      */
-    public function getPJs(): Collection
+    public function getActivites(): Collection
     {
-        return $this->PJs;
+        return $this->activites;
     }
 
-    public function addPJ(PJ $pJ): self
+    public function addActivite(Activite $activite): self
     {
-        if (!$this->PJs->contains($pJ)) {
-            $this->PJs->add($pJ);
-            $pJ->setImmeuble($this);
+        if (!$this->activites->contains($activite)) {
+            $this->activites->add($activite);
+            $activite->setIDImmeuble($this);
         }
 
         return $this;
     }
 
-    public function removePJ(PJ $pJ): self
+    public function removeActivite(Activite $activite): self
     {
-        if ($this->PJs->removeElement($pJ)) {
+        if ($this->activites->removeElement($activite)) {
             // set the owning side to null (unless already changed)
-            if ($pJ->getImmeuble() === $this) {
-                $pJ->setImmeuble(null);
+            if ($activite->getIDImmeuble() === $this) {
+                $activite->setIDImmeuble(null);
             }
         }
 
         return $this;
     }
 
-    public function getAdresseImmeuble(): ?AdresseImmeuble
-    {
-        return $this->adresseImmeuble;
-    }
-
-    public function setAdresseImmeuble(?AdresseImmeuble $adresseImmeuble): self
-    {
-        $this->adresseImmeuble = $adresseImmeuble;
-
-        return $this;
-    }
-
     /**
-     * @return Collection<int, OpportuniteSocieteImmeubleContact>
+     * @return Collection<int, Adresse>
      */
-    public function getOpportuniteSocieteImmeubleContacts(): Collection
+    public function getAdresses(): Collection
     {
-        return $this->opportuniteSocieteImmeubleContacts;
+        return $this->adresses;
     }
 
-    public function addOpportuniteSocieteImmeubleContact(OpportuniteSocieteImmeubleContact $opportuniteSocieteImmeubleContact): self
+    public function addAdress(Adresse $adress): self
     {
-        if (!$this->opportuniteSocieteImmeubleContacts->contains($opportuniteSocieteImmeubleContact)) {
-            $this->opportuniteSocieteImmeubleContacts->add($opportuniteSocieteImmeubleContact);
-            $opportuniteSocieteImmeubleContact->setImmeuble($this);
+        if (!$this->adresses->contains($adress)) {
+            $this->adresses->add($adress);
+            $adress->setIDImmeuble($this);
         }
 
         return $this;
     }
 
-    public function removeOpportuniteSocieteImmeubleContact(OpportuniteSocieteImmeubleContact $opportuniteSocieteImmeubleContact): self
+    public function removeAdress(Adresse $adress): self
     {
-        if ($this->opportuniteSocieteImmeubleContacts->removeElement($opportuniteSocieteImmeubleContact)) {
+        if ($this->adresses->removeElement($adress)) {
             // set the owning side to null (unless already changed)
-            if ($opportuniteSocieteImmeubleContact->getImmeuble() === $this) {
-                $opportuniteSocieteImmeubleContact->setImmeuble(null);
+            if ($adress->getIDImmeuble() === $this) {
+                $adress->setIDImmeuble(null);
             }
         }
 
@@ -413,7 +529,7 @@ class Immeuble
     {
         if (!$this->immeubleContacts->contains($immeubleContact)) {
             $this->immeubleContacts->add($immeubleContact);
-            $immeubleContact->setImmeuble($this);
+            $immeubleContact->addIDImmeuble($this);
         }
 
         return $this;
@@ -422,23 +538,8 @@ class Immeuble
     public function removeImmeubleContact(ImmeubleContact $immeubleContact): self
     {
         if ($this->immeubleContacts->removeElement($immeubleContact)) {
-            // set the owning side to null (unless already changed)
-            if ($immeubleContact->getImmeuble() === $this) {
-                $immeubleContact->setImmeuble(null);
-            }
+            $immeubleContact->removeIDImmeuble($this);
         }
-
-        return $this;
-    }
-
-    public function getRecherche(): ?Recherche
-    {
-        return $this->recherche;
-    }
-
-    public function setRecherche(?Recherche $recherche): self
-    {
-        $this->recherche = $recherche;
 
         return $this;
     }

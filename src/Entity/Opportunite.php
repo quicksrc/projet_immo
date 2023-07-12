@@ -3,8 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\OpportuniteRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -14,108 +12,69 @@ class Opportunite
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    private ?int $id = null;
+    private ?int $IDOpportunite = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $date = null;
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $Date = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $commentaire = null;
+    private ?string $Commentaire = null;
 
-    #[ORM\OneToMany(mappedBy: 'opportunite', targetEntity: OpportuniteSocieteImmeubleContact::class)]
-    private Collection $opportuniteSocieteImmeubleContacts;
+    #[ORM\Column(length: 100, nullable: true)]
+    private ?string $SocieteConcernee = null;
 
-    #[ORM\ManyToMany(targetEntity: Recherche::class, mappedBy: 'opportunite')]
-    private Collection $recherches;
+    #[ORM\Column(type: Types::SMALLINT, nullable: true)]
+    private ?int $Gerance = null;
 
-    public function __construct()
+    public function getId(): ?int
     {
-        $this->opportuniteSocieteImmeubleContacts = new ArrayCollection();
-        $this->recherches = new ArrayCollection();
-    }
-
-    public function getIdOpportunite(): ?int
-    {
-        return $this->id;
+        return $this->IDOpportunite;
     }
 
     public function getDate(): ?\DateTimeInterface
     {
-        return $this->date;
+        return $this->Date;
     }
 
-    public function setDate(\DateTimeInterface $date): self
+    public function setDate(?\DateTimeInterface $Date): self
     {
-        $this->date = $date;
+        $this->Date = $Date;
 
         return $this;
     }
 
     public function getCommentaire(): ?string
     {
-        return $this->commentaire;
+        return $this->Commentaire;
     }
 
-    public function setCommentaire(?string $commentaire): self
+    public function setCommentaire(?string $Commentaire): self
     {
-        $this->commentaire = $commentaire;
+        $this->Commentaire = $Commentaire;
 
         return $this;
     }
 
-    /**
-     * @return Collection<int, OpportuniteSocieteImmeubleContact>
-     */
-    public function getOpportuniteSocieteImmeubleContacts(): Collection
+    public function getSocieteConcernee(): ?string
     {
-        return $this->opportuniteSocieteImmeubleContacts;
+        return $this->SocieteConcernee;
     }
 
-    public function addOpportuniteSocieteImmeubleContact(OpportuniteSocieteImmeubleContact $opportuniteSocieteImmeubleContact): self
+    public function setSocieteConcernee(?string $SocieteConcernee): self
     {
-        if (!$this->opportuniteSocieteImmeubleContacts->contains($opportuniteSocieteImmeubleContact)) {
-            $this->opportuniteSocieteImmeubleContacts->add($opportuniteSocieteImmeubleContact);
-            $opportuniteSocieteImmeubleContact->setOpportunite($this);
-        }
+        $this->SocieteConcernee = $SocieteConcernee;
 
         return $this;
     }
 
-    public function removeOpportuniteSocieteImmeubleContact(OpportuniteSocieteImmeubleContact $opportuniteSocieteImmeubleContact): self
+    public function getGerance(): ?int
     {
-        if ($this->opportuniteSocieteImmeubleContacts->removeElement($opportuniteSocieteImmeubleContact)) {
-            // set the owning side to null (unless already changed)
-            if ($opportuniteSocieteImmeubleContact->getOpportunite() === $this) {
-                $opportuniteSocieteImmeubleContact->setOpportunite(null);
-            }
-        }
-
-        return $this;
+        return $this->Gerance;
     }
 
-    /**
-     * @return Collection<int, Recherche>
-     */
-    public function getRecherches(): Collection
+    public function setGerance(?int $Gerance): self
     {
-        return $this->recherches;
-    }
-
-    public function addRechercher(Recherche $recherche): self
-    {
-        if (!$this->recherches->contains($recherche)) {
-            $this->recherches->add($recherche);
-            $recherche->addOpportunite($this);
-        }
-
-        return $this;
-    }
-
-    public function removeRecherche(Recherche $recherche): self
-    {
-        if ($this->recherches->removeElement($recherche)) {
-            $recherche->removeOpportunite($this);
-        }
+        $this->Gerance = $Gerance;
 
         return $this;
     }
