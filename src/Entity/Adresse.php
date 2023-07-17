@@ -36,7 +36,7 @@ class Adresse
     private ?int $AdressePrincipale = null;
 
     #[ORM\ManyToOne(inversedBy: 'adresses')]
-    #[ORM\JoinColumn(name: "IDImmeuble", referencedColumnName: "IDImmeuble")]
+    #[ORM\JoinColumn(name: "IDImmeuble", referencedColumnName: "idimmeuble")]
     private ?Immeuble $IDImmeuble = null;
 
     public function getId(): ?int

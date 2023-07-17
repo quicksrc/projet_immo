@@ -26,6 +26,14 @@ class SocieteContact
     #[ORM\Column(type: Types::SMALLINT, nullable: true)]
     private ?int $Principal = null;
 
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(name: "IDSociete", referencedColumnName: "idsociete")]
+    private ?Societe $IDSociete = null;
+
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(name: "IDContact", referencedColumnName: "idcontact")]
+    private ?Contact $IDContact = null;
+
     public function getId(): ?int
     {
         return $this->IDSocieteContact;
@@ -75,6 +83,30 @@ class SocieteContact
     public function setPrincipal(?int $Principal): self
     {
         $this->Principal = $Principal;
+
+        return $this;
+    }
+
+    public function getIDSociete(): ?Societe
+    {
+        return $this->IDSociete;
+    }
+
+    public function setIDSociete(?Societe $IDSociete): self
+    {
+        $this->IDSociete = $IDSociete;
+
+        return $this;
+    }
+
+    public function getIDContact(): ?Contact
+    {
+        return $this->IDContact;
+    }
+
+    public function setIDContact(?Contact $IDContact): self
+    {
+        $this->IDContact = $IDContact;
 
         return $this;
     }

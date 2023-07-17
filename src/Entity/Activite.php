@@ -33,15 +33,15 @@ class Activite
     private ?string $Icone = null;
 
     #[ORM\ManyToOne(targetEntity: "Immeuble", inversedBy: 'activites')]
-    #[ORM\JoinColumn(name: "IDImmeuble", referencedColumnName: "IDImmeuble")]
+    #[ORM\JoinColumn(name: "IDImmeuble", referencedColumnName: "idimmeuble")]
     private ?Immeuble $IDImmeuble = null;
 
     #[ORM\ManyToOne(inversedBy: 'activites')]
-    #[ORM\JoinColumn(name: "IDContact", referencedColumnName: "IDContact")]
+    #[ORM\JoinColumn(name: "IDContact", referencedColumnName: "idcontact")]
     private ?Contact $IDContact = null;
 
     #[ORM\ManyToOne(inversedBy: 'activites')]
-    #[ORM\JoinColumn(name: "IDSociete", referencedColumnName: "IDSociete")]
+    #[ORM\JoinColumn(name: "IDSociete", referencedColumnName: "idsociete")]
     private ?Societe $IDSociete = null;
 
     public function getId(): ?int

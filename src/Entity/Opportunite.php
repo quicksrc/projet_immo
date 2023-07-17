@@ -26,6 +26,18 @@ class Opportunite
     #[ORM\Column(type: Types::SMALLINT, nullable: true)]
     private ?int $Gerance = null;
 
+    #[ORM\ManyToOne]
+    #[ORM\JoinColumn(name: "IDImmeuble", referencedColumnName: "idimmeuble")]
+    private ?Immeuble $IDImmeuble = null;
+
+    #[ORM\ManyToOne]
+    #[ORM\JoinColumn(name: "IDSociete", referencedColumnName: "idsociete")]
+    private ?Societe $IDSociete = null;
+
+    #[ORM\ManyToOne]
+    #[ORM\JoinColumn(name: "IDContact", referencedColumnName: "idcontact")]
+    private ?Contact $IDContact = null;
+
     public function getId(): ?int
     {
         return $this->IDOpportunite;
@@ -75,6 +87,42 @@ class Opportunite
     public function setGerance(?int $Gerance): self
     {
         $this->Gerance = $Gerance;
+
+        return $this;
+    }
+
+    public function getIDImmeuble(): ?Immeuble
+    {
+        return $this->IDImmeuble;
+    }
+
+    public function setIDImmeuble(?Immeuble $IDImmeuble): self
+    {
+        $this->IDImmeuble = $IDImmeuble;
+
+        return $this;
+    }
+
+    public function getIDSociete(): ?Societe
+    {
+        return $this->IDSociete;
+    }
+
+    public function setIDSociete(?Societe $IDSociete): self
+    {
+        $this->IDSociete = $IDSociete;
+
+        return $this;
+    }
+
+    public function getIDContact(): ?Contact
+    {
+        return $this->IDContact;
+    }
+
+    public function setIDContact(?Contact $IDContact): self
+    {
+        $this->IDContact = $IDContact;
 
         return $this;
     }

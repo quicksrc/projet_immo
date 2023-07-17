@@ -12,9 +12,9 @@ use Doctrine\ORM\Mapping as ORM;
 class Immeuble
 {
     #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?int $IDImmeuble = null;
+    #[ORM\GeneratedValue(strategy: "AUTO")]
+    #[ORM\Column(type: "integer")]
+    private ?int $IDImmeuble;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $DateEnquete = null;
@@ -106,14 +106,10 @@ class Immeuble
     #[ORM\OneToMany(mappedBy: 'IDImmeuble', targetEntity: Adresse::class)]
     private Collection $adresses;
 
-    #[ORM\ManyToMany(targetEntity: ImmeubleContact::class, mappedBy: 'IDImmeuble')]
-    private Collection $immeubleContacts;
-
     public function __construct()
     {
         $this->activites = new ArrayCollection();
         $this->adresses = new ArrayCollection();
-        $this->immeubleContacts = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -512,33 +508,6 @@ class Immeuble
             if ($adress->getIDImmeuble() === $this) {
                 $adress->setIDImmeuble(null);
             }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, ImmeubleContact>
-     */
-    public function getImmeubleContacts(): Collection
-    {
-        return $this->immeubleContacts;
-    }
-
-    public function addImmeubleContact(ImmeubleContact $immeubleContact): self
-    {
-        if (!$this->immeubleContacts->contains($immeubleContact)) {
-            $this->immeubleContacts->add($immeubleContact);
-            $immeubleContact->addIDImmeuble($this);
-        }
-
-        return $this;
-    }
-
-    public function removeImmeubleContact(ImmeubleContact $immeubleContact): self
-    {
-        if ($this->immeubleContacts->removeElement($immeubleContact)) {
-            $immeubleContact->removeIDImmeuble($this);
         }
 
         return $this;

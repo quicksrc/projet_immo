@@ -35,7 +35,7 @@ class Societe
     private ?string $Responsable = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $VendeurRaisonSocial = null;
+    private ?string $VendeurRaisonSociale = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $VendeurAdresse = null;
@@ -83,7 +83,7 @@ class Societe
     private ?string $ActiviteFdsCommerce = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
-    private ?\DateTimeInterface $DateActCession = null;
+    private ?\DateTimeInterface $DateActeCession = null;
 
     #[ORM\Column(nullable: true)]
     private ?float $PrixVente = null;
@@ -138,6 +138,9 @@ class Societe
 
     #[ORM\OneToMany(mappedBy: 'IDSociete', targetEntity: Activite::class)]
     private Collection $activites;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $EtatDossier = null;
 
     public function __construct()
     {
@@ -221,14 +224,14 @@ class Societe
         return $this;
     }
 
-    public function getVendeurRaisonSocial(): ?string
+    public function getVendeurRaisonSociale(): ?string
     {
-        return $this->VendeurRaisonSocial;
+        return $this->VendeurRaisonSociale;
     }
 
-    public function setVendeurRaisonSocial(?string $VendeurRaisonSocial): self
+    public function setVendeurRaisonSociale(?string $VendeurRaisonSociale): self
     {
-        $this->VendeurRaisonSocial = $VendeurRaisonSocial;
+        $this->VendeurRaisonSociale = $VendeurRaisonSociale;
 
         return $this;
     }
@@ -413,14 +416,14 @@ class Societe
         return $this;
     }
 
-    public function getDateActCession(): ?\DateTimeInterface
+    public function getDateActeCession(): ?\DateTimeInterface
     {
-        return $this->DateActCession;
+        return $this->DateActeCession;
     }
 
-    public function setDateActCession(?\DateTimeInterface $DateActCession): self
+    public function setDateActeCession(?\DateTimeInterface $DateActeCession): self
     {
-        $this->DateActCession = $DateActCession;
+        $this->DateActeCession = $DateActeCession;
 
         return $this;
     }
@@ -655,6 +658,18 @@ class Societe
                 $activite->setIDSociete(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getEtatDossier(): ?string
+    {
+        return $this->EtatDossier;
+    }
+
+    public function setEtatDossier(?string $EtatDossier): self
+    {
+        $this->EtatDossier = $EtatDossier;
 
         return $this;
     }

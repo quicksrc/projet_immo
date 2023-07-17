@@ -34,20 +34,16 @@ class ImmeubleContact
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $DateNVP = null;
 
-    #[ORM\ManyToMany(targetEntity: Immeuble::class, inversedBy: 'immeubleContacts')]
-    #[ORM\JoinColumn(name: "IDImmeubleContact", referencedColumnName: "IDImmeubleContact")]
-    #[ORM\InverseJoinColumn(name: "IDImmeuble", referencedColumnName: "IDImmeuble")]
-    private Collection $IDImmeuble;
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(name: "IDImmeuble", referencedColumnName: "idimmeuble")]
+    private ?Immeuble $IDImmeuble = null;
 
-    #[ORM\ManyToMany(targetEntity: Contact::class, inversedBy: 'immeubleContacts')]
-    #[ORM\JoinColumn(name: "IDImmeubleContact", referencedColumnName: "IDImmeubleContact")]
-    #[ORM\InverseJoinColumn(name: "IDContact", referencedColumnName: "IDContact")]
-    private Collection $IDContact;
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(name: "IDContact", referencedColumnName: "idcontact")]
+    private ?Contact $IDContact = null;
 
     public function __construct()
     {
-        $this->IDImmeuble = new ArrayCollection();
-        $this->IDContact = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -127,50 +123,26 @@ class ImmeubleContact
         return $this;
     }
 
-    /**
-     * @return Collection<int, Immeuble>
-     */
-    public function getIDImmeuble(): Collection
+    public function getIDImmeuble(): ?Immeuble
     {
         return $this->IDImmeuble;
     }
 
-    public function addIDImmeuble(Immeuble $iDImmeuble): self
+    public function setIDImmeuble(?Immeuble $IDImmeuble): self
     {
-        if (!$this->IDImmeuble->contains($iDImmeuble)) {
-            $this->IDImmeuble->add($iDImmeuble);
-        }
+        $this->IDImmeuble = $IDImmeuble;
 
         return $this;
     }
 
-    public function removeIDImmeuble(Immeuble $iDImmeuble): self
-    {
-        $this->IDImmeuble->removeElement($iDImmeuble);
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Contact>
-     */
-    public function getIDContact(): Collection
+    public function getIDContact(): ?Contact
     {
         return $this->IDContact;
     }
 
-    public function addIDContact(Contact $iDContact): self
+    public function setIDContact(?Contact $IDContact): self
     {
-        if (!$this->IDContact->contains($iDContact)) {
-            $this->IDContact->add($iDContact);
-        }
-
-        return $this;
-    }
-
-    public function removeIDContact(Contact $iDContact): self
-    {
-        $this->IDContact->removeElement($iDContact);
+        $this->IDContact = $IDContact;
 
         return $this;
     }

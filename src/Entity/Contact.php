@@ -91,13 +91,9 @@ class Contact
     #[ORM\OneToMany(mappedBy: 'IDContact', targetEntity: Activite::class)]
     private Collection $activites;
 
-    #[ORM\ManyToMany(targetEntity: ImmeubleContact::class, mappedBy: 'IDContact')]
-    private Collection $immeubleContacts;
-
     public function __construct()
     {
         $this->activites = new ArrayCollection();
-        $this->immeubleContacts = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -418,33 +414,6 @@ class Contact
             if ($activite->getIDContact() === $this) {
                 $activite->setIDContact(null);
             }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, ImmeubleContact>
-     */
-    public function getImmeubleContacts(): Collection
-    {
-        return $this->immeubleContacts;
-    }
-
-    public function addImmeubleContact(ImmeubleContact $immeubleContact): self
-    {
-        if (!$this->immeubleContacts->contains($immeubleContact)) {
-            $this->immeubleContacts->add($immeubleContact);
-            $immeubleContact->addIDContact($this);
-        }
-
-        return $this;
-    }
-
-    public function removeImmeubleContact(ImmeubleContact $immeubleContact): self
-    {
-        if ($this->immeubleContacts->removeElement($immeubleContact)) {
-            $immeubleContact->removeIDContact($this);
         }
 
         return $this;
