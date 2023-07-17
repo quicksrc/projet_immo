@@ -6,7 +6,7 @@ $(function () {
     .change(function () {
       $table.bootstrapTable("destroy").bootstrapTable({
         exportDataType: $(this).val(),
-        exportTypes: ["json", "xml", "csv", "txt", "sql", "excel", "pdf"],
+        exportTypes: ["json", "xml", "csv", "txt", "excel", "pdf"],
         columns: [
           {
             field: "state",
