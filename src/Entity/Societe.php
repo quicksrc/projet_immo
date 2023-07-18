@@ -147,7 +147,7 @@ class Societe
         $this->activites = new ArrayCollection();
     }
 
-    public function getId(): ?int
+    public function getIDSociete(): ?int
     {
         return $this->IDSociete;
     }

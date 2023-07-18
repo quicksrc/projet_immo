@@ -1,0 +1,186 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Societe{% endblock %}
+
+{% block body %}
+    <h1>Societe</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>IDSociete</th>
+                <td>{{ societe.IDSociete }}</td>
+            </tr>
+            <tr>
+                <th>DateCreation</th>
+                <td>{{ societe.DateCreation ? societe.DateCreation|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>DateModification</th>
+                <td>{{ societe.DateModification ? societe.DateModification|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>OrigineContact</th>
+                <td>{{ societe.OrigineContact }}</td>
+            </tr>
+            <tr>
+                <th>DateEditionJournal</th>
+                <td>{{ societe.DateEditionJournal ? societe.DateEditionJournal|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>NumJAL</th>
+                <td>{{ societe.NumJAL }}</td>
+            </tr>
+            <tr>
+                <th>Responsable</th>
+                <td>{{ societe.Responsable }}</td>
+            </tr>
+            <tr>
+                <th>VendeurRaisonSociale</th>
+                <td>{{ societe.VendeurRaisonSociale }}</td>
+            </tr>
+            <tr>
+                <th>VendeurAdresse</th>
+                <td>{{ societe.VendeurAdresse }}</td>
+            </tr>
+            <tr>
+                <th>VendeurCP</th>
+                <td>{{ societe.VendeurCP }}</td>
+            </tr>
+            <tr>
+                <th>VendeurVille</th>
+                <td>{{ societe.VendeurVille }}</td>
+            </tr>
+            <tr>
+                <th>VendeurPays</th>
+                <td>{{ societe.VendeurPays }}</td>
+            </tr>
+            <tr>
+                <th>VendeurTelephoneSociete</th>
+                <td>{{ societe.VendeurTelephoneSociete }}</td>
+            </tr>
+            <tr>
+                <th>VendeurFaxSociete</th>
+                <td>{{ societe.VendeurFaxSociete }}</td>
+            </tr>
+            <tr>
+                <th>VendeurRCS</th>
+                <td>{{ societe.VendeurRCS }}</td>
+            </tr>
+            <tr>
+                <th>VendeurCapital</th>
+                <td>{{ societe.VendeurCapital }}</td>
+            </tr>
+            <tr>
+                <th>VendeurNomDirigeant</th>
+                <td>{{ societe.VendeurNomDirigeant }}</td>
+            </tr>
+            <tr>
+                <th>VendeurTelPortable</th>
+                <td>{{ societe.VendeurTelPortable }}</td>
+            </tr>
+            <tr>
+                <th>VendeurTelPerso</th>
+                <td>{{ societe.VendeurTelPerso }}</td>
+            </tr>
+            <tr>
+                <th>VendeurEmail</th>
+                <td>{{ societe.VendeurEmail }}</td>
+            </tr>
+            <tr>
+                <th>VendeurDateNaissance</th>
+                <td>{{ societe.VendeurDateNaissance ? societe.VendeurDateNaissance|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>VendeurAdresseFondsVendu</th>
+                <td>{{ societe.VendeurAdresseFondsVendu }}</td>
+            </tr>
+            <tr>
+                <th>ActiviteFdsCommerce</th>
+                <td>{{ societe.ActiviteFdsCommerce }}</td>
+            </tr>
+            <tr>
+                <th>DateActeCession</th>
+                <td>{{ societe.DateActeCession ? societe.DateActeCession|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>PrixVente</th>
+                <td>{{ societe.PrixVente }}</td>
+            </tr>
+            <tr>
+                <th>Tresorerie</th>
+                <td>{{ societe.Tresorerie }}</td>
+            </tr>
+            <tr>
+                <th>ReportDeficitaire</th>
+                <td>{{ societe.ReportDeficitaire }}</td>
+            </tr>
+            <tr>
+                <th>Immobilier</th>
+                <td>{{ societe.Immobilier }}</td>
+            </tr>
+            <tr>
+                <th>AcheteurRaisonSociale</th>
+                <td>{{ societe.AcheteurRaisonSociale }}</td>
+            </tr>
+            <tr>
+                <th>AcheteurAdresse</th>
+                <td>{{ societe.AcheteurAdresse }}</td>
+            </tr>
+            <tr>
+                <th>AcheteurCP</th>
+                <td>{{ societe.AcheteurCP }}</td>
+            </tr>
+            <tr>
+                <th>AcheteurVille</th>
+                <td>{{ societe.AcheteurVille }}</td>
+            </tr>
+            <tr>
+                <th>AcheteurPays</th>
+                <td>{{ societe.AcheteurPays }}</td>
+            </tr>
+            <tr>
+                <th>AcheteurTelephone</th>
+                <td>{{ societe.AcheteurTelephone }}</td>
+            </tr>
+            <tr>
+                <th>AcheteurFax</th>
+                <td>{{ societe.AcheteurFax }}</td>
+            </tr>
+            <tr>
+                <th>AcheteurRCS</th>
+                <td>{{ societe.AcheteurRCS }}</td>
+            </tr>
+            <tr>
+                <th>AcheteurCapital</th>
+                <td>{{ societe.AcheteurCapital }}</td>
+            </tr>
+            <tr>
+                <th>AcheteurNomDirigeant</th>
+                <td>{{ societe.AcheteurNomDirigeant }}</td>
+            </tr>
+            <tr>
+                <th>AcheteurTelPortable</th>
+                <td>{{ societe.AcheteurTelPortable }}</td>
+            </tr>
+            <tr>
+                <th>AcheteurDateNaissance</th>
+                <td>{{ societe.AcheteurDateNaissance ? societe.AcheteurDateNaissance|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Commentaire</th>
+                <td>{{ societe.Commentaire }}</td>
+            </tr>
+            <tr>
+                <th>EtatDossier</th>
+                <td>{{ societe.EtatDossier }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_societe_index') }}">back to list</a>
+
+    <a href="{{ path('app_societe_edit', {'IDSociete': societe.IDSociete}) }}">edit</a>
+
+    {{ include('societe/_delete_form.html.twig') }}
+{% endblock %}

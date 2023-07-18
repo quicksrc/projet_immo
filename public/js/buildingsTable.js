@@ -59,9 +59,11 @@ $(function () {
   $("#toolbarContact")
     .find("select")
     .change(function () {
-      $("#tableContact").bootstrapTable("destroy").bootstrapTable({
+      $("#tableContact")
+      .bootstrapTable("destroy")
+      .bootstrapTable({
         exportDataType: $(this).val(),
-        exportTypes: ["json", "xml", "csv", "txt", "sql", "excel", "pdf"],
+        exportTypes: ["csv","excel"],
         columns: [
           {
             field: "state",
@@ -89,3 +91,43 @@ $(function () {
     })
     .trigger("change");
 });
+
+$(function () {
+  $("#toolbarSociete")
+    .find("select")
+    .change(function () {
+      $("#tableSociete")
+      .bootstrapTable("destroy")
+      .bootstrapTable({
+        exportDataType: $(this).val(),
+        exportTypes: ["csv","excel"],
+        columns: [
+          {
+            field: "state",
+            checkbox: true,
+            visible: $(this).val() === "selected",
+          },
+          {
+            field: "id",
+            title: "ID",
+          },
+          {
+            field: "description",
+            title: "Description",
+          },
+          {
+            field: "referenceProprio",
+            title: "Référence Propriétaire",
+          },
+          {
+            field: "vendu",
+            title: "Vendu",
+          },
+        ],
+      });
+    })
+    .trigger("change");
+});
+
+
+

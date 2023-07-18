@@ -25,31 +25,31 @@
 			<table id="tableContact" data-pagination="true" data-toolbar="#toolbarContact" data-page-size="25" data-search="true" data-show-export="true" data-toggle="table" data-click-to-select="true" data-search-align="left" data-show-columns="true" class="table table-list table-bordered table-striped m-auto">
 				<thead>
 					<tr>
-						<th data-field="id" data-sortable="true">IDContact</th>
-						<th data-field="date">DateModification</th>
-						<th data-field="civilite">Civilite</th>
-						<th data-field="nom">Nom</th>
-						<th data-field="prenom">Prenom</th>
-						<th data-field="societe">Societe</th>
-						<th data-field="correspondant">Correspondant</th>
-						<th data-field="adresse">Adresse</th>
-						<th data-field="cp">CP</th>
-						<th data-field="ville">Ville</th>
-						<th data-field="pays">Pays</th>
-						<th data-field="tel">Telephone</th>
-						<th data-field="fax">Fax</th>
-						<th data-field="telPor">TelephonePortable</th>
-						<th data-field="telDom">TelephoneDomicile</th>
-						<th data-field="listeRouge">ListeRouge</th>
-						<th data-field="email">Email</th>
-						<th data-field="dateNaissance">DateNaissance</th>
-						<th data-field="activite">Activite</th>
-						<th data-field="rcs">RCS</th>
-						<th data-field="antiMailing">AntiMailing</th>
-						<th data-field="npai">NPAI</th>
-						<th data-field="com">Commentaire</th>
-						<th data-field="fnc">Fonction</th>
-						<th data-field="dcd">DCD</th>
+						<th data-sortable="true" data-field="id" data-sortable="true">N°</th>
+						<th data-sortable="true" data-field="nom">Nom</th>
+						<th data-sortable="true" data-field="prenom">Prenom</th>
+						<th data-sortable="true" data-field="tel">Telephone</th>
+						<th data-sortable="true" data-field="telPor">Telephone Portable</th>
+						<th data-sortable="true" data-field="adresse">Adresse</th>
+						<th data-sortable="true" data-field="cp">CP</th>
+						<th data-sortable="true" data-field="ville">Ville</th>
+						{# <th data-field="date">DateModification</th>
+																								<th data-field="civilite">Civilite</th>
+																								<th data-field="societe">Societe</th>
+																								<th data-field="correspondant">Correspondant</th>
+																								<th data-field="pays">Pays</th>
+																								<th data-field="fax">Fax</th>
+																								<th data-field="telDom">TelephoneDomicile</th>
+																								<th data-field="listeRouge">ListeRouge</th>
+																								<th data-field="email">Email</th>
+																								<th data-field="dateNaissance">DateNaissance</th>
+																								<th data-field="activite">Activite</th>
+																								<th data-field="rcs">RCS</th>
+																								<th data-field="antiMailing">AntiMailing</th>
+																								<th data-field="npai">NPAI</th>
+																								<th data-field="com">Commentaire</th>
+																								<th data-field="fnc">Fonction</th>
+																								<th data-field="dcd">DCD</th> #}
 						<th data-field="action">actions</th>
 					</tr>
 				</thead>
@@ -57,30 +57,30 @@
 					{% for contact in contacts %}
 						<tr>
 							<td>{{ contact.IDContact }}</td>
-							<td>{{ contact.DateModification ? contact.DateModification|date('Y-m-d H:i:s') : '' }}</td>
-							<td>{{ contact.Civilite }}</td>
 							<td>{{ contact.Nom }}</td>
 							<td>{{ contact.Prenom }}</td>
-							<td>{{ contact.Societe }}</td>
-							<td>{{ contact.Correspondant }}</td>
+							<td>{{ contact.Telephone }}</td>
+							<td>{{ contact.TelephonePortable }}</td>
 							<td>{{ contact.Adresse }}</td>
 							<td>{{ contact.CP }}</td>
 							<td>{{ contact.Ville }}</td>
-							<td>{{ contact.Pays }}</td>
-							<td>{{ contact.Telephone }}</td>
-							<td>{{ contact.Fax }}</td>
-							<td>{{ contact.TelephonePortable }}</td>
-							<td>{{ contact.TelephoneDomicile }}</td>
-							<td>{{ contact.ListeRouge }}</td>
-							<td>{{ contact.Email }}</td>
-							<td>{{ contact.DateNaissance ? contact.DateNaissance|date('Y-m-d H:i:s') : '' }}</td>
-							<td>{{ contact.Activite }}</td>
-							<td>{{ contact.RCS }}</td>
-							<td>{{ contact.AntiMailing }}</td>
-							<td>{{ contact.NPAI }}</td>
-							<td>{{ contact.Commentaire }}</td>
-							<td>{{ contact.Fonction }}</td>
-							<td>{{ contact.DCD }}</td>
+							{# //<td>{{ contact.DateModification ? contact.DateModification|date('Y-m-d H:i:s') : '' }}</td>
+																												<td>{{ contact.Civilite }}</td>
+																												<td>{{ contact.Societe }}</td>
+																												<td>{{ contact.Correspondant }}</td>
+																												<td>{{ contact.Pays }}</td>
+																												<td>{{ contact.Fax }}</td>
+																												<td>{{ contact.TelephoneDomicile }}</td>
+																												<td>{{ contact.ListeRouge }}</td>
+																												<td>{{ contact.Email }}</td>
+																												<td>{{ contact.DateNaissance ? contact.DateNaissance|date('Y-m-d H:i:s') : '' }}</td>
+																												<td>{{ contact.Activite }}</td>
+																												<td>{{ contact.RCS }}</td>
+																												<td>{{ contact.AntiMailing }}</td>
+																												<td>{{ contact.NPAI }}</td>
+																												<td>{{ contact.Commentaire }}</td>
+																												<td>{{ contact.Fonction }}</td>
+																												<td>{{ contact.DCD }}</td> #}
 							<td>
 								<a href="{{ path('app_contact_show', {'IDContact': contact.IDContact}) }}">show</a>
 								<a href="{{ path('app_contact_edit', {'IDContact': contact.IDContact}) }}">edit</a>
