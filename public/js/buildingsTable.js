@@ -1,8 +1,8 @@
 $(function () {
-  $("#toolbar")
+  $("#toolbarBuilding")
     .find("select")
     .change(function () {
-      $("#table")
+      $("#tableBuilding")
         .bootstrapTable("destroy")
         .bootstrapTable({
           exportDataType: $(this).val(),
@@ -49,6 +49,10 @@ $(function () {
               field: "description",
               title: "Description",
             },
+            {
+              field: "action",
+              title: "actions",
+            },
           ],
         });
     })
@@ -63,7 +67,7 @@ $(function () {
         .bootstrapTable("destroy")
         .bootstrapTable({
           exportDataType: $(this).val(),
-          exportTypes: ["json", "xml", "csv", "txt", "sql", "excel", "pdf"],
+          exportTypes: ["csv", "excel"],
           columns: [
             {
               field: "state",
@@ -72,19 +76,80 @@ $(function () {
             },
             {
               field: "id",
-              title: "ID",
+              title: "N°",
             },
             {
-              field: "description",
-              title: "Description",
+              field: "nom",
+              title: "Nom",
             },
             {
-              field: "referenceProprio",
-              title: "Référence Propriétaire",
+              field: "prenom",
+              title: "Prenom",
             },
             {
-              field: "vendu",
-              title: "Vendu",
+              field: "tel",
+              title: "Telephone",
+            },
+            {
+              field: "telPor",
+              title: "Telephone Portable",
+            },
+            {
+              field: "adresse",
+              title: "Adresse",
+            },
+            {
+              field: "cp",
+              title: "CP",
+            },
+            {
+              field: "ville",
+              title: "Ville",
+            },
+            {
+              field: "action",
+              title: "actions",
+            },
+          ],
+        });
+    })
+    .trigger("change");
+});
+
+$(function () {
+  $("#toolbarSociete")
+    .find("select")
+    .change(function () {
+      $("#tableSociete")
+        .bootstrapTable("destroy")
+        .bootstrapTable({
+          exportDataType: $(this).val(),
+          exportTypes: ["csv", "excel"],
+          columns: [
+            {
+              field: "state",
+              checkbox: true,
+              visible: $(this).val() === "selected",
+            },
+            {
+              field: "id",
+              title: "N°",
+            },
+            {
+              field: "etatDossier",
+              title: "Etat",
+            },
+            {
+              field: "jal",
+              title: "JAL",
+            },
+            {
+              field: "vrs",
+              title: "Raison Sociale du Vendeur",
+            },
+            {
+              field: "ars",
+              title: "Raison Sociale de l'Acheteur",
             },
           ],
         });

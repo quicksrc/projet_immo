@@ -10,8 +10,8 @@
 		<div
 			class="row">
 			<!-- Immeuble -->
-			<div id="toolbar" class="me-4 mb-3">
-				<button id="advancedSearch" class="btn btn-light">
+			<div id="toolbarBuilding" class="me-4 mb-3">
+				<button id="advancedSearchBuilding" class="btn btn-light">
 					<a href="#" class="text-decoration-none">
 						<i class="fa-brands fa-searchengin"></i>
 						Recherche Avancée</a>
@@ -22,7 +22,7 @@
 					<option value="selected">Exporter Séléctionnés</option>
 				</select>
 			</div>
-			<table id="table" data-toolbar="#toolbar" data-pagination="true" data-page-size="25" data-search="true" data-show-export="true" data-toggle="table" data-click-to-select="true" data-search-align="left" data-show-columns="true" class="table table-list table-bordered table-striped m-auto">
+			<table id="table" data-toolbar="#toolbarBuilding" data-pagination="true" data-page-size="25" data-search="true" data-show-export="true" data-toggle="table" data-click-to-select="true" data-search-align="left" data-show-columns="true" class="table table-list table-bordered table-striped m-auto">
 				<thead>
 					<tr>
 						<th data-field="id" data-sortable="true" scope="col">N°</th>
@@ -39,20 +39,21 @@
 				<tbody class="table-group-divider">
 					{% for immeuble in immeubles %}
 						<tr>
-							<th></th>
-							<th>{{ immeuble.IDImmeuble }}</th>
-							<th>{{ immeuble.Adresse }}</th>
-							<th>{{ immeuble.CP }}</th>
-							<th>{{ immeuble.Ville }}</th>
-							<th>{{ immeuble.ReferenceProprio }}</th>
-							<th>{{ immeuble.DateEnquete|date("d/m/Y") }}</th>
+							<td>{{ immeuble.IDImmeuble }}</td>
+							<td>{{ immeuble.Adresse }}</td>
+							<td>{{ immeuble.CP }}</td>
+							<td>{{ immeuble.Ville }}</td>
+							<td>{{ immeuble.ReferenceProprio }}</td>
+							<td>{{ immeuble.DateEnquete|date("d/m/Y") }}</td>
 							{% if immeuble.Intermediaire == "" %}
-								<th>❌</th>
+								<td>❌</td>
 							{% elseif immeuble.Intermediaire == NULL %}
-								<th>❌</th>
+								<td>❌</td>
+							{% else %}
+								<td>{{ immeuble.Intermediaire }}</td>
 							{% endif %}
-							<th>{{ immeuble.SuiviPar }}</th>
-							<th>{{ immeuble.Description }}</th>
+							<td>{{ immeuble.SuiviPar }}</td>
+							<td>{{ immeuble.Description }}</td>
 						</tr>
 					{% endfor %}
 				</tbody>
