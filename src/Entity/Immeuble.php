@@ -112,7 +112,7 @@ class Immeuble
         $this->adresses = new ArrayCollection();
     }
 
-    public function getId(): ?int
+    public function getIDImmeuble(): ?int
     {
         return $this->IDImmeuble;
     }

@@ -12,7 +12,7 @@
 			<!-- Immeuble -->
 			<div id="toolbar" class="me-4 mb-3">
 				<button id="advancedSearch" class="btn btn-light">
-					<a href="{{ path('immeubles_recherche') }}" class="text-decoration-none">
+					<a href="#" class="text-decoration-none">
 						<i class="fa-brands fa-searchengin"></i>
 						Recherche Avancée</a>
 				</button>
@@ -22,36 +22,33 @@
 					<option value="selected">Exporter Séléctionnés</option>
 				</select>
 			</div>
-			<table id="table" data-toolbar="#toolbar" data-search="true" data-show-export="true" data-toggle="table" data-sortable="true" data-pagination="true" data-click-to-select="true" data-search-align="left" class="table table-list table-bordered table-striped m-auto">
+			<table id="table" data-toolbar="#toolbar" data-pagination="true" data-page-size="25" data-search="true" data-show-export="true" data-toggle="table" data-click-to-select="true" data-search-align="left" data-show-columns="true" class="table table-list table-bordered table-striped m-auto">
 				<thead>
 					<tr>
-						<th data-field="state" data-checkbox="true"></th>
-						<th data-field="id" data-sortable="true" scope="col">ID</th>
+						<th data-field="id" data-sortable="true" scope="col">N°</th>
+						<th data-field="adresse" data-sortable="true" scope="col">Adresse</th>
+						<th data-field="cp" data-sortable="true" scope="col">CP</th>
+						<th data-field="ville" data-sortable="true" scope="col">Ville</th>
+						<th data-field="refProprio" data-sortable="true" scope="col">Référence Propriétaire</th>
+						<th data-field="date" data-sortable="true" scope="col">Date de l'Enquête</th>
+						<th data-field="intermediaire" data-sortable="true" scope="col">Intermédiaire</th>
+						<th data-field="suiviPar" data-sortable="true" scope="col">Responsable du Dossier</th>
 						<th data-field="description" data-sortable="true" scope="col">Description</th>
-						<th data-field="referenceProprio" data-sortable="true" scope="col">Référence Proprio</th>
-						<th data-field="vendu" data-sortable="true" scope="col">Vendu</th>
-						<th data-field="detail" data-sortable="false" scope="col">Détail</th>
 					</tr>
 				</thead>
 				<tbody class="table-group-divider">
 					{% for immeuble in immeubles %}
 						<tr>
 							<th></th>
-							<th>{{ immeuble.id }}</th>
-							<th>{{ immeuble.description }}</th>
-							<th>{{ immeuble.referenceProprio }}</th>
-							{% if immeuble.vendu == 0 %}
-								<th class="text-danger">
-									<i class="fa-solid fa-xmark"></i>
-								</th>
-							{% elseif immeuble.vendu == 1 %}
-								<th class="text-success">
-									<i class="fa-solid fa-check"></i>
-								</th>
-							{% endif %}
-							<th>
-								<a href="{{ path('immeubles_detail', {'id': immeuble.id}) }}" class="btn btn-info btn-sm">Détail</a>
-							</th>
+							<th>{{ immeuble.IDImmeuble }}</th>
+							<th>{{ immeuble.Adresse }}</th>
+							<th>{{ immeuble.CP }}</th>
+							<th>{{ immeuble.Ville }}</th>
+							<th>{{ immeuble.ReferenceProprio }}</th>
+							<th>{{ immeuble.DateEnquete|date("d/m/Y") }}</th>
+							<th>{{ immeuble.Intermediaire }}</th>
+							<th>{{ immeuble.SuiviPar }}</th>
+							<th>{{ immeuble.Description }}</th>
 						</tr>
 					{% endfor %}
 				</tbody>
