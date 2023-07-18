@@ -46,7 +46,11 @@
 							<th>{{ immeuble.Ville }}</th>
 							<th>{{ immeuble.ReferenceProprio }}</th>
 							<th>{{ immeuble.DateEnquete|date("d/m/Y") }}</th>
-							<th>{{ immeuble.Intermediaire }}</th>
+							{% if immeuble.Intermediaire == "" %}
+								<th>❌</th>
+							{% elseif immeuble.Intermediaire == NULL %}
+								<th>❌</th>
+							{% endif %}
 							<th>{{ immeuble.SuiviPar }}</th>
 							<th>{{ immeuble.Description }}</th>
 						</tr>
