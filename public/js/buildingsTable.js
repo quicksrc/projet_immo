@@ -1,10 +1,9 @@
-var $table = $("#table");
 
 $(function () {
-  $("#toolbar")
+  $("#toolbarBuilding")
     .find("select")
     .change(function () {
-      $table.bootstrapTable("destroy").bootstrapTable({
+      $("#tableBuilding").bootstrapTable("destroy").bootstrapTable({
         exportDataType: $(this).val(),
         exportTypes: ["json", "xml", "csv", "txt", "sql", "excel", "pdf"],
         columns: [
@@ -36,7 +35,36 @@ $(function () {
 });
 
 $(function () {
-  $("<i class='bi bi-download'></i>").replaceAll(
-    "<i class='fa-solid fa-download'></i>"
-  );
+  $("#toolbarContact")
+    .find("select")
+    .change(function () {
+      $("#tableContact").bootstrapTable("destroy").bootstrapTable({
+        exportDataType: $(this).val(),
+        exportTypes: ["json", "xml", "csv", "txt", "sql", "excel", "pdf"],
+        columns: [
+          {
+            field: "state",
+            checkbox: true,
+            visible: $(this).val() === "selected",
+          },
+          {
+            field: "id",
+            title: "ID",
+          },
+          {
+            field: "description",
+            title: "Description",
+          },
+          {
+            field: "referenceProprio",
+            title: "Référence Propriétaire",
+          },
+          {
+            field: "vendu",
+            title: "Vendu",
+          },
+        ],
+      });
+    })
+    .trigger("change");
 });

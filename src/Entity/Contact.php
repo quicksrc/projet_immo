@@ -96,7 +96,7 @@ class Contact
         $this->activites = new ArrayCollection();
     }
 
-    public function getId(): ?int
+    public function getIDContact(): ?int
     {
         return $this->IDContact;
     }
