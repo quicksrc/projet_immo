@@ -15,19 +15,39 @@ $(function () {
             },
             {
               field: "id",
-              title: "ID",
+              title: "N°",
+            },
+            {
+              field: "adresse",
+              title: "Adresse",
+            },
+            {
+              field: "cp",
+              title: "CP",
+            },
+            {
+              field: "ville",
+              title: "Ville",
+            },
+            {
+              field: "refPropriete",
+              title: "Référence Propriétaire",
+            },
+            {
+              field: "date",
+              title: "Date de l'Enquête",
+            },
+            {
+              field: "intermediaire",
+              title: "Intermédiaire",
+            },
+            {
+              field: "suiviPar",
+              title: "Responsable du Dossier",
             },
             {
               field: "description",
               title: "Description",
-            },
-            {
-              field: "referenceProprio",
-              title: "Référence Propriétaire",
-            },
-            {
-              field: "vendu",
-              title: "Vendu",
             },
           ],
         });
