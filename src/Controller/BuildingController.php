@@ -22,7 +22,7 @@ class BuildingController extends AbstractController
     #[Route('/buildings', name: 'immeubles')]
     public function immeubles(ImmeubleRepository $immeubleRepository): Response
     {
-        $immeubles = $immeubleRepository->findBy(array(), null, 1000, null);
+        $immeubles = $immeubleRepository->findBy(array(), null, 100, null);
 
         return $this->render('immeubles/buildings.html.twig', [
             'immeubles' => $immeubles

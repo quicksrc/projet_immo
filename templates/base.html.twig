@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
@@ -31,11 +31,6 @@
 	</head>
 	<body>
 		<header>
-			{# <nav>
-																																																																																																																																																																										{% if is_granted('ROLE_ADMIN') %}
-																																																																																																																																																																											<a href="{{ path('admin_home')}}" class="nav-admin nav-animated">Page Admin</a>
-																																																																																																																																																																										{% endif %}
-																																																																																																																																																																																				</nav> #}
 			{% include "shared/_navbar.html.twig" %}
 		</header>
 		<div class="container pt-5"> {% block body %}{% endblock %}
