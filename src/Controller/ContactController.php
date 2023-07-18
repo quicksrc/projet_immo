@@ -31,10 +31,10 @@ class ContactController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $contactRepository->save($contact, true);
 
-            return $this->redirectToRoute('app_contact_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('contacts', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('contact/new.html.twig', [
+        return $this->render('contact/new.html.twig', [
             'contact' => $contact,
             'form' => $form,
         ]);
@@ -57,10 +57,10 @@ class ContactController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $contactRepository->save($contact, true);
 
-            return $this->redirectToRoute('app_contact_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('contacts', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('contact/edit.html.twig', [
+        return $this->render('contact/edit.html.twig', [
             'contact' => $contact,
             'form' => $form,
         ]);
@@ -69,10 +69,10 @@ class ContactController extends AbstractController
     #[Route('/{IDContact}', name: 'app_contact_delete', methods: ['POST'])]
     public function delete(Request $request, Contact $contact, ContactRepository $contactRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$contact->getIDContact(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $contact->getIDContact(), $request->request->get('_token'))) {
             $contactRepository->remove($contact, true);
         }
 
-        return $this->redirectToRoute('app_contact_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('contacts', [], Response::HTTP_SEE_OTHER);
     }
 }

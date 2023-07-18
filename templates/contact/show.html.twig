@@ -1,118 +1,119 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Contact{% endblock %}
+{% block title %}Contact
+{% endblock %}
 
 {% block body %}
-    <h1>Contact</h1>
+	<h1>Contact</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>IDContact</th>
-                <td>{{ contact.IDContact }}</td>
-            </tr>
-            <tr>
-                <th>DateModification</th>
-                <td>{{ contact.DateModification ? contact.DateModification|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Civilite</th>
-                <td>{{ contact.Civilite }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ contact.Nom }}</td>
-            </tr>
-            <tr>
-                <th>Prenom</th>
-                <td>{{ contact.Prenom }}</td>
-            </tr>
-            <tr>
-                <th>Societe</th>
-                <td>{{ contact.Societe }}</td>
-            </tr>
-            <tr>
-                <th>Correspondant</th>
-                <td>{{ contact.Correspondant }}</td>
-            </tr>
-            <tr>
-                <th>Adresse</th>
-                <td>{{ contact.Adresse }}</td>
-            </tr>
-            <tr>
-                <th>CP</th>
-                <td>{{ contact.CP }}</td>
-            </tr>
-            <tr>
-                <th>Ville</th>
-                <td>{{ contact.Ville }}</td>
-            </tr>
-            <tr>
-                <th>Pays</th>
-                <td>{{ contact.Pays }}</td>
-            </tr>
-            <tr>
-                <th>Telephone</th>
-                <td>{{ contact.Telephone }}</td>
-            </tr>
-            <tr>
-                <th>Fax</th>
-                <td>{{ contact.Fax }}</td>
-            </tr>
-            <tr>
-                <th>TelephonePortable</th>
-                <td>{{ contact.TelephonePortable }}</td>
-            </tr>
-            <tr>
-                <th>TelephoneDomicile</th>
-                <td>{{ contact.TelephoneDomicile }}</td>
-            </tr>
-            <tr>
-                <th>ListeRouge</th>
-                <td>{{ contact.ListeRouge }}</td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{ contact.Email }}</td>
-            </tr>
-            <tr>
-                <th>DateNaissance</th>
-                <td>{{ contact.DateNaissance ? contact.DateNaissance|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Activite</th>
-                <td>{{ contact.Activite }}</td>
-            </tr>
-            <tr>
-                <th>RCS</th>
-                <td>{{ contact.RCS }}</td>
-            </tr>
-            <tr>
-                <th>AntiMailing</th>
-                <td>{{ contact.AntiMailing }}</td>
-            </tr>
-            <tr>
-                <th>NPAI</th>
-                <td>{{ contact.NPAI }}</td>
-            </tr>
-            <tr>
-                <th>Commentaire</th>
-                <td>{{ contact.Commentaire }}</td>
-            </tr>
-            <tr>
-                <th>Fonction</th>
-                <td>{{ contact.Fonction }}</td>
-            </tr>
-            <tr>
-                <th>DCD</th>
-                <td>{{ contact.DCD }}</td>
-            </tr>
-        </tbody>
-    </table>
+	<table class="table">
+		<tbody>
+			<tr>
+				<th>IDContact</th>
+				<td>{{ contact.IDContact }}</td>
+			</tr>
+			<tr>
+				<th>DateModification</th>
+				<td>{{ contact.DateModification ? contact.DateModification|date('Y-m-d H:i:s') : '' }}</td>
+			</tr>
+			<tr>
+				<th>Civilite</th>
+				<td>{{ contact.Civilite }}</td>
+			</tr>
+			<tr>
+				<th>Nom</th>
+				<td>{{ contact.Nom }}</td>
+			</tr>
+			<tr>
+				<th>Prenom</th>
+				<td>{{ contact.Prenom }}</td>
+			</tr>
+			<tr>
+				<th>Societe</th>
+				<td>{{ contact.Societe }}</td>
+			</tr>
+			<tr>
+				<th>Correspondant</th>
+				<td>{{ contact.Correspondant }}</td>
+			</tr>
+			<tr>
+				<th>Adresse</th>
+				<td>{{ contact.Adresse }}</td>
+			</tr>
+			<tr>
+				<th>CP</th>
+				<td>{{ contact.CP }}</td>
+			</tr>
+			<tr>
+				<th>Ville</th>
+				<td>{{ contact.Ville }}</td>
+			</tr>
+			<tr>
+				<th>Pays</th>
+				<td>{{ contact.Pays }}</td>
+			</tr>
+			<tr>
+				<th>Telephone</th>
+				<td>{{ contact.Telephone }}</td>
+			</tr>
+			<tr>
+				<th>Fax</th>
+				<td>{{ contact.Fax }}</td>
+			</tr>
+			<tr>
+				<th>TelephonePortable</th>
+				<td>{{ contact.TelephonePortable }}</td>
+			</tr>
+			<tr>
+				<th>TelephoneDomicile</th>
+				<td>{{ contact.TelephoneDomicile }}</td>
+			</tr>
+			<tr>
+				<th>ListeRouge</th>
+				<td>{{ contact.ListeRouge }}</td>
+			</tr>
+			<tr>
+				<th>Email</th>
+				<td>{{ contact.Email }}</td>
+			</tr>
+			<tr>
+				<th>DateNaissance</th>
+				<td>{{ contact.DateNaissance ? contact.DateNaissance|date('Y-m-d H:i:s') : '' }}</td>
+			</tr>
+			<tr>
+				<th>Activite</th>
+				<td>{{ contact.Activite }}</td>
+			</tr>
+			<tr>
+				<th>RCS</th>
+				<td>{{ contact.RCS }}</td>
+			</tr>
+			<tr>
+				<th>AntiMailing</th>
+				<td>{{ contact.AntiMailing }}</td>
+			</tr>
+			<tr>
+				<th>NPAI</th>
+				<td>{{ contact.NPAI }}</td>
+			</tr>
+			<tr>
+				<th>Commentaire</th>
+				<td>{{ contact.Commentaire }}</td>
+			</tr>
+			<tr>
+				<th>Fonction</th>
+				<td>{{ contact.Fonction }}</td>
+			</tr>
+			<tr>
+				<th>DCD</th>
+				<td>{{ contact.DCD }}</td>
+			</tr>
+		</tbody>
+	</table>
 
-    <a href="{{ path('app_contact_index') }}">back to list</a>
+	<a href="{{ path('contacts') }}">back to list</a>
 
-    <a href="{{ path('app_contact_edit', {'IDContact': contact.IDContact}) }}">edit</a>
+	<a href="{{ path('app_contact_edit', {'IDContact': contact.IDContact}) }}">edit</a>
 
-    {{ include('contact/_delete_form.html.twig') }}
+	{{ include('contact/_delete_form.html.twig') }}
 {% endblock %}
