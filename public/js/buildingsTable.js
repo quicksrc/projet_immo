@@ -63,7 +63,7 @@ $(function () {
         .bootstrapTable("destroy")
         .bootstrapTable({
           exportDataType: $(this).val(),
-          exportTypes: ["csv", "excel"],
+          exportTypes: ["json", "xml", "csv", "txt", "sql", "excel", "pdf"],
           columns: [
             {
               field: "state",
@@ -72,11 +72,11 @@ $(function () {
             },
             {
               field: "id",
-              title: "N°",
+              title: "ID",
             },
             {
-              field: "nom",
-              title: "Nom",
+              field: "description",
+              title: "Description",
             },
             {
               field: "referenceProprio",
