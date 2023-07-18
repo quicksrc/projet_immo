@@ -1,34 +1,7 @@
 $(function () {
-  $("#toolbarBuilding")
+  $("#toolbar")
     .find("select")
     .change(function () {
-      $("#tableBuilding").bootstrapTable("destroy").bootstrapTable({
-        exportDataType: $(this).val(),
-        exportTypes: ["json", "xml", "csv", "txt", "sql", "excel", "pdf"],
-        columns: [
-          {
-            field: "state",
-            checkbox: true,
-            visible: $(this).val() === "selected",
-          },
-          {
-            field: "id",
-            title: "ID",
-          },
-          {
-            field: "description",
-            title: "Description",
-          },
-          {
-            field: "referenceProprio",
-            title: "Référence Propriétaire",
-          },
-          {
-            field: "vendu",
-            title: "Vendu",
-          },
-        ],
-      });
       $("#table")
         .bootstrapTable("destroy")
         .bootstrapTable({
