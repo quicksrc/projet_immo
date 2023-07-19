@@ -2,11 +2,12 @@
 
 namespace App\Controller;
 
-use App\Entity\Contact;
 use App\Entity\Immeuble;
 use App\Form\ImmeubleType;
 use App\Repository\ContactRepository;
 use App\Repository\ImmeubleRepository;
+use Doctrine\ORM\EntityManager;
+use Normalizer;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -25,9 +26,14 @@ class ImmeubleController extends AbstractController
     }
 
     #[Route('/search', name: 'immeuble_search')]
-    public function search(): Response
+    public function search(ImmeubleRepository $immeubleRepository): Response
     {
-        return $this->render('immeuble/search.html.twig');
+        return $this->render(
+            'immeuble/search.html.twig',
+            [
+                'queryRefProprio' => $immeubleRepository->findByAllFields()
+            ]
+        );
     }
 
     #[Route('/new', name: 'immeuble_new', methods: ['GET', 'POST'])]

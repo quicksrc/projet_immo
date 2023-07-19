@@ -1,51 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Accueil
+{% block title %}Gestion des Immeubles | Recherche Immeuble
 {% endblock %}
 
 {% block body %}
+	{{ dump(queryRefProprio) }}
 
-	<div class="container">
-		{% include 'shared/_btnreturn.html.twig' %}
-		<h1>Recherche</h1>
+	{% include 'shared/_btnreturn.html.twig' %}
+	<h1>Recherche Immeubles</h1>
 
-		<div class="form-row align-items-end">
-			{{ form_start(form) }}
-			<div class="col">
-				{{ form_row(form.description) }}
-			</div>
-			<div class="col">
-				{{ form_row(form.referenceProprio) }}
-			</div>
-			<div class="col form-group">
-				{{ form_row(form.vendu) }}
-			</div>
-		</div>
-
-		<div class="col">
-			<div class="form-group">
-				<button type="submit" class="btn btn-success mt-5">Rechercher</button>
-			</div>
-			{{ form_end(form) }}
-		</div>
-		<div
-			class="row">
-			<!-- Immeuble -->
-			{% for immeuble in immeubles %}
-				<div class="card border-info w-25 m-5 d-flex justify-content-center">
-					<div class="card-header">{{ immeuble.description }}</div>
-					<div class="card-body text-center">
-						<img src="https://picsum.photos/200/200" class="img-fluid w-75 rounded mx-auto d-block" alt="Image de l'immeuble">
-						<h4 class="card-title">{{ immeuble.referenceProprio }}</h4>
-						{% if immeuble.vendu == 0 %}
-							<p class="card-text">Vendu : Non</p>
-						{% elseif immeuble.vendu == 1 %}
-							<p class="card-text">Vendu : Oui</p>
-						{% endif %}
-					</div>
-				</div>
-			{% endfor %}
-		</div>
-
+	<div class="form-floating mb-3">
+		<input type="text" class="form-control" id="floatingSearchRef" placeholder="Réf. propriétaire">
+		<label for="floatingSearchRef">Réf. propriétaire</label>
 	</div>
 {% endblock %}
