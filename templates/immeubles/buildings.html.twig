@@ -47,7 +47,7 @@
 							<td>{{ immeuble.DateEnquete|date("d/m/Y") }}</td>
 							{% if immeuble.Intermediaire == "" %}
 								<td>❌</td>
-							{% elseif immeuble.Intermediaire == NULL %}
+							{% elseif immeuble.Intermediaire == "null" %}
 								<td>❌</td>
 							{% else %}
 								<td>{{ immeuble.Intermediaire }}</td>
