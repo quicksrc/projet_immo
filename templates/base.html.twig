@@ -33,7 +33,12 @@
 	</head>
 	<body>
 		<header>
-			{% include "shared/_navbar.html.twig" %}
+			{% if app.user %}
+				<button type="button" class="btn btn-dark float-end m-3">
+					<a class="text-light text-decoration-none" href="{{ path('app_logout') }}">Déconnexion</a>
+				</button>
+				{% include "shared/_navbar.html.twig" %}
+			{% endif %}
 		</header>
 		<div class="container pt-5"> {% block body %}{% endblock %}
 			</div>

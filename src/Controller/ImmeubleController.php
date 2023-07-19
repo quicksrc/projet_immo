@@ -24,6 +24,12 @@ class ImmeubleController extends AbstractController
         ]);
     }
 
+    #[Route('/search', name: 'immeuble_search')]
+    public function search(): Response
+    {
+        return $this->render('immeuble/search.html.twig');
+    }
+
     #[Route('/new', name: 'immeuble_new', methods: ['GET', 'POST'])]
     public function new(Request $request, ImmeubleRepository $immeubleRepository): Response
     {
