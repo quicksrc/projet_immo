@@ -1,8 +1,8 @@
 $(function () {
-  $("#toolbarBuilding")
+  $("#toolbarImmeuble")
     .find("select")
     .change(function () {
-      $("#tableBuilding")
+      $("#tableImmeuble")
         .bootstrapTable("destroy")
         .bootstrapTable({
           exportDataType: $(this).val(),

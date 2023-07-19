@@ -1,0 +1,135 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Immeuble
+{% endblock %}
+
+{% block body %}
+	<h1>Immeuble</h1>
+
+	<table class="table">
+		<tbody>
+			<tr>
+				<th>IDImmeuble</th>
+				<td>{{ immeuble.IDImmeuble }}</td>
+			</tr>
+			<tr>
+				<th>DateEnquete</th>
+				<td>{{ immeuble.DateEnquete ? immeuble.DateEnquete|date('Y-m-d H:i:s') : '' }}</td>
+			</tr>
+			<tr>
+				<th>ReferenceProprio</th>
+				<td>{{ immeuble.ReferenceProprio }}</td>
+			</tr>
+			<tr>
+				<th>NumPlancheCadastrale</th>
+				<td>{{ immeuble.NumPlancheCadastrale }}</td>
+			</tr>
+			<tr>
+				<th>SMS</th>
+				<td>{{ immeuble.SMS }}</td>
+			</tr>
+			<tr>
+				<th>EtatDossier</th>
+				<td>{{ immeuble.EtatDossier }}</td>
+			</tr>
+			<tr>
+				<th>Enquete</th>
+				<td>{{ immeuble.Enquete }}</td>
+			</tr>
+			<tr>
+				<th>NomGardien</th>
+				<td>{{ immeuble.NomGardien }}</td>
+			</tr>
+			<tr>
+				<th>Description</th>
+				<td>{{ immeuble.Description }}</td>
+			</tr>
+			<tr>
+				<th>SuiviPar</th>
+				<td>{{ immeuble.SuiviPar }}</td>
+			</tr>
+			<tr>
+				<th>Vendu</th>
+				<td>{{ immeuble.Vendu }}</td>
+			</tr>
+			<tr>
+				<th>DateVente</th>
+				<td>{{ immeuble.DateVente ? immeuble.DateVente|date('Y-m-d H:i:s') : '' }}</td>
+			</tr>
+			<tr>
+				<th>OrigineContact</th>
+				<td>{{ immeuble.OrigineContact }}</td>
+			</tr>
+			<tr>
+				<th>Intermediaire</th>
+				<td>{{ immeuble.Intermediaire }}</td>
+			</tr>
+			<tr>
+				<th>NCPCF</th>
+				<td>{{ immeuble.NCPCF }}</td>
+			</tr>
+			<tr>
+				<th>Visite</th>
+				<td>{{ immeuble.Visite }}</td>
+			</tr>
+			<tr>
+				<th>Commentaire</th>
+				<td>{{ immeuble.Commentaire }}</td>
+			</tr>
+			<tr>
+				<th>NumPrincipal</th>
+				<td>{{ immeuble.NumPrincipal }}</td>
+			</tr>
+			<tr>
+				<th>NumSecondaire</th>
+				<td>{{ immeuble.NumSecondaire }}</td>
+			</tr>
+			<tr>
+				<th>TypeVoie</th>
+				<td>{{ immeuble.TypeVoie }}</td>
+			</tr>
+			<tr>
+				<th>NomRue</th>
+				<td>{{ immeuble.NomRue }}</td>
+			</tr>
+			<tr>
+				<th>Adresse</th>
+				<td>{{ immeuble.Adresse }}</td>
+			</tr>
+			<tr>
+				<th>CP</th>
+				<td>{{ immeuble.CP }}</td>
+			</tr>
+			<tr>
+				<th>Ville</th>
+				<td>{{ immeuble.Ville }}</td>
+			</tr>
+			<tr>
+				<th>ContactPrincipal</th>
+				<td>{{ immeuble.ContactPrincipal }}</td>
+			</tr>
+			<tr>
+				<th>Photo1</th>
+				<td>{{ immeuble.Photo1 }}</td>
+			</tr>
+			<tr>
+				<th>Photo2</th>
+				<td>{{ immeuble.Photo2 }}</td>
+			</tr>
+			<tr>
+				<th>DateVisite</th>
+				<td>{{ immeuble.DateVisite ? immeuble.DateVisite|date('Y-m-d H:i:s') : '' }}</td>
+			</tr>
+			<tr>
+				<th>RegroupementAct</th>
+				<td>{{ immeuble.RegroupementAct }}</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<a href="{{ path('immeubles') }}">back to list</a>
+
+	<a href="{{ path('immeuble_edit', {'IDImmeuble': immeuble.IDImmeuble}) }}">edit</a>
+
+	{{ include('immeuble/_delete_form.html.twig') }}
+{% endblock %}
