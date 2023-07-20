@@ -48,3 +48,6 @@ body {
 .costomspacer{
     margin-right:15px !important;
 }
+.text-decoration-underline-remove{
+    text-decoration: unset;
+}

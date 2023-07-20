@@ -36,10 +36,10 @@
 						<th data-field="adresse" data-sortable="true" scope="col">Adresse</th>
 						<th data-field="cp" data-sortable="true" scope="col">CP</th>
 						<th data-field="ville" data-sortable="true" scope="col">Ville</th>
-						<th data-field="refProprio" data-sortable="true" scope="col">Référence Propriétaire</th>
+						<th data-field="refProprio" data-sortable="true" scope="col">Réf. Propriétaire</th>
 						<th data-field="date" data-sortable="true" scope="col">Date de l'Enquête</th>
 						<th data-field="intermediaire" data-sortable="true" scope="col">Intermédiaire</th>
-						<th data-field="suiviPar" data-sortable="true" scope="col">Responsable du Dossier</th>
+						<th data-field="suiviPar" data-sortable="true" scope="col">Resp. du Dossier</th>
 						<th data-field="description" data-sortable="true" scope="col">Description</th>
 						<th data-field="action">actions</th>
 					</tr>
@@ -68,15 +68,15 @@
 							<td>{{ immeuble.SuiviPar }}</td>
 							<td>{{ immeuble.Description }}</td>
 							<td>
-								<a href="{{ path('immeuble_show', {'IDImmeuble': immeuble.IDImmeuble}) }}">
+								<a class="text-decoration-underline-remove" href="{{ path('immeuble_show', {'IDImmeuble': immeuble.IDImmeuble}) }}">
 									<i class="bi bi-eye" style="margin-right:15px"></i>
 								</a>
 
-								<a href="{{ path('immeuble_edit', {'IDImmeuble': immeuble.IDImmeuble}) }}">
+								<a class="text-decoration-underline-remove" href="{{ path('immeuble_edit', {'IDImmeuble': immeuble.IDImmeuble}) }}">
 									<i class="bi bi-pen" style="margin-right:10px"></i>
 								</a>
 
-								<a href="{{ path('immeuble_delete', {'IDImmeuble': immeuble.IDImmeuble}) }}">
+								<a class="text-decoration-underline-remove" href="{{ path('immeuble_delete', {'IDImmeuble': immeuble.IDImmeuble}) }}">
 									<i class="bi bi-trash3"></i>
 								</a>
 							</td>

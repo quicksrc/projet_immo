@@ -31,7 +31,7 @@ $(function () {
             },
             {
               field: "refPropriete",
-              title: "Référence Propriétaire",
+              title: "Réf. Propriétaire",
             },
             {
               field: "date",
@@ -43,7 +43,7 @@ $(function () {
             },
             {
               field: "suiviPar",
-              title: "Responsable du Dossier",
+              title: "Resp. du Dossier",
             },
             {
               field: "description",
@@ -51,7 +51,7 @@ $(function () {
             },
             {
               field: "action",
-              title: "actions",
+              title: "Actions",
             },
           ],
         });
@@ -108,7 +108,7 @@ $(function () {
             },
             {
               field: "action",
-              title: "actions",
+              title: "Actions",
             },
           ],
         });

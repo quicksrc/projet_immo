@@ -4,132 +4,263 @@
 {% endblock %}
 
 {% block body %}
-	<h1>Immeuble</h1>
 
-	<table class="table">
-		<tbody>
-			<tr>
-				<th>IDImmeuble</th>
-				<td>{{ immeuble.IDImmeuble }}</td>
-			</tr>
-			<tr>
-				<th>DateEnquete</th>
-				<td>{{ immeuble.DateEnquete ? immeuble.DateEnquete|date('Y-m-d H:i:s') : '' }}</td>
-			</tr>
-			<tr>
-				<th>ReferenceProprio</th>
-				<td>{{ immeuble.ReferenceProprio }}</td>
-			</tr>
-			<tr>
-				<th>NumPlancheCadastrale</th>
-				<td>{{ immeuble.NumPlancheCadastrale }}</td>
-			</tr>
-			<tr>
-				<th>SMS</th>
-				<td>{{ immeuble.SMS }}</td>
-			</tr>
-			<tr>
-				<th>EtatDossier</th>
-				<td>{{ immeuble.EtatDossier }}</td>
-			</tr>
-			<tr>
-				<th>Enquete</th>
-				<td>{{ immeuble.Enquete }}</td>
-			</tr>
-			<tr>
-				<th>NomGardien</th>
-				<td>{{ immeuble.NomGardien }}</td>
-			</tr>
-			<tr>
-				<th>Description</th>
-				<td>{{ immeuble.Description }}</td>
-			</tr>
-			<tr>
-				<th>SuiviPar</th>
-				<td>{{ immeuble.SuiviPar }}</td>
-			</tr>
-			<tr>
-				<th>Vendu</th>
-				<td>{{ immeuble.Vendu }}</td>
-			</tr>
-			<tr>
-				<th>DateVente</th>
-				<td>{{ immeuble.DateVente ? immeuble.DateVente|date('Y-m-d H:i:s') : '' }}</td>
-			</tr>
-			<tr>
-				<th>OrigineContact</th>
-				<td>{{ immeuble.OrigineContact }}</td>
-			</tr>
-			<tr>
-				<th>Intermediaire</th>
-				<td>{{ immeuble.Intermediaire }}</td>
-			</tr>
-			<tr>
-				<th>NCPCF</th>
-				<td>{{ immeuble.NCPCF }}</td>
-			</tr>
-			<tr>
-				<th>Visite</th>
-				<td>{{ immeuble.Visite }}</td>
-			</tr>
-			<tr>
-				<th>Commentaire</th>
-				<td>{{ immeuble.Commentaire }}</td>
-			</tr>
-			<tr>
-				<th>NumPrincipal</th>
-				<td>{{ immeuble.NumPrincipal }}</td>
-			</tr>
-			<tr>
-				<th>NumSecondaire</th>
-				<td>{{ immeuble.NumSecondaire }}</td>
-			</tr>
-			<tr>
-				<th>TypeVoie</th>
-				<td>{{ immeuble.TypeVoie }}</td>
-			</tr>
-			<tr>
-				<th>NomRue</th>
-				<td>{{ immeuble.NomRue }}</td>
-			</tr>
-			<tr>
-				<th>Adresse</th>
-				<td>{{ immeuble.Adresse }}</td>
-			</tr>
-			<tr>
-				<th>CP</th>
-				<td>{{ immeuble.CP }}</td>
-			</tr>
-			<tr>
-				<th>Ville</th>
-				<td>{{ immeuble.Ville }}</td>
-			</tr>
-			<tr>
-				<th>ContactPrincipal</th>
-				<td>{{ immeuble.ContactPrincipal }}</td>
-			</tr>
-			<tr>
-				<th>Photo1</th>
-				<td>{{ immeuble.Photo1 }}</td>
-			</tr>
-			<tr>
-				<th>Photo2</th>
-				<td>{{ immeuble.Photo2 }}</td>
-			</tr>
-			<tr>
-				<th>DateVisite</th>
-				<td>{{ immeuble.DateVisite ? immeuble.DateVisite|date('Y-m-d H:i:s') : '' }}</td>
-			</tr>
-			<tr>
-				<th>RegroupementAct</th>
-				<td>{{ immeuble.RegroupementAct }}</td>
-			</tr>
-		</tbody>
-	</table>
+	<div class="form-group row">
+		<label class="form-label col-sm-2 col-form-label" for="readOnlyInput">Référence Proprietaire</label>
+		<div class="col-sm-2">
+			<input class="form-control col-sm-2" id="readOnlyInput" type="text" placeholder="{{ immeuble.ReferenceProprio }}" readonly="">
+		</div>
+	</div>
+	<h1>{{ immeuble.Adresse }}</h1>
 
-	<a href="{{ path('immeubles') }}">back to list</a>
+	<ul class="nav nav-tabs" role="tablist">
+		<li class="nav-item" role="presentation">
+			<a class="nav-link active" data-bs-toggle="tab" href="#home" aria-selected="true" role="tab" tabindex="-1">Général</a>
+		</li>
+		<li class="nav-item" role="presentation">
+			<a class="nav-link " data-bs-toggle="tab" href="#profile" aria-selected="true" role="tab">Pièce jointe</a>
+		</li>
+	</ul>
+	<div id="myTabContent" class="tab-content">
+		<div class="tab-pane fade active show" id="home" role="tabpanel">
+			<br>
+			<div class="form-group row">
+				<label class="form-label col-sm-2 col-form-label" for="readOnlyInput">ID Immeuble</label>
+				<div class="col-sm-2">
+					<input class="form-control col-sm-2" id="readOnlyInput" type="text" placeholder="{{ immeuble.IDImmeuble }}" readonly="">
+				</div>
+			</div>
+			<br>
+			<div class="accordion" id="accordionExample">
+				<div class="accordion-item">
+					<h2 class="accordion-header" id="headingOne">
+						<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+							Situation
+						</button>
+					</h2>
+					<div id="collapseOne" style="padding:2%" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample" style="">
+						<div class="accordion-body">
+							<div class="form-group row">
+								<label class="form-label col-sm-2 col-form-label" for="readOnlyInput">N° Planche Cadastrale</label>
+								<div class="col-sm-2">
+									<input class="form-control col-sm-2" id="readOnlyInput" type="text" placeholder="{{ immeuble.NumPlancheCadastrale }}" readonly="">
+								</div>
 
-	<a href="{{ path('immeuble_edit', {'IDImmeuble': immeuble.IDImmeuble}) }}">edit</a>
+								<div class="col-sm-2 float-right">
+									<label class="form-check-label" for="flexCheckDefault">
+										SMS
+									</label>
+									{% if immeuble.SMS == 0 %}
+										<input class="form-check-input" type="checkbox" disabled="" value="{{ immeuble.SMS }}" id="flexCheckDefault">
+									{% elseif immeuble.SMS == 1 %}
+										<input class="form-check-input" type="checkbox" disabled="" value="{{ immeuble.SMS }}" checked id="flexCheckDefault">
+									{% endif %}
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="accordion-item">
+					<h2 class="accordion-header" id="headingTwo">
+						<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+							Complément
+						</button>
+					</h2>
+					<div id="collapseTwo" style="padding:2%" class="accordion-collapse collapse show" aria-labelledby="headingTwo" data-bs-parent="#accordionExample" style="">
 
-	{{ include('immeuble/_delete_form.html.twig') }}
+						<div class="form-group row">
+							<label class="form-label col-sm-2 col-form-label" for="readOnlyInput">Etat Dossier</label>
+							<div class="col-sm-2">
+								<input class="form-control col-sm-2" id="readOnlyInput" type="text" placeholder="{{ immeuble.EtatDossier }}" readonly="">
+							</div>
+						</div>
+
+						<div class="form-group row">
+							<label class="form-label col-sm-2 col-form-label" for="readOnlyInput">Gardien</label>
+							<div class="col-sm-2">
+								<input class="form-control col-sm-2" id="readOnlyInput" type="text" placeholder="{{ immeuble.NomGardien }}" readonly="">
+							</div>
+						</div>
+
+						<div class="form-group row">
+							<label class="form-label col-sm-2 col-form-label" for="readOnlyInput">Suivi Par</label>
+							<div class="col-sm-2">
+								<input class="form-control col-sm-2" id="readOnlyInput" type="text" placeholder="{{ immeuble.SuiviPar }}" readonly="">
+							</div>
+						</div>
+
+						<div class="form-group row">
+							<label class="form-label col-sm-2 col-form-label" for="readOnlyInput">Origine Contact</label>
+							<div class="col-sm-2">
+								<input class="form-control col-sm-2" id="readOnlyInput" type="text" placeholder="{{ immeuble.OrigineContact }}" readonly="">
+							</div>
+						</div>
+
+						<div class="form-group row">
+							<label class="form-label col-sm-2 col-form-label" for="readOnlyInput">Enquete</label>
+							<div class="col-sm-2">
+								<input class="form-control col-sm-2" id="readOnlyInput" type="text" placeholder="{{ immeuble.Enquete }}" readonly="">
+
+							</div>
+							<label class="form-check-label col-sm-2 col" for="flexCheckDefault">Visité</label>
+							<div class="col-sm-2">
+								{% if immeuble.Visite == 0 %}
+									<input class="form-check-input" type="checkbox" disabled="" value="{{ immeuble.Visite }}" id="flexCheckDefault">
+								{% elseif immeuble.Visite == 1 %}
+									<input class="form-check-input" type="checkbox" disabled="" value="{{ immeuble.Visite }}" checked id="flexCheckDefault">
+								{% endif %}
+							</div>
+						</div>
+
+						<div class="form-group row">
+							<label class="form-label col-sm-2 col-form-label" for="readOnlyInput">Description</label>
+							<div class="col-sm-2">
+								<input class="form-control col-sm-2" id="readOnlyInput" type="text" placeholder="{{ immeuble.Description }}" readonly="">
+							</div>
+						</div>
+
+						<div class="form-group row">
+							<label class="form-label col-sm-2 col-form-label" for="readOnlyInput">Vendu</label>
+							<div class="col-sm-2">
+								{% if immeuble.Vendu == 0 %}
+									<input class="form-check-input" type="checkbox" disabled="" value="{{ immeuble.Vendu }}" id="flexCheckDefault">
+								{% elseif immeuble.Vendu == 1 %}
+									<input class="form-check-input" type="checkbox" disabled="" value="{{ immeuble.Vendu }}" checked id="flexCheckDefault">
+								{% endif %}
+							</div>
+							<label class="form-check-label col-sm-2" for="flexCheckDefault">NCPCF</label>
+							<div class="col-sm-2">
+								{% if immeuble.NCPCF == 0 %}
+									<input class="form-check-input" type="checkbox" disabled="" value="{{ immeuble.NCPCF }}" id="flexCheckDefault">
+								{% elseif immeuble.NCPCF == 1 %}
+									<input class="form-check-input" type="checkbox" disabled="" value="{{ immeuble.NCPCF }}" checked id="flexCheckDefault">
+								{% endif %}
+							</div>
+						</div>
+
+						<div class="form-group row">
+							<label class="form-label col-sm-2 col-form-label" for="readOnlyInput">Intermediaire</label>
+							<div class="col-sm-2">
+								<input class="form-control col-sm-2" id="readOnlyInput" type="text" placeholder="{{ immeuble.Intermediaire }}" readonly="">
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="accordion-item">
+					<h2 class="accordion-header" id="headingThree">
+						<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+							Commentaire
+						</button>
+					</h2>
+					<div id="collapseThree" style="padding:2%" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample" style="">
+						<div class="form-group row">
+							<div class="col-sm-6">
+								<textarea class="form-control" id="exampleTextarea" rows="3" readonly="">{{ immeuble.Commentaire }}</textarea>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="tab-pane" id="profile" role="tabpanel"></div>
+	</div>
+
+
+	{# <table class="table">
+																																																														<tbody>
+																																																															<tr>
+																																																																<th>IDImmeuble</th>
+																																																																<td>{{ immeuble.IDImmeuble }}</td>
+																																																															</tr>
+																																																															<tr>
+																																																																<th>DateEnquete</th>
+																																																																<td>{{ immeuble.DateEnquete ? immeuble.DateEnquete|date('Y-m-d H:i:s') : '' }}</td>
+																																																															</tr>
+																																																															<tr>
+																																																																<th>ReferenceProprio</th>
+																																																																<td>{{ immeuble.ReferenceProprio }}</td>
+																																																															</tr>
+																																																															<tr>
+																																																																<th>NumPlancheCadastrale</th>
+																																																																<td>{{ immeuble.NumPlancheCadastrale }}</td>
+																																																															</tr>
+																																																												
+																																																												
+																																																															<tr>
+																																																																<th>DateVente</th>
+																																																																<td>{{ immeuble.DateVente ? immeuble.DateVente|date('Y-m-d H:i:s') : '' }}</td>
+																																																															</tr>
+																																																												
+																																																												
+																																																															<tr>
+																																																																<th>Commentaire</th>
+																																																																<td>{{ immeuble.Commentaire }}</td>
+																																																															</tr>
+																																																															<tr>
+																																																																<th>NumPrincipal</th>
+																																																																<td>{{ immeuble.NumPrincipal }}</td>
+																																																															</tr>
+																																																															<tr>
+																																																																<th>NumSecondaire</th>
+																																																																<td>{{ immeuble.NumSecondaire }}</td>
+																																																															</tr>
+																																																															<tr>
+																																																																<th>TypeVoie</th>
+																																																																<td>{{ immeuble.TypeVoie }}</td>
+																																																															</tr>
+																																																															<tr>
+																																																																<th>NomRue</th>
+																																																																<td>{{ immeuble.NomRue }}</td>
+																																																															</tr>
+																																																															<tr>
+																																																																<th>Adresse</th>
+																																																																<td>{{ immeuble.Adresse }}</td>
+																																																															</tr>
+																																																															<tr>
+																																																																<th>CP</th>
+																																																																<td>{{ immeuble.CP }}</td>
+																																																															</tr>
+																																																															<tr>
+																																																																<th>Ville</th>
+																																																																<td>{{ immeuble.Ville }}</td>
+																																																															</tr>
+																																																															<tr>
+																																																																<th>ContactPrincipal</th>
+																																																																<td>{{ immeuble.ContactPrincipal }}</td>
+																																																															</tr>
+																																																															<tr>
+																																																																<th>Photo1</th>
+																																																																<td>{{ immeuble.Photo1 }}</td>
+																																																															</tr>
+																																																															<tr>
+																																																																<th>Photo2</th>
+																																																																<td>{{ immeuble.Photo2 }}</td>
+																																																															</tr>
+																																																															<tr>
+																																																																<th>DateVisite</th>
+																																																																<td>{{ immeuble.DateVisite ? immeuble.DateVisite|date('Y-m-d H:i:s') : '' }}</td>
+																																																															</tr>
+																																																															<tr>
+																																																																<th>RegroupementAct</th>
+																																																																<td>{{ immeuble.RegroupementAct }}</td>
+																																																															</tr>
+																																																														</tbody>
+																																																													</table> #}
+
+	<br>
+	<div class="float-end ">
+		<button class="btn btn-light " type="button">
+			<a class=" text-decoration-underline-remove" href="{{ path('immeubles') }}">back to list</a>
+		</button>
+		<button class="btn btn-light " type="button">
+			<a class=" text-decoration-underline-remove" href="{{ path('immeuble_edit', {'IDImmeuble': immeuble.IDImmeuble}) }}">edit</a>
+		</button>
+		{# <button class="btn btn-light btn-lg" type="button">
+																		{{ include('immeuble/_delete_form.html.twig') }}
+																	</button> #}
+	</div>
+	<br>
+	<br>
+
 {% endblock %}
