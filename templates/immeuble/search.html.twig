@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion des Immeubles | Recherche Immeuble
+{% endblock %}
+
+{% block body %}
+	{{ dump(queryRefProprio) }}
+
+	{% include 'shared/_btnreturn.html.twig' %}
+	<h1>Recherche Immeubles</h1>
+
+	<div class="form-floating mb-3">
+		<input type="text" class="form-control" id="floatingSearchRef" placeholder="Réf. propriétaire">
+		<label for="floatingSearchRef">Réf. propriétaire</label>
+	</div>
+{% endblock %}
