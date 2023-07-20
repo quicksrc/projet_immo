@@ -1,0 +1,51 @@
+<div class="flex justify-content-center">
+	{% include 'shared/_btnreturn.html.twig' %}
+	<h1>Recherche Immeubles</h1>
+
+	<div class="form-row align-items-end">
+		{{ form_start(form) }}
+		<div class="col">
+			{{ form_row(form.refProprioImmeuble) }}
+		</div>
+		<div class="col">
+			{{ form_row(form.numPlanchCada) }}
+		</div>
+		<div class="col form-group">
+			{{ form_row(form.etatDossier) }}
+		</div>
+		<div class="col form-group">
+			{{ form_row(form.enquete) }}
+		</div>
+		<div class="col form-group">
+			{{ form_row(form.dateEnquete) }}
+		</div>
+		<div class="col form-group">
+			{{ form_row(form.description) }}
+		</div>
+		<div class="col form-group">
+			{{ form_row(form.suiviPar) }}
+		</div>
+		<div class="col form-group">
+			{{ form_row(form.vendu) }}
+		</div>
+		<div class="col form-group">
+			{{ form_row(form.ncpcf) }}
+		</div>
+		<div class="col form-group">
+			{{ form_row(form.origineContact) }}
+		</div>
+		<div class="col form-group">
+			{{ form_row(form.visite) }}
+		</div>
+		<div class="col form-group">
+			{{ form_row(form.commentaire) }}
+		</div>
+	</div>
+
+	<div class="col">
+		<div class="form-group">
+			<button type="submit" class="btn btn-success mt-5">Rechercher</button>
+		</div>
+		{{ form_end(form) }}
+	</div>
+</div>

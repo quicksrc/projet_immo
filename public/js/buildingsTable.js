@@ -58,6 +58,66 @@ $(function () {
     })
     .trigger("change");
 });
+$(function () {
+  $("#toolbarImmeubleSearch")
+    .find("select")
+    .change(function () {
+      $("#tableImmeubleSearch")
+        .bootstrapTable("destroy")
+        .bootstrapTable({
+          exportDataType: $(this).val(),
+          exportTypes: ["csv", "excel"],
+          columns: [
+            {
+              field: "state",
+              checkbox: true,
+              visible: $(this).val() === "selected",
+            },
+            {
+              field: "id",
+              title: "N°",
+            },
+            {
+              field: "adresse",
+              title: "Adresse",
+            },
+            {
+              field: "cp",
+              title: "CP",
+            },
+            {
+              field: "ville",
+              title: "Ville",
+            },
+            {
+              field: "refPropriete",
+              title: "Réf. Propriétaire",
+            },
+            {
+              field: "date",
+              title: "Date de l'Enquête",
+            },
+            {
+              field: "intermediaire",
+              title: "Intermédiaire",
+            },
+            {
+              field: "suiviPar",
+              title: "Resp. du Dossier",
+            },
+            {
+              field: "description",
+              title: "Description",
+            },
+            {
+              field: "action",
+              title: "Actions",
+            },
+          ],
+        });
+    })
+    .trigger("change");
+});
 
 $(function () {
   $("#toolbarContact")

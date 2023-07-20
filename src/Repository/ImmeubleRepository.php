@@ -3,7 +3,9 @@
 namespace App\Repository;
 
 use App\Entity\Immeuble;
+use App\Entity\RechercheImmeuble;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -40,14 +42,63 @@ class ImmeubleRepository extends ServiceEntityRepository
     }
 
     /**
-     * @return Immeuble[] Returns an array of Immeuble objects
+     * @param RechercheImmeuble $rechercheImmeuble
      */
-    public function findByAllFields(): array
+    public function findBySearch(RechercheImmeuble $rechercheImmeuble)
     {
-        return $this->createQueryBuilder('i')
-            ->select('i.ReferenceProprio as refProprio, i.NumPlancheCadastrale as numCada, i.EtatDossier as etatDossier, i.Enquete as enquete, i.DateEnquete as dateEnquete, i.Description as desc, i.SuiviPar as suiviPar, i.Vendu as vendu, i.NCPCF as ncpcf, i.OrigineContact as oriCon, i.Visite as visite, i.Commentaire')
-            ->getQuery()
-            ->getResult();
+        // $data = $this->createQueryBuilder('i')
+        //     ->where('i.IDImmeuble LIKE :IDImmeuble')
+        //     ->setParameter('IDImmeuble', 'En cours')
+        //     ->addOrderBy('i.DateEnquete', 'DESC');
+
+        // if (!empty($rechercheImmeuble->getSuiviPar())) {
+        //     $data = $data
+        //         ->andWhere('i.SuiviPar LIKE :suiviPar')
+        //         ->setParameter('suiviPar', "%{$rechercheImmeuble->getSuiviPar()}%");
+        // }
+
+        // $data = $data
+        //     ->getQuery()
+        //     ->getResult();
+
+        // return $data;
+
+        // for ($i = 0; $i < 10; $i++) {
+        //     if (!empty($rechercheImmeuble->getRefProprioImmeuble())) {
+
+        //     }
+        // };
+
+        if (!empty($rechercheImmeuble->getSuiviPar()) && !empty($rechercheImmeuble->getDateEnquete()) && !empty($rechercheImmeuble->getRefProprioImmeuble()) && !empty($rechercheImmeuble->getNumPlanchCada()) && !empty($rechercheImmeuble->getEtatDossier()) && !empty($rechercheImmeuble->getEnquete()) && !empty($rechercheImmeuble->getDescription()) && !empty($rechercheImmeuble->isVendu()) && !empty($rechercheImmeuble->isNcpcf()) && !empty($rechercheImmeuble->getOrigineContact()) && !empty($rechercheImmeuble->isVisite()) && !empty($rechercheImmeuble->getCommentaire())) {
+            return $this->createQueryBuilder('i')
+                ->where('i.ReferenceProprio LIKE :refProprioImmeuble')
+                ->setParameter('refProprioImmeuble', "%{$rechercheImmeuble->getRefProprioImmeuble()}%")
+                ->andWhere('i.NumPlancheCadastrale LIKE :numPlanchCada')
+                ->setParameter('numPlanchCada', "%{$rechercheImmeuble->getNumPlanchCada()}%")
+                ->andWhere('i.EtatDossier LIKE :etatDossier')
+                ->setParameter('etatDossier', "%{$rechercheImmeuble->getEtatDossier()}%")
+                ->andWhere('i.Enquete LIKE :enquete')
+                ->setParameter('enquete', "%{$rechercheImmeuble->getEnquete()}%")
+                ->andWhere('i.DateEnquete LIKE :dateEnquete')
+                ->setParameter('dateEnquete', $rechercheImmeuble->getDateEnquete())
+                ->andWhere('i.Description LIKE :description')
+                ->setParameter('description', "%{$rechercheImmeuble->getDescription()}%")
+                ->andWhere('i.SuiviPar LIKE :suiviPar')
+                ->setParameter('suiviPar', "%{$rechercheImmeuble->getSuiviPar()}%")
+                ->andWhere('i.Vendu LIKE :vendu')
+                ->setParameter('vendu', "%{$rechercheImmeuble->isVendu()}%")
+                ->andWhere('i.NCPCF LIKE :ncpcf')
+                ->setParameter('ncpcf', "%{$rechercheImmeuble->isNcpcf()}%")
+                ->andWhere('i.OrigineContact LIKE :origineContact')
+                ->setParameter('origineContact', "%{$rechercheImmeuble->getOrigineContact()}%")
+                ->andWhere('i.Visite LIKE :visite')
+                ->setParameter('visite', "%{$rechercheImmeuble->isVisite()}%")
+                ->andWhere('i.Commentaire LIKE :commentaire')
+                ->setParameter('commentaire', "%{$rechercheImmeuble->getCommentaire()}%")
+                // ->andWhere('i.DateEnquete LIKE :dateEnquete')
+                ->getQuery()
+                ->getResult();
+        }
     }
 
     //    public function findOneBySomeField($value): ?Immeuble

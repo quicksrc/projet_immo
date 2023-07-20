@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Immeuble;
+use App\Entity\RechercheImmeuble;
 use App\Form\ImmeubleType;
+use App\Form\SearchImmeubleType;
 use App\Repository\ContactRepository;
 use App\Repository\ImmeubleRepository;
 use Doctrine\ORM\EntityManager;
@@ -26,12 +28,68 @@ class ImmeubleController extends AbstractController
     }
 
     #[Route('/search', name: 'immeuble_search')]
-    public function search(ImmeubleRepository $immeubleRepository): Response
+    public function search(ImmeubleRepository $immeubleRepository, ContactRepository $contactRepository, Request $request): Response
     {
+        $rechercheImmeuble = new RechercheImmeuble();
+        $form = $this->createForm(SearchImmeubleType::class, $rechercheImmeuble);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $immeubles = $immeubleRepository->findBySearch($rechercheImmeuble);
+            // dd($immeubles);
+
+            return $this->render(
+                'immeuble/search.html.twig',
+                [
+                    // 'list_immeubles' => $immeubleRepository->findBy(array(), null, 100, null),
+                    'contacts' => $contactRepository->findBy(array(), null, 100, null),
+                    'immeubles' => $immeubles,
+                    'form' => $form,
+                ]
+            );
+        }
+
+        // $referenceProprio = $rechercheImmeuble->getRefProprioImmeuble();
+        // $numPlanchCada = $rechercheImmeuble->getNumPlanchCada();
+        // $etatDossier = $rechercheImmeuble->getEtatDossier();
+        // $enquete = $rechercheImmeuble->getEnquete();
+        // $dateEnquete = $rechercheImmeuble->getDateEnquete();
+        // $description = $rechercheImmeuble->getDescription();
+        // $suiviPar = $rechercheImmeuble->getSuiviPar();
+        // $vendu = $rechercheImmeuble->isVendu();
+        // $ncpcf = $rechercheImmeuble->isNcpcf();
+        // $origineContact = $rechercheImmeuble->getOrigineContact();
+        // $visite = $rechercheImmeuble->isVisite();
+        // $commentaire = $rechercheImmeuble->getCommentaire();
+        // if ($description != "" && $referenceProprio != "" && $vendu != "") {
+        //     $immeubles = $immeubleRepository->findBy(['Description' => $description, 'ReferenceProprio' => $referenceProprio, 'Vendu' => $vendu]);
+        // } elseif ($description != "" && $referenceProprio != "") {
+        //     $immeubles = $immeubleRepository->findBy(['Description' => $description, 'ReferenceProprio' => $referenceProprio]);
+        // } elseif ($description != "" && $vendu != "") {
+        //     $immeubles = $immeubleRepository->findBy(['Description' => $description, 'Vendu' => $vendu]);
+        // } elseif ($referenceProprio != "" && $vendu != "") {
+        //     $immeubles = $immeubleRepository->findBy(['ReferenceProprio' => $referenceProprio, 'Vendu' => $vendu]);
+        // } elseif ($description != "") {
+        //     $immeubles = $immeubleRepository->findBy(['Description' => $description]);
+        // } elseif ($referenceProprio != "") {
+        //     $immeubles = $immeubleRepository->findBy(['ReferenceProprio' => $referenceProprio]);
+        // } elseif ($vendu != "") {
+        //     $immeubles = $immeubleRepository->findBy(['Vendu' => $vendu]);
+        // $immeubles = $immeubleRepository->createQueryBuilder('i')
+        //     ->where('i.SuiviPar LIKE :suiviPar')
+        //     ->setParameter()
+        //     ->getQuery()
+        //     ->getResult();
+        // } else {
+        //     $immeubles = $immeubleRepository->findBy(array(), null, 100, null);
+        // }
         return $this->render(
             'immeuble/search.html.twig',
             [
-                'queryRefProprio' => $immeubleRepository->findByAllFields()
+                // 'list_immeubles' => $immeubleRepository->findBy(array(), null, 100, null),
+                'contacts' => $contactRepository->findBy(array(), null, 100, null),
+                'immeubles' => $immeubleRepository->findBy(array(), null, 100, null),
+                'form' => $form->createView(),
             ]
         );
     }
