@@ -22,103 +22,28 @@ class SearchImmeubleType extends AbstractType
                 'label' => false,
                 'attr' => [
                     'placeholder' => 'Réf. propriétaire',
-                    'class' => 'form-control mt-4'
-                ]
-            ])
-            ->add('numPlanchCada', NumberType::class, [
-                'required' => false,
-                'label' => false,
-                'attr' => [
-                    'placeholder' => 'N° planche cadastrale',
-                    'class' => 'form-control mt-4'
-                ]
-            ])
-            ->add('etatDossier', ChoiceType::class, [
-                'required' => false,
-                'choices' => [
-                    'En cours' => 'En cours',
-                    'À classer' => 'A classer'
-                ],
-                'attr' => [
-                    'class' => 'form-select mt-4',
-                    'placeholder' => 'Etat Dossier'
-                ]
-            ])
-            ->add('enquete', ChoiceType::class, [
-                'required' => false,
-                'choices' => [
-                    'Mémotel' => 'Mémotel',
-                    'Enquête juste' => 'Enquête juste'
-                ],
-                'attr' => [
-                    'class' => 'form-select mt-4',
-                    'placeholder' => 'Enquete'
-                ]
-            ])
-            ->add('dateEnquete', DateType::class, [
-                'required' => false,
-                'label' => false,
-                'format' => 'dd-MM-yyyy',
-                'years' => range(date('Y') - 30, date('Y')),
-                'attr' => [
-                    'class' => 'Date d\'enquête',
-                    'class' => 'form-control mt-4'
-                ]
-            ])
-            ->add('description', ChoiceType::class, [
-                'required' => false,
-                'choices' => [
-                    'Maison' => 'Maison',
-                    'Lot' => 'Lot',
-                    'Immeuble' => 'Immeuble',
-                    'Hotel' => 'Hotel',
-                    'Batiment' => 'Batiment',
-                ],
-                'attr' => [
-                    'class' => 'form-select mt-4',
-                    'placeholder' => 'Description'
-                ]
-            ])
-            ->add('suiviPar', ChoiceType::class, [
-                'required' => false,
-                'choices' => [
-                    'AD' => 'AD',
-                    'AH' => 'AH',
-                    'AK' => 'AK',
-                    'AMV' => 'AMV',
-                    'BdP' => 'BdP',
-                    'DP' => 'DP',
-                    'EDH' => 'EDH',
-                    'OC' => 'OC',
-                    'IC' => 'IC',
-                    'MB' => 'MB',
-                    'MT' => 'MT',
-                    'TP' => 'TP',
-                    'LC' => 'LC',
-                ],
-                'attr' => [
-                    'class' => 'form-select mt-4',
-                    'placeholder' => 'Suivi par'
-                ]
-            ])
-            ->add('vendu', CheckboxType::class, [
-                'required' => false,
-                'label' => false,
-                'attr' => [
-                    'placeholder' => 'Vendu',
-                    'class' => 'form-check-input mt-4'
+                    'class' => 'form-control mt-4 col-5'
                 ]
             ])
             ->add('ncpcf', CheckboxType::class, [
                 'required' => false,
-                'label' => false,
+                'label' => 'NCPCF',
+                'label_attr' => [
+                    'class' => 'form-check-label mt-4',
+                    'for' => 'btnCheckNCPCF'
+                ],
                 'attr' => [
                     'placeholder' => 'NCPCF',
-                    'class' => 'form-check-input mt-4'
+                    'class' => 'form-check-input mt-4 ms-4'
                 ]
             ])
             ->add('origineContact', ChoiceType::class, [
                 'required' => false,
+                'label' => 'Origine Contact',
+                'label_attr' => [
+                    'class' => 'form-label mt-4'
+                ],
+
                 'choices' => [
                     'Mailing' => 'Mailing',
                     'Intermédiaire' => 'Intermédiaire',
@@ -128,25 +53,20 @@ class SearchImmeubleType extends AbstractType
                     'Retombée clientèle' => 'Retombée clientèle',
                 ],
                 'attr' => [
-                    'class' => 'form-select mt-4',
+                    'class' => 'form-select',
                     'placeholder' => 'Description'
                 ]
             ])
             ->add('visite', CheckboxType::class, [
                 'required' => false,
-                'label' => false,
+                'label' => 'Visite',
+                'label_attr' => [
+                    'class' => 'form-check-label mt-4',
+                    'for' => 'btnCheckVisite'
+                ],
                 'attr' => [
-                    'placeholder' => 'Visité',
-                    'class' => 'form-check-input mt-4'
-                ]
-            ])
-            ->add('commentaire', TextType::class, [
-                'required' => false,
-                'label' => false,
-                'attr' => [
-                    'placeholder' => 'Commentaire',
-                    'class' => 'form-control',
-                    'row' => '3'
+                    'class' => 'form-check-input mt-4 ms-4',
+                    'id' => 'btnCheckVisite'
                 ]
             ]);
     }

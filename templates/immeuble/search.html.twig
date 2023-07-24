@@ -5,7 +5,9 @@
 
 {% block body %}
 	{# {{ dump(queryRefProprio) }} #}
-	{% include 'shared/_formsearch.html.twig' with {form: form} %}
+	<div class="row">
+		{% include 'shared/_formsearch.html.twig' with {form: form} %}
+	</div>
 	<div class="row mt-5">
 		<div id="toolbarImmeubleSearch" class="me-4 mb-3">
 			<select class="form-control mt-3">
@@ -46,10 +48,10 @@
 						<td>{{ immeuble.Ville }}</td>
 						<td>{{ immeuble.ReferenceProprio }}</td>
 						{# {% for contact in contacts %}
-																																					{% if contact.IDContact == immeuble.ReferenceProprio %}
-																																						<td>{{ contact.Nom }}</td>
-																																					{% endif %}
-																																				{% endfor %} #}
+																																																							{% if contact.IDContact == immeuble.ReferenceProprio %}
+																																																								<td>{{ contact.Nom }}</td>
+																																																							{% endif %}
+																																																						{% endfor %} #}
 						<td>{{ immeuble.DateEnquete|date("d/m/Y") }}</td>
 						{% if immeuble.Intermediaire == "" %}
 							<td>❌</td>

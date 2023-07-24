@@ -42,6 +42,7 @@ class BuildingController extends AbstractController
     //         $description = $recherche->getDescription();
     //         $referenceProprio = $recherche->getReferenceProprio();
     //         $vendu = $recherche->isVendu();
+
     //         if ($description != "" && $referenceProprio != "" && $vendu != "") {
     //             $immeubles = $immeubleRepository->findBy(['Description' => $description, 'ReferenceProprio' => $referenceProprio, 'Vendu' => $vendu]);
     //         } elseif ($description != "" && $referenceProprio != "") {
