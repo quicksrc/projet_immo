@@ -1,4 +1,232 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+<div>
+	<div class="form-group row">
+		<div class="col-md-4 mb-3">
+			<label for="readOnlyInput">Réf. propriétaire</label>
+			{{ form_widget(form.ReferenceProprio) }}
+		</div>
+	</div>
+	<ul class="nav nav-tabs" role="tablist">
+		<li class="nav-item" role="presentation">
+			<a class="nav-link active" data-bs-toggle="tab" href="#home" aria-selected="true" role="tab" tabindex="-1">Général</a>
+		</li>
+		<li class="nav-item" role="presentation">
+			<a class="nav-link " data-bs-toggle="tab" href="#adresse" aria-selected="true" role="tab">Adresse</a>
+		</li>
+		<li class="nav-item" role="presentation">
+			<a class="nav-link " data-bs-toggle="tab" href="#profile" aria-selected="true" role="tab">Pièce jointe</a>
+		</li>
+	</ul>
+	<div id="myTabContent" class="tab-content">
+		<div class="tab-pane fade active show" id="home" role="tabpanel">
+			<div class="accordion" id="accordionExample">
+				<div class="accordion-item">
+					<h2 class="accordion-header" id="headingOne">
+						<button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+							Situation
+						</button>
+					</h2>
+					<div id="collapseOne" style="padding:2%" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample" style="">
+						<div class="accordion-body">
+							<div class="form-group row">
+								<div class="col-md-4 mb-3">
+									<label for="readOnlyInput">N° Planche Cadastrale</label>
+									{{ form_widget(form.NumPlancheCadastrale) }}
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="accordion-item">
+					<h2 class="accordion-header" id="headingTwo">
+						<button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+							Complément
+						</button>
+					</h2>
+					<div id="collapseTwo" style="padding:2%" class="accordion-collapse collapse " aria-labelledby="headingTwo" data-bs-parent="#accordionExample" style="">
+
+						<div class="form-group row">
+							<div class="col-md-4 mb-3">
+								<label for="readOnlyInput">Etat Dossier</label>
+								{{ form_widget(form.EtatDossier) }}
+							</div>
+
+							<div class="col-md-4 mb-3">
+								<label for="readOnlyInput">Enquete</label>
+								{{ form_widget(form.Enquete) }}
+
+							</div>
+							<div class="col-md-4 mb-3">
+								<label for="flexCheckDefault">Visité</label>
+								{{ form_widget(form.Visite) }}
+							</div>
+						</div>
+
+						<div class="form-group row">
+							<div class="col-md-4 mb-3">
+								<label for="readOnlyInput">Gardien</label>NomGardien
+								{{ form_widget(form.NomGardien) }}
+							</div>
+
+							<div class="col-md-4 mb-3">
+								<label for="readOnlyInput">Description</label>
+								{{ form_widget(form.Description) }}
+
+							</div>
+						</div>
+
+						<div class="form-group row">
+							<div class="col-md-4 mb-3">
+								<label for="readOnlyInput">Suivi Par</label>
+								{{ form_widget(form.SuiviPar) }}
+
+							</div>
+
+							<div class="col-md-4 mb-3">
+								<label for="readOnlyInput">Vendu</label>
+								{{ form_widget(form.Vendu) }}
+							</div>
+
+							<div class="col-md-4 mb-3">
+								<label for="flexCheckDefault">NCPCF</label>
+								{{ form_widget(form.NCPCF) }}
+
+							</div>
+						</div>
+
+						<div class="form-group row">
+							<div class="col-md-4 mb-3">
+								<label for="readOnlyInput">Origine Contact</label>
+								{{ form_widget(form.OrigineContact) }}
+							</div>
+							<div class="col-md-4 mb-3">
+								<label for="readOnlyInput">Intermediaire</label>
+								{{ form_widget(form.Intermediaire) }}
+							</div>
+						</div>
+
+					</div>
+				</div>
+				<div class="accordion-item">
+					<h2 class="accordion-header" id="headingThree">
+						<button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+							Commentaire
+						</button>
+					</h2>
+					<div id="collapseThree" style="padding:2%" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample" style="">
+						<div class="form-group row">
+							<div class="col-md-12 mb-3">
+								{{ form_widget(form.Commentaire) }}
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="tab-pane" id="adresse" role="tabpanel">
+			<div class="accordion" id="accordionExample">
+				<div class="accordion-item">
+					<h2 class="accordion-header" id="headingOne">
+						<button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+							Situation
+						</button>
+					</h2>
+					<div id="collapseOne" style="padding:2%" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample" style="">
+						<div class="accordion-body"></div>
+					</div>
+				</div>
+				<div class="accordion-item">
+					<h2 class="accordion-header" id="headingTwo">
+						<button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+							Complément
+						</button>
+					</h2>
+					<div id="collapseTwo" style="padding:2%" class="accordion-collapse collapse " aria-labelledby="headingTwo" data-bs-parent="#accordionExample" style="">
+
+						<div class="form-group row">
+							<div class="col-md-4 mb-3">
+								<label for="readOnlyInput">Contact Principal</label>
+								{{ form_widget(form.ContactPrincipal) }}
+							</div>
+
+							<div class="col-md-4 mb-3">
+								<label for="readOnlyInput">N° Principal</label>
+								{{ form_widget(form.NumPrincipal) }}
+
+							</div>
+							<div class="col-md-4 mb-3">
+								<label for="flexCheckDefault">N° Secondaire</label>
+								{{ form_widget(form.NumSecondaire) }}
+							</div>
+						</div>
+						<div class="form-group row">
+							<div class="col-md-4 mb-3">
+								<label for="readOnlyInput">Adresse</label>
+								{{ form_widget(form.Adresse) }}
+							</div>
+						</div>
+
+						<div class="form-group row">
+							<div class="col-md-4 mb-3">
+								<label for="readOnlyInput">Type Voie</label>
+								{{ form_widget(form.TypeVoie) }}
+							</div>
+
+							<div class="col-md-4 mb-3">
+								<label for="readOnlyInput">Nom Rue</label>
+								{{ form_widget(form.NomRue) }}
+							</div>
+
+							<div class="col-md-4 mb-3">
+								<label for="readOnlyInput">Code Postal</label>
+								{{ form_widget(form.CP) }}
+							</div>
+
+							<div class="col-md-4 mb-3">
+								<label for="readOnlyInput">Ville</label>
+								{{ form_widget(form.Ville) }}
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="tab-pane" id="profile" role="tabpanel">
+			<div class="accordion" id="accordionExample">
+				<div class="accordion-item">
+					<h2 class="accordion-header" id="headingThree">
+						<button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+							Commentaire
+						</button>
+					</h2>
+					<div id="collapseThree" style="padding:2%" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample" style="">
+						<div class="form-group row">
+							<div class="col-md-4 mb-3">
+								<label for="readOnlyInput">Photo N°1</label>
+								{{ form_widget(form.Photo1) }}
+							</div>
+							<div class="col-md-4 mb-3">
+								<label for="readOnlyInput">Photo N°2</label>
+								{{ form_widget(form.Photo2) }}
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+{# <div class="float-end ">
+	<button class="btn btn-light " type="button">
+		<a class=" text-decoration-underline-remove" href="{{ path('immeubles') }}">back to list</a>
+	</button>
+	<button class="btn btn-light " type="button">{{ button_label|default('Save') }}
+	</button>
+</div> #}
+<br>
+<button class="btn btn-light float-end">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}

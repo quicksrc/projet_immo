@@ -29,7 +29,7 @@
 				</button>
 			</div>
 
-			<table id="tableImmeuble" data-pagination="true" data-toolbar="#toolbarImmeuble" data-page-size="25" data-search="true" data-show-export="true" data-toggle="table" data-click-to-select="true" data-search-align="left" data-show-columns="true" class="table table-list table-bordered table-striped m-auto">
+			<table id="tableImmeuble" data-pagination="true" data-toolbar="#toolbarImmeuble" data-page-size="25" data-search="true" data-show-export="true" data-toggle="table" data-click-to-select="true" data-search-align="left" data-show-columns="true" data-show-print="true" class="table table-list table-bordered table-striped m-auto">
 				<thead>
 					<tr>
 						<th data-field="id" data-sortable="true" scope="col">N°</th>
@@ -46,17 +46,14 @@
 				</thead>
 				<tbody class="table-group-divider">
 					{% for immeuble in immeubles %}
+
 						<tr>
 							<td></td>
-							<td>{{ immeuble.IDImmeuble }}</td>
+							<td>{{ immeuble.ReferenceProprio  }}</td>
 							<td>{{ immeuble.Adresse }}</td>
 							<td>{{ immeuble.CP }}</td>
 							<td>{{ immeuble.Ville }}</td>
-							{% for contact in contacts %}
-								{% if contact.IDContact == immeuble.ReferenceProprio %}
-									<td>{{ contact.Nom }}</td>
-								{% endif %}
-							{% endfor %}
+							<td>{{ immeuble.ReferenceProprio }}</td>
 							<td>{{ immeuble.DateEnquete|date("d/m/Y") }}</td>
 							{% if immeuble.Intermediaire == "" %}
 								<td>❌</td>

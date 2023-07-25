@@ -4,116 +4,329 @@
 {% endblock %}
 
 {% block body %}
-	<h1>Contact</h1>
 
-	<table class="table">
-		<tbody>
-			<tr>
-				<th>IDContact</th>
-				<td>{{ contact.IDContact }}</td>
-			</tr>
-			<tr>
-				<th>DateModification</th>
-				<td>{{ contact.DateModification ? contact.DateModification|date('Y-m-d H:i:s') : '' }}</td>
-			</tr>
-			<tr>
-				<th>Civilite</th>
-				<td>{{ contact.Civilite }}</td>
-			</tr>
-			<tr>
-				<th>Nom</th>
-				<td>{{ contact.Nom }}</td>
-			</tr>
-			<tr>
-				<th>Prenom</th>
-				<td>{{ contact.Prenom }}</td>
-			</tr>
-			<tr>
-				<th>Societe</th>
-				<td>{{ contact.Societe }}</td>
-			</tr>
-			<tr>
-				<th>Correspondant</th>
-				<td>{{ contact.Correspondant }}</td>
-			</tr>
-			<tr>
-				<th>Adresse</th>
-				<td>{{ contact.Adresse }}</td>
-			</tr>
-			<tr>
-				<th>CP</th>
-				<td>{{ contact.CP }}</td>
-			</tr>
-			<tr>
-				<th>Ville</th>
-				<td>{{ contact.Ville }}</td>
-			</tr>
-			<tr>
-				<th>Pays</th>
-				<td>{{ contact.Pays }}</td>
-			</tr>
-			<tr>
-				<th>Telephone</th>
-				<td>{{ contact.Telephone }}</td>
-			</tr>
-			<tr>
-				<th>Fax</th>
-				<td>{{ contact.Fax }}</td>
-			</tr>
-			<tr>
-				<th>TelephonePortable</th>
-				<td>{{ contact.TelephonePortable }}</td>
-			</tr>
-			<tr>
-				<th>TelephoneDomicile</th>
-				<td>{{ contact.TelephoneDomicile }}</td>
-			</tr>
-			<tr>
-				<th>ListeRouge</th>
-				<td>{{ contact.ListeRouge }}</td>
-			</tr>
-			<tr>
-				<th>Email</th>
-				<td>{{ contact.Email }}</td>
-			</tr>
-			<tr>
-				<th>DateNaissance</th>
-				<td>{{ contact.DateNaissance ? contact.DateNaissance|date('Y-m-d H:i:s') : '' }}</td>
-			</tr>
-			<tr>
-				<th>Activite</th>
-				<td>{{ contact.Activite }}</td>
-			</tr>
-			<tr>
-				<th>RCS</th>
-				<td>{{ contact.RCS }}</td>
-			</tr>
-			<tr>
-				<th>AntiMailing</th>
-				<td>{{ contact.AntiMailing }}</td>
-			</tr>
-			<tr>
-				<th>NPAI</th>
-				<td>{{ contact.NPAI }}</td>
-			</tr>
-			<tr>
-				<th>Commentaire</th>
-				<td>{{ contact.Commentaire }}</td>
-			</tr>
-			<tr>
-				<th>Fonction</th>
-				<td>{{ contact.Fonction }}</td>
-			</tr>
-			<tr>
-				<th>DCD</th>
-				<td>{{ contact.DCD }}</td>
-			</tr>
-		</tbody>
-	</table>
+	<h1>{{ contact.Nom }}</h1>
 
-	<a href="{{ path('contacts') }}">back to list</a>
+	<ul class="nav nav-tabs" role="tablist">
+		<li class="nav-item" role="presentation">
+			<a class="nav-link active" data-bs-toggle="tab" href="#general" aria-selected="true" role="tab" tabindex="-1">Général</a>
+		</li>
+		<li class="nav-item" role="presentation">
+			<a class="nav-link " data-bs-toggle="tab" href="#activites" aria-selected="true" role="tab">Activités</a>
+		</li>
+		<li class="nav-item" role="presentation">
+			<a class="nav-link " data-bs-toggle="tab" href="#immeubles" aria-selected="true" role="tab">Immeubles</a>
+		</li>
+		<li class="nav-item" role="presentation">
+			<a class="nav-link " data-bs-toggle="tab" href="#opportunites" aria-selected="true" role="tab">Opportunités</a>
+		</li>
+	</ul>
+	<div id="myTabContent" class="tab-content">
+		<div class="tab-pane fade active show" id="general" role="tabpanel">
+			<div class="accordion" id="accordionExample">
+				<div class="accordion-item">
+					<h2 class="accordion-header" id="headingOne">
+						<button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+							Renseignements généraux
+						</button>
+					</h2>
+					<div id="collapseOne" style="padding:2%" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample" style="">
+						<div class="accordion-body">
+							<form>
+								<div class="form-group row">
+									<div class="col-md-4 mb-3">
+										<label for="readOnlyInput">Civilité</label>
+										<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ contact.Civilite }}" readonly="">
+									</div>
 
-	<a href="{{ path('app_contact_edit', {'IDContact': contact.IDContact}) }}">edit</a>
+									<div class="col-md-4 mb-3">
+										<label for="flexCheckDefault">
+											NPAI
+										</label>
+										{% if contact.NPAI == 0 %}
+											<input class="form-check-input" type="checkbox" disabled="" value="{{ contact.NPAI }}" id="flexCheckDefault">
+										{% elseif contact.NPAI == 1 %}
+											<input class="form-check-input" type="checkbox" disabled="" value="{{ contact.NPAI }}" checked id="flexCheckDefault">
+										{% endif %}
+									</div>
+									<div class="col-md-4 mb-3">
+										<label for="flexCheckDefault">
+											Décédé
+										</label>
+										{% if contact.DCD == 0 %}
+											<input class="form-check-input" type="checkbox" disabled="" value="{{ contact.DCD }}" id="flexCheckDefault">
+										{% elseif contact.DCD == 1 %}
+											<input class="form-check-input" type="checkbox" disabled="" value="{{ contact.DCD }}" checked id="flexCheckDefault">
+										{% endif %}
+									</div>
+								</div>
 
-	{{ include('contact/_delete_form.html.twig') }}
+								<div class="form-group row">
+									<div class="col-md-6 mb-3">
+										<label for="readOnlyInput">Nom</label>
+										<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ contact.Nom }}" readonly="">
+									</div>
+									<div class="col-md-4 mb-3">
+										<label for="readOnlyInput">Prénom</label>
+										<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ contact.Prenom }}" readonly="">
+									</div>
+								</div>
+								<div class="form-group row">
+									<div class="col-md-6 mb-3">
+										<label for="readOnlyInput">Fonction</label>
+										<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ contact.Fonction }}" readonly="">
+									</div>
+								</div>
+								<div class="form-group row">
+									<div class="col-md-4 mb-3">
+										<label for="readOnlyInput">Fax</label>
+										<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ contact.Fax }}" readonly="">
+									</div>
+									<div class="col-md-4 mb-3">
+										<label for="readOnlyInput">Bureau</label>
+										<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ contact.TelephoneDomicile }}" readonly="">
+									</div>
+								</div>
+								<div class="form-group row">
+									<div class="col-md-4 mb-3">
+										<label for="readOnlyInput">Portable</label>
+										<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ contact.TelephonePortable }}" readonly="">
+									</div>
+									<div class="col-md-4 mb-3">
+										<label for="readOnlyInput">Téléphone</label>
+										<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ contact.Telephone }}" readonly="">
+									</div>
+									<div class="col-md-4 mb-3">
+										<label for="flexCheckDefault">
+											Liste rouge
+										</label>
+										{% if contact.ListeRouge == 0 %}
+											<input class="form-check-input" type="checkbox" disabled="" value="{{ contact.ListeRouge }}" id="flexCheckDefault">
+										{% elseif contact.ListeRouge == 1 %}
+											<input class="form-check-input" type="checkbox" disabled="" value="{{ contact.ListeRouge }}" checked id="flexCheckDefault">
+										{% endif %}
+									</div>
+								</div>
+								<div class="form-group row">
+									<div class="col-md-6 mb-3">
+										<label for="readOnlyInput">Correspondant</label>
+										<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ contact.Correspondant }}" readonly="">
+									</div>
+								</div>
+								<div class="form-group row">
+									<div class="col-md-6 mb-3">
+										<label for="readOnlyInput">Email</label>
+										<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ contact.Email }}" readonly="">
+									</div>
+								</div>
+								<div class="form-group row">
+									<div class="col-md-6 mb-3">
+										<label for="readOnlyInput">Date naissance</label>
+										<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ contact.DateNaissance ? contact.DateNaissance|date('Y-m-d H:i:s') : '' }}" readonly="">
+									</div>
+								</div>
+							</form>
+
+						</div>
+					</div>
+				</div>
+				<div class="accordion-item">
+					<h2 class="accordion-header" id="headingTwo">
+						<button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+							Renseignements société
+						</button>
+					</h2>
+					<div id="collapseTwo" style="padding:2%" class="accordion-collapse collapse " aria-labelledby="headingTwo" data-bs-parent="#accordionExample" style="">
+						<form>
+							<div class="form-group row">
+								<div class="col-md-6 mb-3">
+									<label for="readOnlyInput">Raison sociale</label>
+									<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ contact.Societe }}" readonly="">
+								</div>
+							</div>
+
+							<div class="form-group row">
+								<div class="col-md-6 mb-3">
+									<label for="readOnlyInput">Activité</label>
+									<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ contact.Activite }}" readonly="">
+								</div>
+							</div>
+
+							<div class="form-group row">
+								<div class="col-md-6 mb-3">
+									<label for="readOnlyInput">Adresse</label>
+									<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ contact.Adresse }}" readonly="">
+								</div>
+							</div>
+
+							<div class="form-group row">
+								<div class="col-md-4 mb-3">
+									<label for="readOnlyInput">CP</label>
+									<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ contact.CP }}" readonly="">
+								</div>
+								<div class="col-md-4 mb-3">
+									<label for="readOnlyInput">Ville</label>
+									<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ contact.Ville }}" readonly="">
+								</div>
+								<div class="col-md-4 mb-3">
+									<label for="readOnlyInput">Pays</label>
+									<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ contact.Pays }}" readonly="">
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-md-6 mb-3">
+									<label for="readOnlyInput">RCS</label>
+									<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ contact.RCS }}" readonly="">
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+				<div class="accordion-item">
+					<h2 class="accordion-header" id="headingThree">
+						<button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+							Commentaire
+						</button>
+					</h2>
+					<div id="collapseThree" style="padding:2%" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample" style="">
+						<div class="form-group row">
+							<div class="col-md-12 mb-3">
+								<textarea class="form-control" id="exampleTextarea" rows="3" readonly="">{{ contact.Commentaire }}</textarea>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="tab-pane" id="activites" role="tabpanel"></div>
+		<div class="tab-pane" id="immeubles" role="tabpanel"></div>
+		<div class="tab-pane" id="opportunites" role="tabpanel"></div>
+	</div>
+
+	{# 
+																	<h1>Contact</h1>
+																
+																	<table class="table">
+																		<tbody>
+																			<tr>
+																				<th>IDContact</th>
+																				<td>{{ contact.IDContact }}</td>
+																			</tr>
+																			<tr>
+																				<th>DateModification</th>
+																				<td>{{ contact.DateModification ? contact.DateModification|date('Y-m-d H:i:s') : '' }}</td>
+																			</tr>
+																			<tr>
+																				<th>Civilite</th>
+																				<td>{{ contact.Civilite }}</td>
+																			</tr>
+																			<tr>
+																				<th>Nom</th>
+																				<td>{{ contact.Nom }}</td>
+																			</tr>
+																			<tr>
+																				<th>Prenom</th>
+																				<td>{{ contact.Prenom }}</td>
+																			</tr>
+																			<tr>
+																				<th>Societe</th>
+																				<td>{{ contact.Societe }}</td>
+																			</tr>
+																			<tr>
+																				<th>Correspondant</th>
+																				<td>{{ contact.Correspondant }}</td>
+																			</tr>
+																			<tr>
+																				<th>Adresse</th>
+																				<td>{{ contact.Adresse }}</td>
+																			</tr>
+																			<tr>
+																				<th>CP</th>
+																				<td>{{ contact.CP }}</td>
+																			</tr>
+																			<tr>
+																				<th>Ville</th>
+																				<td>{{ contact.Ville }}</td>
+																			</tr>
+																			<tr>
+																				<th>Pays</th>
+																				<td>{{ contact.Pays }}</td>
+																			</tr>
+																			<tr>
+																				<th>Telephone</th>
+																				<td>{{ contact.Telephone }}</td>
+																			</tr>
+																			<tr>
+																				<th>Fax</th>
+																				<td>{{ contact.Fax }}</td>
+																			</tr>
+																			<tr>
+																				<th>TelephonePortable</th>
+																				<td>{{ contact.TelephonePortable }}</td>
+																			</tr>
+																			<tr>
+																				<th>TelephoneDomicile</th>
+																				<td>{{ contact.TelephoneDomicile }}</td>
+																			</tr>
+																			<tr>
+																				<th>ListeRouge</th>
+																				<td>{{ contact.ListeRouge }}</td>
+																			</tr>
+																			<tr>
+																				<th>Email</th>
+																				<td>{{ contact.Email }}</td>
+																			</tr>
+																			<tr>
+																				<th>DateNaissance</th>
+																				<td>{{ contact.DateNaissance ? contact.DateNaissance|date('Y-m-d H:i:s') : '' }}</td>
+																			</tr>
+																			<tr>
+																				<th>Activite</th>
+																				<td>{{ contact.Activite }}</td>
+																			</tr>
+																			<tr>
+																				<th>RCS</th>
+																				<td>{{ contact.RCS }}</td>
+																			</tr>
+																			<tr>
+																				<th>AntiMailing</th>
+																				<td>{{ contact.AntiMailing }}</td>
+																			</tr>
+																			<tr>
+																				<th>NPAI</th>
+																				<td>{{ contact.NPAI }}</td>
+																			</tr>
+																			<tr>
+																				<th>Commentaire</th>
+																				<td>{{ contact.Commentaire }}</td>
+																			</tr>
+																			<tr>
+																				<th>Fonction</th>
+																				<td>{{ contact.Fonction }}</td>
+																			</tr>
+																			<tr>
+																				<th>DCD</th>
+																				<td>{{ contact.DCD }}</td>
+																			</tr>
+																		</tbody>
+																	</table> #}
+	<br>
+	<div class="float-end ">
+		<button class="btn btn-light " type="button">
+			<a class=" text-decoration-underline-remove" href="{{ path('contacts') }}">back to list</a>
+		</button>
+		<button class="btn btn-light " type="button">
+			<a class=" text-decoration-underline-remove" href="{{ path('app_contact_edit', {'IDContact': contact.IDContact}) }}">edit</a>
+		</button>
+		{# <button class="btn btn-light btn-lg" type="button">
+																																																{{ include('immeuble/_delete_form.html.twig') }}
+																																															</button> #}
+	</div>
+	<br>
+	{# <a href="{{ path('contacts') }}">back to list</a>
+														
+															<a href="{{ path('app_contact_edit', {'IDContact': contact.IDContact}) }}">edit</a>
+														
+															{{ include('contact/_delete_form.html.twig') }} #}
 {% endblock %}

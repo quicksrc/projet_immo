@@ -4,184 +4,484 @@
 {% endblock %}
 
 {% block body %}
-	<h1>Societe</h1>
+	<form>
+		<div class="form-group row">
+			<label for="readOnlyInput" class="col-sm-2 col-form-label fw-bold">Référence :
+			</label>
+			<div class="col-sm-10">
+				<input type="text" readonly class="form-control-plaintext fw-bold" id="staticEmail" value="{{ societe.IDSociete }}">
+			</div>
+		</div>
+	</form>
 
-	<table class="table">
-		<tbody>
-			<tr>
-				<th>IDSociete</th>
-				<td>{{ societe.IDSociete }}</td>
-			</tr>
-			<tr>
-				<th>DateCreation</th>
-				<td>{{ societe.DateCreation ? societe.DateCreation|date('Y-m-d H:i:s') : '' }}</td>
-			</tr>
-			<tr>
-				<th>DateModification</th>
-				<td>{{ societe.DateModification ? societe.DateModification|date('Y-m-d H:i:s') : '' }}</td>
-			</tr>
-			<tr>
-				<th>OrigineContact</th>
-				<td>{{ societe.OrigineContact }}</td>
-			</tr>
-			<tr>
-				<th>DateEditionJournal</th>
-				<td>{{ societe.DateEditionJournal ? societe.DateEditionJournal|date('Y-m-d H:i:s') : '' }}</td>
-			</tr>
-			<tr>
-				<th>NumJAL</th>
-				<td>{{ societe.NumJAL }}</td>
-			</tr>
-			<tr>
-				<th>Responsable</th>
-				<td>{{ societe.Responsable }}</td>
-			</tr>
-			<tr>
-				<th>VendeurRaisonSociale</th>
-				<td>{{ societe.VendeurRaisonSociale }}</td>
-			</tr>
-			<tr>
-				<th>VendeurAdresse</th>
-				<td>{{ societe.VendeurAdresse }}</td>
-			</tr>
-			<tr>
-				<th>VendeurCP</th>
-				<td>{{ societe.VendeurCP }}</td>
-			</tr>
-			<tr>
-				<th>VendeurVille</th>
-				<td>{{ societe.VendeurVille }}</td>
-			</tr>
-			<tr>
-				<th>VendeurPays</th>
-				<td>{{ societe.VendeurPays }}</td>
-			</tr>
-			<tr>
-				<th>VendeurTelephoneSociete</th>
-				<td>{{ societe.VendeurTelephoneSociete }}</td>
-			</tr>
-			<tr>
-				<th>VendeurFaxSociete</th>
-				<td>{{ societe.VendeurFaxSociete }}</td>
-			</tr>
-			<tr>
-				<th>VendeurRCS</th>
-				<td>{{ societe.VendeurRCS }}</td>
-			</tr>
-			<tr>
-				<th>VendeurCapital</th>
-				<td>{{ societe.VendeurCapital }}</td>
-			</tr>
-			<tr>
-				<th>VendeurNomDirigeant</th>
-				<td>{{ societe.VendeurNomDirigeant }}</td>
-			</tr>
-			<tr>
-				<th>VendeurTelPortable</th>
-				<td>{{ societe.VendeurTelPortable }}</td>
-			</tr>
-			<tr>
-				<th>VendeurTelPerso</th>
-				<td>{{ societe.VendeurTelPerso }}</td>
-			</tr>
-			<tr>
-				<th>VendeurEmail</th>
-				<td>{{ societe.VendeurEmail }}</td>
-			</tr>
-			<tr>
-				<th>VendeurDateNaissance</th>
-				<td>{{ societe.VendeurDateNaissance ? societe.VendeurDateNaissance|date('Y-m-d H:i:s') : '' }}</td>
-			</tr>
-			<tr>
-				<th>VendeurAdresseFondsVendu</th>
-				<td>{{ societe.VendeurAdresseFondsVendu }}</td>
-			</tr>
-			<tr>
-				<th>ActiviteFdsCommerce</th>
-				<td>{{ societe.ActiviteFdsCommerce }}</td>
-			</tr>
-			<tr>
-				<th>DateActeCession</th>
-				<td>{{ societe.DateActeCession ? societe.DateActeCession|date('Y-m-d H:i:s') : '' }}</td>
-			</tr>
-			<tr>
-				<th>PrixVente</th>
-				<td>{{ societe.PrixVente }}</td>
-			</tr>
-			<tr>
-				<th>Tresorerie</th>
-				<td>{{ societe.Tresorerie }}</td>
-			</tr>
-			<tr>
-				<th>ReportDeficitaire</th>
-				<td>{{ societe.ReportDeficitaire }}</td>
-			</tr>
-			<tr>
-				<th>Immobilier</th>
-				<td>{{ societe.Immobilier }}</td>
-			</tr>
-			<tr>
-				<th>AcheteurRaisonSociale</th>
-				<td>{{ societe.AcheteurRaisonSociale }}</td>
-			</tr>
-			<tr>
-				<th>AcheteurAdresse</th>
-				<td>{{ societe.AcheteurAdresse }}</td>
-			</tr>
-			<tr>
-				<th>AcheteurCP</th>
-				<td>{{ societe.AcheteurCP }}</td>
-			</tr>
-			<tr>
-				<th>AcheteurVille</th>
-				<td>{{ societe.AcheteurVille }}</td>
-			</tr>
-			<tr>
-				<th>AcheteurPays</th>
-				<td>{{ societe.AcheteurPays }}</td>
-			</tr>
-			<tr>
-				<th>AcheteurTelephone</th>
-				<td>{{ societe.AcheteurTelephone }}</td>
-			</tr>
-			<tr>
-				<th>AcheteurFax</th>
-				<td>{{ societe.AcheteurFax }}</td>
-			</tr>
-			<tr>
-				<th>AcheteurRCS</th>
-				<td>{{ societe.AcheteurRCS }}</td>
-			</tr>
-			<tr>
-				<th>AcheteurCapital</th>
-				<td>{{ societe.AcheteurCapital }}</td>
-			</tr>
-			<tr>
-				<th>AcheteurNomDirigeant</th>
-				<td>{{ societe.AcheteurNomDirigeant }}</td>
-			</tr>
-			<tr>
-				<th>AcheteurTelPortable</th>
-				<td>{{ societe.AcheteurTelPortable }}</td>
-			</tr>
-			<tr>
-				<th>AcheteurDateNaissance</th>
-				<td>{{ societe.AcheteurDateNaissance ? societe.AcheteurDateNaissance|date('Y-m-d H:i:s') : '' }}</td>
-			</tr>
-			<tr>
-				<th>Commentaire</th>
-				<td>{{ societe.Commentaire }}</td>
-			</tr>
-			<tr>
-				<th>EtatDossier</th>
-				<td>{{ societe.EtatDossier }}</td>
-			</tr>
-		</tbody>
-	</table>
+	<ul class="nav nav-tabs" role="tablist">
+		<li class="nav-item" role="presentation">
+			<a class="nav-link active" data-bs-toggle="tab" href="#home" aria-selected="true" role="tab" tabindex="-1">Général</a>
+		</li>
+		<li class="nav-item" role="presentation">
+			<a class="nav-link " data-bs-toggle="tab" href="#contact" aria-selected="true" role="tab">Contacts...</a>
+		</li>
+		<li class="nav-item" role="presentation">
+			<a class="nav-link " data-bs-toggle="tab" href="#opportunites" aria-selected="true" role="tab">Opportunités</a>
+		</li>
+	</ul>
+	<div id="myTabContent" class="tab-content">
+		<div class="tab-pane fade active show" id="home" role="tabpanel">
+			<div class="accordion" id="accordionExample">
+				<div class="accordion-item">
+					<h2 class="accordion-header" id="headingOne">
+						<button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+							Informations générales
+						</button>
+					</h2>
+					<div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+						<div class="accordion-body">
+							<form>
+								<div class="form-group row">
+									<div class="col-md-4 mb-3">
+										<label for="readOnlyInput">Etat dossier</label>
+										<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ societe.EtatDossier }}" readonly="">
+									</div>
 
-	<a href="{{ path('societes') }}">back to list</a>
+									<div class="col-md-4 mb-3">
+										<label for="readOnlyInput">
+											Responsable
+										</label>
+										<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ societe.Responsable }}" readonly="">
+									</div>
+								</div>
 
-	<a href="{{ path('societe_edit', {'IDSociete': societe.IDSociete}) }}">edit</a>
+								<div class="form-group row">
+									<div class="col-md-4 mb-3">
+										<label for="readOnlyInput">Origine contact</label>
+										<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ societe.OrigineContact }}" readonly="">
+									</div>
 
-	{{ include('societe/_delete_form.html.twig') }}
+									<div class="col-md-4 mb-3">
+										<label for="readOnlyInput">
+											Edition
+										</label>
+										<input class="form-control " id="readOnlyInput" type="text" placeholder="{{ societe.DateEditionJournal ? societe.DateEditionJournal|date('Y-m-d H:i:s') : '' }}" readonly="">
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+				<div class="accordion-item">
+					<h2 class="accordion-header" id="headingTwo">
+						<button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+							Renseignements société venderesse
+						</button>
+					</h2>
+					<div id="collapseTwo" style="padding:2%" class="accordion-collapse collapse " aria-labelledby="headingTwo" data-bs-parent="#accordionExample" style="">
+						<form>
+							<div class="form-group row">
+								<div class="col-md-6 mb-3">
+									<label for="readOnlyInput">Raison sociale</label>
+									<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ societe.VendeurRaisonSociale }}" readonly="">
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-md-6 mb-3">
+									<label for="readOnlyInput">Adresse</label>
+									<input class="form-control " id="readOnlyInput" type="text" placeholder="{{ societe.VendeurAdresse }}" readonly="">
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-md-6 mb-3">
+									<label for="readOnlyInput">Email</label>
+									<input class="form-control " id="readOnlyInput" type="text" placeholder="{{ societe.VendeurEmail }}" readonly="">
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-md-4 mb-3">
+									<label for="readOnlyInput">CP</label>
+									<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ societe.VendeurCP }}" readonly="">
+								</div>
+
+								<div class="col-md-4 mb-3">
+									<label for="readOnlyInput">Ville</label>
+									<input class="form-control " id="readOnlyInput" type="text" placeholder="{{ societe.VendeurVille }}" readonly="">
+								</div>
+
+								<div class="col-md-4 mb-3">
+									<label for="readOnlyInput">Pays</label>
+									<input class="form-control " id="readOnlyInput" type="text" placeholder="{{ societe.VendeurPays }}" readonly="">
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-md-4 mb-3">
+									<label for="readOnlyInput">Téléphone</label>
+									<input class="form-control " id="readOnlyInput" type="text" placeholder="{{ societe.VendeurTelephoneSociete }}" readonly="">
+								</div>
+
+								<div class="col-md-4 mb-3">
+									<label for="readOnlyInput">Fax</label>
+									<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ societe.VendeurFaxSociete }}" readonly="">
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-md-4 mb-3">
+									<label for="readOnlyInput">RCS</label>
+									<input class="form-control " id="readOnlyInput" type="text" placeholder="{{ societe.VendeurRCS }}" readonly="">
+								</div>
+
+								<div class="col-md-4 mb-3">
+									<label for="readOnlyInput">Capital</label>
+									<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ societe.VendeurCapital }}" readonly="">
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-md-4 mb-3">
+									<label for="readOnlyInput">Nom du dirigeant</label>
+									<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ societe.VendeurNomDirigeant }}" readonly="">
+								</div>
+
+								<div class="col-md-4 mb-3">
+									<label for="readOnlyInput">Tel Perso</label>
+									<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ societe.VendeurTelPerso }}" readonly="">
+								</div>
+
+								<div class="col-md-4 mb-3">
+									<label for="readOnlyInput">Portable</label>
+									<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ societe.VendeurTelPortable }}" readonly="">
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-md-6 mb-3">
+									<label for="readOnlyInput">Date Naissance</label>
+									<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ societe.VendeurDateNaissance ? societe.VendeurDateNaissance|date('Y-m-d H:i:s') : '' }}" readonly="">
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-md-6 mb-3">
+									<label for="readOnlyInput">
+										Activité</label>
+									<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ societe.ActiviteFdsCommerce}}" readonly="">
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-md-6 mb-3">
+									<label for="readOnlyInput">
+										Adresse du fonds</label>
+									<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ societe.VendeurAdresseFondsVendu}}" readonly="">
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-md-4 mb-3">
+									<label for="readOnlyInput">
+										Date acte cession</label>
+									<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ societe.DateActeCession ? societe.DateActeCession|date('Y-m-d H:i:s') : '' }}" readonly="">
+								</div>
+
+								<div class="col-md-4 mb-3">
+									<label for="readOnlyInput">
+										Prix de vente</label>
+									<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ societe.PrixVente}}" readonly="">
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-md-4 mb-3">
+									<label for="readOnlyInput">
+										Trésorerie</label>
+									<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ societe.Tresorerie}}" readonly="">
+								</div>
+
+								<div class="col-md-4 mb-3">
+									<label for="readOnlyInput">
+										Immobilier</label>
+									<textarea class="form-control" id="exampleTextarea" rows="3" readonly="">{{ societe.Immobilier }}</textarea>
+								</div>
+							</div>
+
+							<div class="form-group row">
+								<div class="col-md-4 mb-3">
+									<label for="readOnlyInput">
+										Report déficitaires</label>
+									<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ societe.ReportDeficitaire}}" readonly="">
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+				<div class="accordion-item">
+					<h2 class="accordion-header" id="headingThree">
+						<button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+							Renseignements société acheteuse
+						</button>
+					</h2>
+					<div id="collapseThree" style="padding:2%" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample" style="">
+
+						<div class="form-group row">
+							<div class="col-md-6 mb-3">
+								<label for="readOnlyInput">
+									Raison sociale</label>
+								<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ societe.AcheteurRaisonSociale}}" readonly="">
+							</div>
+						</div>
+						<div class="form-group row">
+							<div class="col-md-6 mb-3">
+								<label for="readOnlyInput">
+									Adresse</label>
+								<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ societe.AcheteurAdresse}}" readonly="">
+							</div>
+						</div>
+						<div class="form-group row">
+							<div class="col-md-4 mb-3">
+								<label for="readOnlyInput">
+									CP</label>
+								<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ societe.AcheteurCP}}" readonly="">
+							</div>
+							<div class="col-md-4 mb-3">
+								<label for="readOnlyInput">
+									Ville</label>
+								<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ societe.AcheteurVille}}" readonly="">
+							</div>
+							<div class="col-md-4 mb-3">
+								<label for="readOnlyInput">
+									Pays</label>
+								<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ societe.AcheteurPays}}" readonly="">
+							</div>
+						</div>
+						<div class="form-group row">
+							<div class="col-md-4 mb-3">
+								<label for="readOnlyInput">
+									Téléphone</label>
+								<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ societe.AcheteurTelephone}}" readonly="">
+							</div>
+							<div class="col-md-4 mb-3">
+								<label for="readOnlyInput">
+									Fax</label>
+								<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ societe.AcheteurFax}}" readonly="">
+							</div>
+						</div>
+						<div class="form-group row">
+							<div class="col-md-4 mb-3">
+								<label for="readOnlyInput">
+									RCS</label>
+								<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ societe.AcheteurRCS}}" readonly="">
+							</div>
+							<div class="col-md-4 mb-3">
+								<label for="readOnlyInput">
+									Capital</label>
+								<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ societe.AcheteurCapital}}" readonly="">
+							</div>
+						</div>
+						<div class="form-group row">
+							<div class="col-md-4 mb-3">
+								<label for="readOnlyInput">
+									Nom du dirigent</label>
+								<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ societe.AcheteurNomDirigeant}}" readonly="">
+							</div>
+							<div class="col-md-4 mb-3">
+								<label for="readOnlyInput">
+									Portable</label>
+								<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ societe.AcheteurTelPortable}}" readonly="">
+							</div>
+							<div class="col-md-4 mb-3">
+								<label for="readOnlyInput">
+									Date naissance</label>
+								<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ societe.AcheteurDateNaissance ? societe.AcheteurDateNaissance|date('Y-m-d H:i:s') : '' }}" readonly="">
+							</div>
+						</div>
+
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="tab-pane" id="contact" role="tabpanel"></div>
+		<div class="tab-pane" id="opportunites" role="tabpanel"></div>
+	</div>
+
+	{# 
+																																					<h1>Societe</h1>
+																																				
+																																					<table class="table">
+																																						<tbody>
+																																							<tr>
+																																								<th>IDSociete</th>
+																																								<td>{{ societe.IDSociete }}</td>
+																																							</tr>
+																																							<tr>
+																																								<th>DateCreation</th>
+																																								<td>{{ societe.DateCreation ? societe.DateCreation|date('Y-m-d H:i:s') : '' }}</td>
+																																							</tr>
+																																							<tr>
+																																								<th>DateModification</th>
+																																								<td>{{ societe.DateModification ? societe.DateModification|date('Y-m-d H:i:s') : '' }}</td>
+																																							</tr>
+																																							<tr>
+																																								<th>OrigineContact</th>
+																																								<td>{{ societe.OrigineContact }}</td>
+																																							</tr>
+																																							<tr>
+																																								<th>DateEditionJournal</th>
+																																								<td>{{ societe.DateEditionJournal ? societe.DateEditionJournal|date('Y-m-d H:i:s') : '' }}</td>
+																																							</tr>
+																																							<tr>
+																																								<th>NumJAL</th>
+																																								<td>{{ societe.NumJAL }}</td>
+																																							</tr>
+																																							<tr>
+																																								<th>Responsable</th>
+																																								<td>{{ societe.Responsable }}</td>
+																																							</tr>
+																																							<tr>
+																																								<th>VendeurRaisonSociale</th>
+																																								<td>{{ societe.VendeurRaisonSociale }}</td>
+																																							</tr>
+																																							<tr>
+																																								<th>VendeurAdresse</th>
+																																								<td>{{ societe.VendeurAdresse }}</td>
+																																							</tr>
+																																							<tr>
+																																								<th>VendeurCP</th>
+																																								<td>{{ societe.VendeurCP }}</td>
+																																							</tr>
+																																							<tr>
+																																								<th>VendeurVille</th>
+																																								<td>{{ societe.VendeurVille }}</td>
+																																							</tr>
+																																							<tr>
+																																								<th>VendeurPays</th>
+																																								<td>{{ societe.VendeurPays }}</td>
+																																							</tr>
+																																							<tr>
+																																								<th>VendeurTelephoneSociete</th>
+																																								<td>{{ societe.VendeurTelephoneSociete }}</td>
+																																							</tr>
+																																							<tr>
+																																								<th>VendeurFaxSociete</th>
+																																								<td>{{ societe.VendeurFaxSociete }}</td>
+																																							</tr>
+																																							<tr>
+																																								<th>VendeurRCS</th>
+																																								<td>{{ societe.VendeurRCS }}</td>
+																																							</tr>
+																																							<tr>
+																																								<th>VendeurCapital</th>
+																																								<td>{{ societe.VendeurCapital }}</td>
+																																							</tr>
+																																							<tr>
+																																								<th>VendeurNomDirigeant</th>
+																																								<td>{{ societe.VendeurNomDirigeant }}</td>
+																																							</tr>
+																																							<tr>
+																																								<th>VendeurTelPortable</th>
+																																								<td>{{ societe.VendeurTelPortable }}</td>
+																																							</tr>
+																																							<tr>
+																																								<th>VendeurTelPerso</th>
+																																								<td>{{ societe.VendeurTelPerso }}</td>
+																																							</tr>
+																																							<tr>
+																																								<th>VendeurEmail</th>
+																																								<td>{{ societe.VendeurEmail }}</td>
+																																							</tr>
+																																							<tr>
+																																								<th>VendeurDateNaissance</th>
+																																								<td>{{ societe.VendeurDateNaissance ? societe.VendeurDateNaissance|date('Y-m-d H:i:s') : '' }}</td>
+																																							</tr>
+																																							<tr>
+																																								<th>VendeurAdresseFondsVendu</th>
+																																								<td>{{ societe.VendeurAdresseFondsVendu }}</td>
+																																							</tr>
+																																							<tr>
+																																								<th>ActiviteFdsCommerce</th>
+																																								<td>{{ societe.ActiviteFdsCommerce }}</td>
+																																							</tr>
+																																							<tr>
+																																								<th>DateActeCession</th>
+																																								<td>{{ societe.DateActeCession ? societe.DateActeCession|date('Y-m-d H:i:s') : '' }}</td>
+																																							</tr>
+																																							<tr>
+																																								<th>PrixVente</th>
+																																								<td>{{ societe.PrixVente }}</td>
+																																							</tr>
+																																							<tr>
+																																								<th>Tresorerie</th>
+																																								<td>{{ societe.Tresorerie }}</td>
+																																							</tr>
+																																							<tr>
+																																								<th>ReportDeficitaire</th>
+																																								<td>{{ societe.ReportDeficitaire }}</td>
+																																							</tr>
+																																							<tr>
+																																								<th>Immobilier</th>
+																																								<td>{{ societe.Immobilier }}</td>
+																																							</tr>
+																																							<tr>
+																																								<th>AcheteurRaisonSociale</th>
+																																								<td>{{ societe.AcheteurRaisonSociale }}</td>
+																																							</tr>
+																																							<tr>
+																																								<th>AcheteurAdresse</th>
+																																								<td>{{ societe.AcheteurAdresse }}</td>
+																																							</tr>
+																																							<tr>
+																																								<th>AcheteurCP</th>
+																																								<td>{{ societe.AcheteurCP }}</td>
+																																							</tr>
+																																							<tr>
+																																								<th>AcheteurVille</th>
+																																								<td>{{ societe.AcheteurVille }}</td>
+																																							</tr>
+																																							<tr>
+																																								<th>AcheteurPays</th>
+																																								<td>{{ societe.AcheteurPays }}</td>
+																																							</tr>
+																																							<tr>
+																																								<th>AcheteurTelephone</th>
+																																								<td>{{ societe.AcheteurTelephone }}</td>
+																																							</tr>
+																																							<tr>
+																																								<th>AcheteurFax</th>
+																																								<td>{{ societe.AcheteurFax }}</td>
+																																							</tr>
+																																							<tr>
+																																								<th>AcheteurRCS</th>
+																																								<td>{{ societe.AcheteurRCS }}</td>
+																																							</tr>
+																																							<tr>
+																																								<th>AcheteurCapital</th>
+																																								<td>{{ societe.AcheteurCapital }}</td>
+																																							</tr>
+																																							<tr>
+																																								<th>AcheteurNomDirigeant</th>
+																																								<td>{{ societe.AcheteurNomDirigeant }}</td>
+																																							</tr>
+																																							<tr>
+																																								<th>AcheteurTelPortable</th>
+																																								<td>{{ societe.AcheteurTelPortable }}</td>
+																																							</tr>
+																																							<tr>
+																																								<th>AcheteurDateNaissance</th>
+																																								<td>{{ societe.AcheteurDateNaissance ? societe.AcheteurDateNaissance|date('Y-m-d H:i:s') : '' }}</td>
+																																							</tr>
+																																							<tr>
+																																								<th>Commentaire</th>
+																																								<td>{{ societe.Commentaire }}</td>
+																																							</tr>
+																																							<tr>
+																																								<th>EtatDossier</th>
+																																								<td>{{ societe.EtatDossier }}</td>
+																																							</tr>
+																																						</tbody>
+																																					</table> #}
+
+	<br>
+	<div class="float-end ">
+		<button class="btn btn-light " type="button">
+			<a class=" text-decoration-underline-remove" href="{{ path('societes') }}">back to list</a>
+		</button>
+		<button class="btn btn-light " type="button">
+			<a class=" text-decoration-underline-remove" href="{{ path('societe_edit', {'IDSociete': societe.IDSociete}) }}">edit</a>
+		</button>
+		{# <button class="btn btn-light btn-lg" type="button">
+																																																																																														{{ include('societe/_delete_form.html.twig') }}
+																																																																																													</button> #}
+	</div>
+	<br>
 {% endblock %}

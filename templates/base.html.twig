@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" style="height: 100vh; overflow: visible;">
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
@@ -29,12 +29,13 @@
 			{# <script src="asset(js/buildingsTableExport.js"></script> #}
 			<script src="{{ asset('js/buildingsTable.js')}}"></script>
 			<script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.21.4/extensions/export/bootstrap-table-export.js' integrity='sha512-P/+GsfMkNQd8zMycqSNiG6YLhMRZycmcENnnoFr7e3lfw/qm21Q3xLWBnNrVjDIT/vqN8uisa1RBGJUCkdWPEQ==' crossorigin='anonymous'></script>
+			<script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.22.1/extensions/print/bootstrap-table-print.min.js' integrity='sha512-8SFBpZ06CuRB4lzG/7G7TUxRlylKnB6n53mdmNEx8itGiIqnLnT7INHlofrnICP1pAC9aRBXFx6ZscE3B+87ag==' crossorigin='anonymous'></script>
 		{% endblock %}
 	</head>
 	<body>
 		<header>
 			{% if app.user %}
-				<button type="button" class="btn btn-dark float-end m-3">
+				<button type="button" class="btn btn-danger float-end m-3">
 					<a class="text-light text-decoration-none" href="{{ path('app_logout') }}">Déconnexion</a>
 				</button>
 				{% include "shared/_navbar.html.twig" %}

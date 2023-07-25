@@ -19,9 +19,10 @@ class ImmeubleController extends AbstractController
     #[Route('/', name: 'immeubles', methods: ['GET'])]
     public function index(ImmeubleRepository $immeubleRepository, ContactRepository $contactRepository): Response
     {
+
         return $this->render('immeuble/index.html.twig', [
-            'immeubles' => $immeubleRepository->findBy(array(), null, 100, null),
-            'contacts' => $contactRepository->findBy(array(), null, 100, null),
+            'immeubles' => $immeubleRepository->findBy(array(), array('ReferenceProprio' => 'desc'), 1000, null),
+            'contacts' => $contactRepository->findBy(array(), null, 1000, null),
         ]);
     }
 
