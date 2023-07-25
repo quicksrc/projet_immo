@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\ImmeubleContact;
+use App\Entity\RechercheImmeuble;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -39,28 +40,44 @@ class ImmeubleContactRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return ImmeubleContact[] Returns an array of ImmeubleContact objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('i')
-//            ->andWhere('i.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('i.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    /**
+     * @return ImmeubleContact[] Returns an array of ImmeubleContact objects
+     */
+    public function findImmeubleByContact(RechercheImmeuble $rechercheImmeuble): array
+    {
+        return $this->createQueryBuilder('ic')
+            ->addSelect('c')
+            ->leftJoin('ic.IDContact', 'c')
+            ->where('c.Nom LIKE :nomContact')
+            ->setParameter('nomContact', $rechercheImmeuble->getNomContact())
+            ->addSelect('i')
+            ->leftJoin('ic.IDImmeuble', 'i')
+            ->getQuery()
+            ->getResult();
+    }
 
-//    public function findOneBySomeField($value): ?ImmeubleContact
-//    {
-//        return $this->createQueryBuilder('i')
-//            ->andWhere('i.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    //    /**
+    //     * @return ImmeubleContact[] Returns an array of ImmeubleContact objects
+    //     */
+    //    public function findByExampleField($value): array
+    //    {
+    //        return $this->createQueryBuilder('i')
+    //            ->andWhere('i.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->orderBy('i.id', 'ASC')
+    //            ->setMaxResults(10)
+    //            ->getQuery()
+    //            ->getResult()
+    //        ;
+    //    }
+
+    //    public function findOneBySomeField($value): ?ImmeubleContact
+    //    {
+    //        return $this->createQueryBuilder('i')
+    //            ->andWhere('i.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->getQuery()
+    //            ->getOneOrNullResult()
+    //        ;
+    //    }
 }

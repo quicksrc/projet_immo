@@ -129,14 +129,6 @@ class SearchImmeubleType extends AbstractType
                     'class' => 'form-control mt-4 col-5'
                 ]
             ])
-            // ->add('adresse', TextType::class, [
-            //     'required' => false,
-            //     'label' => false,
-            //     'attr' => [
-            //         'placeholder' => 'Adresse',
-            //         'class' => 'form-control mt-4 col-5'
-            //     ]
-            // ])
             ->add('cp', IntegerType::class, [
                 'required' => false,
                 'label' => false,
@@ -150,6 +142,13 @@ class SearchImmeubleType extends AbstractType
                 'label' => false,
                 'attr' => [
                     'placeholder' => 'Ville',
+                    'class' => 'form-control mt-4 col-5'
+                ]
+            ])
+            ->add('nomContact', TextType::class, [
+                'required' => false,
+                'label' => 'Nom',
+                'attr' => [
                     'class' => 'form-control mt-4 col-5'
                 ]
             ]);
