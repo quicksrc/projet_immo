@@ -16,29 +16,35 @@
 				<a href="{{ path('app_logout') }}">Logout</a>
 			</div>
 		{% endif %}
+		<div class="row ">
+			<div class="col-md-5 offset-md-3 mx-auto">
+				<div class="card align-middle mt-5">
+					<h3 class="card-header text-center fw-bold ">Bienvenue chez FINADEV</h3>
+					<div class="form-group p-4">
+						<label for="inputUsername" class="form-label mt-4">Nom d'utilisateur</label>
+						<input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" autocomplete="username" required autofocus>
+						<label for="inputPassword" class="form-label mt-4">Mot de passe</label>
+						<input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+						<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+						<br>
+						<div class="checkbox mb-3">
+							<label>
+								<input type="checkbox" name="_remember_me">
+								Rester connecté
+							</label>
+						</div>
+					</div>
 
-		<h1 class="h3 mb-3 font-weight-normal">Connectez-vous</h1>
-		<div class="form-group">
-			<label for="inputUsername" class="form-label mt-4">Nom d'utilisateur</label>
-			<input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" autocomplete="username" required autofocus>
-			<label for="inputPassword" class="form-label mt-4">Mot de passe</label>
-			<input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
-			<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-			<div class="checkbox mb-3">
-				<label>
-					<input type="checkbox" name="_remember_me">
-					Rester connecté
-				</label>
+
+					{# Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+																																																																																																																																																																																																																																																																							        See https://symfony.com/doc/current/security/remember_me.html #}
+
+
+					<button class="btn btn-lg btn-primary offset-md-3 mx-auto p-1 mb-2 " type="submit">
+						Se Connecter
+					</button>
+				</div>
 			</div>
 		</div>
-
-
-		{# Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-																										        See https://symfony.com/doc/current/security/remember_me.html #}
-
-
-		<button class="btn btn-lg btn-primary" type="submit">
-			Connexion
-		</button>
 	</form>
 {% endblock %}
