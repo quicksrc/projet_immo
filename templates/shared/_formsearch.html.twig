@@ -4,109 +4,137 @@
 
 	<ul class="nav nav-tabs" role="tablist">
 		<li class="nav-item" role="presentation">
-			<a class="nav-link active" data-bs-toggle="tab" href="#immeuble" aria-selected="true" role="tab" tabindex="-1">Immeuble</a>
+			<a class="nav-link active" id="tab-1" data-bs-toggle="tab" href="#immeuble" aria-selected="true" aria-controls="immeuble" role="tab" tabindex="-1">Immeuble</a>
 		</li>
 		<li class="nav-item" role="presentation">
-			<a class="nav-link " data-bs-toggle="tab" href="#adresse" aria-selected="true" role="tab">Adresse</a>
+			<a class="nav-link" data-bs-toggle="tab" href="#adresse" aria-selected="true" role="tab">Adresse</a>
 		</li>
 		<li class="nav-item" role="presentation">
-			<a class="nav-link " data-bs-toggle="tab" href="#contact" aria-selected="true" role="tab">Contact</a>
+			<a class="nav-link" data-bs-toggle="tab" href="#contact" aria-selected="true" role="tab">Contact</a>
 		</li>
 		<li class="nav-item" role="presentation">
-			<a class="nav-link " data-bs-toggle="tab" href="#activite" aria-selected="true" role="tab">Activite</a>
+			<a class="nav-link" data-bs-toggle="tab" href="#activite" aria-selected="true" role="tab">Activite</a>
 		</li>
 	</ul>
-	<div class="tab-pan fade Active show" id="immeuble" role="tabpanel">
-		{{ form_start(form) }}
-		<div class="row">
-			<div class="row align-items-end">
-				<div class="col-6">
-					{{ form_widget(form.refProprioImmeuble) }}
-				</div>
-				<div class="col-6">
-					{{ form_label(form.origineContact) }}
-					{{ form_widget(form.origineContact) }}
-				</div>
-			</div>
+	<div class="tab-content" id="tabImmeubleSearch">
+		<div class="tab-pan fade active show" id="immeuble" role="tabpanel" aria-labelledby="tab-1">
+			{{ form_start(form) }}
 			<div class="row">
-				<div class="col-6">
-					{{ form_label(form.ncpcf) }}
-					{{ form_widget(form.ncpcf) }}
+				<div class="row align-items-end">
+					<div class="col-6">
+						{{ form_widget(form.refProprioImmeuble) }}
+					</div>
+					<div class="col-6">
+						{{ form_label(form.origineContact) }}
+						{{ form_widget(form.origineContact) }}
+					</div>
 				</div>
-				<div class="col-6">
-					{{ form_label(form.visite) }}
-					{{ form_widget(form.visite) }}
+				<div class="row">
+					<div class="col-6">
+						{{ form_label(form.ncpcf) }}
+						{{ form_widget(form.ncpcf) }}
+					</div>
+					<div class="col-6">
+						{{ form_label(form.visite) }}
+						{{ form_widget(form.visite) }}
+					</div>
+				</div>
+			</div>
+			<div class="col">
+				<div class="form-group">
+					<button type="submit" class="btn btn-success mt-5">Rechercher</button>
 				</div>
 			</div>
 		</div>
-	</div>
-	<div class="tab-pan fade Active show" id="adresse" role="tabpanel">
-		{{ form_start(form) }}
-		<div class="row">
-			<div class="row align-items-end">
-				<div
-					class="col-6">{# {{ form_widget(form.refProprioImmeuble) }} #}
-				</div>
-				<div class="col-6">{# {{ form_label(form.origineContact) }} #}
-					{# {{ form_widget(form.origineContact) }} #}
-				</div>
-			</div>
+		<div class="tab-pan fade" id="adresse" role="tabpanel">
+			{{ form_start(form) }}
 			<div class="row">
-				<div class="col-6">{# {{ form_label(form.ncpcf) }} #}
-					{# {{ form_widget(form.ncpcf) }} #}
+				<div class="row align-items-end">
+					<div class="col-6">
+						{{ form_widget(form.numPrincipal) }}
+					</div>
+					<div class="col-6">
+						{{ form_label(form.typeVoie) }}
+						{{ form_widget(form.typeVoie) }}
+					</div>
 				</div>
-				<div class="col-6">{# {{ form_label(form.visite) }} #}
-					{# {{ form_widget(form.visite) }} #}
+				<div class="row">
+					<div class="col-6">
+						{{ form_widget(form.nomRue) }}
+					</div>
+					<div
+						class="col-6">{# {{ form_widget(form.adresse) }} #}
+					</div>
 				</div>
+				<div class="row">
+					<div class="col-6">
+						{{ form_widget(form.cp) }}
+					</div>
+					<div class="col-6">
+						{{ form_widget(form.ville) }}
+					</div>
+				</div>
+			</div>
+			<div class="col">
+				<div class="form-group">
+					<button type="submit" class="btn btn-success mt-5">Rechercher</button>
+				</div>
+
 			</div>
 		</div>
-	</div>
-	<div class="tab-pan fade show" id="contact" role="tabpanel">
-		{{ form_start(form) }}
-		<div class="row">
-			<div class="row align-items-end">
-				<div
-					class="col-6">{# {{ form_widget(form.refProprioImmeuble) }} #}
-				</div>
-				<div class="col-6">{# {{ form_label(form.origineContact) }} #}
-					{# {{ form_widget(form.origineContact) }} #}
-				</div>
-			</div>
+		<div class="tab-pan fade" id="contact" role="tabpanel">
+			{{ form_start(form) }}
 			<div class="row">
-				<div class="col-6">{# {{ form_label(form.ncpcf) }} #}
-					{# {{ form_widget(form.ncpcf) }} #}
+				<div class="row align-items-end">
+					<div
+						class="col-6">{# {{ form_widget(form.refProprioImmeuble) }} #}
+					</div>
+					<div class="col-6">{# {{ form_label(form.origineContact) }} #}
+						{# {{ form_widget(form.origineContact) }} #}
+					</div>
 				</div>
-				<div class="col-6">{# {{ form_label(form.visite) }} #}
-					{# {{ form_widget(form.visite) }} #}
+				<div class="row">
+					<div class="col-6">{# {{ form_label(form.ncpcf) }} #}
+						{# {{ form_widget(form.ncpcf) }} #}
+					</div>
+					<div class="col-6">{# {{ form_label(form.visite) }} #}
+						{# {{ form_widget(form.visite) }} #}
+					</div>
 				</div>
+			</div>
+			<div class="col">
+				<div class="form-group">
+					<button type="submit" class="btn btn-success mt-5">Rechercher</button>
+				</div>
+
 			</div>
 		</div>
-	</div>
-	<div class="tab-pan fade show" id="activite" role="tabpanel">
-		{{ form_start(form) }}
-		<div class="row">
-			<div class="row align-items-end">
-				<div
-					class="col-6">{# {{ form_widget(form.refProprioImmeuble) }} #}
-				</div>
-				<div class="col-6">{# {{ form_label(form.origineContact) }} #}
-					{# {{ form_widget(form.origineContact) }} #}
-				</div>
-			</div>
+		<div class="tab-pan fade" id="activite" role="tabpanel">
+			{{ form_start(form) }}
 			<div class="row">
-				<div class="col-6">{# {{ form_label(form.ncpcf) }} #}
-					{# {{ form_widget(form.ncpcf) }} #}
+				<div class="row align-items-end">
+					<div
+						class="col-6">{# {{ form_widget(form.refProprioImmeuble) }} #}
+					</div>
+					<div class="col-6">{# {{ form_label(form.origineContact) }} #}
+						{# {{ form_widget(form.origineContact) }} #}
+					</div>
 				</div>
-				<div class="col-6">{# {{ form_label(form.visite) }} #}
-					{# {{ form_widget(form.visite) }} #}
+				<div class="row">
+					<div class="col-6">{# {{ form_label(form.ncpcf) }} #}
+						{# {{ form_widget(form.ncpcf) }} #}
+					</div>
+					<div class="col-6">{# {{ form_label(form.visite) }} #}
+						{# {{ form_widget(form.visite) }} #}
+					</div>
 				</div>
 			</div>
+			<div class="col">
+				<div class="form-group">
+					<button type="submit" class="btn btn-success mt-5">Rechercher</button>
+				</div>
+				{{ form_end(form) }}
+			</div>
 		</div>
-	</div>
-	<div class="col">
-		<div class="form-group">
-			<button type="submit" class="btn btn-success mt-5">Rechercher</button>
-		</div>
-		{{ form_end(form) }}
 	</div>
 </div>

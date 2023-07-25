@@ -50,6 +50,24 @@ class RechercheImmeuble
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $commentaire = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?int $numPrincipal = null;
+
+    #[ORM\Column(length: 20, nullable: true)]
+    private ?string $typeVoie = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $nomRue = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $adresse = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $cp = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $ville = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -195,6 +213,78 @@ class RechercheImmeuble
     public function setCommentaire(?string $commentaire): self
     {
         $this->commentaire = $commentaire;
+
+        return $this;
+    }
+
+    public function getNumPrincipal(): ?int
+    {
+        return $this->numPrincipal;
+    }
+
+    public function setNumPrincipal(?int $numPrincipal): self
+    {
+        $this->numPrincipal = $numPrincipal;
+
+        return $this;
+    }
+
+    public function getTypeVoie(): ?string
+    {
+        return $this->typeVoie;
+    }
+
+    public function setTypeVoie(?string $typeVoie): self
+    {
+        $this->typeVoie = $typeVoie;
+
+        return $this;
+    }
+
+    public function getNomRue(): ?string
+    {
+        return $this->nomRue;
+    }
+
+    public function setNomRue(?string $nomRue): self
+    {
+        $this->nomRue = $nomRue;
+
+        return $this;
+    }
+
+    public function getAdresse(): ?string
+    {
+        return $this->adresse;
+    }
+
+    public function setAdresse(?string $adresse): self
+    {
+        $this->adresse = $adresse;
+
+        return $this;
+    }
+
+    public function getCp(): ?string
+    {
+        return $this->cp;
+    }
+
+    public function setCp(?string $cp): self
+    {
+        $this->cp = $cp;
+
+        return $this;
+    }
+
+    public function getVille(): ?string
+    {
+        return $this->ville;
+    }
+
+    public function setVille(?string $ville): self
+    {
+        $this->ville = $ville;
 
         return $this;
     }
