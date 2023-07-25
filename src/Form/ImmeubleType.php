@@ -8,6 +8,7 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -20,15 +21,15 @@ class ImmeubleType extends AbstractType
     {
         $builder
             ->add('ReferenceProprio', NumberType::class, [
-
                 'required' => false,
                 'label' => 'Réf. propriétaire',
                 'attr' => [
+                    'class' => 'form-control',
                     'placeholder' => 'Réf. propriétaire',
-                    'class' => 'form-control'
+                    'readonly' => ""
                 ]
             ])
-            ->add('NumPlancheCadastrale', NumberType::class, [
+            ->add('NumPlancheCadastrale', TextType::class, [
                 'required' => false,
                 'label' => 'N° planche cadastrale',
                 'attr' => [
@@ -36,6 +37,7 @@ class ImmeubleType extends AbstractType
                     'class' => 'form-control'
                 ]
             ])
+            // ->add('NumPlancheCadastrale')
             ->add('EtatDossier', ChoiceType::class, [
                 'required' => false,
                 'label' => 'Etat Dossier',
@@ -108,20 +110,29 @@ class ImmeubleType extends AbstractType
                     'placeholder' => 'Suivi par'
                 ]
             ])
-            ->add('Vendu', CheckboxType::class, [
+            ->add('Vendu', ChoiceType::class, [
                 'required' => false,
                 'label' => 'Vendu',
+                'choices' => [
+                    'Oui' => 1,
+                    'Non' => 0
+                ],
                 'attr' => [
                     'placeholder' => 'Vendu',
-                    'class' => 'form-check-input',
+                    'class' => 'form-control',
                 ]
             ])
-            ->add('NCPCF', CheckboxType::class, [
+
+            ->add('NCPCF', ChoiceType::class, [
                 'required' => false,
                 'label' => 'NCPCF',
+                'choices' => [
+                    'Oui' => 1,
+                    'Non' => 0
+                ],
                 'attr' => [
                     'placeholder' => 'NCPCF',
-                    'class' => 'form-check-input',
+                    'class' => 'form-control',
                 ]
             ])
             ->add('OrigineContact', ChoiceType::class, [
@@ -140,12 +151,16 @@ class ImmeubleType extends AbstractType
                     'placeholder' => 'Suivi par'
                 ]
             ])
-            ->add('Visite', CheckboxType::class, [
+            ->add('Visite', ChoiceType::class, [
                 'required' => false,
                 'label' => 'Visité',
+                'choices' => [
+                    'Oui' => 1,
+                    'Non' => 0
+                ],
                 'attr' => [
                     'placeholder' => 'Visité',
-                    'class' => 'form-check-input',
+                    'class' => 'form-control',
                 ]
             ])
             ->add('Commentaire', TextType::class, [

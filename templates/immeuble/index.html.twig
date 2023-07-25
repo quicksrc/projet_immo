@@ -32,7 +32,7 @@
 			<table id="tableImmeuble" data-pagination="true" data-toolbar="#toolbarImmeuble" data-page-size="25" data-search="true" data-show-export="true" data-toggle="table" data-click-to-select="true" data-search-align="left" data-show-columns="true" data-show-print="true" class="table table-list table-bordered table-striped m-auto">
 				<thead>
 					<tr>
-						<th data-field="id" data-sortable="true" scope="col">N°</th>
+						<th data-field="id" data-sortable="true" scope="col">ID Immeuble</th>
 						<th data-field="adresse" data-sortable="true" scope="col">Adresse</th>
 						<th data-field="cp" data-sortable="true" scope="col">CP</th>
 						<th data-field="ville" data-sortable="true" scope="col">Ville</th>
@@ -48,8 +48,7 @@
 					{% for immeuble in immeubles %}
 
 						<tr>
-							<td></td>
-							<td>{{ immeuble.ReferenceProprio  }}</td>
+							<td>{{ immeuble.IDImmeuble }}</td>
 							<td>{{ immeuble.Adresse }}</td>
 							<td>{{ immeuble.CP }}</td>
 							<td>{{ immeuble.Ville }}</td>
