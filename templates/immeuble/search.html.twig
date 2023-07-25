@@ -8,25 +8,25 @@
 	<div class="row">
 		{% include 'shared/_formsearch.html.twig' with {form: form} %}
 	</div>
-	<div class="row mt-5">
-		<div id="toolbarImmeubleSearch" class="me-4 mb-3">
-			<select class="form-control mt-3">
-				<option value="">Export Basique</option>
-				<option value="all">Exporter Tout</option>
-				<option value="selected">Exporter Séléctionnés</option>
-			</select>
-			<br>
-			<button class="btn btn-light btn-lg " type="button">
-				<a href="{{ path('immeuble_new') }}">
-					<i class="bi bi-file-earmark-plus"></i>
-				</a>
-			</button>
-		</div>
+	<div
+		class="row mt-5">
+		{# <div id="toolbarImmeubleSearch" class="me-4 mb-3">
+					<select class="form-control mt-3">
+						<option value="">Export Basique</option>
+						<option value="all">Exporter Tout</option>
+						<option value="selected">Exporter Séléctionnés</option>
+					</select>
+					<br>
+					<button class="btn btn-light btn-lg " type="button">
+						<a href="{{ path('immeuble_new') }}">
+							<i class="bi bi-file-earmark-plus"></i>
+						</a>
+					</button>
+				</div> #}
 		<table id="tableImmeubleSearch" data-pagination="true" data-toolbar="#toolbarImmeubleSearch" data-page-size="25" data-search="true" data-show-export="true" data-toggle="table" data-click-to-select="true" data-search-align="left" data-show-columns="true" class="table table-list table-bordered table-striped m-auto">
 			<thead>
 				<tr>
-					<th></th>
-					<th data-field="id" data-sortable="true" scope="col">N°</th>
+					<th data-field="id" data-sortable="true" scope="col">ID Immeuble</th>
 					<th data-field="adresse" data-sortable="true" scope="col">Adresse</th>
 					<th data-field="cp" data-sortable="true" scope="col">CP</th>
 					<th data-field="ville" data-sortable="true" scope="col">Ville</th>
@@ -41,17 +41,16 @@
 			<tbody class="table-group-divider">
 				{% for immeuble in immeubles %}
 					<tr>
-						<td></td>
 						<td>{{ immeuble.IDImmeuble }}</td>
 						<td>{{ immeuble.Adresse }}</td>
 						<td>{{ immeuble.CP }}</td>
 						<td>{{ immeuble.Ville }}</td>
 						<td>{{ immeuble.ReferenceProprio }}</td>
 						{# {% for contact in contacts %}
-																																																							{% if contact.IDContact == immeuble.ReferenceProprio %}
-																																																								<td>{{ contact.Nom }}</td>
-																																																							{% endif %}
-																																																						{% endfor %} #}
+																																																																															{% if contact.IDContact == immeuble.ReferenceProprio %}
+																																																																																<td>{{ contact.Nom }}</td>
+																																																																															{% endif %}
+																																																																														{% endfor %} #}
 						<td>{{ immeuble.DateEnquete|date("d/m/Y") }}</td>
 						{% if immeuble.Intermediaire == "" %}
 							<td>❌</td>
