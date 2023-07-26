@@ -9,6 +9,7 @@ use App\Form\SearchImmeubleType;
 use App\Repository\ContactRepository;
 use App\Repository\ImmeubleContactRepository;
 use App\Repository\ImmeubleRepository;
+use App\Service\PdfService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -27,6 +28,8 @@ class ImmeubleController extends AbstractController
         ]);
     }
 
+
+
     #[Route('/search', name: 'immeuble_search')]
     public function search(ImmeubleRepository $immeubleRepository, ImmeubleContactRepository $immeubleContactRepository, Request $request): Response
     {
@@ -43,7 +46,7 @@ class ImmeubleController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $contacts = $immeubleContactRepository->findImmeubleByContact($rechercheImmeuble);
-            dd($contacts);
+            // dd($contacts);
             $keyValue = [];
 
             // Vérifier si on rempli les champs
@@ -212,6 +215,8 @@ class ImmeubleController extends AbstractController
         ]);
     }
 
+
+
     #[Route('/{IDImmeuble}/edit', name: 'immeuble_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Immeuble $immeuble, ImmeubleRepository $immeubleRepository): Response
     {
@@ -228,6 +233,15 @@ class ImmeubleController extends AbstractController
             'immeuble' => $immeuble,
             'form' => $form,
         ]);
+    }
+
+    #[Route('/{IDImmeuble}/edit/pdf', name: 'immeuble.pdf')]
+    public function generatePdfImmeuble(Immeuble $immeuble = null, PdfService $pdf)
+    {
+        $html = $this->render('immeuble/edit.html.twig', [
+            'immeuble' => $immeuble,
+        ]);
+        $pdf->showPdfFile($html);
     }
 
     #[Route('/{IDImmeuble}', name: 'immeuble_delete', methods: ['POST'])]
