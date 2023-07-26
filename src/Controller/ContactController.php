@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Contact;
 use App\Form\ContactType;
 use App\Repository\ContactRepository;
+use App\Service\PdfService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -46,6 +47,15 @@ class ContactController extends AbstractController
         return $this->render('contact/show.html.twig', [
             'contact' => $contact,
         ]);
+    }
+
+    #[Route('/{IDContact}/pdf', name: 'contact.pdf')]
+    public function generatePdfImmeuble(Contact $contact = null, PdfService $pdf)
+    {
+        $html = $this->render('contact/show.html.twig', [
+            'contact' => $contact,
+        ]);
+        $pdf->showPdfFile($html);
     }
 
     #[Route('/{IDContact}/edit', name: 'app_contact_edit', methods: ['GET', 'POST'])]
