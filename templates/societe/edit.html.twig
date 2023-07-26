@@ -6,9 +6,9 @@
 {% block body %}
 	<h1>Edit Societe</h1>
 
-	{{ include('societe/_form.html.twig', {'button_label': 'Update'}) }}
+	{{ include('societe/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
 
-	<a href="{{ path('societes') }}">back to list</a>
+	<a href="{{ path('societes') }}">Retourner à la liste</a>
 
 	{{ include('societe/_delete_form.html.twig') }}
 {% endblock %}

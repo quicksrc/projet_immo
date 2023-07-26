@@ -6,9 +6,12 @@
 {% block body %}
 	<h1>Edit Immeuble</h1>
 
-	{{ include('immeuble/_form.html.twig', {'button_label': 'Update'}) }}
+	{{ include('immeuble/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
 
-	<a href="{{ path('immeubles') }}">back to list</a>
-
+	<div class="float-end ">
+		<button class="btn btn-light " type="button">
+			<a class=" text-decoration-underline-remove" href="{{ path('immeubles') }}">Retourner à la liste</a>
+		</button>
+	</div>
 	{{ include('immeuble/_delete_form.html.twig') }}
 {% endblock %}
