@@ -87,7 +87,14 @@ class ImmeubleController extends AbstractController
                 if (!empty($rechercheImmeuble->getEmail())) {
                     array_push($keyValueContact, array("Email", $rechercheImmeuble->getEmail()));
                 }
+                if (!empty($rechercheImmeuble->getCiviliteContact())) {
+                    array_push($keyValueContact, array("Civilite", $rechercheImmeuble->getCiviliteContact()));
+                }
+                if (!empty($rechercheImmeuble->getPrenomContact())) {
+                    array_push($keyValueContact, array("Prenom", $rechercheImmeuble->getPrenomContact()));
+                }
             };
+
 
             // Push les noms et valeurs des propriétés dans un Array
             // Array de nom pour les propriétés Immeuble
@@ -129,8 +136,10 @@ class ImmeubleController extends AbstractController
                 $immeubles = $immeubleRepository->findBy(array($nameProperty[0] => $valueProperty[0], $nameProperty[1] => $valueProperty[1], $nameProperty[2] => $valueProperty[2], $nameProperty[3] => $valueProperty[3], $nameProperty[4] => $valueProperty[4], $nameProperty[5] => $valueProperty[5], $nameProperty[6] => $valueProperty[6], $nameProperty[7] => $valueProperty[7]));
             } elseif (count($keyValue) == 9) {
                 $immeubles = $immeubleRepository->findBy(array($nameProperty[0] => $valueProperty[0], $nameProperty[1] => $valueProperty[1], $nameProperty[2] => $valueProperty[2], $nameProperty[3] => $valueProperty[3], $nameProperty[4] => $valueProperty[4], $nameProperty[5] => $valueProperty[5], $nameProperty[6] => $valueProperty[6], $nameProperty[7] => $valueProperty[7], $nameProperty[8] => $valueProperty[8]));
-            } elseif (count($keyValueContact) >= 1) {
+            } elseif (count($keyValueContact) == 1) {
                 $contacts = $immeubleContactRepository->findImmeubleByOneFieldContact($rechercheImmeuble);
+            } elseif ($namePropertyContact[0] == "Nom" && $namePropertyContact[1] == "Prenom") {
+                $contacts = $immeubleContactRepository->findImmeubleByNameContact($rechercheImmeuble);
             } elseif (count($keyValue) == 0 && count($keyValueContact) == 0) {
                 $immeubles = $immeubleRepository->findBy(array(), null, 500, null);
             };
@@ -172,41 +181,6 @@ class ImmeubleController extends AbstractController
                 ]
             );
         }
-
-        // $referenceProprio = $rechercheImmeuble->getRefProprioImmeuble();
-        // $numPlanchCada = $rechercheImmeuble->getNumPlanchCada();
-        // $etatDossier = $rechercheImmeuble->getEtatDossier();
-        // $enquete = $rechercheImmeuble->getEnquete();
-        // $dateEnquete = $rechercheImmeuble->getDateEnquete();
-        // $description = $rechercheImmeuble->getDescription();
-        // $suiviPar = $rechercheImmeuble->getSuiviPar();
-        // $vendu = $rechercheImmeuble->isVendu();
-        // $ncpcf = $rechercheImmeuble->isNcpcf();
-        // $origineContact = $rechercheImmeuble->getOrigineContact();
-        // $visite = $rechercheImmeuble->isVisite();
-        // $commentaire = $rechercheImmeuble->getCommentaire();
-        // if ($description != "" && $referenceProprio != "" && $vendu != "") {
-        //     $immeubles = $immeubleRepository->findBy(['Description' => $description, 'ReferenceProprio' => $referenceProprio, 'Vendu' => $vendu]);
-        // } elseif ($description != "" && $referenceProprio != "") {
-        //     $immeubles = $immeubleRepository->findBy(['Description' => $description, 'ReferenceProprio' => $referenceProprio]);
-        // } elseif ($description != "" && $vendu != "") {
-        //     $immeubles = $immeubleRepository->findBy(['Description' => $description, 'Vendu' => $vendu]);
-        // } elseif ($referenceProprio != "" && $vendu != "") {
-        //     $immeubles = $immeubleRepository->findBy(['ReferenceProprio' => $referenceProprio, 'Vendu' => $vendu]);
-        // } elseif ($description != "") {
-        //     $immeubles = $immeubleRepository->findBy(['Description' => $description]);
-        // } elseif ($referenceProprio != "") {
-        //     $immeubles = $immeubleRepository->findBy(['ReferenceProprio' => $referenceProprio]);
-        // } elseif ($vendu != "") {
-        //     $immeubles = $immeubleRepository->findBy(['Vendu' => $vendu]);
-        // $immeubles = $immeubleRepository->createQueryBuilder('i')
-        //     ->where('i.SuiviPar LIKE :suiviPar')
-        //     ->setParameter()
-        //     ->getQuery()
-        //     ->getResult();
-        // } else {
-        //     $immeubles = $immeubleRepository->findBy(array(), null, 100, null);
-        // }
         return $this->render(
             'immeuble/search.html.twig',
             [

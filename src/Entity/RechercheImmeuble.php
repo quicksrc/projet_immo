@@ -80,6 +80,9 @@ class RechercheImmeuble
     #[ORM\Column(length: 100, nullable: true)]
     private ?string $civiliteContact = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $prenomContact = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -345,6 +348,18 @@ class RechercheImmeuble
     public function setCiviliteContact(?string $civiliteContact): self
     {
         $this->civiliteContact = $civiliteContact;
+
+        return $this;
+    }
+
+    public function getPrenomContact(): ?string
+    {
+        return $this->prenomContact;
+    }
+
+    public function setPrenomContact(?string $prenomContact): self
+    {
+        $this->prenomContact = $prenomContact;
 
         return $this;
     }

@@ -213,6 +213,16 @@ class SearchImmeubleType extends AbstractType
                 'attr' => [
                     'class' => 'form-select',
                 ]
+            ])
+            ->add('prenomContact', TextType::class, [
+                'required' => false,
+                'label' => 'Prénom',
+                'label_attr' => [
+                    'class' => 'form-label mt-4'
+                ],
+                'attr' => [
+                    'class' => 'form-control'
+                ]
             ]);
     }
 
