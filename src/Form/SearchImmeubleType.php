@@ -186,7 +186,7 @@ class SearchImmeubleType extends AbstractType
             ])
             ->add('civiliteContact', ChoiceType::class, [
                 'required' => false,
-                'label' => 'Type Voie',
+                'label' => 'Civilité',
                 'label_attr' => [
                     'class' => 'form-label mt-4'
                 ],
