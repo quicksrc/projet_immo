@@ -210,6 +210,7 @@ class ImmeubleController extends AbstractController
         return $this->render(
             'immeuble/search.html.twig',
             [
+                'contacts' => $contacts,
                 'immeubles' => $immeubleRepository->findBy(array(), null, 100, null),
                 'form' => $form->createView(),
             ]
