@@ -43,15 +43,21 @@ class ImmeubleContactRepository extends ServiceEntityRepository
     /**
      * @return ImmeubleContact[] Returns an array of ImmeubleContact objects
      */
-    public function findImmeubleByContact(RechercheImmeuble $rechercheImmeuble): array
+    public function findImmeubleByOneFieldContact(RechercheImmeuble $rechercheImmeuble): array
     {
         return $this->createQueryBuilder('ic')
             ->addSelect('c')
             ->leftJoin('ic.IDContact', 'c')
-            ->where('c.Nom LIKE :nomContact')
-            ->setParameter('nomContact', $rechercheImmeuble->getNomContact())
             ->addSelect('i')
             ->leftJoin('ic.IDImmeuble', 'i')
+            ->where('c.Nom LIKE :nomContact')
+            ->setParameter('nomContact', $rechercheImmeuble->getNomContact())
+            ->orWhere('c.RCS LIKE :RCS')
+            ->setParameter('RCS', $rechercheImmeuble->getRCS())
+            ->orWhere('c.Email LIKE :Email')
+            ->setParameter('Email', $rechercheImmeuble->getEmail())
+            ->orWhere('c.Civilite LIKE :civiliteContact')
+            ->setParameter('civiliteContact', $rechercheImmeuble->getCiviliteContact())
             ->getQuery()
             ->getResult();
     }

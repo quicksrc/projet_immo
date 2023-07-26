@@ -6,6 +6,7 @@ use App\Entity\RechercheImmeuble;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -147,7 +148,7 @@ class SearchImmeubleType extends AbstractType
                 'required' => false,
                 'label' => 'Ville',
                 'label_attr' => [
-                    'class' => 'form-label '
+                    'class' => 'form-label'
                 ],
                 'attr' => [
                     'class' => 'form-control col-5'
@@ -156,8 +157,61 @@ class SearchImmeubleType extends AbstractType
             ->add('nomContact', TextType::class, [
                 'required' => false,
                 'label' => 'Nom',
+                'label_attr' => [
+                    'class' => 'form-label'
+                ],
                 'attr' => [
-                    'class' => 'form-control mt-4 col-5'
+                    'class' => 'form-control'
+                ]
+            ])
+            ->add('RCS', TextType::class, [
+                'required' => false,
+                'label' => 'RCS',
+                'label_attr' => [
+                    'class' => 'form-label mt-4'
+                ],
+                'attr' => [
+                    'class' => 'form-control'
+                ]
+            ])
+            ->add('email', EmailType::class, [
+                'required' => false,
+                'label' => 'Email',
+                'label_attr' => [
+                    'class' => 'form-label mt-4'
+                ],
+                'attr' => [
+                    'class' => 'form-control'
+                ]
+            ])
+            ->add('civiliteContact', ChoiceType::class, [
+                'required' => false,
+                'label' => 'Type Voie',
+                'label_attr' => [
+                    'class' => 'form-label mt-4'
+                ],
+                'choices' => [
+                    'Maître' => 'Maître',
+                    'SCI' => 'SCI',
+                    'Madame' => 'Madame',
+                    'Monsieur' => 'Monsieur',
+                    'Cabinet' => 'Cabinet',
+                    'Indivision' => 'Indivision',
+                    'Copropriété' => 'Copropriété',
+                    'SNC' => 'SNC',
+                    'Sté' => 'Sté',
+                    'Association' => 'Association',
+                    'Succession' => 'Succession',
+                    'Consort' => 'Consort',
+                    'Mme et Mr' => 'Mme et Mr',
+                    'Entreprise' => 'Entreprise',
+                    'Melle' => 'Melle',
+                    'Etude' => 'Etude',
+                    'Agence' => 'Agence',
+                    'Messieurs' => 'Messieurs',
+                ],
+                'attr' => [
+                    'class' => 'form-select',
                 ]
             ]);
     }
