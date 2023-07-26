@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Activite;
+use App\Entity\RechercheImmeuble;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -39,28 +40,51 @@ class ActiviteRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return Activite[] Returns an array of Activite objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('a')
-//            ->andWhere('a.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('a.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    /**
+     * @param RechercheImmeuble $rechercheImmeuble
+     */
+    public function findImmeubleByActivity(RechercheImmeuble $rechercheImmeuble)
+    {
+        $qb = $this->createQueryBuilder('a')
+            ->addSelect('i')
+            ->leftJoin('a.IDImmeuble', 'i')
+            ->where('i.IDImmeuble IS NOT NULL');
 
-//    public function findOneBySomeField($value): ?Activite
-//    {
-//        return $this->createQueryBuilder('a')
-//            ->andWhere('a.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+        if (!empty($rechercheImmeuble->getDateActivite())) {
+            $qb
+                ->andWhere('a.DateActivite LIKE :dateActivite')
+                ->setParameter('dateActivite', $rechercheImmeuble->getDateActivite()->format('Y-m-d H:i:s'));
+        }
+        if (!empty($rechercheImmeuble->getTheme())) {
+            $qb
+                ->andWhere('a.Theme LIKE :theme')
+                ->setParameter('theme', $rechercheImmeuble->getTheme());
+        }
+        return $qb->getQuery()->getResult();
+    }
+
+    //    /**
+    //     * @return Activite[] Returns an array of Activite objects
+    //     */
+    //    public function findByExampleField($value): array
+    //    {
+    //        return $this->createQueryBuilder('a')
+    //            ->andWhere('a.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->orderBy('a.id', 'ASC')
+    //            ->setMaxResults(10)
+    //            ->getQuery()
+    //            ->getResult()
+    //        ;
+    //    }
+
+    //    public function findOneBySomeField($value): ?Activite
+    //    {
+    //        return $this->createQueryBuilder('a')
+    //            ->andWhere('a.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->getQuery()
+    //            ->getOneOrNullResult()
+    //        ;
+    //    }
 }

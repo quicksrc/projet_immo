@@ -6,9 +6,11 @@ use App\Entity\RechercheImmeuble;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -222,6 +224,60 @@ class SearchImmeubleType extends AbstractType
                 ],
                 'attr' => [
                     'class' => 'form-control'
+                ]
+            ])
+            ->add('dateActivite', DateType::class, [
+                'required' => false,
+                'label' => 'Date Activité',
+                'widget' => 'single_text',
+                'format' => "d-m-Y",
+                'html5' => false,
+                'attr' => [
+                    'class' => 'form-control js-datepicker',
+                ]
+            ])
+            ->add('theme', ChoiceType::class, [
+                'required' => false,
+                'label' => 'Thême',
+                'label_attr' => [
+                    'class' => 'form-label mt-4'
+                ],
+                'choices' => [
+                    'Date du contact' => 'Date du contact',
+                    'Réunion' => 'Réunion',
+                    'Mailing' => 'Mailing',
+                    'A recontacter' => 'A recontacter',
+                    'Retour mailing' => 'Retour mailing',
+                    'Archivage Contact' => 'Archivage Contact',
+                    'Prospection' => 'Prospection',
+                    'Top Ten' => 'Top Ten',
+                ],
+                'attr' => [
+                    'class' => 'form-select',
+                ]
+            ])
+            ->add('rechercheImmeuble', SubmitType::class, [
+                'label' => 'Rechercher Par Immeuble',
+                'attr' => [
+                    'class' => 'btn btn-success mt-1 mb-1'
+                ]
+            ])
+            ->add('rechercheAdresse', SubmitType::class, [
+                'label' => 'Rechercher Par Adresse',
+                'attr' => [
+                    'class' => 'btn btn-success mt-1 mb-1'
+                ]
+            ])
+            ->add('rechercheContact', SubmitType::class, [
+                'label' => 'Rechercher Par Contact',
+                'attr' => [
+                    'class' => 'btn btn-success mt-1 mb-1'
+                ]
+            ])
+            ->add('rechercheActivite', SubmitType::class, [
+                'label' => 'Rechercher Par Activite',
+                'attr' => [
+                    'class' => 'btn btn-success mt-1 mb-1'
                 ]
             ]);
     }

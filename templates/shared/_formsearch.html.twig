@@ -38,7 +38,7 @@
 					</div>
 					<div class="col">
 						<div class="form-group d-grid gap-2 d-md-flex justify-content-md-end">
-							<button type="submit" class="btn btn-success mt-1 mb-1 ">Rechercher</button>
+							{{ form_widget(form.rechercheImmeuble) }}
 						</div>
 					</div>
 				</div>
@@ -77,7 +77,7 @@
 					</div>
 					<div class="col">
 						<div class="form-group d-grid gap-2 d-md-flex justify-content-md-end">
-							<button type="submit" class="btn btn-success mt-1 mb-1 ">Rechercher</button>
+							{{ form_widget(form.rechercheAdresse) }}
 						</div>
 
 					</div>
@@ -106,19 +106,15 @@
 							</div>
 						</div>
 						<div class="row">
-							<div class="col-6">
+							<div class="col-6 justify-content-center">
 								{{ form_label(form.RCS) }}
 								{{ form_widget(form.RCS) }}
 							</div>
-							{# <div class="col-6">
-															{{ form_label(form.civiliteContact) }}
-															{{ form_widget(form.civiliteContact) }}
-														</div> #}
 						</div>
 					</div>
 					<div class="col">
 						<div class="form-group">
-							<button type="submit" class="btn btn-success mt-5">Rechercher</button>
+							{{ form_widget(form.rechercheContact) }}
 						</div>
 
 					</div>
@@ -127,28 +123,22 @@
 					{{ form_start(form) }}
 					<div class="row">
 						<div class="row align-items-end">
-							<div
-								class="col-6">{# {{ form_widget(form.refProprioImmeuble) }} #}
+							<div class="col-6">
+								{{ form_label(form.dateActivite) }}
+								{{ form_widget(form.dateActivite) }}
 							</div>
-							<div class="col-6">{# {{ form_label(form.origineContact) }} #}
-								{# {{ form_widget(form.origineContact) }} #}
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-6">{# {{ form_label(form.ncpcf) }} #}
-								{# {{ form_widget(form.ncpcf) }} #}
-							</div>
-							<div class="col-6">{# {{ form_label(form.visite) }} #}
-								{# {{ form_widget(form.visite) }} #}
+							<div class="col-6">
+								{{ form_label(form.theme) }}
+								{{ form_widget(form.theme) }}
 							</div>
 						</div>
 					</div>
 					<div class="col">
 						<div class="form-group d-grid gap-2 d-md-flex justify-content-md-end">
-							<button type="submit" class="btn btn-success mt-1 mb-1 ">Rechercher</button>
+							{{ form_widget(form.rechercheActivite) }}
 						</div>
-						{{ form_end(form) }}
 					</div>
+					{{ form_end(form) }}
 				</div>
 			</div>
 		</div>

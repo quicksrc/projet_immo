@@ -83,6 +83,12 @@ class RechercheImmeuble
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $prenomContact = null;
 
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $dateActivite = null;
+
+    #[ORM\Column(length: 100, nullable: true)]
+    private ?string $theme = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -360,6 +366,30 @@ class RechercheImmeuble
     public function setPrenomContact(?string $prenomContact): self
     {
         $this->prenomContact = $prenomContact;
+
+        return $this;
+    }
+
+    public function getDateActivite(): ?\DateTimeInterface
+    {
+        return $this->dateActivite;
+    }
+
+    public function setDateActivite(?\DateTimeInterface $dateActivite): self
+    {
+        $this->dateActivite = $dateActivite;
+
+        return $this;
+    }
+
+    public function getTheme(): ?string
+    {
+        return $this->theme;
+    }
+
+    public function setTheme(?string $theme): self
+    {
+        $this->theme = $theme;
 
         return $this;
     }

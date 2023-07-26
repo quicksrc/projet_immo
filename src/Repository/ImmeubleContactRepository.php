@@ -6,6 +6,7 @@ use App\Entity\ImmeubleContact;
 use App\Entity\RechercheImmeuble;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\DBAL\Query\QueryBuilder;
+use Doctrine\ORM\EntityManager;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -44,65 +45,42 @@ class ImmeubleContactRepository extends ServiceEntityRepository
     /**
      * @return ImmeubleContact[] Returns an array of ImmeubleContact objects
      */
-    public function findImmeubleByOneFieldContact(RechercheImmeuble $rechercheImmeuble): array
+    public function findImmeubleByFieldsContact(RechercheImmeuble $rechercheImmeuble): array
     {
         $qb = $this->createQueryBuilder('ic')
             ->addSelect('c')
             ->leftJoin('ic.IDContact', 'c')
             ->addSelect('i')
-            ->leftJoin('ic.IDImmeuble', 'i', 'WITH', $qb->expr()->isNotNull())
-            ->where('c.Nom LIKE :nomContact')
-            ->setParameter('nomContact', $rechercheImmeuble->getNomContact())
-            ->orWhere('c.RCS LIKE :RCS')
-            ->setParameter('RCS', $rechercheImmeuble->getRCS())
-            ->orWhere('c.Email LIKE :Email')
-            ->setParameter('Email', $rechercheImmeuble->getEmail())
-            ->orWhere('c.Civilite LIKE :civiliteContact')
-            ->setParameter('civiliteContact', $rechercheImmeuble->getCiviliteContact())
-            ->getQuery()
-            ->getResult();
-
-        return $qb;
-    }
-
-    /**
-     * @return ImmeubleContact[] Returns an array of ImmeubleContact objects
-     */
-    public function findImmeubleByFieldsContact(RechercheImmeuble $rechercheImmeuble): array
-    {
-        return $this->createQueryBuilder('ic')
-            ->addSelect('c')
-            ->leftJoin('ic.IDContact', 'c')
-            ->addSelect('i')
             ->leftJoin('ic.IDImmeuble', 'i')
-            ->where('c.Nom LIKE :nomContact')
-            ->setParameter('nomContact', $rechercheImmeuble->getNomContact())
-            ->andWhere('c.RCS LIKE :RCS')
-            ->setParameter('RCS', $rechercheImmeuble->getRCS())
-            ->andWhere('c.Email LIKE :Email')
-            ->setParameter('Email', $rechercheImmeuble->getEmail())
-            ->andWhere('c.Civilite LIKE :civiliteContact')
-            ->setParameter('civiliteContact', $rechercheImmeuble->getCiviliteContact())
-            ->getQuery()
-            ->getResult();
-    }
+            ->where('i.IDImmeuble IS NOT NULL');
 
-    /**
-     * @return ImmeubleContact[] Returns an array of ImmeubleContact objects
-     */
-    public function findImmeubleByNameContact(RechercheImmeuble $rechercheImmeuble): array
-    {
-        return $this->createQueryBuilder('ic')
-            ->addSelect('c')
-            ->leftJoin('ic.IDContact', 'c')
-            ->addSelect('i')
-            ->leftJoin('ic.IDImmeuble', 'i')
-            ->where('c.Nom LIKE :nomContact')
-            ->setParameter('nomContact', $rechercheImmeuble->getNomContact())
-            ->andWhere('c.Prenom LIKE :prenomContact')
-            ->setParameter('prenomContact', $rechercheImmeuble->getPrenomContact())
-            ->getQuery()
-            ->getResult();
+        if (!empty($rechercheImmeuble->getNomContact())) {
+            $qb
+                ->andWhere('c.Nom LIKE :nomContact')
+                ->setParameter('nomContact', $rechercheImmeuble->getNomContact());
+        }
+        if (!empty($rechercheImmeuble->getPrenomContact())) {
+            $qb
+                ->andWhere('c.Prenom LIKE :prenomContact')
+                ->setParameter('prenomContact', $rechercheImmeuble->getPrenomContact());
+        }
+        if (!empty($rechercheImmeuble->getRCS())) {
+            $qb
+                ->andWhere('c.RCS LIKE :RCS')
+                ->setParameter('RCS', $rechercheImmeuble->getRCS());
+        }
+        if (!empty($rechercheImmeuble->getEmail())) {
+            $qb
+                ->andWhere('c.Email LIKE :Email')
+                ->setParameter('Email', $rechercheImmeuble->getEmail());
+        }
+        if (!empty($rechercheImmeuble->getCiviliteContact())) {
+            $qb
+                ->andWhere('c.Civilite LIKE :civiliteContact')
+                ->setParameter('civiliteContact', $rechercheImmeuble->getCiviliteContact());
+        }
+        // dd($qb);
+        return $qb->getQuery()->getResult();
     }
 
     //    /**
