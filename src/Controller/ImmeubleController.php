@@ -42,9 +42,9 @@ class ImmeubleController extends AbstractController
         $contacts = [];
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $contacts = $immeubleContactRepository->findImmeubleByContact($rechercheImmeuble);
-            dd($contacts);
+            // dd($contacts);
             $keyValue = [];
+            $keyValueContact = [];
 
             // Vérifier si on rempli les champs
             for ($i = 0; $i < 1; $i++) {
@@ -75,37 +75,37 @@ class ImmeubleController extends AbstractController
                 if (!empty($rechercheImmeuble->getVille())) {
                     array_push($keyValue, array("Ville", $rechercheImmeuble->getVille()));
                 }
+                if (!empty($rechercheImmeuble->getNomContact())) {
+                    array_push($keyValueContact, array("Nom", $rechercheImmeuble->getNomContact()));
+                }
+                if (!empty($rechercheImmeuble->getRCS())) {
+                    array_push($keyValueContact, array("RCS", $rechercheImmeuble->getRCS()));
+                }
+                if (!empty($rechercheImmeuble->getEmail())) {
+                    array_push($keyValueContact, array("Email", $rechercheImmeuble->getEmail()));
+                }
             };
 
             // Push les noms et valeurs des propriétés dans un Array
+            // Array de nom pour les propriétés Immeuble
             $nameProperty = [];
             $valueProperty = [];
+
             for ($i = 0; $i < count($keyValue); $i++) {
+                // Recherche Générales
                 array_push($nameProperty, $keyValue[$i][0]);
                 array_push($valueProperty, $keyValue[$i][1]);
             }
-            // Requête pour afficher les immeubles par recherche générale/par adresse
-            if (count($keyValue) == 1) {
-                $immeubles = $immeubleRepository->findBy(array($nameProperty[0] => $valueProperty[0]));
-            } elseif (count($keyValue) == 2) {
-                $immeubles = $immeubleRepository->findBy(array($nameProperty[0] => $valueProperty[0], $nameProperty[1] => $valueProperty[1]));
-            } elseif (count($keyValue) == 3) {
-                $immeubles = $immeubleRepository->findBy(array($nameProperty[0] => $valueProperty[0], $nameProperty[1] => $valueProperty[1], $nameProperty[2] => $valueProperty[2]));
-            } elseif (count($keyValue) == 4) {
-                $immeubles = $immeubleRepository->findBy(array($nameProperty[0] => $valueProperty[0], $nameProperty[1] => $valueProperty[1], $nameProperty[2] => $valueProperty[2], $nameProperty[3] => $valueProperty[3]));
-            } elseif (count($keyValue) == 5) {
-                $immeubles = $immeubleRepository->findBy(array($nameProperty[0] => $valueProperty[0], $nameProperty[1] => $valueProperty[1], $nameProperty[2] => $valueProperty[2], $nameProperty[3] => $valueProperty[3], $nameProperty[4] => $valueProperty[4]));
-            } elseif (count($keyValue) == 6) {
-                $immeubles = $immeubleRepository->findBy(array($nameProperty[0] => $valueProperty[0], $nameProperty[1] => $valueProperty[1], $nameProperty[2] => $valueProperty[2], $nameProperty[3] => $valueProperty[3], $nameProperty[4] => $valueProperty[4], $nameProperty[5] => $valueProperty[5]));
-            } elseif (count($keyValue) == 7) {
-                $immeubles = $immeubleRepository->findBy(array($nameProperty[0] => $valueProperty[0], $nameProperty[1] => $valueProperty[1], $nameProperty[2] => $valueProperty[2], $nameProperty[3] => $valueProperty[3], $nameProperty[4] => $valueProperty[4], $nameProperty[5] => $valueProperty[5], $nameProperty[6] => $valueProperty[6]));
-            } elseif (count($keyValue) == 8) {
-                $immeubles = $immeubleRepository->findBy(array($nameProperty[0] => $valueProperty[0], $nameProperty[1] => $valueProperty[1], $nameProperty[2] => $valueProperty[2], $nameProperty[3] => $valueProperty[3], $nameProperty[4] => $valueProperty[4], $nameProperty[5] => $valueProperty[5], $nameProperty[6] => $valueProperty[6], $nameProperty[7] => $valueProperty[7]));
-            } elseif (count($keyValue) == 9) {
-                $immeubles = $immeubleRepository->findBy(array($nameProperty[0] => $valueProperty[0], $nameProperty[1] => $valueProperty[1], $nameProperty[2] => $valueProperty[2], $nameProperty[3] => $valueProperty[3], $nameProperty[4] => $valueProperty[4], $nameProperty[5] => $valueProperty[5], $nameProperty[6] => $valueProperty[6], $nameProperty[7] => $valueProperty[7], $nameProperty[8] => $valueProperty[8]));
-            } else {
-                $immeubles = $immeubleRepository->findBy(array(), null, 100, null);
-            };
+
+            // Array de nom pour les propriétés Contact
+            $namePropertyContact = [];
+            $valuePropertyContact = [];
+
+            for ($i = 0; $i < count($keyValueContact); $i++) {
+                // Recherche par Contact
+                array_push($namePropertyContact, $keyValueContact[$i][0]);
+                array_push($valuePropertyContact, $keyValueContact[$i][1]);
+            }
 
             // Requête pour afficher les immeubles par recherche générale/par adresse
             if (count($keyValue) == 1) {
@@ -126,9 +126,37 @@ class ImmeubleController extends AbstractController
                 $immeubles = $immeubleRepository->findBy(array($nameProperty[0] => $valueProperty[0], $nameProperty[1] => $valueProperty[1], $nameProperty[2] => $valueProperty[2], $nameProperty[3] => $valueProperty[3], $nameProperty[4] => $valueProperty[4], $nameProperty[5] => $valueProperty[5], $nameProperty[6] => $valueProperty[6], $nameProperty[7] => $valueProperty[7]));
             } elseif (count($keyValue) == 9) {
                 $immeubles = $immeubleRepository->findBy(array($nameProperty[0] => $valueProperty[0], $nameProperty[1] => $valueProperty[1], $nameProperty[2] => $valueProperty[2], $nameProperty[3] => $valueProperty[3], $nameProperty[4] => $valueProperty[4], $nameProperty[5] => $valueProperty[5], $nameProperty[6] => $valueProperty[6], $nameProperty[7] => $valueProperty[7], $nameProperty[8] => $valueProperty[8]));
-            } else {
-                $immeubles = $immeubleRepository->findBy(array(), null, 100, null);
+            } elseif (count($keyValueContact) >= 1) {
+                $contacts = $immeubleContactRepository->findImmeubleByOneFieldContact($rechercheImmeuble);
+            } elseif (count($keyValue) == 0 && count($keyValueContact) == 0) {
+                $immeubles = $immeubleRepository->findBy(array(), null, 500, null);
             };
+
+            // dd($contacts);
+
+            // Requête pour afficher les immeubles par recherche par contact
+            // if (count($keyValueContact) == 1) {
+            // };
+            // elseif (count($keyValue) == 2) {
+            //     $immeubles = $immeubleRepository->findBy(array($nameProperty[0] => $valueProperty[0], $nameProperty[1] => $valueProperty[1]));
+            // } elseif (count($keyValue) == 3) {
+            //     $immeubles = $immeubleRepository->findBy(array($nameProperty[0] => $valueProperty[0], $nameProperty[1] => $valueProperty[1], $nameProperty[2] => $valueProperty[2]));
+            // } elseif (count($keyValue) == 4) {
+            //     $immeubles = $immeubleRepository->findBy(array($nameProperty[0] => $valueProperty[0], $nameProperty[1] => $valueProperty[1], $nameProperty[2] => $valueProperty[2], $nameProperty[3] => $valueProperty[3]));
+            // } elseif (count($keyValue) == 5) {
+            //     $immeubles = $immeubleRepository->findBy(array($nameProperty[0] => $valueProperty[0], $nameProperty[1] => $valueProperty[1], $nameProperty[2] => $valueProperty[2], $nameProperty[3] => $valueProperty[3], $nameProperty[4] => $valueProperty[4]));
+            // } elseif (count($keyValue) == 6) {
+            //     $immeubles = $immeubleRepository->findBy(array($nameProperty[0] => $valueProperty[0], $nameProperty[1] => $valueProperty[1], $nameProperty[2] => $valueProperty[2], $nameProperty[3] => $valueProperty[3], $nameProperty[4] => $valueProperty[4], $nameProperty[5] => $valueProperty[5]));
+            // } elseif (count($keyValue) == 7) {
+            //     $immeubles = $immeubleRepository->findBy(array($nameProperty[0] => $valueProperty[0], $nameProperty[1] => $valueProperty[1], $nameProperty[2] => $valueProperty[2], $nameProperty[3] => $valueProperty[3], $nameProperty[4] => $valueProperty[4], $nameProperty[5] => $valueProperty[5], $nameProperty[6] => $valueProperty[6]));
+            // } elseif (count($keyValue) == 8) {
+            //     $immeubles = $immeubleRepository->findBy(array($nameProperty[0] => $valueProperty[0], $nameProperty[1] => $valueProperty[1], $nameProperty[2] => $valueProperty[2], $nameProperty[3] => $valueProperty[3], $nameProperty[4] => $valueProperty[4], $nameProperty[5] => $valueProperty[5], $nameProperty[6] => $valueProperty[6], $nameProperty[7] => $valueProperty[7]));
+            // } elseif (count($keyValue) == 9) {
+            //     $immeubles = $immeubleRepository->findBy(array($nameProperty[0] => $valueProperty[0], $nameProperty[1] => $valueProperty[1], $nameProperty[2] => $valueProperty[2], $nameProperty[3] => $valueProperty[3], $nameProperty[4] => $valueProperty[4], $nameProperty[5] => $valueProperty[5], $nameProperty[6] => $valueProperty[6], $nameProperty[7] => $valueProperty[7], $nameProperty[8] => $valueProperty[8]));
+            // } else {
+            //     $immeubles = $immeubleRepository->findBy(array(), null, 100, null);
+            // };
+
 
 
             return $this->render(

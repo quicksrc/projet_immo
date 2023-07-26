@@ -71,6 +71,15 @@ class RechercheImmeuble
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $nomContact = null;
 
+    #[ORM\Column(length: 50, nullable: true)]
+    private ?string $RCS = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $email = null;
+
+    #[ORM\Column(length: 100, nullable: true)]
+    private ?string $civiliteContact = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -300,6 +309,42 @@ class RechercheImmeuble
     public function setNomContact(?string $nomContact): self
     {
         $this->nomContact = $nomContact;
+
+        return $this;
+    }
+
+    public function getRCS(): ?string
+    {
+        return $this->RCS;
+    }
+
+    public function setRCS(?string $RCS): self
+    {
+        $this->RCS = $RCS;
+
+        return $this;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(?string $email): self
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    public function getCiviliteContact(): ?string
+    {
+        return $this->civiliteContact;
+    }
+
+    public function setCiviliteContact(?string $civiliteContact): self
+    {
+        $this->civiliteContact = $civiliteContact;
 
         return $this;
     }
