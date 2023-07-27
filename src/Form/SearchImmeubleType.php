@@ -230,7 +230,7 @@ class SearchImmeubleType extends AbstractType
                 'required' => false,
                 'label' => 'Date Activité',
                 'widget' => 'single_text',
-                'format' => "d-m-Y",
+                'format' => "yyyy-MM-dd 00:00:00",
                 'html5' => false,
                 'attr' => [
                     'class' => 'form-control js-datepicker',

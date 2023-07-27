@@ -53,7 +53,7 @@ class ActiviteRepository extends ServiceEntityRepository
         if (!empty($rechercheImmeuble->getDateActivite())) {
             $qb
                 ->andWhere('a.DateActivite LIKE :dateActivite')
-                ->setParameter('dateActivite', $rechercheImmeuble->getDateActivite()->format('Y-m-d H:i:s'));
+                ->setParameter('dateActivite', $rechercheImmeuble->getDateActivite()->format('Y-m-d 00:00:00'));
         }
         if (!empty($rechercheImmeuble->getTheme())) {
             $qb

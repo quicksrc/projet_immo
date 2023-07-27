@@ -21,7 +21,7 @@ class RechercheImmeubleRepository extends ServiceEntityRepository
         parent::__construct($registry, RechercheImmeuble::class);
     }
 
-    public function save(RechercheImmeuble $entity, bool $flush = false): void
+    public function enregistrer(RechercheImmeuble $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -39,28 +39,28 @@ class RechercheImmeubleRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return RechercheImmeuble[] Returns an array of RechercheImmeuble objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('r')
-//            ->andWhere('r.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('r.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    //    /**
+    //     * @return RechercheImmeuble[] Returns an array of RechercheImmeuble objects
+    //     */
+    //    public function findByExampleField($value): array
+    //    {
+    //        return $this->createQueryBuilder('r')
+    //            ->andWhere('r.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->orderBy('r.id', 'ASC')
+    //            ->setMaxResults(10)
+    //            ->getQuery()
+    //            ->getResult()
+    //        ;
+    //    }
 
-//    public function findOneBySomeField($value): ?RechercheImmeuble
-//    {
-//        return $this->createQueryBuilder('r')
-//            ->andWhere('r.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    //    public function findOneBySomeField($value): ?RechercheImmeuble
+    //    {
+    //        return $this->createQueryBuilder('r')
+    //            ->andWhere('r.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->getQuery()
+    //            ->getOneOrNullResult()
+    //        ;
+    //    }
 }

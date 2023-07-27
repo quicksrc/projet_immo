@@ -11,6 +11,7 @@ use App\Repository\AdresseRepository;
 use App\Repository\ContactRepository;
 use App\Repository\ImmeubleContactRepository;
 use App\Repository\ImmeubleRepository;
+use App\Repository\RechercheImmeubleRepository;
 use App\Service\PdfService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -33,7 +34,7 @@ class ImmeubleController extends AbstractController
 
 
     #[Route('/search', name: 'immeuble_search')]
-    public function search(ImmeubleRepository $immeubleRepository, ImmeubleContactRepository $immeubleContactRepository, AdresseRepository $adresseRepository, ActiviteRepository $activiteRepository, Request $request): Response
+    public function search(ImmeubleRepository $immeubleRepository, RechercheImmeubleRepository $rechercheImmeubleRepository, ImmeubleContactRepository $immeubleContactRepository, AdresseRepository $adresseRepository, ActiviteRepository $activiteRepository, Request $request): Response
     {
         // Recherche avancée
         $rechercheImmeuble = new RechercheImmeuble();
@@ -53,6 +54,7 @@ class ImmeubleController extends AbstractController
         $activites = [];
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // $rechercheImmeubleRepository->enregistrer($rechercheImmeuble, true);
             // dd($contacts);
             $keyValue = [];
             $keyValueContact = [];
