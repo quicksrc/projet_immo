@@ -38,9 +38,10 @@ class ImmeubleController extends AbstractController
     {
         // Recherche avancée
         $rechercheImmeuble = new RechercheImmeuble();
+        /** @var $form symfony\component\form\clickableinterface */
         $form = $this->createForm(SearchImmeubleType::class, $rechercheImmeuble);
         $form->handleRequest($request);
-
+        //$form->get('block_john')->isClicked();
         // $immeubles => Array pour afficher les immeubles
         $immeubles = [];
 
@@ -54,8 +55,7 @@ class ImmeubleController extends AbstractController
         $activites = [];
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // $rechercheImmeubleRepository->enregistrer($rechercheImmeuble, true);
-            // dd($contacts);
+
             $keyValue = [];
             $keyValueContact = [];
             $keyValueAdress = [];
@@ -113,16 +113,13 @@ class ImmeubleController extends AbstractController
                 }
             };
 
-            // dd($keyValueActivity);
-
-            // Requête pour afficher les immeubles par recherche générale/par adresse
-            if (count($keyValue) >= 1) {
+            if (count($keyValue) >= 1 && $form->get('rechercheImmeuble')->isClicked()) {
                 $immeubles = $immeubleRepository->findImmeubleBySearch($rechercheImmeuble);
-            } elseif (count($keyValueAdress) >= 1) {
+            } elseif (count($keyValueAdress) >= 1 && $form->get('rechercheAdresse')->isClicked()) {
                 $adresses = $adresseRepository->findImmeubleByAdress($rechercheImmeuble);
-            } elseif (count($keyValueContact) >= 1) {
+            } elseif (count($keyValueContact) >= 1 && $form->get('rechercheContact')->isClicked()) {
                 $contacts = $immeubleContactRepository->findImmeubleByFieldsContact($rechercheImmeuble);
-            } elseif (count($keyValueActivity) >= 1) {
+            } elseif (count($keyValueActivity) >= 1 && $form->get('rechercheActivite')->isClicked()) {
                 $activites = $activiteRepository->findImmeubleByActivity($rechercheImmeuble);
             } elseif (count($keyValue) == 0 && count($keyValueContact) == 0 && count($keyValueActivity) == 0) {
                 $immeubles = $immeubleRepository->findBy(array(), null, 500, null);
