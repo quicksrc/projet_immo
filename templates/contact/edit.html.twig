@@ -8,7 +8,11 @@
 
 	{{ include('contact/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
 
-	<a href="{{ path('contacts') }}">Retourner à la liste</a>
+	<div class="float-end ">
+		<button class="btn btn-light " type="button">
+			<a class=" text-decoration-underline-remove" href="{{ path('contacts') }}">Retourner à la liste</a>
+		</button>
+	</div>
 
-	{{ include('contact/_delete_form.html.twig') }}
+	{{ include('contact/_delete_form.html.twig', {'button_class': 'btn btn-light'}) }}
 {% endblock %}

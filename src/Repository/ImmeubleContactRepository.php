@@ -46,11 +46,11 @@ class ImmeubleContactRepository extends ServiceEntityRepository
      */
     public function findImmeubleByOneFieldContact(RechercheImmeuble $rechercheImmeuble): array
     {
-        $qb = $this->createQueryBuilder('ic')
+        return $this->createQueryBuilder('ic')
             ->addSelect('c')
             ->leftJoin('ic.IDContact', 'c')
             ->addSelect('i')
-            ->leftJoin('ic.IDImmeuble', 'i', 'WITH', $qb->expr()->isNotNull())
+            ->leftJoin('ic.IDImmeuble', 'i', 'WITH')
             ->where('c.Nom LIKE :nomContact')
             ->setParameter('nomContact', $rechercheImmeuble->getNomContact())
             ->orWhere('c.RCS LIKE :RCS')
@@ -62,7 +62,7 @@ class ImmeubleContactRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
 
-        return $qb;
+        // return $qb;
     }
 
     /**

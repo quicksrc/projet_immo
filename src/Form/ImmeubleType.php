@@ -189,27 +189,27 @@ class ImmeubleType extends AbstractType
             //         'class' => 'form-row col-md-3',
             //     ]
             // ])
-            ->add('OrigineContact', ChoiceType::class, [
-                'required' => false,
-                'label' => 'Origine Contact',
-                'choices' => [
-                    'JAL' => 'JAL',
-                    'JAL-JSS' => 'JAL-JSS',
-                    'JAL-GP' => 'JAL-GP',
-                    'JAL-AS' => 'JAL-AS',
-                    'JAL-PA' => 'JAL-PA',
-                    'Fichier Immobilier' => 'Fichier Immobilier',
-                    'INT-Avocat' => 'INT-Avocat',
-                    'INT' => 'INT',
-                    'INT-Notaire' => 'INT-Notaire',
-                    'INT-Expert Comptable' => 'INT-Expert Comptable',
-                    'Propection' => 'Propection'
-                ],
-                'attr' => [
-                    'class' => 'form-control',
-                    'placeholder' => 'Origine Contact'
-                ]
-            ])
+            // ->add('OrigineContact', ChoiceType::class, [
+            //     'required' => false,
+            //     'label' => 'Origine Contact',
+            //     'choices' => [
+            //         'JAL' => 'JAL',
+            //         'JAL-JSS' => 'JAL-JSS',
+            //         'JAL-GP' => 'JAL-GP',
+            //         'JAL-AS' => 'JAL-AS',
+            //         'JAL-PA' => 'JAL-PA',
+            //         'Fichier Immobilier' => 'Fichier Immobilier',
+            //         'INT-Avocat' => 'INT-Avocat',
+            //         'INT' => 'INT',
+            //         'INT-Notaire' => 'INT-Notaire',
+            //         'INT-Expert Comptable' => 'INT-Expert Comptable',
+            //         'Propection' => 'Propection'
+            //     ],
+            //     'attr' => [
+            //         'class' => 'form-control',
+            //         'placeholder' => 'Origine Contact'
+            //     ]
+            // ])
             ->add('Intermediaire', TextType::class, [
                 'required' => false,
                 'label' => 'Intermediaire',

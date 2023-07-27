@@ -5,7 +5,8 @@
 
 {% block body %}
 
-	<h1>{{ contact.Nom }}</h1>
+	<h1 style="background-color: #83e8d4;float: right; border: 1px solid #dee2e6;
+														margin-top: -2px; border-radius: 5px;">{{ contact.Nom }}</h1>
 
 	<ul class="nav nav-tabs" role="tablist">
 		<li class="nav-item" role="presentation">
@@ -203,114 +204,6 @@
 		<div class="tab-pane" id="immeubles" role="tabpanel"></div>
 		<div class="tab-pane" id="opportunites" role="tabpanel"></div>
 	</div>
-
-	{# 
-																		<h1>Contact</h1>
-																	
-																		<table class="table">
-																			<tbody>
-																				<tr>
-																					<th>IDContact</th>
-																					<td>{{ contact.IDContact }}</td>
-																				</tr>
-																				<tr>
-																					<th>DateModification</th>
-																					<td>{{ contact.DateModification ? contact.DateModification|date('Y-m-d H:i:s') : '' }}</td>
-																				</tr>
-																				<tr>
-																					<th>Civilite</th>
-																					<td>{{ contact.Civilite }}</td>
-																				</tr>
-																				<tr>
-																					<th>Nom</th>
-																					<td>{{ contact.Nom }}</td>
-																				</tr>
-																				<tr>
-																					<th>Prenom</th>
-																					<td>{{ contact.Prenom }}</td>
-																				</tr>
-																				<tr>
-																					<th>Societe</th>
-																					<td>{{ contact.Societe }}</td>
-																				</tr>
-																				<tr>
-																					<th>Correspondant</th>
-																					<td>{{ contact.Correspondant }}</td>
-																				</tr>
-																				<tr>
-																					<th>Adresse</th>
-																					<td>{{ contact.Adresse }}</td>
-																				</tr>
-																				<tr>
-																					<th>CP</th>
-																					<td>{{ contact.CP }}</td>
-																				</tr>
-																				<tr>
-																					<th>Ville</th>
-																					<td>{{ contact.Ville }}</td>
-																				</tr>
-																				<tr>
-																					<th>Pays</th>
-																					<td>{{ contact.Pays }}</td>
-																				</tr>
-																				<tr>
-																					<th>Telephone</th>
-																					<td>{{ contact.Telephone }}</td>
-																				</tr>
-																				<tr>
-																					<th>Fax</th>
-																					<td>{{ contact.Fax }}</td>
-																				</tr>
-																				<tr>
-																					<th>TelephonePortable</th>
-																					<td>{{ contact.TelephonePortable }}</td>
-																				</tr>
-																				<tr>
-																					<th>TelephoneDomicile</th>
-																					<td>{{ contact.TelephoneDomicile }}</td>
-																				</tr>
-																				<tr>
-																					<th>ListeRouge</th>
-																					<td>{{ contact.ListeRouge }}</td>
-																				</tr>
-																				<tr>
-																					<th>Email</th>
-																					<td>{{ contact.Email }}</td>
-																				</tr>
-																				<tr>
-																					<th>DateNaissance</th>
-																					<td>{{ contact.DateNaissance ? contact.DateNaissance|date('Y-m-d H:i:s') : '' }}</td>
-																				</tr>
-																				<tr>
-																					<th>Activite</th>
-																					<td>{{ contact.Activite }}</td>
-																				</tr>
-																				<tr>
-																					<th>RCS</th>
-																					<td>{{ contact.RCS }}</td>
-																				</tr>
-																				<tr>
-																					<th>AntiMailing</th>
-																					<td>{{ contact.AntiMailing }}</td>
-																				</tr>
-																				<tr>
-																					<th>NPAI</th>
-																					<td>{{ contact.NPAI }}</td>
-																				</tr>
-																				<tr>
-																					<th>Commentaire</th>
-																					<td>{{ contact.Commentaire }}</td>
-																				</tr>
-																				<tr>
-																					<th>Fonction</th>
-																					<td>{{ contact.Fonction }}</td>
-																				</tr>
-																				<tr>
-																					<th>DCD</th>
-																					<td>{{ contact.DCD }}</td>
-																				</tr>
-																			</tbody>
-																		</table> #}
 	<br>
 	<div class="float-end ">
 		<button class="btn btn-light " type="button">
@@ -319,14 +212,6 @@
 		<button class="btn btn-light " type="button">
 			<a class=" text-decoration-underline-remove" href="{{ path('app_contact_edit', {'IDContact': contact.IDContact}) }}">edit</a>
 		</button>
-		{# <button class="btn btn-light btn-lg" type="button">
-																																																		{{ include('immeuble/_delete_form.html.twig') }}
-																																																	</button> #}
 	</div>
 	<br>
-	{# <a href="{{ path('contacts') }}">back to list</a>
-															
-																<a href="{{ path('app_contact_edit', {'IDContact': contact.IDContact}) }}">edit</a>
-															
-																{{ include('contact/_delete_form.html.twig') }} #}
 {% endblock %}
