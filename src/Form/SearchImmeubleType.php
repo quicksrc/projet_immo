@@ -259,7 +259,8 @@ class SearchImmeubleType extends AbstractType
             ->add('rechercheImmeuble', SubmitType::class, [
                 'label' => 'Rechercher Par Immeuble',
                 'attr' => [
-                    'class' => 'btn btn-success mt-1 mb-1'
+                    'class' => 'btn btn-success mt-1 mb-1',
+                    'value' => 'buton1',
                 ]
             ])
             ->add('rechercheAdresse', SubmitType::class, [
