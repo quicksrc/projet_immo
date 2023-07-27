@@ -147,6 +147,11 @@ class Societe
         $this->activites = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->IDSociete;
+    }
+
     public function getIDSociete(): ?int
     {
         return $this->IDSociete;

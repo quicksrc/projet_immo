@@ -38,7 +38,7 @@ class Opportunite
     #[ORM\JoinColumn(name: "IDContact", referencedColumnName: "idcontact")]
     private ?Contact $IDContact = null;
 
-    public function getId(): ?int
+    public function getIDOpportunite(): ?int
     {
         return $this->IDOpportunite;
     }

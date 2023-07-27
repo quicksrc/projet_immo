@@ -42,22 +42,22 @@
 						<th data-sortable="true" data-field="ville">Ville</th>
 
 						{# <th data-field="date">DateModification</th>
-																																																																		<th data-field="civilite">Civilite</th>
-																																																																		<th data-field="societe">Societe</th>
-																																																																		<th data-field="correspondant">Correspondant</th>
-																																																																		<th data-field="pays">Pays</th>
-																																																																		<th data-field="fax">Fax</th>
-																																																																		<th data-field="telDom">TelephoneDomicile</th>
-																																																																		<th data-field="listeRouge">ListeRouge</th>
-																																																																		<th data-field="email">Email</th>
-																																																																		<th data-field="dateNaissance">DateNaissance</th>
-																																																																		<th data-field="activite">Activite</th>
-																																																																		<th data-field="rcs">RCS</th>
-																																																																		<th data-field="antiMailing">AntiMailing</th>
-																																																																		<th data-field="npai">NPAI</th>
-																																																																		<th data-field="com">Commentaire</th>
-																																																																		<th data-field="fnc">Fonction</th>
-																																																																		<th data-field="dcd">DCD</th> #}
+																																																																								<th data-field="civilite">Civilite</th>
+																																																																								<th data-field="societe">Societe</th>
+																																																																								<th data-field="correspondant">Correspondant</th>
+																																																																								<th data-field="pays">Pays</th>
+																																																																								<th data-field="fax">Fax</th>
+																																																																								<th data-field="telDom">TelephoneDomicile</th>
+																																																																								<th data-field="listeRouge">ListeRouge</th>
+																																																																								<th data-field="email">Email</th>
+																																																																								<th data-field="dateNaissance">DateNaissance</th>
+																																																																								<th data-field="activite">Activite</th>
+																																																																								<th data-field="rcs">RCS</th>
+																																																																								<th data-field="antiMailing">AntiMailing</th>
+																																																																								<th data-field="npai">NPAI</th>
+																																																																								<th data-field="com">Commentaire</th>
+																																																																								<th data-field="fnc">Fonction</th>
+																																																																								<th data-field="dcd">DCD</th> #}
 						<th data-field="action">actions</th>
 					</tr>
 				</thead>
@@ -73,32 +73,32 @@
 							<td>{{ contact.CP }}</td>
 							<td>{{ contact.Ville }}</td>
 							{# //<td>{{ contact.DateModification ? contact.DateModification|date('Y-m-d H:i:s') : '' }}</td>
-																																																																													<td>{{ contact.Civilite }}</td>
-																																																																													<td>{{ contact.Societe }}</td>
-																																																																													<td>{{ contact.Correspondant }}</td>
-																																																																													<td>{{ contact.Pays }}</td>
-																																																																													<td>{{ contact.Fax }}</td>
-																																																																													<td>{{ contact.TelephoneDomicile }}</td>
-																																																																													<td>{{ contact.ListeRouge }}</td>
-																																																																													<td>{{ contact.Email }}</td>
-																																																																													<td>{{ contact.DateNaissance ? contact.DateNaissance|date('Y-m-d H:i:s') : '' }}</td>
-																																																																													<td>{{ contact.Activite }}</td>
-																																																																													<td>{{ contact.RCS }}</td>
-																																																																													<td>{{ contact.AntiMailing }}</td>
-																																																																													<td>{{ contact.NPAI }}</td>
-																																																																													<td>{{ contact.Commentaire }}</td>
-																																																																													<td>{{ contact.Fonction }}</td>
-																																																																													<td>{{ contact.DCD }}</td> #}
+																																																																																				<td>{{ contact.Civilite }}</td>
+																																																																																				<td>{{ contact.Societe }}</td>
+																																																																																				<td>{{ contact.Correspondant }}</td>
+																																																																																				<td>{{ contact.Pays }}</td>
+																																																																																				<td>{{ contact.Fax }}</td>
+																																																																																				<td>{{ contact.TelephoneDomicile }}</td>
+																																																																																				<td>{{ contact.ListeRouge }}</td>
+																																																																																				<td>{{ contact.Email }}</td>
+																																																																																				<td>{{ contact.DateNaissance ? contact.DateNaissance|date('Y-m-d H:i:s') : '' }}</td>
+																																																																																				<td>{{ contact.Activite }}</td>
+																																																																																				<td>{{ contact.RCS }}</td>
+																																																																																				<td>{{ contact.AntiMailing }}</td>
+																																																																																				<td>{{ contact.NPAI }}</td>
+																																																																																				<td>{{ contact.Commentaire }}</td>
+																																																																																				<td>{{ contact.Fonction }}</td>
+																																																																																				<td>{{ contact.DCD }}</td> #}
 							<td>
-								<a class="text-decoration-underline-remove" href="{{ path('app_contact_show', {'IDContact': contact.IDContact}) }}">
+								<a class="text-decoration-underline-remove" href="{{ path('contact_show', {'IDContact': contact.IDContact}) }}">
 									<i class="bi bi-eye" style="margin-right:15px"></i>
 								</a>
 
-								<a class="text-decoration-underline-remove" href="{{ path('app_contact_edit', {'IDContact': contact.IDContact}) }}">
+								<a class="text-decoration-underline-remove" href="{{ path('contact_edit', {'IDContact': contact.IDContact}) }}">
 									<i class="bi bi-pen" style="margin-right:10px"></i>
 								</a>
 
-								<a class="text-decoration-underline-remove" href="{{ path('app_contact_delete', {'IDContact': contact.IDContact}) }}">
+								<a class="text-decoration-underline-remove" href="{{ path('contact_delete', {'IDContact': contact.IDContact}) }}">
 									<i class="bi bi-trash3"></i>
 								</a>
 							</td>

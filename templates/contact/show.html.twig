@@ -6,7 +6,7 @@
 {% block body %}
 
 	<h1 style="background-color: #83e8d4;float: right; border: 1px solid #dee2e6;
-														margin-top: -2px; border-radius: 5px;">{{ contact.Nom }}</h1>
+																margin-top: -2px; border-radius: 5px;">{{ contact.Nom }}</h1>
 
 	<ul class="nav nav-tabs" role="tablist">
 		<li class="nav-item" role="presentation">
@@ -210,7 +210,7 @@
 			<a class=" text-decoration-underline-remove" href="{{ path('contacts') }}">Retourner à la liste</a>
 		</button>
 		<button class="btn btn-light " type="button">
-			<a class=" text-decoration-underline-remove" href="{{ path('app_contact_edit', {'IDContact': contact.IDContact}) }}">edit</a>
+			<a class=" text-decoration-underline-remove" href="{{ path('contact_edit', {'IDContact': contact.IDContact}) }}">edit</a>
 		</button>
 	</div>
 	<br>

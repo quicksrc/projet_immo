@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Opportunite
+{% endblock %}
+
+{% block body %}
+	<h1>Opportunite</h1>
+
+	<table class="table">
+		<tbody>
+			<tr>
+				<th>IDOpportunite</th>
+				<td>{{ opportunite.IDOpportunite }}</td>
+			</tr>
+			<tr>
+				<th>Date</th>
+				<td>{{ opportunite.Date ? opportunite.Date|date('Y-m-d H:i:s') : '' }}</td>
+			</tr>
+			<tr>
+				<th>Commentaire</th>
+				<td>{{ opportunite.Commentaire }}</td>
+			</tr>
+			<tr>
+				<th>SocieteConcernee</th>
+				<td>{{ opportunite.SocieteConcernee }}</td>
+			</tr>
+			<tr>
+				<th>Gerance</th>
+				<td>{{ opportunite.Gerance }}</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<a href="{{ path('opportunites') }}">back to list</a>
+
+	<a href="{{ path('opportunite_edit', {'IDOpportunite': opportunite.IDOpportunite}) }}">edit</a>
+
+	{{ include('opportunite/_delete_form.html.twig') }}
+{% endblock %}

@@ -11,6 +11,7 @@ use App\Repository\AdresseRepository;
 use App\Repository\ContactRepository;
 use App\Repository\ImmeubleContactRepository;
 use App\Repository\ImmeubleRepository;
+use App\Repository\OpportuniteRepository;
 use App\Repository\RechercheImmeubleRepository;
 use App\Service\PdfService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -172,9 +173,26 @@ class ImmeubleController extends AbstractController
     }
 
     #[Route('/{IDImmeuble}', name: 'immeuble_show', methods: ['GET'])]
-    public function show(Immeuble $immeuble): Response
+    public function show(Immeuble $immeuble, AdresseRepository $adresseRepository, ImmeubleContactRepository $immeubleContactRepository, ActiviteRepository $activiteRepository, OpportuniteRepository $opportuniteRepository): Response
     {
+
+        $adresses = [];
+        $adresses = $adresseRepository->findBy(['IDImmeuble' => $immeuble->getIDImmeuble()]);
+
+        $contacts = [];
+        $contacts = $immeubleContactRepository->findBy(['IDImmeuble' => $immeuble->getIDImmeuble()]);
+
+        $activites = [];
+        $activites = $activiteRepository->findBy(['IDImmeuble' => $immeuble->getIDImmeuble()]);
+
+        $opportunites = [];
+        $opportunites = $opportuniteRepository->findBy(['IDImmeuble' => $immeuble->getIDImmeuble()]);
+
         return $this->render('immeuble/show.html.twig', [
+            'opportunites' => $opportunites,
+            'activites' => $activites,
+            'contacts' => $contacts,
+            'adresses' => $adresses,
             'immeuble' => $immeuble,
         ]);
     }

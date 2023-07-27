@@ -96,6 +96,11 @@ class Contact
         $this->activites = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->IDContact;
+    }
+
     public function getIDContact(): ?int
     {
         return $this->IDContact;

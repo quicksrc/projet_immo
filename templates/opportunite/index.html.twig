@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Opportunite index
+{% endblock %}
+
+{% block body %}
+	<h1>Opportunite index</h1>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>IDOpportunite</th>
+				<th>Date</th>
+				<th>Commentaire</th>
+				<th>SocieteConcernee</th>
+				<th>Gerance</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for opportunite in opportunites %}
+				<tr>
+					<td>{{ opportunite.IDOpportunite }}</td>
+					<td>{{ opportunite.Date ? opportunite.Date|date('Y-m-d H:i:s') : '' }}</td>
+					<td>{{ opportunite.Commentaire }}</td>
+					<td>{{ opportunite.SocieteConcernee }}</td>
+					<td>{{ opportunite.Gerance }}</td>
+					<td>
+						<a href="{{ path('opportunite_show', {'IDOpportunite': opportunite.IDOpportunite}) }}">show</a>
+						<a href="{{ path('opportunite_edit', {'IDOpportunite': opportunite.IDOpportunite}) }}">edit</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="6">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<a href="{{ path('app_opportunite_new') }}">Create new</a>
+{% endblock %}

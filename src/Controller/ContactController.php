@@ -22,7 +22,7 @@ class ContactController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_contact_new', methods: ['GET', 'POST'])]
+    #[Route('/new', name: 'contact_new', methods: ['GET', 'POST'])]
     public function new(Request $request, ContactRepository $contactRepository): Response
     {
         $contact = new Contact();
@@ -41,7 +41,7 @@ class ContactController extends AbstractController
         ]);
     }
 
-    #[Route('/{IDContact}', name: 'app_contact_show', methods: ['GET'])]
+    #[Route('/{IDContact}', name: 'contact_show', methods: ['GET'])]
     public function show(Contact $contact): Response
     {
         return $this->render('contact/show.html.twig', [
@@ -58,7 +58,7 @@ class ContactController extends AbstractController
         $pdf->showPdfFile($html);
     }
 
-    #[Route('/{IDContact}/edit', name: 'app_contact_edit', methods: ['GET', 'POST'])]
+    #[Route('/{IDContact}/edit', name: 'contact_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Contact $contact, ContactRepository $contactRepository): Response
     {
         $form = $this->createForm(ContactType::class, $contact);
@@ -76,7 +76,7 @@ class ContactController extends AbstractController
         ]);
     }
 
-    #[Route('/{IDContact}', name: 'app_contact_delete', methods: ['POST'])]
+    #[Route('/{IDContact}', name: 'contact_delete', methods: ['POST'])]
     public function delete(Request $request, Contact $contact, ContactRepository $contactRepository): Response
     {
         if ($this->isCsrfTokenValid('delete' . $contact->getIDContact(), $request->request->get('_token'))) {

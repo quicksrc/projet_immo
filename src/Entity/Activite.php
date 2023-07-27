@@ -44,7 +44,7 @@ class Activite
     #[ORM\JoinColumn(name: "IDSociete", referencedColumnName: "idsociete")]
     private ?Societe $IDSociete = null;
 
-    public function getId(): ?int
+    public function getIDActivite(): ?int
     {
         return $this->IDActivite;
     }

@@ -39,7 +39,7 @@ class Adresse
     #[ORM\JoinColumn(name: "IDImmeuble", referencedColumnName: "idimmeuble")]
     private ?Immeuble $IDImmeuble = null;
 
-    public function getId(): ?int
+    public function getIDAdresse(): ?int
     {
         return $this->IDAdresse;
     }

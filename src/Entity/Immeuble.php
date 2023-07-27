@@ -106,10 +106,16 @@ class Immeuble
     #[ORM\OneToMany(mappedBy: 'IDImmeuble', targetEntity: Adresse::class)]
     private Collection $adresses;
 
+
     public function __construct()
     {
         $this->activites = new ArrayCollection();
         $this->adresses = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->IDImmeuble;
     }
 
     public function getIDImmeuble(): ?int
