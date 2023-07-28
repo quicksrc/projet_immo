@@ -8,7 +8,8 @@
 
 	{{ include('opportunite/_form.html.twig', {'button_label': 'Update'}) }}
 
-	<a href="{{ path('opportunites') }}">back to list</a>
+	{# <a href="{{ path('opportunites') }}">back to list</a> #}
 
-	{{ include('opportunite/_delete_form.html.twig') }}
-{% endblock %}
+	{# {{ include('shared/_btnreturn.html.twig') }} #}
+
+{{ include('opportunite/_delete_form.html.twig') }}{% endblock %}

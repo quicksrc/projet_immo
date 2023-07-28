@@ -75,7 +75,7 @@ $form.find(':checkbox, :radio').prop('checked', false);
 			</script>
 		{% endblock %}
 	</head>
-	<body style="height:100vh;">
+	<body>
 		<header>
 			{% if app.user %}
 				<button type="button" class="btn btn-danger float-end m-3">
@@ -84,7 +84,7 @@ $form.find(':checkbox, :radio').prop('checked', false);
 				{% include "shared/_navbar.html.twig" %}
 			{% endif %}
 		</header>
-		<div class="container p-5 mw-100"> {% block body %}{% endblock %}
+		<div class="container p-5 mw-100 overflow-scroll"> {% block body %}{% endblock %}
 			</div>
 			<footer>
 				<div class="footer">

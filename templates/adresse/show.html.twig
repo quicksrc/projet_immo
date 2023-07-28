@@ -4,48 +4,118 @@
 {% endblock %}
 
 {% block body %}
-	<h1>Adresse</h1>
+	<div id="myTabContent" class="tab-content">
+		<div class="tab-pane fade active show" id="home" role="tabpanel">
+			<div class="accordion" id="accordionExample">
+				<div class="accordion-item">
+					<h1 class="accordion-header" id="headingOne">
+						<button class="accordion-button collapsed fw-bold fs-4" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+							Adresse
+						</button>
+					</h1>
+					<div id="collapseOne" style="padding:2%" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample" style="">
+						<div class="accordion-body">
+							<div class="form-group row">
+								<div class="col-md-4 mb-3">
+									<label for="readOnlyInput">ID Immeuble</label>
+									<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ adresse.IDImmeuble }}" readonly="">
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-md-4 mb-3">
+									<label for="readOnlyInput">N° Principal</label>
+									<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ adresse.NumPrincipal }}" readonly="">
+								</div>
 
-	<table class="table">
-		<tbody>
-			<tr>
-				<th>IDAdresse</th>
-				<td>{{ adresse.IDAdresse }}</td>
-			</tr>
-			<tr>
-				<th>NumPrincipal</th>
-				<td>{{ adresse.NumPrincipal }}</td>
-			</tr>
-			<tr>
-				<th>NumSecondaire</th>
-				<td>{{ adresse.NumSecondaire }}</td>
-			</tr>
-			<tr>
-				<th>TypeVoie</th>
-				<td>{{ adresse.TypeVoie }}</td>
-			</tr>
-			<tr>
-				<th>Adresse</th>
-				<td>{{ adresse.Adresse }}</td>
-			</tr>
-			<tr>
-				<th>CP</th>
-				<td>{{ adresse.CP }}</td>
-			</tr>
-			<tr>
-				<th>Ville</th>
-				<td>{{ adresse.Ville }}</td>
-			</tr>
-			<tr>
-				<th>AdressePrincipale</th>
-				<td>{{ adresse.AdressePrincipale }}</td>
-			</tr>
-		</tbody>
-	</table>
+								<div class="col-md-4 mb-3">
+									<label for="readOnlyInput">N° Secondaire</label>
+									<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ adresse.NumSecondaire }}" readonly="">
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-md-4 mb-3">
+									<label for="readOnlyInput">Adresse</label>
+									<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ adresse.Adresse }}" readonly="">
+								</div>
+								<div class="col-md-4 mb-3">
+									<label for="readOnlyInput">Adresse Principale</label>
+									{% if adresse.AdressePrincipale == 0 %}
+										<input class="form-control" id="readOnlyInput" type="text" placeholder="Non" readonly="">
+									{% elseif adresse.AdressePrincipale == 1 %}
+										<input class="form-control" id="readOnlyInput" type="text" placeholder="Oui" readonly="">
+									{% endif %}
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-md-4 mb-3">
+									<label for="readOnlyInput">Type Voie</label>
+									<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ adresse.TypeVoie }}" readonly="">
+								</div>
 
-	<a href="{{ path('adresses') }}">back to list</a>
+								<div class="col-md-4 mb-3">
+									<label for="readOnlyInput">CP</label>
+									<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ adresse.CP }}" readonly="">
+								</div>
+								<div class="col-md-4 mb-3">
+									<label for="readOnlyInput">Ville</label>
+									<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ adresse.Ville }}" readonly="">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	{# <table class="table">
+															<tbody>
+																<tr>
+																	<th>IDAdresse</th>
+																	<td>{{ adresse.IDAdresse }}</td>
+																</tr>
+																<tr>
+																	<th>NumPrincipal</th>
+																	<td>{{ adresse.NumPrincipal }}</td>
+																</tr>
+																<tr>
+																	<th>NumSecondaire</th>
+																	<td>{{ adresse.NumSecondaire }}</td>
+																</tr>
+																<tr>
+																	<th>TypeVoie</th>
+																	<td>{{ adresse.TypeVoie }}</td>
+																</tr>
+																<tr>
+																	<th>Adresse</th>
+																	<td>{{ adresse.Adresse }}</td>
+																</tr>
+																<tr>
+																	<th>CP</th>
+																	<td>{{ adresse.CP }}</td>
+																</tr>
+																<tr>
+																	<th>Ville</th>
+																	<td>{{ adresse.Ville }}</td>
+																</tr>
+																<tr>
+																	<th>AdressePrincipale</th>
+																	<td>{{ adresse.AdressePrincipale }}</td>
+																</tr>
+															</tbody>
+														</table> #}
+	<br>
 
-	<a href="{{ path('adresse_edit', {'IDAdresse': adresse.IDAdresse}) }}">edit</a>
+	<div class="float-end ">
+		<button class="btn btn-light " type="button">
+			<a class=" text-decoration-underline-remove" href="{{ path('adresses') }}">Retourner à la liste</a>
+		</button>
+		<button class="btn btn-light " type="button">
+			<a class=" text-decoration-underline-remove" href="{{ path('adresse_edit', {'IDAdresse': adresse.IDAdresse}) }}">edit</a>
+		</button>
+	</div>
+	{# <a href="{{ path('adresses') }}">back to list</a>
+										
+											<a href="{{ path('adresse_edit', {'IDAdresse': adresse.IDAdresse}) }}">edit</a> #}
 
 	{{ include('adresse/_delete_form.html.twig') }}
 {% endblock %}

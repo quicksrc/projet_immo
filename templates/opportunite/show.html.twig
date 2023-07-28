@@ -5,35 +5,65 @@
 
 {% block body %}
 	<h1>Opportunite</h1>
+	<div id="myTabContent" class="tab-content">
+		<div class="tab-pane fade active show" id="home" role="tabpanel">
+			<div class="accordion" id="accordionExample">
+				<div class="accordion-item">
+					<h2 class="accordion-header" id="headingOne">
+						<button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+							Situation
+						</button>
+					</h2>
+					<div id="collapseOne" style="padding:2%" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample" style="">
+						<div class="accordion-body">
+							<div class="form-group row">
+								<div class="col-md-4 mb-3">
+									<label for="readOnlyInput">ID opportunite</label>
+									<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ opportunite.IDopportunite }}" readonly="">
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-md-4 mb-3">
+									<label for="readOnlyInput">Date</label>
+									<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ opportunite.Date ? opportunite.Date|date('Y-m-d') : '' }}" readonly="">
+								</div>
 
-	<table class="table">
-		<tbody>
-			<tr>
-				<th>IDOpportunite</th>
-				<td>{{ opportunite.IDOpportunite }}</td>
-			</tr>
-			<tr>
-				<th>Date</th>
-				<td>{{ opportunite.Date ? opportunite.Date|date('Y-m-d H:i:s') : '' }}</td>
-			</tr>
-			<tr>
-				<th>Commentaire</th>
-				<td>{{ opportunite.Commentaire }}</td>
-			</tr>
-			<tr>
-				<th>SocieteConcernee</th>
-				<td>{{ opportunite.SocieteConcernee }}</td>
-			</tr>
-			<tr>
-				<th>Gerance</th>
-				<td>{{ opportunite.Gerance }}</td>
-			</tr>
-		</tbody>
-	</table>
+								<div class="col-md-4 mb-3">
+									<label for="readOnlyInput">Societe Concernee</label>
+									<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ opportunite.SocieteConcernee }}" readonly="">
+								</div>
+								<div class="col-md-4 mb-3">
+									<label for="flexCheckDefault">Gerance</label>
+									<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ opportunite.Gerance }}" readonly="">
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="accordion-item">
+						<h2 class="accordion-header" id="headingTwo">
+							<button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+								Commentaire
+							</button>
+						</h2>
+						<div id="collapseTwo" style="padding:2%" class="accordion-collapse collapse " aria-labelledby="headingTwo" data-bs-parent="#accordionExample" style="">
+							<div class="form-group row">
+								<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ opportunite.Commentaire }}" readonly="">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<br>
 
-	<a href="{{ path('opportunites') }}">back to list</a>
-
-	<a href="{{ path('opportunite_edit', {'IDOpportunite': opportunite.IDOpportunite}) }}">edit</a>
-
+	<div class="float-end ">
+		<button class="btn btn-light " type="button">
+			<a class=" text-decoration-underline-remove" href="{{ path('opportunites') }}">Retourner à la liste</a>
+		</button>
+		<button class="btn btn-light " type="button">
+			<a class=" text-decoration-underline-remove" href="{{ path('opportunite_edit', {'IDOpportunite': opportunite.IDOpportunite}) }}">edit</a>
+		</button>
+	</div>
 	{{ include('opportunite/_delete_form.html.twig') }}
 {% endblock %}
