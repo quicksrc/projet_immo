@@ -1,4 +1,57 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+{# {{ form_widget(form) }} #}
+<div id="myTabContent" class="tab-content">
+	<div class="tab-pane fade active show" id="home" role="tabpanel">
+		<div class="accordion" id="accordionExample">
+			<div class="accordion-item">
+				<h2 class="accordion-header" id="headingOne">
+					<button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+						Situation
+					</button>
+				</h2>
+				<div id="collapseOne" style="padding:2%" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample" style="">
+					<div class="accordion-body">
+						<div class="form-group row">
+							<div class="col-md-4 mb-3">
+								<label for="readOnlyInput">Date Activite</label>
+								{{ form_widget(form.DateActivite) }}
+							</div>
+						</div>
+						<div class="form-group row">
+							<div class="col-md-4 mb-3">
+								<label for="readOnlyInput">Theme</label>
+								{{ form_widget(form.Theme) }}
+							</div>
+
+							<div class="col-md-4 mb-3">
+								<label for="readOnlyInput">Action</label>
+								{{ form_widget(form.Action) }}
+							</div>
+						</div>
+
+					</div>
+				</div>
+				<div class="accordion-item">
+					<h2 class="accordion-header" id="headingTwo">
+						<button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+							Commentaire
+						</button>
+					</h2>
+					<div id="collapseTwo" style="padding:2%" class="accordion-collapse collapse show" aria-labelledby="headingTwo" data-bs-parent="#accordionExample" style="">
+						<div class="form-group row">
+							{{ form_widget(form.Commentaire) }}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<br>
+<div class="float-end ">
+	<button class="btn btn-light " type="button">
+		<a class=" text-decoration-underline-remove" href="{{ path('activites') }}">Retourner à la liste</a>
+	</button>
+	<button class="btn btn-light">{{ button_label|default('Save') }}</button>
+</div>
 {{ form_end(form) }}

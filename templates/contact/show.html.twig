@@ -123,7 +123,7 @@
 								<div class="form-group row">
 									<div class="col-md-6 mb-3">
 										<label for="readOnlyInput">Date naissance</label>
-										<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ contact.DateNaissance ? contact.DateNaissance|date('Y-m-d H:i:s') : '' }}" readonly="">
+										<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ contact.DateNaissance ? contact.DateNaissance|date('Y-m-d') : '' }}" readonly="">
 									</div>
 								</div>
 							</form>

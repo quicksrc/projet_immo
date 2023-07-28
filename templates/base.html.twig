@@ -44,7 +44,7 @@ $('.js-datepicker').datepicker({format: 'yyyy-mm-dd 00:00:00'});
 			</script>
 		{% endblock %}
 	</head>
-	<body style="height:100vh;">
+	<body>
 		<header>
 			{% if app.user %}
 				<button type="button" class="btn btn-danger float-end m-3">
@@ -53,7 +53,7 @@ $('.js-datepicker').datepicker({format: 'yyyy-mm-dd 00:00:00'});
 				{% include "shared/_navbar.html.twig" %}
 			{% endif %}
 		</header>
-		<div class="container p-5 mw-100"> {% block body %}{% endblock %}
+		<div class="container p-5 mw-100 overflow-scroll"> {% block body %}{% endblock %}
 			</div>
 			<footer>
 				<div class="footer">

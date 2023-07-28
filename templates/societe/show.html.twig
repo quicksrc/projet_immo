@@ -61,7 +61,7 @@
 										<label for="readOnlyInput">
 											Edition
 										</label>
-										<input class="form-control " id="readOnlyInput" type="text" placeholder="{{ societe.DateEditionJournal ? societe.DateEditionJournal|date('Y-m-d H:i:s') : '' }}" readonly="">
+										<input class="form-control " id="readOnlyInput" type="text" placeholder="{{ societe.DateEditionJournal ? societe.DateEditionJournal|date('Y-m-d') : '' }}" readonly="">
 									</div>
 								</div>
 							</form>
@@ -151,7 +151,7 @@
 							<div class="form-group row">
 								<div class="col-md-6 mb-3">
 									<label for="readOnlyInput">Date Naissance</label>
-									<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ societe.VendeurDateNaissance ? societe.VendeurDateNaissance|date('Y-m-d H:i:s') : '' }}" readonly="">
+									<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ societe.VendeurDateNaissance ? societe.VendeurDateNaissance|date('Y-m-d') : '' }}" readonly="">
 								</div>
 							</div>
 							<div class="form-group row">
@@ -172,7 +172,7 @@
 								<div class="col-md-4 mb-3">
 									<label for="readOnlyInput">
 										Date acte cession</label>
-									<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ societe.DateActeCession ? societe.DateActeCession|date('Y-m-d H:i:s') : '' }}" readonly="">
+									<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ societe.DateActeCession ? societe.DateActeCession|date('Y-m-d') : '' }}" readonly="">
 								</div>
 
 								<div class="col-md-4 mb-3">
@@ -282,7 +282,7 @@
 							<div class="col-md-4 mb-3">
 								<label for="readOnlyInput">
 									Date naissance</label>
-								<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ societe.AcheteurDateNaissance ? societe.AcheteurDateNaissance|date('Y-m-d H:i:s') : '' }}" readonly="">
+								<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ societe.AcheteurDateNaissance ? societe.AcheteurDateNaissance|date('Y-m-d') : '' }}" readonly="">
 							</div>
 						</div>
 

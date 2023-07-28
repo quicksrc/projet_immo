@@ -1,47 +1,48 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Adresse index{% endblock %}
+{% block title %}Adresse index
+{% endblock %}
 
 {% block body %}
-    <h1>Adresse index</h1>
+	<h1>Adresse index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>IDAdresse</th>
-                <th>NumPrincipal</th>
-                <th>NumSecondaire</th>
-                <th>TypeVoie</th>
-                <th>Adresse</th>
-                <th>CP</th>
-                <th>Ville</th>
-                <th>AdressePrincipale</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for adresse in adresses %}
-            <tr>
-                <td>{{ adresse.IDAdresse }}</td>
-                <td>{{ adresse.NumPrincipal }}</td>
-                <td>{{ adresse.NumSecondaire }}</td>
-                <td>{{ adresse.TypeVoie }}</td>
-                <td>{{ adresse.Adresse }}</td>
-                <td>{{ adresse.CP }}</td>
-                <td>{{ adresse.Ville }}</td>
-                <td>{{ adresse.AdressePrincipale }}</td>
-                <td>
-                    <a href="{{ path('app_adresse_show', {'IDAdresse': adresse.IDAdresse}) }}">show</a>
-                    <a href="{{ path('app_adresse_edit', {'IDAdresse': adresse.IDAdresse}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="9">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>IDAdresse</th>
+				<th>NumPrincipal</th>
+				<th>NumSecondaire</th>
+				<th>TypeVoie</th>
+				<th>Adresse</th>
+				<th>CP</th>
+				<th>Ville</th>
+				<th>AdressePrincipale</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for adresse in adresses %}
+				<tr>
+					<td>{{ adresse.IDAdresse }}</td>
+					<td>{{ adresse.NumPrincipal }}</td>
+					<td>{{ adresse.NumSecondaire }}</td>
+					<td>{{ adresse.TypeVoie }}</td>
+					<td>{{ adresse.Adresse }}</td>
+					<td>{{ adresse.CP }}</td>
+					<td>{{ adresse.Ville }}</td>
+					<td>{{ adresse.AdressePrincipale }}</td>
+					<td>
+						<a href="{{ path('adresse_show', {'IDAdresse': adresse.IDAdresse}) }}">show</a>
+						<a href="{{ path('adresse_edit', {'IDAdresse': adresse.IDAdresse}) }}">edit</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="9">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
 
-    <a href="{{ path('app_adresse_new') }}">Create new</a>
+	<a href="{{ path('adresse_new') }}">Create new</a>
 {% endblock %}
