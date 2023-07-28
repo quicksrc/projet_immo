@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Activite;
+use App\Entity\RechercheContact;
 use App\Entity\RechercheImmeuble;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -59,6 +60,34 @@ class ActiviteRepository extends ServiceEntityRepository
             $qb
                 ->andWhere('a.Theme LIKE :theme')
                 ->setParameter('theme', $rechercheImmeuble->getTheme());
+        }
+        return $qb->getQuery()->getResult();
+    }
+
+    /**
+     * @param RechercheContact $rechercheContact
+     */
+    public function findContactByActivity(RechercheContact $rechercheContact)
+    {
+        $qb = $this->createQueryBuilder('a')
+            ->addSelect('c')
+            ->leftJoin('a.IDContact', 'c')
+            ->where('c.IDContact IS NOT NULL');
+
+        if (!empty($rechercheContact->getDateActivite())) {
+            $qb
+                ->andWhere('a.DateActivite LIKE :dateActivite')
+                ->setParameter('dateActivite', $rechercheContact->getDateActivite()->format('Y-m-d 00:00:00'));
+        }
+        if (!empty($rechercheContact->getThemeActivite())) {
+            $qb
+                ->andWhere('a.Theme LIKE :themeActivite')
+                ->setParameter('themeActivite', $rechercheContact->getThemeActivite());
+        }
+        if (!empty($rechercheContact->getCommentaireActivite())) {
+            $qb
+                ->andWhere('a.Commentaire LIKE :commentaireActivite')
+                ->setParameter('commentaireActivite', $rechercheContact->getCommentaireActivite());
         }
         return $qb->getQuery()->getResult();
     }

@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\ImmeubleContact;
+use App\Entity\RechercheContact;
 use App\Entity\RechercheImmeuble;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\DBAL\Query\QueryBuilder;
@@ -78,6 +79,42 @@ class ImmeubleContactRepository extends ServiceEntityRepository
             $qb
                 ->andWhere('c.Civilite LIKE :civiliteContact')
                 ->setParameter('civiliteContact', $rechercheImmeuble->getCiviliteContact());
+        }
+        // dd($qb);
+        return $qb->getQuery()->getResult();
+    }
+
+    /**
+     * @return ImmeubleContact[] Returns an array of ImmeubleContact objects
+     */
+    public function findContactByImmeuble(RechercheContact $rechercheContact): array
+    {
+        $qb = $this->createQueryBuilder('ic')
+            ->addSelect('c')
+            ->leftJoin('ic.IDContact', 'c')
+            ->where('c.IDContact IS NOT NULL')
+            ->addSelect('i')
+            ->leftJoin('ic.IDImmeuble', 'i');
+
+        if (!empty($rechercheContact->getRefProprioImmeuble())) {
+            $qb
+                ->andWhere('i.ReferenceProprio LIKE :refProprioImmeuble')
+                ->setParameter('refProprioImmeuble', $rechercheContact->getRefProprioImmeuble());
+        }
+        if (!empty($rechercheContact->getOrigineContactImmeuble())) {
+            $qb
+                ->andWhere('i.OrigineContact LIKE :origineContactImmeuble')
+                ->setParameter('origineContactImmeuble', $rechercheContact->getOrigineContactImmeuble());
+        }
+        if (!empty($rechercheContact->getNcpcfImmeuble())) {
+            $qb
+                ->andWhere('i.NCPCF LIKE :ncpcfImmeuble')
+                ->setParameter('ncpcfImmeuble', $rechercheContact->getNcpcfImmeuble());
+        }
+        if (!empty($rechercheContact->getVisiteImmeuble())) {
+            $qb
+                ->andWhere('i.Visite LIKE :visiteImmeuble')
+                ->setParameter('visiteImmeuble', $rechercheContact->getVisiteImmeuble());
         }
         // dd($qb);
         return $qb->getQuery()->getResult();

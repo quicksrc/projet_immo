@@ -1,0 +1,230 @@
+<div class="flex justify-content-center  m-auto">
+	{% include 'shared/_btnreturn.html.twig' %}
+	<h1>Recherche Contact</h1>
+	<div class="row">
+		<div class="col-2 mt-4">
+			<div class="list-group" id="list-tab" role="tablist">
+				<a class="list-group-item list-group-item-action active show" id="list-contact-list" data-toggle="list" href="#list-contact" role="tab" aria-controls="contact">Contact</a>
+				<a class="list-group-item list-group-item-action" id="list-activite-list" data-toggle="list" href="#list-activite" role="tab" aria-controls="activite">Activite</a>
+				<a class="list-group-item list-group-item-action" id="list-immeuble-list" data-toggle="list" href="#list-immeuble" role="tab" aria-controls="immeuble">Immeuble</a>
+				<a class="list-group-item list-group-item-action" id="list-adresse-list" data-toggle="list" href="#list-adresse" role="tab" aria-controls="adresse">Adresse</a>
+				<a class="list-group-item list-group-item-action" id="list-societe-list" data-toggle="list" href="#list-societe" role="tab" aria-controls="societe">Société</a>
+			</div>
+		</div>
+		<div class="col-9 card pb-2">
+			<div class="tab-content" id="nav-tabContent">
+				<div class="tab-pane fade active show" id="list-contact" role="tabpanel">
+					{{ form_start(form) }}
+					<div class="row">
+						<div class="row align-items-end">
+							<div class="col-4">
+								{{ form_label(form.civilite) }}
+								{{ form_widget(form.civilite) }}
+							</div>
+							<div class="col-4">
+								{{ form_label(form.nom) }}
+								{{ form_widget(form.nom) }}
+							</div>
+							<div class="col-4">
+								{{ form_label(form.prenom) }}
+								{{ form_widget(form.prenom) }}
+							</div>
+						</div>
+						<div class="row">
+							<div class="col">
+								{{ form_label(form.adresseContact) }}
+								{{ form_widget(form.adresseContact) }}
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-6">
+								{{ form_label(form.cpContact) }}
+								{{ form_widget(form.cpContact) }}
+							</div>
+							<div class="col-6">
+								{{ form_label(form.villeContact) }}
+								{{ form_widget(form.villeContact) }}
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-6">
+								{{ form_label(form.fonction) }}
+								{{ form_widget(form.fonction) }}
+							</div>
+							<div class="col-6">
+								{{ form_label(form.dateNaissance) }}
+								{{ form_widget(form.dateNaissance) }}
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-6">
+								{{ form_label(form.correspondant) }}
+								{{ form_widget(form.correspondant) }}
+							</div>
+							<div class="col-6">
+								{{ form_label(form.antiMailing) }}
+								{{ form_widget(form.antiMailing) }}
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-6">
+								{{ form_label(form.societeContact) }}
+								{{ form_widget(form.societeContact) }}
+							</div>
+							<div class="col-6">
+								{{ form_label(form.npai) }}
+								{{ form_widget(form.npai) }}
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-6">
+								{{ form_label(form.activiteContact) }}
+								{{ form_widget(form.activiteContact) }}
+							</div>
+							<div class="col-6">
+								{{ form_label(form.rcs) }}
+								{{ form_widget(form.rcs) }}
+							</div>
+						</div>
+					</div>
+					<div class="col">
+						<div class="form-group d-grid gap-2 d-md-flex justify-content-md-end">
+							{{ form_widget(form.rechercheContact) }}
+						</div>
+					</div>
+				</div>
+				<div class="tab-pane fade" id="list-activite" role="tabpanel" aria-labelledby="list-activite-list">
+					<div class="row">
+						<div class="row align-items-end">
+							<div class="col-6 justify-content-center">
+								{{ form_label(form.dateActivite) }}
+								{{ form_widget(form.dateActivite) }}
+							</div>
+						</div>
+						<div class="row align-items-end">
+							<div class="col-6">
+								{{ form_label(form.themeActivite) }}
+								{{ form_widget(form.themeActivite) }}
+							</div>
+							<div class="col-6">
+								{{ form_label(form.actionActivite) }}
+								{{ form_widget(form.actionActivite) }}
+							</div>
+						</div>
+						<div class="row align-items-end">
+							<div class="col">
+								{{ form_label(form.commentaireActivite) }}
+								{{ form_widget(form.commentaireActivite) }}
+							</div>
+						</div>
+					</div>
+					<div class="col">
+						<div class="form-group d-grid gap-2 d-md-flex justify-content-md-end">
+							{{ form_widget(form.rechercheActivite) }}
+						</div>
+					</div>
+				</div>
+				<div class="tab-pane fade" id="list-immeuble" role="tabpanel" aria-labelledby="list-immeuble-list">
+					<div class="row">
+						<div class="row form-group align-items-end">
+							<div class="col-6 ">
+								{{ form_label(form.refProprioImmeuble) }}
+								{{ form_widget(form.refProprioImmeuble) }}
+							</div>
+							<div class="col-6">
+								{{ form_label(form.origineContactImmeuble) }}
+								{{ form_widget(form.origineContactImmeuble) }}
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-6">
+								{{ form_label(form.ncpcfImmeuble) }}
+								{{ form_widget(form.ncpcfImmeuble) }}
+							</div>
+							<div class="col-6">
+								{{ form_label(form.visiteImmeuble) }}
+								{{ form_widget(form.visiteImmeuble) }}
+							</div>
+						</div>
+					</div>
+					<div class="col">
+						<div class="form-group d-grid gap-2 d-md-flex justify-content-md-end">
+							{{ form_widget(form.rechercheImmeuble) }}
+						</div>
+					</div>
+				</div>
+				{# <div class="tab-pane fade" id="list-adresse" role="tabpanel" aria-labelledby="list-adresse-list">
+																																																																																	<div class="row">
+																																																																																		<div class="row form-group align-items-end mt-4">
+																																																																																			<div class="col-6">
+																																																																																				{{ form_label(form.numPrincipal) }}
+																																																																																				{{ form_widget(form.numPrincipal) }}
+																																																																																			</div>
+																																																																																			<div class="col-6">
+																																																																																				{{ form_label(form.typeVoie) }}
+																																																																																				{{ form_widget(form.typeVoie) }}
+																																																																																			</div>
+																																																																																		</div>
+																																																																																		<div class="row">
+																																																																																			<div class="col-6">
+																																																																																				{{ form_label(form.nomRue) }}
+																																																																																				{{ form_widget(form.nomRue) }}
+																																																																																			</div>
+																																																																																			<div class="col-6"></div>
+																																																																																		</div>
+																																																																																		<div class="row">
+																																																																																			<div class="col-6">
+																																																																																				{{ form_label(form.cp) }}
+																																																																																				{{ form_widget(form.cp) }}
+																																																																																			</div>
+																																																																																			<div class="col-6">
+																																																																																				{{ form_label(form.ville) }}
+																																																																																				{{ form_widget(form.ville) }}
+																																																																																			</div>
+																																																																																		</div>
+																																																																																	</div>
+																																																																																	<div class="col">
+																																																																																		<div class="form-group d-grid gap-2 d-md-flex justify-content-md-end">
+																																																																																			{{ form_widget(form.rechercheAdresse) }}
+																																																																																		</div>
+																																																																																	</div>
+																																																																																</div> #}
+				{# <div class="tab-pane fade" id="list-societe" role="tabpanel" aria-labelledby="list-societe-list"> <div class="row">
+																																																																														<div class="row form-group align-items-end mt-4">
+																																																																															<div class="col-6">
+																																																																																{{ form_label(form.numPrincipal) }}
+																																																																																{{ form_widget(form.numPrincipal) }}
+																																																																															</div>
+																																																																															<div class="col-6">
+																																																																																{{ form_label(form.typeVoie) }}
+																																																																																{{ form_widget(form.typeVoie) }}
+																																																																															</div>
+																																																																														</div>
+																																																																														<div class="row">
+																																																																															<div class="col-6">
+																																																																																{{ form_label(form.nomRue) }}
+																																																																																{{ form_widget(form.nomRue) }}
+																																																																															</div>
+																																																																															<div class="col-6"></div>
+																																																																														</div>
+																																																																														<div class="row">
+																																																																															<div class="col-6">
+																																																																																{{ form_label(form.cp) }}
+																																																																																{{ form_widget(form.cp) }}
+																																																																															</div>
+																																																																															<div class="col-6">
+																																																																																{{ form_label(form.ville) }}
+																																																																																{{ form_widget(form.ville) }}
+																																																																															</div>
+																																																																														</div>
+																																																																													</div>
+																																																																													<div class="col">
+																																																																														<div class="form-group d-grid gap-2 d-md-flex justify-content-md-end">
+																																																																															{{ form_widget(form.rechercheAdresse) }}
+																																																																														</div>
+																																																																													</div> #}
+				{{ form_end(form) }}
+			</div>
+		</div>
+	</div>
+</div></div>

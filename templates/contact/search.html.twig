@@ -1,0 +1,109 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion des Immeubles | Recherche Contact
+{% endblock %}
+
+{% block body %}
+	{# {{ dump(queryRefProprio) }} #}
+	<div class="row">
+		{% include 'shared/_formsearchContact.html.twig' with {form: form} %}
+	</div>
+	<div class="row mt-5">
+		<table id="tableContact" data-side-pagination="server" data-pagination="true" data-toolbar="#toolbarContact" data-page-size="25" data-search="true" data-show-export="true" data-toggle="table" data-click-to-select="true" data-search-align="left" data-show-columns="true" data-show-print="true" class="table table-list table-bordered table-striped m-auto">
+			<thead>
+				<tr>
+					<th data-sortable="true" data-field="id">ID Contact</th>
+					<th data-sortable="true" data-field="nom">Nom</th>
+					<th data-sortable="true" data-field="prenom">Prenom</th>
+					<th data-sortable="true" data-field="tel">Telephone</th>
+					<th data-sortable="true" data-field="telPor">Telephone Portable</th>
+					<th data-sortable="true" data-field="adresse">Adresse</th>
+					<th data-sortable="true" data-field="cp">CP</th>
+					<th data-sortable="true" data-field="ville">Ville</th>
+					<th data-field="dcd">DCD</th>
+					<th data-field="action">actions</th>
+				</tr>
+			</thead>
+			<tbody class="table-group-divider">
+				{% for contact in contacts %}
+					<tr>
+						<td>{{ contact.IDContact }}</td>
+						<td>{{ contact.Nom }}</td>
+						<td>{{ contact.Prenom }}</td>
+						<td>{{ contact.Telephone }}</td>
+						<td>{{ contact.TelephonePortable }}</td>
+						<td>{{ contact.Adresse }}</td>
+						<td>{{ contact.CP }}</td>
+						<td>{{ contact.Ville }}</td>
+						<td>{{ contact.DCD }}</td>
+						<td>
+							<a class="text-decoration-underline-remove" href="{{ path('contact_show', {'IDContact': contact.IDContact}) }}">
+								<i class="bi bi-eye" style="margin-right:15px"></i>
+							</a>
+
+							<a class="text-decoration-underline-remove" href="{{ path('contact_edit', {'IDContact': contact.IDContact}) }}">
+								<i class="bi bi-pen" style="margin-right:10px"></i>
+							</a>
+
+							<a class="text-decoration-underline-remove" href="{{ path('contact_delete', {'IDContact': contact.IDContact}) }}">
+								<i class="bi bi-trash3"></i>
+							</a>
+						</td>
+					</tr>
+				{% endfor %}
+
+				{% for activite in activites %}
+					<tr>
+						<td>{{ activite.IDContact.IDContact }}</td>
+						<td>{{ activite.IDContact.Nom }}</td>
+						<td>{{ activite.IDContact.Prenom }}</td>
+						<td>{{ activite.IDContact.Telephone }}</td>
+						<td>{{ activite.IDContact.TelephonePortable }}</td>
+						<td>{{ activite.IDContact.Adresse }}</td>
+						<td>{{ activite.IDContact.CP }}</td>
+						<td>{{ activite.IDContact.Ville }}</td>
+						<td>{{ activite.IDContact.DCD }}</td>
+						<td>
+							<a class="text-decoration-underline-remove" href="{{ path('activite_show', {'IDActivite': activite.IDActivite}) }}">
+								<i class="bi bi-eye" style="margin-right:15px"></i>
+							</a>
+
+							<a class="text-decoration-underline-remove" href="{{ path('activite_edit', {'IDActivite': activite.IDActivite}) }}">
+								<i class="bi bi-pen" style="margin-right:10px"></i>
+							</a>
+
+							<a class="text-decoration-underline-remove" href="{{ path('activite_delete', {'IDActivite': activite.IDActivite}) }}">
+								<i class="bi bi-trash3"></i>
+							</a>
+						</td>
+					</tr>
+				{% endfor %}
+
+				{% for immeubleContact in immeublesContacts %}
+					<tr>
+						<td>{{ immeubleContact.IDContact.IDContact }}</td>
+						<td>{{ immeubleContact.IDContact.Nom }}</td>
+						<td>{{ immeubleContact.IDContact.Prenom }}</td>
+						<td>{{ immeubleContact.IDContact.Telephone }}</td>
+						<td>{{ immeubleContact.IDContact.TelephonePortable }}</td>
+						<td>{{ immeubleContact.IDContact.Adresse }}</td>
+						<td>{{ immeubleContact.IDContact.CP }}</td>
+						<td>{{ immeubleContact.IDContact.Ville }}</td>
+						<td>{{ immeubleContact.IDContact.DCD }}</td>
+						<td>
+							<a class="text-decoration-underline-remove" href="{{ path('immeuble_show', {'IDImmeuble': immeubleContact.IDImmeuble.IDImmeuble}) }}">
+								<i class="bi bi-eye" style="margin-right:15px"></i>
+							</a>
+							<a class="text-decoration-underline-remove" href="{{ path('immeuble_edit', {'IDImmeuble': immeubleContact.IDImmeuble.IDImmeuble}) }}">
+								<i class="bi bi-pen" style="margin-right:10px"></i>
+							</a>
+							<a class="text-decoration-underline-remove" href="{{ path('immeuble_delete', {'IDImmeuble': immeubleContact.IDImmeuble.IDImmeuble}) }}">
+								<i class="bi bi-trash3"></i>
+							</a>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+{% endblock %}

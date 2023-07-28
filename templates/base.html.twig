@@ -39,38 +39,7 @@
 			<script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.10.0/js/bootstrap-datepicker.min.js' integrity='sha512-LsnSViqQyaXpD4mBBdRYeP6sRwJiJveh2ZIbW41EBrNmKxgr/LFZIiWT6yr+nycvhvauz8c2nYMhrP80YhG7Cw==' crossorigin='anonymous'></script>
 			<script>
 				$(document).ready(function () {
-$('.js-datepicker').datepicker({format: 'mm-dd-yyyy 00:00:00'});
-});
-
-$('#list-tab').on('change', function (e) {
-console.log(e);
-var listTab = e.target.value;
-
-switch (listTab) {
-case "adress": clearForm($('#list-immeuble'));
-clearForm($('#list-contact'));
-clearForm($('#list-activite'));
-
-break;
-case "contact": clearForm($('#list-immeuble'));
-clearForm($('#list-adresse'));
-clearForm($('#list-activite'));
-
-break;
-case "activite": clearForm($('#list-immeuble'));
-clearForm($('#list-adresse'));
-clearForm($('#list-contact'));
-
-break;
-default: clearForm($('#list-activite'));
-clearForm($('#list-adresse'));
-clearForm($('#list-contact'));
-}
-
-function clearForm($form) {
-$form.find(':input').val('');
-$form.find(':checkbox, :radio').prop('checked', false);
-}
+$('.js-datepicker').datepicker({format: 'yyyy-mm-dd 00:00:00'});
 });
 			</script>
 		{% endblock %}

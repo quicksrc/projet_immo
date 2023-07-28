@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Contact;
+use App\Entity\RechercheContact;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -37,6 +38,88 @@ class ContactRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    /**
+     * @param RechercheContact $rechercheContact
+     */
+    public function findContactBySearch(RechercheContact $rechercheContact)
+    {
+        $qb = $this->createQueryBuilder('c')
+            ->where('c.IDContact IS NOT NULL');
+
+        if (!empty($rechercheContact->getCivilite())) {
+            $qb
+                ->andWhere('c.Civilite LIKE :civilite')
+                ->setParameter('civilite', $rechercheContact->getCivilite());
+        }
+        if (!empty($rechercheContact->getNom())) {
+            $qb
+                ->andWhere('c.Nom LIKE :nom')
+                ->setParameter('nom', $rechercheContact->getNom());
+        }
+        if (!empty($rechercheContact->getPrenom())) {
+            $qb
+                ->andWhere('c.Prenom LIKE :prenom')
+                ->setParameter('prenom', $rechercheContact->getPrenom());
+        }
+        if (!empty($rechercheContact->getAdresseContact())) {
+            $qb
+                ->andWhere('c.Adresse LIKE :adresseContact')
+                ->setParameter('adresseContact', $rechercheContact->getAdresseContact());
+        }
+        if (!empty($rechercheContact->getCpContact())) {
+            $qb
+                ->andWhere('c.CP LIKE :cpContact')
+                ->setParameter('cpContact', $rechercheContact->getCpContact());
+        }
+        if (!empty($rechercheContact->getVilleContact())) {
+            $qb
+                ->andWhere('c.Ville LIKE :villeContact')
+                ->setParameter('villeContact', $rechercheContact->getVilleContact());
+        }
+        if (!empty($rechercheContact->getFonction())) {
+            $qb
+                ->andWhere('c.Fonction LIKE :fonction')
+                ->setParameter('fonction', $rechercheContact->getFonction());
+        }
+        if (!empty($rechercheContact->getDateNaissance())) {
+            $qb
+                ->andWhere('c.DateNaissance LIKE :dateNaissance')
+                ->setParameter('dateNaissance', $rechercheContact->getDateNaissance()->format('Y-m-d 00:00:00'));
+        }
+        if (!empty($rechercheContact->getCorrespondant())) {
+            $qb
+                ->andWhere('c.Correspondant LIKE :correspondant')
+                ->setParameter('correspondant', $rechercheContact->getCorrespondant());
+        }
+        if (!empty($rechercheContact->getAntiMailing())) {
+            $qb
+                ->andWhere('c.AntiMailing LIKE :antiMailing')
+                ->setParameter('antiMailing', $rechercheContact->getAntiMailing());
+        }
+        if (!empty($rechercheContact->getSocieteContact())) {
+            $qb
+                ->andWhere('c.Societe LIKE :societeContact')
+                ->setParameter('societeContact', $rechercheContact->getSocieteContact());
+        }
+        if (!empty($rechercheContact->getNpai())) {
+            $qb
+                ->andWhere('c.NPAI LIKE :npai')
+                ->setParameter('npai', $rechercheContact->getNpai());
+        }
+        if (!empty($rechercheContact->getActiviteContact())) {
+            $qb
+                ->andWhere('c.activites LIKE :activiteContact')
+                ->setParameter('activiteContact', $rechercheContact->getActiviteContact());
+        }
+        if (!empty($rechercheContact->getRcs())) {
+            $qb
+                ->andWhere('c.RCS LIKE :rcs')
+                ->setParameter('rcs', $rechercheContact->getRcs());
+        }
+        // dd($qb);
+        return $qb->getQuery()->getResult();
     }
 
     //    /**
