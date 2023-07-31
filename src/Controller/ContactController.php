@@ -11,6 +11,7 @@ use App\Repository\ContactRepository;
 use App\Repository\ImmeubleContactRepository;
 use App\Repository\ImmeubleRepository;
 use App\Repository\RechercheContactRepository;
+use App\Repository\SocieteContactRepository;
 use App\Service\PdfService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -28,7 +29,7 @@ class ContactController extends AbstractController
         ]);
     }
     #[Route('/search', name: 'contact_search')]
-    public function search(ContactRepository $contactRepository, ActiviteRepository $activiteRepository, RechercheContactRepository $rechercheContactRepository, ImmeubleContactRepository $immeubleContactRepository, ImmeubleRepository $immeubleRepository, Request $request): Response
+    public function search(ContactRepository $contactRepository, ActiviteRepository $activiteRepository, RechercheContactRepository $rechercheContactRepository, ImmeubleContactRepository $immeubleContactRepository, SocieteContactRepository $societeContactRepository, ImmeubleRepository $immeubleRepository, Request $request): Response
     {
         // Recherche avancée
         $rechercheContact = new RechercheContact();
@@ -59,6 +60,7 @@ class ContactController extends AbstractController
             $keyValueContact = [];
             $keyValueAdress = [];
             $keyValueActivity = [];
+            $keyValueSociete = [];
 
             // Vérifier si on rempli les champs
             for ($i = 0; $i < 1; $i++) {
@@ -129,14 +131,47 @@ class ContactController extends AbstractController
                 if (!empty($rechercheContact->getVisiteImmeuble())) {
                     array_push($keyValueImmeuble, array("Visite", $rechercheContact->getVisiteImmeuble()));
                 }
+                if (!empty($rechercheContact->getAdresseAdresse())) {
+                    array_push($keyValueAdress, array("adresseAdresse", $rechercheContact->getAdresseAdresse()));
+                }
+                if (!empty($rechercheContact->getCpAdresse())) {
+                    array_push($keyValueAdress, array("cpAdresse", $rechercheContact->getCpAdresse()));
+                }
+                if (!empty($rechercheContact->getVilleAdresse())) {
+                    array_push($keyValueAdress, array("villeAdresse", $rechercheContact->getVilleAdresse()));
+                }
+                if (!empty($rechercheContact->getEtatDossierSociete())) {
+                    array_push($keyValueSociete, array("getEtatDossierSociete", $rechercheContact->getEtatDossierSociete()));
+                }
+                if (!empty($rechercheContact->getResponsableSociete())) {
+                    array_push($keyValueSociete, array("responsableSociete", $rechercheContact->getResponsableSociete()));
+                }
+                if (!empty($rechercheContact->getOrigineContactSociete())) {
+                    array_push($keyValueSociete, array("origineContactSociete", $rechercheContact->getOrigineContactSociete()));
+                }
+                if (!empty($rechercheContact->getRaisonSocialeVendeurSociete())) {
+                    array_push($keyValueSociete, array("raisonSocialeVendeurSociete", $rechercheContact->getRaisonSocialeVendeurSociete()));
+                }
+                if (!empty($rechercheContact->getCpVendeurSociete())) {
+                    array_push($keyValueSociete, array("cpVendeurSociete", $rechercheContact->getCpVendeurSociete()));
+                }
+                if (!empty($rechercheContact->getRaisonSocialeAcheteurSociete())) {
+                    array_push($keyValueSociete, array("raisonSocialeAcheteurSociete", $rechercheContact->getRaisonSocialeAcheteurSociete()));
+                }
+                if (!empty($rechercheContact->getCpAcheteurSociete())) {
+                    array_push($keyValueSociete, array("cpAcheteurSociete", $rechercheContact->getCpAcheteurSociete()));
+                }
             };
-
             if (count($keyValueContact) >= 1 && $form->get('rechercheContact')->isClicked()) {
                 $contacts = $contactRepository->findContactBySearch($rechercheContact);
             } elseif (count($keyValueActivity) >= 1 && $form->get('rechercheActivite')->isClicked()) {
                 $activites = $activiteRepository->findContactByActivity($rechercheContact);
             } elseif (count($keyValueImmeuble) >= 1 && $form->get('rechercheImmeuble')->isClicked()) {
                 $immeublesContacts = $immeubleContactRepository->findContactByImmeuble($rechercheContact);
+            } elseif (count($keyValueAdress) >= 1 && $form->get('rechercheAdresse')->isClicked()) {
+                $adresses = $contactRepository->findContactByAdress($rechercheContact);
+            } elseif (count($keyValueSociete) >= 1 && $form->get('rechercheSociete')->isClicked()) {
+                $societes = $societeContactRepository->findContactBySociete($rechercheContact);
             } elseif (count($keyValueImmeuble) == 0 && count($keyValueContact) == 0 && count($keyValueActivity) == 0) {
                 $immeubles = $immeubleRepository->findBy(array(), null, 500, null);
             };
@@ -144,6 +179,7 @@ class ContactController extends AbstractController
             return $this->render(
                 'contact/search.html.twig',
                 [
+                    'societes' => $societes,
                     'immeublesContacts' => $immeublesContacts,
                     'activites' => $activites,
                     'adresses' => $adresses,
@@ -156,6 +192,7 @@ class ContactController extends AbstractController
         return $this->render(
             'contact/search.html.twig',
             [
+                'societes' => $societes,
                 'immeublesContacts' => $immeublesContacts,
                 'activites' => $activites,
                 'adresses' => $adresses,

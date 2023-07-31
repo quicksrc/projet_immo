@@ -122,6 +122,32 @@ class ContactRepository extends ServiceEntityRepository
         return $qb->getQuery()->getResult();
     }
 
+    /**
+     * @param RechercheContact $rechercheContact
+     */
+    public function findContactByAdress(RechercheContact $rechercheContact)
+    {
+        $qb = $this->createQueryBuilder('c')
+            ->where('c.IDContact IS NOT NULL');
+
+        if (!empty($rechercheContact->getAdresseAdresse())) {
+            $qb
+                ->andWhere('c.Adresse LIKE :adresseAdresse')
+                ->setParameter('adresseAdresse', $rechercheContact->getAdresseAdresse());
+        }
+        if (!empty($rechercheContact->getCpAdresse())) {
+            $qb
+                ->andWhere('c.CP LIKE :cpAdresse')
+                ->setParameter('cpAdresse', $rechercheContact->getCpAdresse());
+        }
+        if (!empty($rechercheContact->getVilleAdresse())) {
+            $qb
+                ->andWhere('c.Ville LIKE :villeAdresse')
+                ->setParameter('villeAdresse', $rechercheContact->getVilleAdresse());
+        }
+        return $qb->getQuery()->getResult();
+    }
+
     //    /**
     //     * @return Contact[] Returns an array of Contact objects
     //     */

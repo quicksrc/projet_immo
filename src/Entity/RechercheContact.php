@@ -86,7 +86,46 @@ class RechercheContact
     #[ORM\Column(type: Types::SMALLINT, nullable: true)]
     private ?int $visiteImmeuble = null;
 
-    public function getId(): ?int
+    #[ORM\Column(length: 10, nullable: true)]
+    private ?string $numVoieAdresse = null;
+
+    #[ORM\Column(length: 20, nullable: true)]
+    private ?string $typeVoieAdresse = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $adresseAdresse = null;
+
+    #[ORM\Column(length: 20, nullable: true)]
+    private ?string $cpAdresse = null;
+
+    #[ORM\Column(length: 100, nullable: true)]
+    private ?string $villeAdresse = null;
+
+    #[ORM\Column(type: Types::SMALLINT, nullable: true)]
+    private ?int $adressePrincipaleAdresse = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $etatDossierSociete = null;
+
+    #[ORM\Column(length: 100, nullable: true)]
+    private ?string $responsableSociete = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $origineContactSociete = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $raisonSocialeVendeurSociete = null;
+
+    #[ORM\Column(length: 20, nullable: true)]
+    private ?string $cpVendeurSociete = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $raisonSocialeAcheteurSociete = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $cpAcheteurSociete = null;
+
+    public function getIDSociete(): ?int
     {
         return $this->id;
     }
@@ -375,6 +414,162 @@ class RechercheContact
     public function setVisiteImmeuble(?int $visiteImmeuble): self
     {
         $this->visiteImmeuble = $visiteImmeuble;
+
+        return $this;
+    }
+
+    public function getNumVoieAdresse(): ?string
+    {
+        return $this->numVoieAdresse;
+    }
+
+    public function setNumVoieAdresse(?string $numVoieAdresse): self
+    {
+        $this->numVoieAdresse = $numVoieAdresse;
+
+        return $this;
+    }
+
+    public function getTypeVoieAdresse(): ?string
+    {
+        return $this->typeVoieAdresse;
+    }
+
+    public function setTypeVoieAdresse(?string $typeVoieAdresse): self
+    {
+        $this->typeVoieAdresse = $typeVoieAdresse;
+
+        return $this;
+    }
+
+    public function getAdresseAdresse(): ?string
+    {
+        return $this->adresseAdresse;
+    }
+
+    public function setAdresseAdresse(?string $adresseAdresse): self
+    {
+        $this->adresseAdresse = $adresseAdresse;
+
+        return $this;
+    }
+
+    public function getCpAdresse(): ?string
+    {
+        return $this->cpAdresse;
+    }
+
+    public function setCpAdresse(?string $cpAdresse): self
+    {
+        $this->cpAdresse = $cpAdresse;
+
+        return $this;
+    }
+
+    public function getVilleAdresse(): ?string
+    {
+        return $this->villeAdresse;
+    }
+
+    public function setVilleAdresse(?string $villeAdresse): self
+    {
+        $this->villeAdresse = $villeAdresse;
+
+        return $this;
+    }
+
+    public function getAdressePrincipaleAdresse(): ?int
+    {
+        return $this->adressePrincipaleAdresse;
+    }
+
+    public function setAdressePrincipaleAdresse(?int $adressePrincipaleAdresse): self
+    {
+        $this->adressePrincipaleAdresse = $adressePrincipaleAdresse;
+
+        return $this;
+    }
+
+    public function getEtatDossierSociete(): ?string
+    {
+        return $this->etatDossierSociete;
+    }
+
+    public function setEtatDossierSociete(?string $etatDossierSociete): self
+    {
+        $this->etatDossierSociete = $etatDossierSociete;
+
+        return $this;
+    }
+
+    public function getResponsableSociete(): ?string
+    {
+        return $this->responsableSociete;
+    }
+
+    public function setResponsableSociete(?string $responsableSociete): self
+    {
+        $this->responsableSociete = $responsableSociete;
+
+        return $this;
+    }
+
+    public function getOrigineContactSociete(): ?string
+    {
+        return $this->origineContactSociete;
+    }
+
+    public function setOrigineContactSociete(?string $origineContactSociete): self
+    {
+        $this->origineContactSociete = $origineContactSociete;
+
+        return $this;
+    }
+
+    public function getRaisonSocialeVendeurSociete(): ?string
+    {
+        return $this->raisonSocialeVendeurSociete;
+    }
+
+    public function setRaisonSocialeVendeurSociete(?string $raisonSocialeVendeurSociete): self
+    {
+        $this->raisonSocialeVendeurSociete = $raisonSocialeVendeurSociete;
+
+        return $this;
+    }
+
+    public function getCpVendeurSociete(): ?string
+    {
+        return $this->cpVendeurSociete;
+    }
+
+    public function setCpVendeurSociete(?string $cpVendeurSociete): self
+    {
+        $this->cpVendeurSociete = $cpVendeurSociete;
+
+        return $this;
+    }
+
+    public function getRaisonSocialeAcheteurSociete(): ?string
+    {
+        return $this->raisonSocialeAcheteurSociete;
+    }
+
+    public function setRaisonSocialeAcheteurSociete(?string $raisonSocialeAcheteurSociete): self
+    {
+        $this->raisonSocialeAcheteurSociete = $raisonSocialeAcheteurSociete;
+
+        return $this;
+    }
+
+    public function getCpAcheteurSociete(): ?string
+    {
+        return $this->cpAcheteurSociete;
+    }
+
+    public function setCpAcheteurSociete(?string $cpAcheteurSociete): self
+    {
+        $this->cpAcheteurSociete = $cpAcheteurSociete;
 
         return $this;
     }

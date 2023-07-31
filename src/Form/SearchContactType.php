@@ -196,7 +196,7 @@ class SearchContactType extends AbstractType
             ])
             ->add('activiteContact', ChoiceType::class, [
                 'required' => false,
-                'label' => 'Fonction',
+                'label' => 'Activité',
                 'label_attr' => [
                     'class' => 'form-label mt-4'
                 ],
@@ -328,6 +328,128 @@ class SearchContactType extends AbstractType
                 ],
                 'attr' => [
                     'class' => 'form-check-input mt-4 ms-4'
+                ]
+            ])
+            ->add('adresseAdresse', TextType::class, [
+                'required' => false,
+                'label' => 'Adresse',
+                'label_attr' => [
+                    'class' => 'form-label'
+                ],
+                'attr' => [
+                    'class' => 'form-control col-5'
+                ]
+            ])
+            ->add('cpAdresse', IntegerType::class, [
+                'required' => false,
+                'label' => 'Code Postal',
+                'label_attr' => [
+                    'class' => 'form-label'
+                ],
+                'attr' => [
+                    'class' => 'form-control col-5'
+                ]
+            ])
+            ->add('villeAdresse', TextType::class, [
+                'required' => false,
+                'label' => 'Ville',
+                'label_attr' => [
+                    'class' => 'form-label'
+                ],
+                'attr' => [
+                    'class' => 'form-control col-5'
+                ]
+            ])
+            ->add('etatDossierSociete', ChoiceType::class, [
+                'required' => false,
+                'label' => 'Etat Dossier',
+                'choices' => [
+                    'En cours' => 'En cours',
+                    'À classer' => 'A classer'
+                ],
+                'attr' => [
+                    'class' => 'form-control',
+                    'placeholder' => 'Etat Dossier'
+                ]
+            ])
+            ->add('origineContactSociete', ChoiceType::class, [
+                'required' => false,
+                'label' => 'Origine Contact',
+                'choices' => [
+                    'Mailing' => 'Mailing',
+                    'Intermédiaire' => 'Intermédiaire',
+                    'Téléphone' => 'Téléphone',
+                    'Prospection' => 'Prospection',
+                    'Presse' => 'Presse',
+                    'Retombée clientèle' => 'Retombée clientèle',
+                ],
+                'attr' => [
+                    'class' => 'form-control',
+                    'placeholder' => 'Suivi par'
+                ]
+            ])
+            ->add('responsableSociete', ChoiceType::class, [
+                'required' => false,
+                'label' => 'Responsable',
+                'choices' => [
+                    'AD' => 'AD',
+                    'AH' => 'AH',
+                    'AK' => 'AK',
+                    'AMV' => 'AMV',
+                    'BdP' => 'BdP',
+                    'DP' => 'DP',
+                    'EDH' => 'EDH',
+                    'OC' => 'OC',
+                    'IC' => 'IC',
+                    'MB' => 'MB',
+                    'MT' => 'MT',
+                    'TP' => 'TP',
+                    'LC' => 'LC',
+                    'LS' => 'LS',
+                ],
+                'attr' => [
+                    'class' => 'form-control',
+                    'placeholder' => 'Suivi par'
+                ]
+            ])
+            ->add('raisonSocialeVendeurSociete', TextType::class, [
+                'required' => false,
+                'label' => 'Vendeur Raison Sociale',
+                'attr' => [
+                    'class' => 'form-control',
+                ]
+            ])
+            ->add('cpVendeurSociete', TextType::class, [
+                'required' => false,
+                'label' => 'Vendeur CP',
+                'attr' => [
+                    'class' => 'form-control',
+                ]
+            ])
+            ->add('raisonSocialeAcheteurSociete', TextType::class, [
+                'required' => false,
+                'label' => 'Acheteur Raison Sociale',
+                'attr' => [
+                    'class' => 'form-control',
+                ]
+            ])
+            ->add('cpAcheteurSociete', TextType::class, [
+                'required' => false,
+                'label' => 'Acheteur CP',
+                'attr' => [
+                    'class' => 'form-control',
+                ]
+            ])
+            ->add('rechercheSociete', SubmitType::class, [
+                'label' => 'Rechercher Par Société',
+                'attr' => [
+                    'class' => 'btn btn-success mt-1 mb-1'
+                ]
+            ])
+            ->add('rechercheAdresse', SubmitType::class, [
+                'label' => 'Rechercher Par Adresse',
+                'attr' => [
+                    'class' => 'btn btn-success mt-1 mb-1'
                 ]
             ])
             ->add('rechercheImmeuble', SubmitType::class, [
