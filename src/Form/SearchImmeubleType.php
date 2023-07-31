@@ -259,26 +259,26 @@ class SearchImmeubleType extends AbstractType
             ->add('rechercheImmeuble', SubmitType::class, [
                 'label' => 'Rechercher Par Immeuble',
                 'attr' => [
-                    'class' => 'btn btn-success mt-1 mb-1',
+                    'class' => 'btn btn-success mt-5 mb-1',
                     'value' => 'buton1',
                 ]
             ])
             ->add('rechercheAdresse', SubmitType::class, [
                 'label' => 'Rechercher Par Adresse',
                 'attr' => [
-                    'class' => 'btn btn-success mt-1 mb-1'
+                    'class' => 'btn btn-success  mt-5 mb-1'
                 ]
             ])
             ->add('rechercheContact', SubmitType::class, [
                 'label' => 'Rechercher Par Contact',
                 'attr' => [
-                    'class' => 'btn btn-success mt-1 mb-1'
+                    'class' => 'btn btn-success  mt-5 mb-1'
                 ]
             ])
             ->add('rechercheActivite', SubmitType::class, [
                 'label' => 'Rechercher Par Activite',
                 'attr' => [
-                    'class' => 'btn btn-success mt-1 mb-1'
+                    'class' => 'btn btn-success  mt-5 mb-1'
                 ]
             ]);
     }

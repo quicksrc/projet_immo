@@ -172,8 +172,8 @@ class ContactController extends AbstractController
                 $adresses = $contactRepository->findContactByAdress($rechercheContact);
             } elseif (count($keyValueSociete) >= 1 && $form->get('rechercheSociete')->isClicked()) {
                 $societes = $societeContactRepository->findContactBySociete($rechercheContact);
-            } elseif (count($keyValueImmeuble) == 0 && count($keyValueContact) == 0 && count($keyValueActivity) == 0) {
-                $immeubles = $immeubleRepository->findBy(array(), null, 500, null);
+            } elseif (count($keyValueImmeuble) == 0 && count($keyValueContact) == 0 && count($keyValueActivity) == 0 && count($keyValueSociete) == 0 && count($keyValueAdress) == 0) {
+                $contacts = $contactRepository->findBy(array(), null, 500, null);
             };
 
             return $this->render(
@@ -230,14 +230,14 @@ class ContactController extends AbstractController
         ]);
     }
 
-    #[Route('/{IDContact}/pdf', name: 'contact.pdf')]
-    public function generatePdfImmeuble(Contact $contact = null, PdfService $pdf)
-    {
-        $html = $this->render('contact/show.html.twig', [
-            'contact' => $contact,
-        ]);
-        $pdf->showPdfFile($html);
-    }
+    // #[Route('/{IDContact}/pdf', name: 'contact.pdf')]
+    // public function generatePdfImmeuble(Contact $contact = null, PdfService $pdf)
+    // {
+    //     $html = $this->render('contact/show.html.twig', [
+    //         'contact' => $contact,
+    //     ]);
+    //     $pdf->showPdfFile($html);
+    // }
 
     #[Route('/{IDContact}/edit', name: 'contact_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Contact $contact, ContactRepository $contactRepository): Response

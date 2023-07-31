@@ -443,31 +443,31 @@ class SearchContactType extends AbstractType
             ->add('rechercheSociete', SubmitType::class, [
                 'label' => 'Rechercher Par Société',
                 'attr' => [
-                    'class' => 'btn btn-success mt-1 mb-1'
+                    'class' => 'btn btn-success  mt-5 mb-1'
                 ]
             ])
             ->add('rechercheAdresse', SubmitType::class, [
                 'label' => 'Rechercher Par Adresse',
                 'attr' => [
-                    'class' => 'btn btn-success mt-1 mb-1'
+                    'class' => 'btn btn-success  mt-5 mb-1'
                 ]
             ])
             ->add('rechercheImmeuble', SubmitType::class, [
                 'label' => 'Rechercher Par Immeuble',
                 'attr' => [
-                    'class' => 'btn btn-success mt-1 mb-1'
+                    'class' => 'btn btn-success  mt-5 mb-1'
                 ]
             ])
             ->add('rechercheContact', SubmitType::class, [
                 'label' => 'Rechercher Par Contact',
                 'attr' => [
-                    'class' => 'btn btn-success mt-1 mb-1'
+                    'class' => 'btn btn-success  mt-5 mb-1'
                 ]
             ])
             ->add('rechercheActivite', SubmitType::class, [
                 'label' => 'Rechercher Par Activité',
                 'attr' => [
-                    'class' => 'btn btn-success mt-1 mb-1'
+                    'class' => 'btn btn-success  mt-5 mb-1'
                 ]
             ]);
     }
