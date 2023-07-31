@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\RechercheContact;
+use App\Entity\RechercheSociete;
 use App\Entity\SocieteContact;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -90,6 +91,91 @@ class SocieteContactRepository extends ServiceEntityRepository
         return $qb->getQuery()->getResult();
     }
 
+
+    /**
+     * @param RechercheSociete $rechercheSociete
+     */
+    public function findSocieteByContact(RechercheSociete $rechercheSociete)
+    {
+        $qb = $this->createQueryBuilder('sc')
+            ->addSelect('c')
+            ->leftJoin('sc.IDContact', 'c')
+            ->where('c.IDContact IS NOT NULL')
+            ->addSelect('s')
+            ->leftJoin('sc.IDSociete', 's');
+
+        if (!empty($rechercheSociete->getCiviliteContact())) {
+            $qb
+                ->andWhere('c.Civilite LIKE :civiliteContact')
+                ->setParameter('civiliteContact', $rechercheSociete->getCiviliteContact());
+        }
+        if (!empty($rechercheSociete->getNomContact())) {
+            $qb
+                ->andWhere('c.Nom LIKE :nomContact')
+                ->setParameter('nomContact', $rechercheSociete->getNomContact());
+        }
+        if (!empty($rechercheSociete->getPrenomContact())) {
+            $qb
+                ->andWhere('c.Prenom LIKE :prenomContact')
+                ->setParameter('prenomContact', $rechercheSociete->getPrenomContact());
+        }
+        if (!empty($rechercheSociete->getAdresseContact())) {
+            $qb
+                ->andWhere('c.Adresse LIKE :adresseContact')
+                ->setParameter('adresseContact', $rechercheSociete->getAdresseContact());
+        }
+        if (!empty($rechercheSociete->getCpContact())) {
+            $qb
+                ->andWhere('c.CP LIKE :cpContact')
+                ->setParameter('cpContact', $rechercheSociete->getCpContact());
+        }
+        if (!empty($rechercheSociete->getVilleContact())) {
+            $qb
+                ->andWhere('c.Ville LIKE :villeContact')
+                ->setParameter('villeContact', $rechercheSociete->getVilleContact());
+        }
+        if (!empty($rechercheSociete->getFonctionContact())) {
+            $qb
+                ->andWhere('c.Fonction LIKE :fonctionContact')
+                ->setParameter('fonctionContact', $rechercheSociete->getFonctionContact());
+        }
+        if (!empty($rechercheSociete->getCorrespondantContact())) {
+            $qb
+                ->andWhere('c.Correspondant LIKE :correspondantContact')
+                ->setParameter('correspondantContact', $rechercheSociete->getCorrespondantContact());
+        }
+        if (!empty($rechercheSociete->getAntiMailingContact())) {
+            $qb
+                ->andWhere('c.AntiMailing LIKE :antiMailingContact')
+                ->setParameter('antiMailingContact', $rechercheSociete->getAntiMailingContact());
+        }
+        if (!empty($rechercheSociete->getPrincipalContact())) {
+            $qb
+                ->andWhere('sc.Principal LIKE :principalContact')
+                ->setParameter('principalContact', $rechercheSociete->getPrincipalContact());
+        }
+        if (!empty($rechercheSociete->getSocieteContact())) {
+            $qb
+                ->andWhere('c.Societe LIKE :societeContact')
+                ->setParameter('societeContact', $rechercheSociete->getSocieteContact());
+        }
+        if (!empty($rechercheSociete->getNpaiContact())) {
+            $qb
+                ->andWhere('c.NPAI LIKE :npaiContact')
+                ->setParameter('npaiContact', $rechercheSociete->getNpaiContact());
+        }
+        if (!empty($rechercheSociete->getActiviteContact())) {
+            $qb
+                ->andWhere('c.NPAI LIKE :activiteContact')
+                ->setParameter('activiteContact', $rechercheSociete->getActiviteContact());
+        }
+        if (!empty($rechercheSociete->getRcsContact())) {
+            $qb
+                ->andWhere('c.RCS LIKE :rcsContact')
+                ->setParameter('rcsContact', $rechercheSociete->getRcsContact());
+        }
+        return $qb->getQuery()->getResult();
+    }
     //    /**
     //     * @return SocieteContact[] Returns an array of SocieteContact objects
     //     */

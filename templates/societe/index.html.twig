@@ -10,7 +10,7 @@
 		<div class="row">
 			<div id="toolbarSociete" class="me-4 mb-3">
 				<button id="advancedSearchSociete" class="btn btn-light">
-					<a href="#" class="text-decoration-none">
+					<a href="{{ path('societe_search') }}" class="text-decoration-none">
 						<i class="fa-brands fa-searchengin"></i>
 						Recherche Avancée</a>
 				</button>
@@ -35,45 +35,6 @@
 						<th data-sortable="true" data-field="jal">JAL</th>
 						<th data-sortable="true" data-field="vrs">Raison Sociale du Vendeur</th>
 						<th data-sortable="true" data-field="ars">Raison Sociale de l'Acheteur</th>
-
-						{# <th data-field="true">DateCreation</th>
-																																																												<th data-field="true">DateModification</th>
-																																																												<th data-field="true">OrigineContact</th>
-																																																												<th data-field="true">DateEditionJournal</th>
-																																																												<th data-field="true">Responsable</th>
-																																																												<th data-field="true">VendeurAdresse</th>
-																																																												<th data-field="true">VendeurCP</th>
-																																																												<th data-field="true">VendeurVille</th>
-																																																												<th data-field="true">VendeurPays</th>
-																																																												<th data-field="true">VendeurTelephoneSociete</th>
-																																																												<th data-field="true">VendeurFaxSociete</th>
-																																																												<th data-field="true">VendeurRCS</th>
-																																																												<th data-field="true">VendeurCapital</th>
-																																																												<th data-field="true">VendeurNomDirigeant</th>
-																																																												<th data-field="true">VendeurTelPortable</th>
-																																																												<th data-field="true">VendeurTelPerso</th>
-																																																												<th data-field="true">VendeurEmail</th>
-																																																												<th data-field="true">VendeurDateNaissance</th>
-																																																												<th data-field="true">VendeurAdresseFondsVendu</th>
-																																																												<th data-field="true">ActiviteFdsCommerce</th>
-																																																												<th data-field="true">DateActeCession</th>
-																																																												<th data-field="true">PrixVente</th>
-																																																												<th data-field="true">Tresorerie</th>
-																																																												<th data-field="true">ReportDeficitaire</th>
-																																																												<th data-field="true">Immobilier</th>
-																																																						
-																																																												<th data-field="true">AcheteurAdresse</th>
-																																																												<th data-field="true">AcheteurCP</th>
-																																																												<th data-field="true">AcheteurVille</th>
-																																																												<th data-field="true">AcheteurPays</th>
-																																																												<th data-field="true">AcheteurTelephone</th>
-																																																												<th data-field="true">AcheteurFax</th>
-																																																												<th data-field="true">AcheteurRCS</th>
-																																																												<th data-field="true">AcheteurCapital</th>
-																																																												<th data-field="true">AcheteurNomDirigeant</th>
-																																																												<th data-field="true">AcheteurTelPortable</th>
-																																																												<th data-field="true">AcheteurDateNaissance</th>
-																																																												<th data-field="true">Commentaire</th> #}
 						<th data-field="action">actions</th>
 					</tr>
 				</thead>
@@ -89,48 +50,6 @@
 							<td>{{ societe.NumJAL }}</td>
 							<td>{{ societe.VendeurRaisonSociale }}</td>
 							<td>{{ societe.AcheteurRaisonSociale }}</td>
-
-							{# <td>{{ societe.DateCreation ? societe.DateCreation|date('Y-m-d H:i:s') : '' }}</td>
-																																																																						<td>{{ societe.DateModification ? societe.DateModification|date('Y-m-d H:i:s') : '' }}</td>
-																																																																						<td>{{ societe.OrigineContact }}</td>
-																																																																						<td>{{ societe.DateEditionJournal ? societe.DateEditionJournal|date('Y-m-d H:i:s') : '' }}</td>
-																																																																						
-																																																																						<td>{{ societe.Responsable }}</td>
-																																																																						
-																																																																						<td>{{ societe.VendeurAdresse }}</td>
-																																																																						<td>{{ societe.VendeurCP }}</td>
-																																																																						<td>{{ societe.VendeurVille }}</td>
-																																																																						<td>{{ societe.VendeurPays }}</td>
-																																																																						<td>{{ societe.VendeurTelephoneSociete }}</td>
-																																																																						<td>{{ societe.VendeurFaxSociete }}</td>
-																																																																						<td>{{ societe.VendeurRCS }}</td>
-																																																																						<td>{{ societe.VendeurCapital }}</td>
-																																																																						<td>{{ societe.VendeurNomDirigeant }}</td>
-																																																																						<td>{{ societe.VendeurTelPortable }}</td>
-																																																																						<td>{{ societe.VendeurTelPerso }}</td>
-																																																																						<td>{{ societe.VendeurEmail }}</td>
-																																																																						<td>{{ societe.VendeurDateNaissance ? societe.VendeurDateNaissance|date('Y-m-d H:i:s') : '' }}</td>
-																																																																						<td>{{ societe.VendeurAdresseFondsVendu }}</td>
-																																																																						<td>{{ societe.ActiviteFdsCommerce }}</td>
-																																																																						<td>{{ societe.DateActeCession ? societe.DateActeCession|date('Y-m-d H:i:s') : '' }}</td>
-																																																																						<td>{{ societe.PrixVente }}</td>
-																																																																						<td>{{ societe.Tresorerie }}</td>
-																																																																						<td>{{ societe.ReportDeficitaire }}</td>
-																																																																						<td>{{ societe.Immobilier }}</td>
-																																																																						
-																																																																						<td>{{ societe.AcheteurAdresse }}</td>
-																																																																						<td>{{ societe.AcheteurCP }}</td>
-																																																																						<td>{{ societe.AcheteurVille }}</td>
-																																																																						<td>{{ societe.AcheteurPays }}</td>
-																																																																						<td>{{ societe.AcheteurTelephone }}</td>
-																																																																						<td>{{ societe.AcheteurFax }}</td>
-																																																																						<td>{{ societe.AcheteurRCS }}</td>
-																																																																						<td>{{ societe.AcheteurCapital }}</td>
-																																																																						<td>{{ societe.AcheteurNomDirigeant }}</td>
-																																																																						<td>{{ societe.AcheteurTelPortable }}</td>
-																																																																						<td>{{ societe.AcheteurDateNaissance ? societe.AcheteurDateNaissance|date('Y-m-d H:i:s') : '' }}</td>
-																																																																						<td>{{ societe.Commentaire }}</td> #}
-
 							<td>
 								<a class="text-decoration-underline-remove" href="{{ path('societe_show', {'IDSociete': societe.IDSociete}) }}">
 									<i class="bi bi-eye" style="margin-right:15px"></i>

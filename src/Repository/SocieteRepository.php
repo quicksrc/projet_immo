@@ -2,7 +2,7 @@
 
 namespace App\Repository;
 
-use App\Entity\RechercheContact;
+use App\Entity\RechercheSociete;
 use App\Entity\Societe;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -39,6 +39,55 @@ class SocieteRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+
+
+    /**
+     * @param RechercheSociete $rechercheSociete
+     */
+    public function findSocieteBySearch(RechercheSociete $rechercheSociete)
+    {
+        $qb = $this->createQueryBuilder('s')
+            ->where('s.IDSociete IS NOT NULL');
+
+        if (!empty($rechercheSociete->getEtatDossier())) {
+            $qb
+                ->andWhere('s.EtatDossier LIKE :etatDossier')
+                ->setParameter('etatDossier', $rechercheSociete->getEtatDossier());
+        }
+        if (!empty($rechercheSociete->getResponsable())) {
+            $qb
+                ->andWhere('s.Responsable LIKE :responsable')
+                ->setParameter('responsable', $rechercheSociete->getResponsable());
+        }
+        if (!empty($rechercheSociete->getOrigineContact())) {
+            $qb
+                ->andWhere('s.OrigineContact LIKE :origineContact')
+                ->setParameter('origineContact', $rechercheSociete->getOrigineContact());
+        }
+        if (!empty($rechercheSociete->getRaisonSocialeVendeur())) {
+            $qb
+                ->andWhere('s.VendeurRaisonSociale LIKE :raisonSocialeVendeur')
+                ->setParameter('raisonSocialeVendeur', $rechercheSociete->getRaisonSocialeVendeur());
+        }
+        if (!empty($rechercheSociete->getCpVendeur())) {
+            $qb
+                ->andWhere('s.VendeurCP LIKE :cpVendeur')
+                ->setParameter('cpVendeur', $rechercheSociete->getCpVendeur());
+        }
+        if (!empty($rechercheSociete->getRaisonSocialeAcheteur())) {
+            $qb
+                ->andWhere('s.AcheteurRaisonSociale LIKE :raisonSocialeAcheteur')
+                ->setParameter('raisonSocialeAcheteur', $rechercheSociete->getRaisonSocialeAcheteur());
+        }
+        if (!empty($rechercheSociete->getCpAcheteur())) {
+            $qb
+                ->andWhere('s.AcheteurCP LIKE :cpAcheteur')
+                ->setParameter('cpAcheteur', $rechercheSociete->getCpAcheteur());
+        }
+        return $qb->getQuery()->getResult();
+    }
+
+
     //    /**
     //     * @return Societe[] Returns an array of Societe objects
     //     */

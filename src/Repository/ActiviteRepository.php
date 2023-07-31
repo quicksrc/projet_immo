@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Activite;
 use App\Entity\RechercheContact;
 use App\Entity\RechercheImmeuble;
+use App\Entity\RechercheSociete;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -60,6 +61,39 @@ class ActiviteRepository extends ServiceEntityRepository
             $qb
                 ->andWhere('a.Theme LIKE :theme')
                 ->setParameter('theme', $rechercheImmeuble->getTheme());
+        }
+        return $qb->getQuery()->getResult();
+    }
+
+    /**
+     * @return ActiviteSociete[] Returns an array of ActiviteSociete objects
+     */
+    public function findSocieteByActivite(RechercheSociete $rechercheSociete): array
+    {
+        $qb = $this->createQueryBuilder('a')
+            ->addSelect('s')
+            ->leftJoin('a.IDSociete', 's')
+            ->where('a.IDSociete IS NOT NULL');
+
+        if (!empty($rechercheSociete->getDateActivite())) {
+            $qb
+                ->andWhere('a.DateActivite LIKE :dateActivite')
+                ->setParameter('dateActivite', $rechercheSociete->getDateActivite());
+        }
+        if (!empty($rechercheSociete->getThemeActivite())) {
+            $qb
+                ->andWhere('a.Theme LIKE :themeActivite')
+                ->setParameter('themeActivite', $rechercheSociete->getThemeActivite());
+        }
+        if (!empty($rechercheSociete->getActionActivite())) {
+            $qb
+                ->andWhere('a.Action LIKE :actionActivite')
+                ->setParameter('actionActivite', $rechercheSociete->getActionActivite());
+        }
+        if (!empty($rechercheSociete->getCommentaireActivite())) {
+            $qb
+                ->andWhere('a.Commentaire LIKE :commentaireActivite')
+                ->setParameter('commentaireActivite', $rechercheSociete->getCommentaireActivite());
         }
         return $qb->getQuery()->getResult();
     }
