@@ -79,7 +79,6 @@
 					</tr>
 				{% endfor %}
 				{% for activite in activites %}
-					{{ dump(activites) }}
 					<tr>
 						<td>{{ activite.IDSociete.IDSociete }}</td>
 						{% if activite.IDSociete.EtatDossier == "" %}

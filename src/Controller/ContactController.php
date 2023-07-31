@@ -25,7 +25,7 @@ class ContactController extends AbstractController
     public function index(ContactRepository $contactRepository): Response
     {
         return $this->render('contact/index.html.twig', [
-            'contacts' => $contactRepository->findBy(array(), null, 100, null),
+            'contacts' => $contactRepository->findBy(array(), array('IDContact' => 'desc'), 1000, null),
         ]);
     }
     #[Route('/search', name: 'contact_search')]
@@ -183,7 +183,7 @@ class ContactController extends AbstractController
                     'immeublesContacts' => $immeublesContacts,
                     'activites' => $activites,
                     'adresses' => $adresses,
-                    'contacts' => $contacts,
+                    'contacts' => $contactRepository->findBy(array(), array('IDContact' => 'desc'), 1000, null),
                     'immeubles' => $immeubles,
                     'form' => $form,
                 ]
@@ -196,8 +196,8 @@ class ContactController extends AbstractController
                 'immeublesContacts' => $immeublesContacts,
                 'activites' => $activites,
                 'adresses' => $adresses,
-                'contacts' => $contacts,
-                'immeubles' => $immeubleRepository->findBy(array(), null, 100, null),
+                'contacts' => $contactRepository->findBy(array(), array('IDContact' => 'desc'), 1000, null),
+                'immeubles' => $immeubles,
                 'form' => $form->createView(),
             ]
         );

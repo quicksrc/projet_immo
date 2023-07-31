@@ -7,10 +7,6 @@ use App\Entity\Societe;
 use App\Form\SearchSocieteType;
 use App\Form\SocieteType;
 use App\Repository\ActiviteRepository;
-use App\Repository\ActiviteSocieteRepository;
-use App\Repository\ImmeubleContactRepository;
-use App\Repository\ImmeubleRepository;
-use App\Repository\RechercheSocieteRepository;
 use App\Repository\SocieteContactRepository;
 use App\Repository\SocieteRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -25,7 +21,7 @@ class SocieteController extends AbstractController
     public function index(SocieteRepository $societeRepository): Response
     {
         return $this->render('societe/index.html.twig', [
-            'societes' => $societeRepository->findBy(array(), null, 100, null),
+            'societes' => $societeRepository->findBy(array(), array('IDSociete' => 'desc'), 1000, null),
         ]);
     }
 
@@ -158,7 +154,7 @@ class SocieteController extends AbstractController
         return $this->render(
             'societe/search.html.twig',
             [
-                'societes' => $societes,
+                'societes' => $societeRepository->findBy(array(), array('IDSociete' => 'desc'), 1000, null),
                 'activites' => $activites,
                 'contacts' => $contacts,
                 'form' => $form->createView(),
