@@ -41,11 +41,16 @@
 				$(document).ready(function () {
 $('.js-datepicker').datepicker({format: 'yyyy-mm-dd 00:00:00'});
 });
+$$(document).ready(function () {
+$(".search").append('<span class="glyphicon glyphicon-search"></span>');
+/* add the span inside search div with append box*/
+});
 			</script>
 		{% endblock %}
 	</head>
 	<body>
 		<header>
+			<img style="height: 50px;" class="m-3" src="{{ asset('img/LOGO_VALORIM-01.png')}}">
 			{% if app.user %}
 				<button type="button" class="btn btn-danger float-end m-3">
 					<a class="text-light text-decoration-none" href="{{ path('app_logout') }}">Déconnexion</a>
