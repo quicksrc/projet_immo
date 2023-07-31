@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Adresse;
+use App\Entity\RechercheContact;
 use App\Entity\RechercheImmeuble;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
