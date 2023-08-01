@@ -7,6 +7,8 @@ use App\Entity\Societe;
 use App\Form\SearchSocieteType;
 use App\Form\SocieteType;
 use App\Repository\ActiviteRepository;
+use App\Repository\ContactRepository;
+use App\Repository\OpportuniteRepository;
 use App\Repository\SocieteContactRepository;
 use App\Repository\SocieteRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -183,9 +185,17 @@ class SocieteController extends AbstractController
     }
 
     #[Route('/{IDSociete}', name: 'societe_show', methods: ['GET'])]
-    public function show(Societe $societe): Response
+    public function show(Societe $societe, OpportuniteRepository $opportuniteRepository, SocieteContactRepository $societeContactRepository): Response
     {
+        $opportunites = [];
+        $opportunites = $opportuniteRepository->findBy(['IDSociete' => $societe->getIDSociete()]);
+
+        $contacts = [];
+        $contacts = $societeContactRepository->findBy(['IDSociete' => $societe->getIDSociete()]);
+
         return $this->render('societe/show.html.twig', [
+            'contacts' => $contacts,
+            'opportunites' => $opportunites,
             'societe' => $societe,
         ]);
     }

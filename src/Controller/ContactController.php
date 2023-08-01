@@ -10,9 +10,9 @@ use App\Repository\ActiviteRepository;
 use App\Repository\ContactRepository;
 use App\Repository\ImmeubleContactRepository;
 use App\Repository\ImmeubleRepository;
+use App\Repository\OpportuniteRepository;
 use App\Repository\RechercheContactRepository;
 use App\Repository\SocieteContactRepository;
-use App\Service\PdfService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -223,21 +223,24 @@ class ContactController extends AbstractController
     }
 
     #[Route('/{IDContact}', name: 'contact_show', methods: ['GET'])]
-    public function show(Contact $contact): Response
+    public function show(Contact $contact, OpportuniteRepository $opportuniteRepository, ActiviteRepository $activiteRepository, ImmeubleContactRepository $immeubleContactRepository): Response
     {
+        $activites = [];
+        $activites = $activiteRepository->findBy(['IDContact' => $contact->getIDContact()]);
+
+        $immeubles = [];
+        $immeubles = $immeubleContactRepository->findBy(['IDContact' => $contact->getIDContact()]);
+
+        $opportunites = [];
+        $opportunites = $opportuniteRepository->findBy(['IDContact' => $contact->getIDContact()]);
+
         return $this->render('contact/show.html.twig', [
+            'immeubles' => $immeubles,
+            'opportunites' => $opportunites,
+            'activites' => $activites,
             'contact' => $contact,
         ]);
     }
-
-    // #[Route('/{IDContact}/pdf', name: 'contact.pdf')]
-    // public function generatePdfImmeuble(Contact $contact = null, PdfService $pdf)
-    // {
-    //     $html = $this->render('contact/show.html.twig', [
-    //         'contact' => $contact,
-    //     ]);
-    //     $pdf->showPdfFile($html);
-    // }
 
     #[Route('/{IDContact}/edit', name: 'contact_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Contact $contact, ContactRepository $contactRepository): Response

@@ -6,7 +6,7 @@
 {% block body %}
 
 	<h1 style="background-color: #83e8d4;float: right; border: 1px solid #dee2e6;
-																margin-top: -2px; border-radius: 5px;">{{ contact.Nom }}</h1>
+																																																																										margin-top: -2px; border-radius: 5px;">{{ contact.Nom }}</h1>
 
 	<ul class="nav nav-tabs" role="tablist">
 		<li class="nav-item" role="presentation">
@@ -200,9 +200,125 @@
 				</div>
 			</div>
 		</div>
-		<div class="tab-pane" id="activites" role="tabpanel"></div>
-		<div class="tab-pane" id="immeubles" role="tabpanel"></div>
-		<div class="tab-pane" id="opportunites" role="tabpanel"></div>
+		<div class="tab-pane" id="activites" role="tabpanel">
+			<table id="tableActivite" data-pagination="true" data-toolbar="#toolbarActivite" data-page-size="25" data-search="true" data-show-export="true" data-toggle="table" data-click-to-select="true" data-search-align="left" data-show-columns="true" data-show-print="true" class="table table-list table-bordered table-striped m-auto">
+				<thead>
+					<tr>
+						<th data-field="date" data-sortable="true" scope="col">Date</th>
+						<th data-field="theme" data-sortable="true" scope="col">Thème</th>
+						<th data-field="action" data-sortable="true" scope="col">Action</th>
+						<th data-field="commentaire" data-sortable="true" scope="col">Commentaire</th>
+						<th data-field="actions" scope="col"></th>
+					</tr>
+				</thead>
+				<tbody class="table-group-divider">
+					{% for activite in activites %}
+
+						<tr>
+							<td>{{ activite.DateActivite|date('d-m-Y') }}</td>
+							<td>{{ activite.Theme }}</td>
+							<td>{{ activite.Action }}</td>
+							<td>{{ activite.Commentaire }}</td>
+							<td>
+								<a class="text-decoration-underline-remove" href="{{ path('activite_show', {'IDActivite': activite.IDActivite}) }}">
+									<i class="bi bi-eye" style="margin-right:15px"></i>
+								</a>
+
+								<a class="text-decoration-underline-remove" href="{{ path('activite_edit', {'IDActivite': activite.IDActivite}) }}">
+									<i class="bi bi-pen" style="margin-right:10px"></i>
+								</a>
+
+								<a class="text-decoration-underline-remove" href="{{ path('activite_delete', {'IDActivite': activite.IDActivite}) }}">
+									<i class="bi bi-trash3"></i>
+								</a>
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+		<div class="tab-pane" id="immeubles" role="tabpanel">
+			<table id="tableImmeuble" data-pagination="true" data-toolbar="#toolbarImmeuble" data-page-size="25" data-search="true" data-show-export="true" data-toggle="table" data-click-to-select="true" data-search-align="left" data-show-columns="true" data-show-print="true" class="table table-list table-bordered table-striped m-auto">
+				<thead>
+					<tr>
+						<th data-field="id" data-sortable="true" scope="col">ID</th>
+						<th data-field="adresse" data-sortable="true" scope="col">Adresse</th>
+						<th data-field="cp" data-sortable="true" scope="col">CP</th>
+						<th data-field="ville" data-sortable="true" scope="col">Ville</th>
+						<th data-field="refProprio" data-sortable="true" scope="col">Réf. Propriétaire</th>
+						<th data-field="dateEnquete" data-sortable="true" scope="col">Date de l'Enquête</th>
+						<th data-field="intermediaire" data-sortable="true" scope="col">Intermédiaire</th>
+						<th data-field="respDossier" data-sortable="true" scope="col">Resp. de Dossier</th>
+						<th data-field="description" data-sortable="true" scope="col">Description</th>
+						<th data-field="actions" scope="col"></th>
+					</tr>
+				</thead>
+				<tbody class="table-group-divider">
+					{% for immeuble in immeubles %}
+
+						<tr>
+							<td>{{ immeuble.IDImmeuble.IDImmeuble }}</td>
+							<td>{{ immeuble.IDImmeuble.Adresse }}</td>
+							<td>{{ immeuble.IDImmeuble.CP }}</td>
+							<td>{{ immeuble.IDImmeuble.Ville }}</td>
+							<td>{{ immeuble.IDImmeuble.ReferenceProprio }}</td>
+							<td>{{ immeuble.IDImmeuble.DateEnquete|date('d-m-Y') }}</td>
+							<td>{{ immeuble.IDImmeuble.Intermediaire }}</td>
+							<td>{{ immeuble.IDImmeuble.SuiviPar }}</td>
+							<td>{{ immeuble.IDImmeuble.Description }}</td>
+							<td>
+								<a class="text-decoration-underline-remove" href="{{ path('immeuble_show', {'IDImmeuble': immeuble.IDImmeuble.IDImmeuble}) }}">
+									<i class="bi bi-eye" style="margin-right:15px"></i>
+								</a>
+
+								<a class="text-decoration-underline-remove" href="{{ path('immeuble_edit', {'IDImmeuble': immeuble.IDImmeuble.IDImmeuble}) }}">
+									<i class="bi bi-pen" style="margin-right:10px"></i>
+								</a>
+
+								<a class="text-decoration-underline-remove" href="{{ path('immeuble_delete', {'IDImmeuble': immeuble.IDImmeuble.IDImmeuble}) }}">
+									<i class="bi bi-trash3"></i>
+								</a>
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+		<div class="tab-pane" id="opportunites" role="tabpanel">
+			<table id="tableOpportunite" data-pagination="true" data-toolbar="#toolbarOpportunite" data-page-size="25" data-search="true" data-show-export="true" data-toggle="table" data-click-to-select="true" data-search-align="left" data-show-columns="true" data-show-print="true" class="table table-list table-bordered table-striped m-auto">
+				<thead>
+					<tr>
+						<th data-field="date" data-sortable="true" scope="col">Date</th>
+						<th data-field="societe" data-sortable="true" scope="col">Société</th>
+						<th data-field="commentaire" data-sortable="true" scope="col">Commentaire</th>
+						<th data-field="actions" scope="col"></th>
+					</tr>
+				</thead>
+				<tbody class="table-group-divider">
+					{% for opportunite in opportunites %}
+
+						<tr>
+							<td>{{ opportunite.Date|date('d-m-Y') }}</td>
+							<td>{{ opportunite.SocieteConcernee }}</td>
+							<td>{{ opportunite.Commentaire }}</td>
+							<td>
+								<a class="text-decoration-underline-remove" href="{{ path('opportunite_show', {'IDOpportunite': opportunite.IDOpportunite}) }}">
+									<i class="bi bi-eye" style="margin-right:15px"></i>
+								</a>
+
+								<a class="text-decoration-underline-remove" href="{{ path('opportunite_edit', {'IDOpportunite': opportunite.IDOpportunite}) }}">
+									<i class="bi bi-pen" style="margin-right:10px"></i>
+								</a>
+
+								<a class="text-decoration-underline-remove" href="{{ path('opportunite_delete', {'IDOpportunite': opportunite.IDOpportunite}) }}">
+									<i class="bi bi-trash3"></i>
+								</a>
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
 	</div>
 	<br>
 	<div class="float-end ">
