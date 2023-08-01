@@ -203,10 +203,23 @@ class ImmeubleController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            // Upload Image
+            $uploadImage = $form->get('Photo1')->getData();
+            $uploadImageName = 'Immeuble-IMG_' . $immeuble->getIDImmeuble() . '.' . $uploadImage->guessExtension();
+            $uploadImage->move($this->getParameter('img_immeuble_directory'), $uploadImageName);
+            $immeuble->setPhoto1($uploadImageName);
+
+            // Upload PDF
+            $uploadPDF = $form->get('Photo2')->getData();
+            $uploadPDFName = 'Immeuble-PDF_' . $immeuble->getIDImmeuble() . '.' . $uploadPDF->guessExtension();
+            $uploadPDF->move($this->getParameter('pdf_immeuble_directory'), $uploadPDFName);
+            $immeuble->setPhoto2($uploadPDFName);
+
             $immeubleRepository->save($immeuble, true);
 
             return $this->redirectToRoute('immeubles', [], Response::HTTP_SEE_OTHER);
-        }
+        };
 
         return $this->render('immeuble/edit.html.twig', [
             'immeuble' => $immeuble,

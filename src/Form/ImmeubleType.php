@@ -322,15 +322,16 @@ class ImmeubleType extends AbstractType
                 'attr' => [
                     'placeholder' => 'Photo N°1',
                     'class' => 'form-control',
-                ]
+                ],
+                'data_class' => null
             ])
             ->add('Photo2', FileType::class, [
                 'required' => false,
-                'label' => 'Photo N°2',
+                'label' => 'PDF',
                 'attr' => [
-                    'class' => 'Photo N°2',
                     'class' => 'form-control',
-                ]
+                ],
+                'data_class' => null,
             ]);
 
         // ->add('DateVisite', DateType::class, [
