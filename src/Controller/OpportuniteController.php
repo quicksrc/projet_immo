@@ -31,7 +31,7 @@ class OpportuniteController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $opportuniteRepository->save($opportunite, true);
 
-            return $this->redirectToRoute('opportunites', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('immeubles', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('opportunite/new.html.twig', [
@@ -57,7 +57,7 @@ class OpportuniteController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $opportuniteRepository->save($opportunite, true);
 
-            return $this->redirectToRoute('opportunites', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('immeubles', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('opportunite/edit.html.twig', [
@@ -73,6 +73,6 @@ class OpportuniteController extends AbstractController
             $opportuniteRepository->remove($opportunite, true);
         }
 
-        return $this->redirectToRoute('opportunites', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('immeubles', [], Response::HTTP_SEE_OTHER);
     }
 }
