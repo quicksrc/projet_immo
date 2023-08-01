@@ -3,12 +3,17 @@
 namespace App\Controller;
 
 use App\Entity\Activite;
+use App\Entity\Immeuble;
 use App\Form\ActiviteType;
 use App\Repository\ActiviteRepository;
+use App\Repository\ImmeubleRepository;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+
+use function Symfony\Component\DependencyInjection\Loader\Configurator\param;
 
 #[Route('/activites')]
 class ActiviteController extends AbstractController
@@ -28,10 +33,10 @@ class ActiviteController extends AbstractController
         $form = $this->createForm(ActiviteType::class, $activite);
         $form->handleRequest($request);
 
+
         if ($form->isSubmitted() && $form->isValid()) {
             $activiteRepository->save($activite, true);
-
-            return $this->redirectToRoute('activite_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('immeubles', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('activite/new.html.twig', [
@@ -57,7 +62,7 @@ class ActiviteController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $activiteRepository->save($activite, true);
 
-            return $this->redirectToRoute('activites', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('immeubles', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('activite/edit.html.twig', [
@@ -73,6 +78,6 @@ class ActiviteController extends AbstractController
             $activiteRepository->remove($activite, true);
         }
 
-        return $this->redirectToRoute('activites', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('immeubles', [], Response::HTTP_SEE_OTHER);
     }
 }
