@@ -54,7 +54,7 @@ setTimeout(() => {
 				<tbody class="table-group-divider">
 					{% for immeuble in immeubles %}
 
-						<tr>
+						<tr class='clickable-row' data-href="{{ path('immeuble_show', {'IDImmeuble': immeuble.IDImmeuble}) }}">
 							<td>{{ immeuble.IDImmeuble }}</td>
 							<td>{{ immeuble.Adresse }}</td>
 							<td>{{ immeuble.CP }}</td>

@@ -52,7 +52,7 @@ setTimeout(() => {
 				</thead>
 				<tbody>
 					{% for contact in contacts %}
-						<tr>
+						<tr class='clickable-row' data-href="{{ path('contact_show', {'IDContact': contact.IDContact}) }}">
 							<td>{{ contact.IDContact }}</td>
 							<td>{{ contact.Nom }}</td>
 							<td>{{ contact.Prenom }}</td>

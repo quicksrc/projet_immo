@@ -48,7 +48,7 @@ setTimeout(() => {
 				</thead>
 				<tbody>
 					{% for societe in societes %}
-						<tr>
+						<tr class='clickable-row' data-href="{{ path('societe_show', {'IDSociete': societe.IDSociete}) }}">
 							<td>{{ societe.IDSociete }}</td>
 							{% if societe.EtatDossier == "" %}
 								<td>✖️</td>

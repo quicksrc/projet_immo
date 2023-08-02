@@ -12,9 +12,9 @@
 		<li class="nav-item" role="presentation">
 			<a class="nav-link active" data-bs-toggle="tab" href="#general" aria-selected="true" role="tab" tabindex="-1">Général</a>
 		</li>
-		<li class="nav-item" role="presentation">
+		{# <li class="nav-item" role="presentation">
 			<a class="nav-link " data-bs-toggle="tab" href="#activites" aria-selected="true" role="tab">Activités</a>
-		</li>
+		</li> #}
 		<li class="nav-item" role="presentation">
 			<a class="nav-link " data-bs-toggle="tab" href="#immeubles" aria-selected="true" role="tab">Immeubles</a>
 		</li>
@@ -200,7 +200,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="tab-pane" id="activites" role="tabpanel">
+		{# <div class="tab-pane" id="activites" role="tabpanel">
 			<table id="tableActivite" data-pagination="true" data-toolbar="#toolbarActivite" data-page-size="25" data-search="true" data-show-export="true" data-toggle="table" data-click-to-select="true" data-search-align="left" data-show-columns="true" data-show-print="true" class="table table-list table-bordered table-striped m-auto">
 				<thead>
 					<tr>
@@ -236,7 +236,8 @@
 					{% endfor %}
 				</tbody>
 			</table>
-		</div>
+		</div> #}
+		
 		<div class="tab-pane" id="immeubles" role="tabpanel">
 			<table id="tableImmeuble" data-pagination="true" data-toolbar="#toolbarImmeuble" data-page-size="25" data-search="true" data-show-export="true" data-toggle="table" data-click-to-select="true" data-search-align="left" data-show-columns="true" data-show-print="true" class="table table-list table-bordered table-striped m-auto">
 				<thead>
@@ -256,7 +257,7 @@
 				<tbody class="table-group-divider">
 					{% for immeuble in immeubles %}
 
-						<tr>
+						<tr class='clickable-row' data-href="{{ path('immeuble_show', {'IDImmeuble': immeuble.IDImmeuble.IDImmeuble}) }}">
 							<td>{{ immeuble.IDImmeuble.IDImmeuble }}</td>
 							<td>{{ immeuble.IDImmeuble.Adresse }}</td>
 							<td>{{ immeuble.IDImmeuble.CP }}</td>
@@ -297,7 +298,7 @@
 				<tbody class="table-group-divider">
 					{% for opportunite in opportunites %}
 
-						<tr>
+						<tr class='clickable-row' data-href="{{ path('opportunite_show', {'IDOpportunite': opportunite.IDOpportunite}) }}">
 							<td>{{ opportunite.Date|date('d-m-Y') }}</td>
 							<td>{{ opportunite.SocieteConcernee }}</td>
 							<td>{{ opportunite.Commentaire }}</td>

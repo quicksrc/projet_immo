@@ -21,7 +21,7 @@
 		</thead>
 		<tbody>
 			{% for activite in activites %}
-				<tr>
+				<tr class='clickable-row' data-href="{{ path('activite_show', {'IDActivite': activite.IDActivite}) }}">
 					<td>{{ activite.IDActivite }}</td>
 					<td>{{ activite.DateActivite ? activite.DateActivite|date('Y-m-d H:i:s') : '' }}</td>
 					<td>{{ activite.Theme }}</td>

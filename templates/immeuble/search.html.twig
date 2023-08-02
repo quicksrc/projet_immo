@@ -40,7 +40,7 @@
 			</thead>
 			<tbody class="table-group-divider">
 				{% for immeuble in immeubles %}
-					<tr>
+					<tr class='clickable-row' data-href="{{ path('immeuble_show', {'IDImmeuble': immeuble.IDImmeuble}) }}">
 						<td>{{ immeuble.IDImmeuble }}</td>
 						<td>{{ immeuble.Adresse }}</td>
 						<td>{{ immeuble.CP }}</td>
@@ -72,7 +72,7 @@
 					</tr>
 				{% endfor %}
 				{% for contact in contacts %}
-					<tr>
+					<tr class='clickable-row' data-href="{{ path('immeuble_show', {'IDImmeuble': contact.IDImmeuble.IDImmeuble}) }}">
 						<td>{{ contact.IDImmeuble.IDImmeuble }}</td>
 						<td>{{ contact.IDImmeuble.Adresse }}</td>
 						<td>{{ contact.IDImmeuble.CP }}</td>
@@ -104,7 +104,7 @@
 					</tr>
 				{% endfor %}
 				{% for adresse in adresses %}
-					<tr>
+					<tr class='clickable-row' data-href="{{ path('immeuble_show', {'IDImmeuble': adresse.IDImmeuble.IDImmeuble}) }}">
 						<td>{{ adresse.IDImmeuble.IDImmeuble }}</td>
 						<td>{{ adresse.IDImmeuble.Adresse }}</td>
 						<td>{{ adresse.IDImmeuble.CP }}</td>
@@ -136,7 +136,7 @@
 					</tr>
 				{% endfor %}
 				{% for activite in activites %}
-					<tr>
+					<tr class='clickable-row' data-href="{{ path('immeuble_show', {'IDImmeuble': activite.IDImmeuble.IDImmeuble}) }}">
 						<td>{{ activite.IDImmeuble.IDImmeuble }}</td>
 						<td>{{ activite.IDImmeuble.Adresse }}</td>
 						<td>{{ activite.IDImmeuble.CP }}</td>

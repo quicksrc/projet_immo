@@ -308,7 +308,7 @@
 				</thead>
 				<tbody class="table-group-divider">
 					{% for contact in contacts %}
-						<tr>
+						<tr class='clickable-row' data-href="{{ path('contact_show', {'IDContact': contact.IDSociete.IDOpportunite}) }}">
 							<td>{{ contact.IDSociete.IDContact }}</td>
 							<td>{{ contact.IDSociete.Nom }}</td>
 							<td>{{ contact.IDSociete.Prenom }}</td>
@@ -348,7 +348,7 @@
 				<tbody class="table-group-divider">
 					{% for opportunite in opportunites %}
 
-						<tr>
+						<tr class='clickable-row' data-href="{{ path('opportunite_show', {'IDContact': opportunite.IDOpportunite}) }}">
 							<td>{{ opportunite.Date|date('d-m-Y') }}</td>
 							<td>{{ opportunite.SocieteConcernee }}</td>
 							<td>{{ opportunite.Commentaire }}</td>

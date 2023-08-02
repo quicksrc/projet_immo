@@ -219,7 +219,7 @@
 					<tbody class="table-group-divider">
 						{% for adresse in adresses %}
 
-							<tr>
+							<tr class='clickable-row' data-href="{{ path('adresse_show', {'IDAdresse': adresse.IDAdresse}) }}">
 								<td>{{ adresse.IDAdresse }}</td>
 								<td>{{ adresse.NumPrincipal }}</td>
 								<td>{{ adresse.TypeVoie }}</td>
@@ -269,7 +269,7 @@
 					</thead>
 					<tbody class="table-group-divider">
 						{% for contact in contacts %}
-							<tr>
+							<tr class='clickable-row' data-href="{{ path('contact_show', {'IDContact': contact.IDContact.IDContact}) }}">
 								<td>{{ contact.IDContact.Civilite }}</td>
 								<td>{{ contact.IDContact.Nom }}</td>
 								<td>{{ contact.IDContact.Prenom }}</td>
@@ -315,7 +315,7 @@
 					</thead>
 					<tbody class="table-group-divider">
 						{% for activite in activites %}
-							<tr>
+							<tr class='clickable-row' data-href="{{ path('activite_show', {'IDActivite': activite.IDActivite}) }}">
 								<td>{{ activite.DateActivite|date('d-m-Y') }}</td>
 								<td>{{ activite.Theme }}</td>
 								<td>{{ activite.Action }}</td>
@@ -357,7 +357,7 @@
 					</thead>
 					<tbody class="table-group-divider">
 						{% for opportunite in opportunites %}
-							<tr>
+							<tr class='clickable-row' data-href="{{ path('opportunite_show', {'IDOpportunite': opportunite.IDOpportunite}) }}">
 								<td>{{ opportunite.Date|date('d-m-Y') }}</td>
 								<td>{{ opportunite.SocieteConcernee }}</td>
 								<td>{{ opportunite.Commentaire }}</td>
