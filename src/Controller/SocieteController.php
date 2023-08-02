@@ -23,7 +23,7 @@ class SocieteController extends AbstractController
     public function index(SocieteRepository $societeRepository): Response
     {
         return $this->render('societe/index.html.twig', [
-            'societes' => $societeRepository->findBy(array(), array('IDSociete' => 'desc'), 1000, null),
+            'societes' => $societeRepository->findBy(array(), array('IDSociete' => 'desc'), 500, null),
         ]);
     }
 
@@ -156,7 +156,7 @@ class SocieteController extends AbstractController
         return $this->render(
             'societe/search.html.twig',
             [
-                'societes' => $societeRepository->findBy(array(), array('IDSociete' => 'desc'), 1000, null),
+                'societes' => $societeRepository->findBy(array(), array('IDSociete' => 'desc'), 500, null),
                 'activites' => $activites,
                 'contacts' => $contacts,
                 'form' => $form->createView(),
