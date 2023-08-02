@@ -22,7 +22,7 @@
 		</thead>
 		<tbody>
 			{% for adresse in adresses %}
-				<tr>
+				<tr class='clickable-row' data-href="{{ path('adresse_show', {'IDAdresse': adresse.IDAdresse}) }}">
 					<td>{{ adresse.IDAdresse }}</td>
 					<td>{{ adresse.NumPrincipal }}</td>
 					<td>{{ adresse.NumSecondaire }}</td>

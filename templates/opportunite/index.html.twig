@@ -19,7 +19,7 @@
 		</thead>
 		<tbody>
 			{% for opportunite in opportunites %}
-				<tr>
+				<tr class='clickable-row' data-href="{{ path('opportunite_show', {'IDOpportunite': opportunite.IDOpportunite}) }}">
 					<td>{{ opportunite.IDOpportunite }}</td>
 					<td>{{ opportunite.Date ? opportunite.Date|date('Y-m-d H:i:s') : '' }}</td>
 					<td>{{ opportunite.Commentaire }}</td>

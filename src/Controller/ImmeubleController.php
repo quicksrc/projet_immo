@@ -27,8 +27,8 @@ class ImmeubleController extends AbstractController
     {
 
         return $this->render('immeuble/index.html.twig', [
-            'immeubles' => $immeubleRepository->findBy(array(), array('ReferenceProprio' => 'desc'), 1000, null),
-            'contacts' => $contactRepository->findBy(array(), null, 1000, null),
+            'immeubles' => $immeubleRepository->findBy(array(), array('ReferenceProprio' => 'desc'), 500, null),
+            'contacts' => $contactRepository->findBy(array(), null, 500, null),
         ]);
     }
 

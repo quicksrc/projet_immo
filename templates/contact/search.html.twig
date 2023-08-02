@@ -26,7 +26,7 @@
 			</thead>
 			<tbody class="table-group-divider">
 				{% for contact in contacts %}
-					<tr>
+					<tr class='clickable-row' data-href="{{ path('contact_show', {'IDContact': contact.IDContact}) }}">
 						<td>{{ contact.IDContact }}</td>
 						<td>{{ contact.Nom }}</td>
 						<td>{{ contact.Prenom }}</td>
@@ -53,7 +53,7 @@
 				{% endfor %}
 
 				{% for activite in activites %}
-					<tr>
+					<tr class='clickable-row' data-href="{{ path('contact_show', {'IDActivite': activite.IDContact.IDContact}) }}">
 						<td>{{ activite.IDContact.IDContact }}</td>
 						<td>{{ activite.IDContact.Nom }}</td>
 						<td>{{ activite.IDContact.Prenom }}</td>
@@ -80,7 +80,7 @@
 				{% endfor %}
 
 				{% for immeubleContact in immeublesContacts %}
-					<tr>
+					<tr class='clickable-row' data-href="{{ path('contact_show', {'IDContact': immeubleContact.IDContact.IDContact}) }}">
 						<td>{{ immeubleContact.IDContact.IDContact }}</td>
 						<td>{{ immeubleContact.IDContact.Nom }}</td>
 						<td>{{ immeubleContact.IDContact.Prenom }}</td>
@@ -105,7 +105,7 @@
 				{% endfor %}
 
 				{% for adresse in adresses %}
-					<tr>
+					<tr class='clickable-row' data-href="{{ path('contact_show', {'IDContact': adresse.IDContact}) }}">
 						<td>{{ adresse.IDContact }}</td>
 						<td>{{ adresse.Nom }}</td>
 						<td>{{ adresse.Prenom }}</td>
@@ -131,7 +131,7 @@
 					</tr>
 				{% endfor %}
 				{% for societe in societes %}
-					<tr>
+					<tr class='clickable-row' data-href="{{ path('contact_show', {'IDContact': societe.IDContact.IDContact}) }}">
 						<td>{{ societe.IDContact.IDContact }}</td>
 						<td>{{ societe.IDContact.Nom }}</td>
 						<td>{{ societe.IDContact.Prenom }}</td>

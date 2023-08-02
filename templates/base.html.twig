@@ -21,15 +21,19 @@
 			<script type="text/javascript" src="{{ asset('/js/buildingsTable.js' )}}"></script>
 			<script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.8/umd/popper.min.js' integrity='sha512-TPh2Oxlg1zp+kz3nFA0C5vVC6leG/6mm1z9+mA81MI5eaUVqasPLO8Cuk4gMF4gUfP5etR73rgU/8PNMsSesoQ==' crossorigin='anonymous'></script>
 			<script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.min.js' integrity='sha512-3dZ9wIrMMij8rOH7X3kLfXAzwtcHpuYpEgQg1OA4QAob1e81H8ntUQmQm3pBudqIoySO5j0tHN4ENzA6+n2r4w==' crossorigin='anonymous'></script>
-			<script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.21.4/bootstrap-table.min.js' integrity='sha512-rZAhvMayqW5e/N+xdp011tYAIdxgMMJtKxUXx7scO4iBPSUXAKdkrKIPRu6tLr0O9V6Bs9QujJF3MqmgSNfYPA==' crossorigin='anonymous'></script>
-			<script src="https://unpkg.com/tableexport.jquery.plugin@1.28.0/tableExport.min.js"></script>
+			{# <script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.21.4/bootstrap-table.min.js' integrity='sha512-rZAhvMayqW5e/N+xdp011tYAIdxgMMJtKxUXx7scO4iBPSUXAKdkrKIPRu6tLr0O9V6Bs9QujJF3MqmgSNfYPA==' crossorigin='anonymous'></script> #}
+			<script src="https://unpkg.com/bootstrap-table@1.22.1/dist/bootstrap-table.min.js"></script>
+			<script src="https://cdn.jsdelivr.net/npm/tableexport.jquery.plugin@1.10.21/libs/jsPDF/jspdf.min.js"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.22.1/extensions/export/bootstrap-table-export.min.js"></script>
 			<script src='https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js' integrity='sha512-Qlv6VSKh1gDKGoJbnyA5RMXYcvnpIqhO++MhIM2fStMcGT9i2T//tSwYFlcyoRRDcDZ+TYHpH8azBBCyhpSeqw==' crossorigin='anonymous'></script>
 			<script src='https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.core.min.js' integrity='sha512-UhlYw//T419BPq/emC5xSZzkjjreRfN3426517rfsg/XIEC02ggQBb680V0VvP+zaDZ78zqse3rqnnI5EJ6rxA==' crossorigin='anonymous'></script>
 			<script src='https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/polyfills.umd.js' integrity='sha512-gmqJDkLpXOuVrRDAQa8pWc+WReEL4hO0f07hcCjx9bayyt5YENnZP2MgeSgo5CaUb3feZu/JCEKf69EsFZcQhA==' crossorigin='anonymous'></script>
 			<script src='https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.js' integrity='sha512-FBIq5JR/xY8/QXwzr6DiRgJj972NN4Ou+zSertNFChdEPsXlmcMeOWWuAcbVTu1Ip462Dwb73PUcCA1OihBfaQ==' crossorigin='anonymous'></script>
 			{# <script src="asset(js/buildingsTableExport.js"></script> #}
+			<script src="https://cdn.jsdelivr.net/npm/tableexport.jquery.plugin@1.10.21/tableExport.min.js"></script>
 			<script src="{{ asset('js/buildingsTable.js')}}"></script>
-			<script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.21.4/extensions/export/bootstrap-table-export.js' integrity='sha512-P/+GsfMkNQd8zMycqSNiG6YLhMRZycmcENnnoFr7e3lfw/qm21Q3xLWBnNrVjDIT/vqN8uisa1RBGJUCkdWPEQ==' crossorigin='anonymous'></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.22.1/locale/bootstrap-table-fr-FR.min.js"></script>
+			{# <script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.21.4/extensions/export/bootstrap-table-export.js' integrity='sha512-P/+GsfMkNQd8zMycqSNiG6YLhMRZycmcENnnoFr7e3lfw/qm21Q3xLWBnNrVjDIT/vqN8uisa1RBGJUCkdWPEQ==' crossorigin='anonymous'></script> #}
 			<script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.22.1/extensions/print/bootstrap-table-print.min.js' integrity='sha512-8SFBpZ06CuRB4lzG/7G7TUxRlylKnB6n53mdmNEx8itGiIqnLnT7INHlofrnICP1pAC9aRBXFx6ZscE3B+87ag==' crossorigin='anonymous'></script>
 
 			<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -45,12 +49,18 @@ $$(document).ready(function () {
 $(".search").append('<span class="glyphicon glyphicon-search"></span>');
 /* add the span inside search div with append box*/
 });
+
 			</script>
+			<script> jQuery(document).ready(function($) {
+    $(".clickable-row").click(function() {
+        window.location = $(this).data("href");
+    });
+});</script>
 		{% endblock %}
 	</head>
 	<body>
 		<header>
-			<img style="height: 50px;" class="m-3" src="{{ asset('img/LOGO_VALORIM-01.png')}}">
+			<a href="{{ path('immeubles') }}"><img style="height: 50px;" class="m-3" src="{{ asset('img/LOGO_VALORIM-01.png')}}"></a>
 			{% if app.user %}
 				<button type="button" class="btn btn-danger float-end m-3">
 					<a class="text-light text-decoration-none" href="{{ path('app_logout') }}">Déconnexion</a>
