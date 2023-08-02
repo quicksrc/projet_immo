@@ -128,7 +128,7 @@ class SearchImmeubleType extends AbstractType
             ])
             ->add('nomRue', TextType::class, [
                 'required' => false,
-                'label' => 'Nom de Rue',
+                'label' => 'Nom de Voie',
                 'label_attr' => [
                     'class' => 'form-label'
                 ],

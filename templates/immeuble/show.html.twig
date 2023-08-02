@@ -257,26 +257,26 @@
 				<table id="tableImmeuble" data-pagination="true" data-toolbar="#toolbarImmeuble" data-page-size="25" data-search="true" data-show-export="true" data-toggle="table" data-click-to-select="true" data-search-align="left" data-show-columns="true" data-show-print="true" class="table table-list table-bordered table-striped m-auto">
 					<thead>
 						<tr>
+							<th data-field="civilite" data-sortable="true" scope="col">Civilite</th>
 							<th data-field="nom" data-sortable="true" scope="col">Nom</th>
-							<th data-field="societe" data-sortable="true" scope="col">Société</th>
+							<th data-field="prenom" data-sortable="true" scope="col">Prenom</th>
 							<th data-field="adresse" data-sortable="true" scope="col">Adresse</th>
-							<th data-field="cp" data-sortable="true" scope="col"></th>
-							<th data-field="ville" data-sortable="true" scope="col"></th>
+							<th data-field="cp" data-sortable="true" scope="col">CP</th>
+							<th data-field="ville" data-sortable="true" scope="col">Ville</th>
 							<th data-field="tel" data-sortable="true" scope="col">Téléphone</th>
-							<th data-field="qualite" data-sortable="true" scope="col">Qualité</th>
 							<th data-field="action">actions</th>
 						</tr>
 					</thead>
 					<tbody class="table-group-divider">
 						{% for contact in contacts %}
 							<tr>
+								<td>{{ contact.IDContact.Civilite }}</td>
 								<td>{{ contact.IDContact.Nom }}</td>
-								<td>{{ contact.IDContact.Societe }}</td>
+								<td>{{ contact.IDContact.Prenom }}</td>
 								<td>{{ contact.IDContact.Adresse }}</td>
 								<td>{{ contact.IDContact.CP }}</td>
 								<td>{{ contact.IDContact.Ville }}</td>
 								<td>{{ contact.IDContact.Telephone }}</td>
-								<td>{{ contact.IDContact.Civilite }}</td>
 								<td>
 									<a class="text-decoration-underline-remove" href="{{ path('contact_show', {'IDContact': contact.IDContact.IDContact}) }}">
 										<i class="bi bi-eye" style="margin-right:15px"></i>
@@ -296,7 +296,14 @@
 				</table>
 			</div>
 			<div class="tab-pane fade" id="activites" role="tabpanel">
-				<table id="tableImmeuble" data-pagination="true" data-toolbar="#toolbarImmeuble" data-page-size="25" data-search="true" data-show-export="true" data-toggle="table" data-click-to-select="true" data-search-align="left" data-show-columns="true" data-show-print="true" class="table table-list table-bordered table-striped m-auto">
+				<div id="toolbarActivite" class="mr-2">
+					<button class="btn btn-secondary " style="margin-right:20px" type="button">
+						<a class="fs-5" href="{{ path('activite_new', {immeuble}) }}">
+							<i class="bi bi-file-earmark-plus"></i>
+						</a>
+					</button>
+				</div>
+				<table id="tableImmeuble" data-pagination="true" data-toolbar="#toolbarActivite" data-page-size="25" data-search="true" data-show-export="true" data-toggle="table" data-click-to-select="true" data-search-align="left" data-show-columns="true" data-show-print="true" class="table table-list table-bordered table-striped m-auto">
 					<thead>
 						<tr>
 							<th data-field="date" data-sortable="true" scope="col">Date</th>
@@ -318,7 +325,7 @@
 										<i class="bi bi-eye" style="margin-right:15px"></i>
 									</a>
 
-									<a class="text-decoration-underline-remove" href="{{ path('activite_edit', {'IDActivite': activite.IDActivite}) }}">
+									<a class="text-decoration-underline-remove" href="{{ path('activite_edit', {'IDActivite': activite.IDActivite, immeuble}) }}">
 										<i class="bi bi-pen" style="margin-right:10px"></i>
 									</a>
 
@@ -332,7 +339,14 @@
 				</table>
 			</div>
 			<div class="tab-pane fade" id="opportunites" role="tabpanel">
-				<table id="tableImmeuble" data-pagination="true" data-toolbar="#toolbarImmeuble" data-page-size="25" data-search="true" data-show-export="true" data-toggle="table" data-click-to-select="true" data-search-align="left" data-show-columns="true" data-show-print="true" class="table table-list table-bordered table-striped m-auto">
+				<div id="toolbarOpportunite" class="mr-2">
+					<button class="btn btn-secondary " style="margin-right:20px" type="button">
+						<a class="fs-5" href="{{ path('activite_new', {immeuble}) }}">
+							<i class="bi bi-file-earmark-plus"></i>
+						</a>
+					</button>
+				</div>
+				<table id="tableImmeuble" data-pagination="true" data-toolbar="#toolbarOpportunite" data-page-size="25" data-search="true" data-show-export="true" data-toggle="table" data-click-to-select="true" data-search-align="left" data-show-columns="true" data-show-print="true" class="table table-list table-bordered table-striped m-auto">
 					<thead>
 						<tr>
 							<th data-field="date" data-sortable="true" scope="col">Date</th>
@@ -352,7 +366,7 @@
 										<i class="bi bi-eye" style="margin-right:15px"></i>
 									</a>
 
-									<a class="text-decoration-underline-remove" href="{{ path('opportunite_edit', {'IDOpportunite': opportunite.IDOpportunite}) }}">
+									<a class="text-decoration-underline-remove" href="{{ path('opportunite_edit', {'IDOpportunite': opportunite.IDOpportunite, immeuble}) }}">
 										<i class="bi bi-pen" style="margin-right:10px"></i>
 									</a>
 

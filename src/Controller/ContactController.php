@@ -174,6 +174,7 @@ class ContactController extends AbstractController
                 $societes = $societeContactRepository->findContactBySociete($rechercheContact);
             } elseif (count($keyValueImmeuble) == 0 && count($keyValueContact) == 0 && count($keyValueActivity) == 0 && count($keyValueSociete) == 0 && count($keyValueAdress) == 0) {
                 $contacts = $contactRepository->findBy(array(), null, 500, null);
+                dd($keyValueAdress);
             };
 
             return $this->render(
@@ -183,7 +184,7 @@ class ContactController extends AbstractController
                     'immeublesContacts' => $immeublesContacts,
                     'activites' => $activites,
                     'adresses' => $adresses,
-                    'contacts' => $contactRepository->findBy(array(), array('IDContact' => 'desc'), 1000, null),
+                    'contacts' => $contacts,
                     'immeubles' => $immeubles,
                     'form' => $form,
                 ]
