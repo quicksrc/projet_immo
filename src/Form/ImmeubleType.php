@@ -64,14 +64,17 @@ class ImmeubleType extends AbstractType
                     'placeholder' => 'Enquete'
                 ]
             ])
-            // ->add('DateEnquete', DateType::class, [
-            //     'required' => false,
-            //     'label' => 'Date d\'enquête',
-            //     'attr' => [
-            //         'placeholder' => 'Date d\'enquête',
-            //         'class' => 'form-control',
-            //     ]
-            // ])
+            ->add('DateEnquete', DateType::class, [
+                'required' => false,
+                'label' => 'Date de l\'enquête',
+                'widget' => 'single_text',
+                'format' => 'yyyy-MM-dd 00:00:00',
+                'html5' => false,
+                'attr' => [
+                    'placeholder' => 'Date Activite',
+                    'class' => 'form-control js-datepicker',
+                ]
+            ])
             ->add('Description', ChoiceType::class, [
                 'required' => false,
                 'label' => 'Description',
@@ -316,14 +319,17 @@ class ImmeubleType extends AbstractType
                     'class' => 'form-control',
                 ]
             ])
-            ->add('Photo1', FileType::class, [
+            ->add('images', FileType::class, [
                 'required' => false,
                 'label' => 'Photo N°1',
                 'attr' => [
                     'placeholder' => 'Photo N°1',
                     'class' => 'form-control',
+                    'multiple' => 'multiple'
                 ],
-                'data_class' => null
+                'data_class' => null,
+                'multiple' => true,
+                'mapped' => false
             ])
             ->add('Photo2', FileType::class, [
                 'required' => false,

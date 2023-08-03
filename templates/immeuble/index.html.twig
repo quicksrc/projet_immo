@@ -22,17 +22,17 @@
 						Recherche Avancée</a>
 				</button>
 				<div class="form-horizontal float-right  me-2">
-				<select class="form-control mr-2">
-					<option value="">Export Basique</option>
-					<option value="all">Exporter Tout</option>
-					<option value="selected">Exporter Séléctionnés</option>
-				</select>
+					<select class="form-control mr-2">
+						<option value="">Export Basique</option>
+						<option value="all">Exporter Tout</option>
+						<option value="selected">Exporter Séléctionnés</option>
+					</select>
 				</div>
 			</div>
-<script>
-setTimeout(() => {
-  const box = document.getElementById('toolbarImmeuble');
-  box.style.display = 'block';
+			<script>
+				setTimeout(() => {
+const box = document.getElementById('toolbarImmeuble');
+box.style.display = 'block';
 
 }, 400);
 			</script>
@@ -62,9 +62,9 @@ setTimeout(() => {
 							<td>{{ immeuble.ReferenceProprio }}</td>
 							<td>{{ immeuble.DateEnquete|date("d/m/Y") }}</td>
 							{% if immeuble.Intermediaire == "" %}
-								<td>❌</td>
+								<td>✖️</td>
 							{% elseif immeuble.Intermediaire == "null" %}
-								<td>❌</td>
+								<td>✖️</td>
 							{% else %}
 								<td>{{ immeuble.Intermediaire }}</td>
 							{% endif %}

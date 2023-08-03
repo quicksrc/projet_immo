@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Images;
 use App\Entity\Immeuble;
 use App\Entity\RechercheImmeuble;
 use App\Form\ImmeubleType;
@@ -144,7 +145,7 @@ class ImmeubleController extends AbstractController
                 'activites' => $activites,
                 'adresses' => $adresses,
                 'contacts' => $contacts,
-                'immeubles' => $immeubleRepository->findBy(array(), null, 100, null),
+                'immeubles' => $immeubleRepository->findBy(array(), array('IDImmeuble' => 'desc'), 500, null),
                 'form' => $form->createView(),
             ]
         );
@@ -204,17 +205,25 @@ class ImmeubleController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
+
             // Upload Image
-            $uploadImage = $form->get('Photo1')->getData();
-            $uploadImageName = 'Immeuble-IMG_' . $immeuble->getIDImmeuble() . '.' . $uploadImage->guessExtension();
-            $uploadImage->move($this->getParameter('img_immeuble_directory'), $uploadImageName);
-            $immeuble->setPhoto1($uploadImageName);
+            $images = $form->get('images')->getData();
+            foreach ($images as $image) {
+                $imageName = md5(uniqid()) . '-' . $immeuble->getIDImmeuble() . '.' . $image->guessExtension();
+                $image->move($this->getParameter('img_immeuble_directory'), $imageName);
+
+                $img = new Images();
+                $img->setName($imageName);
+                $immeuble->addImage($img);
+            }
+            // dd($photos);
 
             // Upload PDF
             $uploadPDF = $form->get('Photo2')->getData();
             $uploadPDFName = 'Immeuble-PDF_' . $immeuble->getIDImmeuble() . '.' . $uploadPDF->guessExtension();
             $uploadPDF->move($this->getParameter('pdf_immeuble_directory'), $uploadPDFName);
             $immeuble->setPhoto2($uploadPDFName);
+
 
             $immeubleRepository->save($immeuble, true);
 

@@ -48,21 +48,17 @@
 					</h2>
 					<div id="collapseOne" style="padding:2%" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample" style="">
 						<div class="accordion-body">
-							<div class="form-group row">
+							<div class="form-group row justify-content-around">
 								<div class="col-md-4 mb-3">
 									<label for="readOnlyInput">N° Planche Cadastrale</label>
 									<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ immeuble.NumPlancheCadastrale }}" readonly="">
 								</div>
 
 								<div class="col-md-4 mb-3">
-									<label class="form-check-label" for="flexCheckDefault">
-										SMS
+									<label class="form-check-label" for="dateEnquete">
+										Date de l'enquête
 									</label>
-									{% if immeuble.SMS == 0 %}
-										<input class="form-check-input" type="checkbox" disabled="" value="{{ immeuble.SMS }}" id="flexCheckDefault">
-									{% elseif immeuble.SMS == 1 %}
-										<input class="form-check-input" type="checkbox" disabled="" value="{{ immeuble.SMS }}" checked id="flexCheckDefault">
-									{% endif %}
+									<input class="form-control" id="dateEnquete" type="text" placeholder="{{ immeuble.DateEnquete ? immeuble.DateEnquete|date('Y-m-d') : '' }}" readonly="">
 								</div>
 							</div>
 						</div>
@@ -76,7 +72,7 @@
 					</h2>
 					<div id="collapseTwo" style="padding:2%" class="accordion-collapse collapse show" aria-labelledby="headingTwo" data-bs-parent="#accordionExample" style="">
 						<form>
-							<div class="form-group row">
+							<div class="form-group row justify-content-around">
 								<div class="col-md-4 mb-3">
 									<label for="readOnlyInput">Etat Dossier</label>
 									<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ immeuble.EtatDossier }}" readonly="">
@@ -87,7 +83,38 @@
 									<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ immeuble.Enquete }}" readonly="">
 
 								</div>
-								<div class="col-md-4 mb-3">
+
+							</div>
+
+							<div
+								class="form-group row justify-content-around">
+								{# <div class="col-md-4 mb-3">
+																																																																																																																																																																																																																									<label for="readOnlyInput">Gardien</label>
+																																																																																																																																																																																																																									<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ immeuble.NomGardien }}" readonly="">
+																																																																																																																																																																																																																								</div> #}
+
+								<div class="col-md-4 mb-4">
+									<label for="readOnlyInput">Description</label>
+									<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ immeuble.Description }}" readonly="">
+								</div>
+								<div class="col-md-4 mb-4">
+									<label for="readOnlyInput">Suivi Par</label>
+									<input class="form-control " id="readOnlyInput" type="text" placeholder="{{ immeuble.SuiviPar }}" readonly="">
+								</div>
+							</div>
+							<div class="form-group row justify-content-around">
+								<div class="col-md-4 mb-4">
+									<label for="readOnlyInput">Origine Contact</label>
+									<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ immeuble.OrigineContact }}" readonly="">
+								</div>
+								<div class="col-md-4 mb-4">
+									<label for="readOnlyInput">Intermediaire</label>
+									<input class="form-control " id="readOnlyInput" type="text" placeholder="{{ immeuble.Intermediaire }}" readonly="">
+								</div>
+							</div>
+							<hr>
+							<div class="form-group row justify-content-around">
+								<div class="col-md-1 mb-3">
 									<label for="flexCheckDefault">Visité</label>
 									{% if immeuble.Visite == 0 %}
 										<input class="form-check-input" type="checkbox" disabled="" value="{{ immeuble.Visite }}" id="flexCheckDefault">
@@ -95,27 +122,7 @@
 										<input class="form-check-input" type="checkbox" disabled="" value="{{ immeuble.Visite }}" checked id="flexCheckDefault">
 									{% endif %}
 								</div>
-							</div>
-
-							<div class="form-group row">
-								<div class="col-md-4 mb-3">
-									<label for="readOnlyInput">Gardien</label>
-									<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ immeuble.NomGardien }}" readonly="">
-								</div>
-
-								<div class="col-md-4 mb-3">
-									<label for="readOnlyInput">Description</label>
-									<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ immeuble.Description }}" readonly="">
-								</div>
-							</div>
-
-							<div class="form-group row">
-								<div class="col-md-4 mb-3">
-									<label for="readOnlyInput">Suivi Par</label>
-									<input class="form-control " id="readOnlyInput" type="text" placeholder="{{ immeuble.SuiviPar }}" readonly="">
-								</div>
-
-								<div class="col-md-4 mb-3">
+								<div class="col-md-1 mb-3">
 									<label for="readOnlyInput">Vendu</label>
 									{% if immeuble.Vendu == 0 %}
 										<input class="form-check-input" type="checkbox" disabled="" value="{{ immeuble.Vendu }}" id="flexCheckDefault">
@@ -123,25 +130,13 @@
 										<input class="form-check-input" type="checkbox" disabled="" value="{{ immeuble.Vendu }}" checked id="flexCheckDefault">
 									{% endif %}
 								</div>
-
-								<div class="col-md-4 mb-3">
+								<div class="col-md-1 mb-3">
 									<label for="flexCheckDefault">NCPCF</label>
 									{% if immeuble.NCPCF == 0 %}
 										<input class="form-check-input" type="checkbox" disabled="" value="{{ immeuble.NCPCF }}" id="flexCheckDefault">
 									{% elseif immeuble.NCPCF == 1 %}
 										<input class="form-check-input" type="checkbox" disabled="" value="{{ immeuble.NCPCF }}" checked id="flexCheckDefault">
 									{% endif %}
-								</div>
-							</div>
-
-							<div class="form-group row">
-								<div class="col-md-4 mb-3">
-									<label for="readOnlyInput">Origine Contact</label>
-									<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ immeuble.OrigineContact }}" readonly="">
-								</div>
-								<div class="col-md-4 mb-3">
-									<label for="readOnlyInput">Intermediaire</label>
-									<input class="form-control " id="readOnlyInput" type="text" placeholder="{{ immeuble.Intermediaire }}" readonly="">
 								</div>
 							</div>
 						</form>
@@ -168,11 +163,15 @@
 			<div class="row">
 				<div class="col-6">
 					<h3 class="text-light bg-info mt-4 text-center">Image</h3>
-					{% if immeuble.Photo1 != "" %}
-						<div class="col d-flex justify-content-center">
-							<img src="{{ asset('/uploads/img/immeuble/' ~ immeuble.Photo1) }}" alt="Image de l'immeuble" class="w-75 mt-4">
+					{% for image in immeuble.images %}
+						<div class="col">
+							<div class="col">
+								<img src="{{ asset('/uploads/img/immeuble/'~image.name) }}" alt="" width="150">
+							</div>
+							{# On ajoute un lien permettant de supprimer une image (sera géré en Ajax) #}
+							{# <a href="{{ path('annonces_delete_image', {id: image.id})}}" data-delete data-token="{{ csrf_token('delete' ~ image.id )}}">Supprimer</a> #}
 						</div>
-					{% endif %}
+					{% endfor %}
 				</div>
 				<div class="col-6 float-right">
 					<h3 class="text-light bg-info mt-4 text-center">PDF</h3>
@@ -264,6 +263,9 @@
 							<th data-field="cp" data-sortable="true" scope="col">CP</th>
 							<th data-field="ville" data-sortable="true" scope="col">Ville</th>
 							<th data-field="tel" data-sortable="true" scope="col">Téléphone</th>
+							<th data-field="qualite" data-sortable="true" scope="col">Qualité</th>
+							<th data-field="contactP" data-sortable="true" scope="col">P</th>
+							<th data-field="npai" data-sortable="true" scope="col">NPAI</th>
 							<th data-field="action">actions</th>
 						</tr>
 					</thead>
@@ -276,7 +278,26 @@
 								<td>{{ contact.IDContact.Adresse }}</td>
 								<td>{{ contact.IDContact.CP }}</td>
 								<td>{{ contact.IDContact.Ville }}</td>
-								<td>{{ contact.IDContact.Telephone }}</td>
+								<td>{{ contact.IDContact.TelephoneDomicile }}</td>
+								<td>{{ contact.Qualite }}</td>
+								{% if contact.Principal == 1 %}
+									<td class="text-success">
+										<i class="fa-solid fa-check"></i>
+									</td>
+								{% elseif contact.Principal == 0 %}
+									<td class="text-danger">
+										<i class="fa-solid fa-xmark"></i>
+									</td>
+								{% endif %}
+								{% if contact.IDContact.NPAI == 1 %}
+									<td class="text-success">
+										<i class="fa-solid fa-check"></i>
+									</td>
+								{% elseif contact.IDContact.NPAI == 0 %}
+									<td class="text-danger">
+										<i class="fa-solid fa-xmark"></i>
+									</td>
+								{% endif %}
 								<td>
 									<a class="text-decoration-underline-remove" href="{{ path('contact_show', {'IDContact': contact.IDContact.IDContact}) }}">
 										<i class="bi bi-eye" style="margin-right:15px"></i>
@@ -308,9 +329,9 @@
 						<tr>
 							<th data-field="date" data-sortable="true" scope="col">Date</th>
 							<th data-field="theme" data-sortable="true" scope="col">Thème</th>
-							<th data-field="action" data-sortable="true" scope="col">Action</th>
-							<th data-field="commentaire" data-sortable="true" scope="col">Commentaire</th>
-							<th data-field="actions"></th>
+							<th data-field="commentaire" data-sortable="true" scope="col" data-width="700">Commentaire</th>
+							<th data-field="action" data-sortable="true" scope="col" data-width="200">Action</th>
+							<th data-field="actions" data-width="100"></th>
 						</tr>
 					</thead>
 					<tbody class="table-group-divider">
@@ -318,8 +339,8 @@
 							<tr class='clickable-row' data-href="{{ path('activite_show', {'IDActivite': activite.IDActivite}) }}">
 								<td>{{ activite.DateActivite|date('d-m-Y') }}</td>
 								<td>{{ activite.Theme }}</td>
-								<td>{{ activite.Action }}</td>
 								<td>{{ activite.Commentaire }}</td>
+								<td>{{ activite.Action }}</td>
 								<td>
 									<a class="text-decoration-underline-remove" href="{{ path('activite_show', {'IDActivite': activite.IDActivite}) }}">
 										<i class="bi bi-eye" style="margin-right:15px"></i>

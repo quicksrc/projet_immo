@@ -107,11 +107,15 @@ class Immeuble
     #[ORM\OneToMany(mappedBy: 'IDImmeuble', targetEntity: Adresse::class)]
     private Collection $adresses;
 
+    #[ORM\OneToMany(mappedBy: 'immeubles', targetEntity: Images::class, cascade: ["persist"])]
+    private Collection $images;
+
 
     public function __construct()
     {
         $this->activites = new ArrayCollection();
         $this->adresses = new ArrayCollection();
+        $this->images = new ArrayCollection();
     }
 
     public function __toString()
@@ -514,6 +518,36 @@ class Immeuble
             // set the owning side to null (unless already changed)
             if ($adress->getIDImmeuble() === $this) {
                 $adress->setIDImmeuble(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Images>
+     */
+    public function getImages(): Collection
+    {
+        return $this->images;
+    }
+
+    public function addImage(Images $image): self
+    {
+        if (!$this->images->contains($image)) {
+            $this->images[] = $image;
+            $image->setImmeubles($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImage(Images $image): self
+    {
+        if ($this->images->removeElement($image)) {
+            // set the owning side to null (unless already changed)
+            if ($image->getImmeubles() === $this) {
+                $image->setImmeubles(null);
             }
         }
 
