@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Documents;
 use App\Entity\Images;
 use App\Entity\Immeuble;
 use App\Entity\RechercheImmeuble;
@@ -10,12 +11,15 @@ use App\Form\SearchImmeubleType;
 use App\Repository\ActiviteRepository;
 use App\Repository\AdresseRepository;
 use App\Repository\ContactRepository;
+use App\Repository\DocumentsRepository;
+use App\Repository\ImagesRepository;
 use App\Repository\ImmeubleContactRepository;
 use App\Repository\ImmeubleRepository;
 use App\Repository\OpportuniteRepository;
 use App\Repository\RechercheImmeubleRepository;
 use App\Service\PdfService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -170,6 +174,50 @@ class ImmeubleController extends AbstractController
         ]);
     }
 
+    #[Route('/img/delete/{id}', name: 'immeubles_delete_img', methods: ["DELETE"])]
+    public function deleteImage(Images $image, Request $request, ImagesRepository $imagesRepository)
+    {
+        $data = json_decode($request->getContent(), true);
+
+        // On vérifie si le token est valide
+        if ($this->isCsrfTokenValid('delete' . $image->getId(), $data['_token'])) {
+            // On récupère le nom de l'image
+            $nom = $image->getName();
+            // On supprime le fichier
+            unlink($this->getParameter('img_immeuble_directory') . '/' . $nom);
+
+            // On supprime l'entrée de la base
+            $imagesRepository->remove($image, true);
+
+            // On répond en json
+            return new JsonResponse(['success' => 1]);
+        } else {
+            return new JsonResponse(['error' => 'Token Invalide'], 400);
+        }
+    }
+
+    #[Route('/doc/delete/{id}', name: 'immeubles_delete_doc', methods: ["DELETE"])]
+    public function deleteDocument(Documents $document, Request $request, DocumentsRepository $documentsRepository)
+    {
+        $data = json_decode($request->getContent(), true);
+
+        // On vérifie si le token est valide
+        if ($this->isCsrfTokenValid('delete' . $document->getId(), $data['_token'])) {
+            // On récupère le nom de l'image
+            $nom = $document->getName();
+            // On supprime le fichier
+            unlink($this->getParameter('doc_immeuble_directory') . '/' . $nom);
+
+            // On supprime l'entrée de la base
+            $documentsRepository->remove($document, true);
+
+            // On répond en json
+            return new JsonResponse(['success' => 1]);
+        } else {
+            return new JsonResponse(['error' => 'Token Invalide'], 400);
+        }
+    }
+
     #[Route('/{IDImmeuble}', name: 'immeuble_show', methods: ['GET'])]
     public function show(Immeuble $immeuble, AdresseRepository $adresseRepository, ImmeubleContactRepository $immeubleContactRepository, ActiviteRepository $activiteRepository, OpportuniteRepository $opportuniteRepository): Response
     {
@@ -209,7 +257,7 @@ class ImmeubleController extends AbstractController
             // Upload Image
             $images = $form->get('images')->getData();
             foreach ($images as $image) {
-                $imageName = md5(uniqid()) . '-' . $immeuble->getIDImmeuble() . '.' . $image->guessExtension();
+                $imageName = md5('IMG' . '_' . uniqid()) . '-' . $immeuble->getIDImmeuble() . '.' . $image->guessExtension();
                 $image->move($this->getParameter('img_immeuble_directory'), $imageName);
 
                 $img = new Images();
@@ -219,10 +267,14 @@ class ImmeubleController extends AbstractController
             // dd($photos);
 
             // Upload PDF
-            $uploadPDF = $form->get('Photo2')->getData();
-            $uploadPDFName = 'Immeuble-PDF_' . $immeuble->getIDImmeuble() . '.' . $uploadPDF->guessExtension();
-            $uploadPDF->move($this->getParameter('pdf_immeuble_directory'), $uploadPDFName);
-            $immeuble->setPhoto2($uploadPDFName);
+            $documents = $form->get('documents')->getData();
+            foreach ($documents as $document) {
+                $documentName = 'PDF' . '_' . $document->getClientOriginalName() . '-' . $immeuble->getIDImmeuble() . '.' . $document->guessExtension();
+                $document->move($this->getParameter('doc_immeuble_directory'), $documentName);
+                $doc = new Documents();
+                $doc->setName($documentName);
+                $immeuble->addDocument($doc);
+            }
 
 
             $immeubleRepository->save($immeuble, true);
