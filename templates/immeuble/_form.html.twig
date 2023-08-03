@@ -136,15 +136,15 @@
 			<div
 				class="accordion" id="accordionExample">
 				{# <div class="accordion-item">
-																																																																																																																																																																																													<h2 class="accordion-header" id="headingOne">
-																																																																																																																																																																																														<button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-																																																																																																																																																																																															Situation
-																																																																																																																																																																																														</button>
-																																																																																																																																																																																													</h2>
-																																																																																																																																																																																													<div id="collapseOne" style="padding:2%" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample" style="">
-																																																																																																																																																																																														<div class="accordion-body"></div>
-																																																																																																																																																																																													</div>
-																																																																																																																																																																																												</div> #}
+																																																																																																																																																																																																									<h2 class="accordion-header" id="headingOne">
+																																																																																																																																																																																																										<button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+																																																																																																																																																																																																											Situation
+																																																																																																																																																																																																										</button>
+																																																																																																																																																																																																									</h2>
+																																																																																																																																																																																																									<div id="collapseOne" style="padding:2%" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample" style="">
+																																																																																																																																																																																																										<div class="accordion-body"></div>
+																																																																																																																																																																																																									</div>
+																																																																																																																																																																																																								</div> #}
 				<div class="accordion-item">
 					<h2 class="accordion-header" id="headingTwo">
 						<button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
@@ -222,9 +222,9 @@
 							{% if app.request.attributes.get('_route') == 'immeuble_edit' %}
 								{% for image in immeuble.images %}
 									<div>
-										<img
-										src="{{ asset('/uploads/img/immeuble/'~image.name) }}" alt="" width="150">
-
+										<a target="_blank" href="{{ asset('/uploads/img/immeuble/'~image.name) }}">
+											<img src="{{ asset('/uploads/img/immeuble/'~image.name) }}" alt="" width="150">
+										</a>
 										{# On ajoute un lien permettant de supprimer une image (sera géré en Ajax) #}
 										<button type="button" class="btn btn-danger float-start me-4 mb-3">
 											<a href="{{ path('immeubles_delete_img', {id: image.id})}}" data-delete data-token="{{ csrf_token('delete' ~ image.id )}}" class="text-white">
@@ -245,7 +245,7 @@
 
 										{# On ajoute un lien permettant de supprimer une image (sera géré en Ajax) #}
 										<button type="button" class="btn btn-danger float-start me-4 mb-3">
-											<a href="{{ path('immeubles_delete_doc', {id: document.id})}}" data-delete data-token="{{ csrf_token('delete' ~ document.id )}}" class="text-white">
+											<a target="_blank" href="{{ path('immeubles_delete_doc', {id: document.id})}}" data-delete data-token="{{ csrf_token('delete' ~ document.id )}}" class="text-white">
 												<i class="bi bi-trash3"></i>
 											</a>
 										</button>
@@ -261,12 +261,12 @@
 	</div>
 </div>
 {# <div class="float-end ">
-			<button class="btn btn-light " type="button">
-				<a class=" text-decoration-underline-remove" href="{{ path('immeubles') }}">back to list</a>
-			</button>
-			<button class="btn btn-light " type="button">{{ button_label|default('Save') }}
-			</button>
-		</div> #}
+				<button class="btn btn-light " type="button">
+					<a class=" text-decoration-underline-remove" href="{{ path('immeubles') }}">back to list</a>
+				</button>
+				<button class="btn btn-light " type="button">{{ button_label|default('Save') }}
+				</button>
+			</div> #}
 <br>
 <button class="btn btn-light float-end">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}

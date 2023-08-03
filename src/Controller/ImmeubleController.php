@@ -279,7 +279,7 @@ class ImmeubleController extends AbstractController
 
             $immeubleRepository->save($immeuble, true);
 
-            return $this->redirectToRoute('immeubles', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('immeuble_show', ['IDImmeuble' => $immeuble->getIDImmeuble()], Response::HTTP_SEE_OTHER);
         };
 
         return $this->render('immeuble/edit.html.twig', [

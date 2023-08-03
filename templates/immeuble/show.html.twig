@@ -171,7 +171,7 @@
 												<img class="w-100" src="{{ asset('/uploads/img/immeuble/'~image.name) }}" alt="">
 											</a>
 										</div>
-										<button type="button" class="btn btn-danger">
+										<button type="button" class="btn btn-danger w-25 mx-auto">
 											<a href="{{ path('immeubles_delete_img', {id: image.id})}}" data-delete data-token="{{ csrf_token('delete' ~ image.id )}}" class="text-white">
 												<i class="bi bi-trash3"></i>
 											</a>
@@ -196,7 +196,7 @@
 								</button>
 								{{ document.name }}
 								<button type="button" class="btn btn-danger float-end">
-									<a href="{{ path('immeubles_delete_doc', {id: document.id})}}" data-delete data-token="{{ csrf_token('delete' ~ document.id )}}" class="text-white">
+									<a target="_blank" href="{{ path('immeubles_delete_doc', {id: document.id})}}" data-delete data-token="{{ csrf_token('delete' ~ document.id )}}" class="text-white">
 										<i class="bi bi-trash3"></i>
 									</a>
 								</button>
