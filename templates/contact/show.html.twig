@@ -4,17 +4,20 @@
 {% endblock %}
 
 {% block body %}
-
-	<h1 style="background-color: #83e8d4;float: right; border: 1px solid #dee2e6;
-																																																																										margin-top: -2px; border-radius: 5px;">{{ contact.Nom }}</h1>
+	<div class="float-end">
+		<button class="btn btn-light " type="button">
+			<a class=" text-decoration-underline-remove" href="{{ path('contact_edit', {'IDContact': contact.IDContact}) }}">edit</a>
+		</button>
+	</div>
+	<h1 style="margin-top: -2px; border-radius: 5px;" class="mt-5 text-center text-white">{{ contact.Nom }}</h1>
 
 	<ul class="nav nav-tabs" role="tablist">
 		<li class="nav-item" role="presentation">
 			<a class="nav-link active" data-bs-toggle="tab" href="#general" aria-selected="true" role="tab" tabindex="-1">Général</a>
 		</li>
 		{# <li class="nav-item" role="presentation">
-			<a class="nav-link " data-bs-toggle="tab" href="#activites" aria-selected="true" role="tab">Activités</a>
-		</li> #}
+																									<a class="nav-link " data-bs-toggle="tab" href="#activites" aria-selected="true" role="tab">Activités</a>
+																								</li> #}
 		<li class="nav-item" role="presentation">
 			<a class="nav-link " data-bs-toggle="tab" href="#immeubles" aria-selected="true" role="tab">Immeubles</a>
 		</li>
@@ -201,43 +204,43 @@
 			</div>
 		</div>
 		{# <div class="tab-pane" id="activites" role="tabpanel">
-			<table id="tableActivite" data-pagination="true" data-toolbar="#toolbarActivite" data-page-size="25" data-search="true" data-show-export="true" data-toggle="table" data-click-to-select="true" data-search-align="left" data-show-columns="true" data-show-print="true" class="table table-list table-bordered table-striped m-auto">
-				<thead>
-					<tr>
-						<th data-field="date" data-sortable="true" scope="col">Date</th>
-						<th data-field="theme" data-sortable="true" scope="col">Thème</th>
-						<th data-field="action" data-sortable="true" scope="col">Action</th>
-						<th data-field="commentaire" data-sortable="true" scope="col">Commentaire</th>
-						<th data-field="actions" scope="col"></th>
-					</tr>
-				</thead>
-				<tbody class="table-group-divider">
-					{% for activite in activites %}
+																									<table id="tableActivite" data-pagination="true" data-toolbar="#toolbarActivite" data-page-size="25" data-search="true" data-show-export="true" data-toggle="table" data-click-to-select="true" data-search-align="left" data-show-columns="true" data-show-print="true" class="table table-list table-bordered table-striped m-auto">
+																										<thead>
+																											<tr>
+																												<th data-field="date" data-sortable="true" scope="col">Date</th>
+																												<th data-field="theme" data-sortable="true" scope="col">Thème</th>
+																												<th data-field="action" data-sortable="true" scope="col">Action</th>
+																												<th data-field="commentaire" data-sortable="true" scope="col">Commentaire</th>
+																												<th data-field="actions" scope="col"></th>
+																											</tr>
+																										</thead>
+																										<tbody class="table-group-divider">
+																											{% for activite in activites %}
+																						
+																												<tr>
+																													<td>{{ activite.DateActivite|date('d-m-Y') }}</td>
+																													<td>{{ activite.Theme }}</td>
+																													<td>{{ activite.Action }}</td>
+																													<td>{{ activite.Commentaire }}</td>
+																													<td>
+																														<a class="text-decoration-underline-remove" href="{{ path('activite_show', {'IDActivite': activite.IDActivite}) }}">
+																															<i class="bi bi-eye" style="margin-right:15px"></i>
+																														</a>
+																						
+																														<a class="text-decoration-underline-remove" href="{{ path('activite_edit', {'IDActivite': activite.IDActivite}) }}">
+																															<i class="bi bi-pen" style="margin-right:10px"></i>
+																														</a>
+																						
+																														<a class="text-decoration-underline-remove" href="{{ path('activite_delete', {'IDActivite': activite.IDActivite}) }}">
+																															<i class="bi bi-trash3"></i>
+																														</a>
+																													</td>
+																												</tr>
+																											{% endfor %}
+																										</tbody>
+																									</table>
+																								</div> #}
 
-						<tr>
-							<td>{{ activite.DateActivite|date('d-m-Y') }}</td>
-							<td>{{ activite.Theme }}</td>
-							<td>{{ activite.Action }}</td>
-							<td>{{ activite.Commentaire }}</td>
-							<td>
-								<a class="text-decoration-underline-remove" href="{{ path('activite_show', {'IDActivite': activite.IDActivite}) }}">
-									<i class="bi bi-eye" style="margin-right:15px"></i>
-								</a>
-
-								<a class="text-decoration-underline-remove" href="{{ path('activite_edit', {'IDActivite': activite.IDActivite}) }}">
-									<i class="bi bi-pen" style="margin-right:10px"></i>
-								</a>
-
-								<a class="text-decoration-underline-remove" href="{{ path('activite_delete', {'IDActivite': activite.IDActivite}) }}">
-									<i class="bi bi-trash3"></i>
-								</a>
-							</td>
-						</tr>
-					{% endfor %}
-				</tbody>
-			</table>
-		</div> #}
-		
 		<div class="tab-pane" id="immeubles" role="tabpanel">
 			<table id="tableImmeuble" data-pagination="true" data-toolbar="#toolbarImmeuble" data-page-size="25" data-search="true" data-show-export="true" data-toggle="table" data-click-to-select="true" data-search-align="left" data-show-columns="true" data-show-print="true" class="table table-list table-bordered table-striped m-auto">
 				<thead>
@@ -322,12 +325,9 @@
 		</div>
 	</div>
 	<br>
-	<div class="float-end ">
+	<div class="float-start">
 		<button class="btn btn-light " type="button">
 			<a class=" text-decoration-underline-remove" href="{{ path('contacts') }}">Retourner à la liste</a>
-		</button>
-		<button class="btn btn-light " type="button">
-			<a class=" text-decoration-underline-remove" href="{{ path('contact_edit', {'IDContact': contact.IDContact}) }}">edit</a>
 		</button>
 	</div>
 	<br>

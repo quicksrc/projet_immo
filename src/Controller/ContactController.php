@@ -252,7 +252,7 @@ class ContactController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $contactRepository->save($contact, true);
 
-            return $this->redirectToRoute('contacts', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('contact_show', ['IDContact' => $contact->getIDContact()], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('contact/edit.html.twig', [
