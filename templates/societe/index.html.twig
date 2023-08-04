@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block body %}
-	<section class="section-societe" >
+	<section class="section-societe">
 		<h1 class="text-center">Societes</h1>
 		<div class="row">
 			<div id="toolbarSociete" style="display:none">
@@ -20,17 +20,17 @@
 						Recherche Avancée</a>
 				</button>
 				<div class="form-horizontal float-right  me-2">
-				<select class="form-control mr-2">
-					<option value="">Export Basique</option>
-					<option value="all">Exporter Tout</option>
-					<option value="selected">Exporter Séléctionnés</option>
-				</select>
+					<select class="form-control mr-2">
+						<option value="">Export Basique</option>
+						<option value="all">Exporter Tout</option>
+						<option value="selected">Exporter Séléctionnés</option>
+					</select>
 				</div>
 			</div>
 			<script>
-setTimeout(() => {
-  const box = document.getElementById('toolbarSociete');
-  box.style.display = 'block';
+				setTimeout(() => {
+const box = document.getElementById('toolbarSociete');
+box.style.display = 'block';
 
 }, 400);
 			</script>
@@ -43,7 +43,7 @@ setTimeout(() => {
 						<th data-sortable="true" data-field="jal">JAL</th>
 						<th data-sortable="true" data-field="vrs">Raison Sociale du Vendeur</th>
 						<th data-sortable="true" data-field="ars">Raison Sociale de l'Acheteur</th>
-						<th data-field="action">actions</th>
+						<th data-field="action">Actions</th>
 					</tr>
 				</thead>
 				<tbody>

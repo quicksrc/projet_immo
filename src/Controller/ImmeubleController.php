@@ -81,6 +81,9 @@ class ImmeubleController extends AbstractController
                 if (!empty($rechercheImmeuble->isVisite())) {
                     array_push($keyValue, array("Visite", $rechercheImmeuble->isVisite()));
                 }
+                if (!empty($rechercheImmeuble->getEtatDossier())) {
+                    array_push($keyValue, array("EtatDossier", $rechercheImmeuble->getEtatDossier()));
+                }
                 if (!empty($rechercheImmeuble->getNumPrincipal())) {
                     array_push($keyValueAdress, array("NumPrincipal", $rechercheImmeuble->getNumPrincipal()));
                 }
@@ -196,7 +199,7 @@ class ImmeubleController extends AbstractController
         }
     }
 
-    #[Route('/doc/delete/{id}', name: 'immeubles_delete_doc', methods: ["DELETE"])]
+    #[Route('/immeuble/doc/delete/{id}', name: 'immeubles_delete_doc', methods: ["DELETE"])]
     public function deleteDocument(Documents $document, Request $request, DocumentsRepository $documentsRepository)
     {
         $data = json_decode($request->getContent(), true);
@@ -269,7 +272,7 @@ class ImmeubleController extends AbstractController
             // Upload PDF
             $documents = $form->get('documents')->getData();
             foreach ($documents as $document) {
-                $documentName = 'PDF' . '_' . $document->getClientOriginalName() . '-' . $immeuble->getIDImmeuble() . '.' . $document->guessExtension();
+                $documentName = 'PDF' . '_' . $immeuble->getIDImmeuble() . $document->getClientOriginalName();
                 $document->move($this->getParameter('doc_immeuble_directory'), $documentName);
                 $doc = new Documents();
                 $doc->setName($documentName);

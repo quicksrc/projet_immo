@@ -71,6 +71,11 @@ class ImmeubleRepository extends ServiceEntityRepository
                 ->andWhere('i.Visite LIKE :visite')
                 ->setParameter('visite', $rechercheImmeuble->isVisite());
         }
+        if (!empty($rechercheImmeuble->getEtatDossier())) {
+            $qb
+                ->andWhere('i.EtatDossier LIKE :etatDossier')
+                ->setParameter('etatDossier', $rechercheImmeuble->getEtatDossier());
+        }
         // dd($qb);
         return $qb->getQuery()->getResult();
     }

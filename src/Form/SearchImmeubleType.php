@@ -256,6 +256,22 @@ class SearchImmeubleType extends AbstractType
                     'class' => 'form-select',
                 ]
             ])
+
+            ->add('etatDossier', ChoiceType::class, [
+                'required' => false,
+                'label' => 'Etat du Dossier',
+                'label_attr' => [
+                    'class' => 'form-label mt-4'
+                ],
+                'choices' => [
+                    'En cours' => 'En cours',
+                    'A classer' => 'A classer',
+                    'A visiter' => 'A visiter',
+                ],
+                'attr' => [
+                    'class' => 'form-select',
+                ]
+            ])
             ->add('rechercheImmeuble', SubmitType::class, [
                 'label' => 'Rechercher Par Immeuble',
                 'attr' => [

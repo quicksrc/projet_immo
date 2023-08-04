@@ -43,7 +43,8 @@ class ImmeubleType extends AbstractType
                 'label' => 'Etat Dossier',
                 'choices' => [
                     'En cours' => 'En cours',
-                    'À classer' => 'A classer'
+                    'À classer' => 'A classer',
+                    'À visiter' => 'A visiter'
                 ],
                 'attr' => [
                     'class' => 'form-control',

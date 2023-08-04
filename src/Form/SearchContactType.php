@@ -147,12 +147,12 @@ class SearchContactType extends AbstractType
                 'format' => "yyyy-MM-dd 00:00:00",
                 'html5' => false,
                 'attr' => [
-                    'class' => 'form-control js-datepicker',
+                    'class' => 'form-control js-datepicker col-5',
                 ]
             ])
             ->add('correspondant', TextType::class, [
                 'required' => false,
-                'label' => 'Ville',
+                'label' => 'Correspondant',
                 'label_attr' => [
                     'class' => 'form-label'
                 ],

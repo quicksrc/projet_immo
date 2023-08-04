@@ -10,7 +10,7 @@
 		<div
 			class="row">
 			<!-- Contact -->
-			<div id="toolbarContact" style="display:none" >
+			<div id="toolbarContact" style="display:none">
 				<button class="btn btn-light me-2" type="button">
 					<a href="{{ path('contact_new') }}">
 						<i class="bi bi-file-earmark-plus"></i>
@@ -22,17 +22,17 @@
 						Recherche Avancée</a>
 				</button>
 				<div class="form-horizontal float-right  me-2">
-				<select class="form-control mr-2">
-					<option value="">Export Basique</option>
-					<option value="all">Exporter Tout</option>
-					<option value="selected">Exporter Séléctionnés</option>
-				</select>
+					<select class="form-control mr-2">
+						<option value="">Export Basique</option>
+						<option value="all">Exporter Tout</option>
+						<option value="selected">Exporter Séléctionnés</option>
+					</select>
 				</div>
 			</div>
-<script>
-setTimeout(() => {
-  const box = document.getElementById('toolbarContact');
-  box.style.display = 'block';
+			<script>
+				setTimeout(() => {
+const box = document.getElementById('toolbarContact');
+box.style.display = 'block';
 
 }, 400);
 			</script>
@@ -47,7 +47,7 @@ setTimeout(() => {
 						<th data-sortable="true" data-field="adresse">Adresse</th>
 						<th data-sortable="true" data-field="cp">CP</th>
 						<th data-sortable="true" data-field="ville">Ville</th>
-						<th data-field="action">actions</th>
+						<th data-field="action">Actions</th>
 					</tr>
 				</thead>
 				<tbody>
