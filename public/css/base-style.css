@@ -55,3 +55,30 @@ body {
 .offcanvas {
     transition : transform 0.15s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0s ease;
   }
+
+.form-check-input{
+    box-shadow: 0 0 0 2px #158cba !important;
+}
+
+
+/* input::placeholder {
+    opacity: 0.2 !important;
+} */
+
+@media print
+{    
+    .no-print, .no-print *
+    {
+        display: none !important;
+    }
+
+    .fixed-table-toolbar {
+        display: none !important;
+    }
+    .pagination-info {
+        display: none !important;
+    }
+    .navigationMenu {
+        display: none !important;
+    }
+}

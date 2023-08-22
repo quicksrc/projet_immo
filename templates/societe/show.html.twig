@@ -4,6 +4,14 @@
 {% endblock %}
 
 {% block body %}
+	<div class="float-end">
+		<button class="btn btn-light no-print" type="button">
+			<a class=" text-decoration-underline-remove" href="{{ path('societe_edit', {'IDSociete': societe.IDSociete}) }}">edit</a>
+		</button>
+		<button class="btn btn-light no-print btn-lg no-print" type="button" onclick="printSociete(); ">
+			<a class="nav-link">Print</a>
+		</button>
+	</div>
 	<form>
 		<div class="form-group row">
 			<label for="readOnlyInput" class="col-sm-2 col-form-label fw-bold">Référence :
@@ -14,7 +22,7 @@
 		</div>
 	</form>
 
-	<ul class="nav nav-tabs" role="tablist">
+	<ul class="nav nav-tabs navigationMenu" role="tablist">
 		<li class="nav-item" role="presentation">
 			<a class="nav-link active" data-bs-toggle="tab" href="#home" aria-selected="true" role="tab" tabindex="-1">Général</a>
 		</li>
@@ -74,7 +82,7 @@
 							Renseignements société venderesse
 						</button>
 					</h2>
-					<div id="collapseTwo" style="padding:2%" class="accordion-collapse collapse " aria-labelledby="headingTwo" data-bs-parent="#accordionExample" style="">
+					<div id="collapseTwo" style="padding:2%" class="accordion-collapse collapse show" aria-labelledby="headingTwo" data-bs-parent="#accordionExample" style="">
 						<form>
 							<div class="form-group row">
 								<div class="col-md-6 mb-3">
@@ -211,7 +219,7 @@
 							Renseignements société acheteuse
 						</button>
 					</h2>
-					<div id="collapseThree" style="padding:2%" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample" style="">
+					<div id="collapseThree" style="padding:2%" class="accordion-collapse collapse show" aria-labelledby="headingThree" data-bs-parent="#accordionExample" style="">
 
 						<div class="form-group row">
 							<div class="col-md-6 mb-3">
@@ -307,6 +315,7 @@
 					</tr>
 				</thead>
 				<tbody class="table-group-divider">
+					<h3 class="d-none text-center">Contacts</h3>
 					{% for contact in contacts %}
 						<tr class='clickable-row' data-href="{{ path('contact_show', {'IDContact': contact.IDSociete.IDOpportunite}) }}">
 							<td>{{ contact.IDSociete.IDContact }}</td>
@@ -346,6 +355,7 @@
 					</tr>
 				</thead>
 				<tbody class="table-group-divider">
+					<h3 class="d-none text-center">Opportunités</h3>
 					{% for opportunite in opportunites %}
 
 						<tr class='clickable-row' data-href="{{ path('opportunite_show', {'IDContact': opportunite.IDOpportunite}) }}">
@@ -374,12 +384,10 @@
 	<br>
 	<br>
 	<div class="float-end ">
-		<button class="btn btn-light " type="button">
+		<button class="btn btn-light no-print" type="button">
 			<a class=" text-decoration-underline-remove" href="{{ path('societes') }}">Retourner à la liste</a>
 		</button>
-		<button class="btn btn-light " type="button">
-			<a class=" text-decoration-underline-remove" href="{{ path('societe_edit', {'IDSociete': societe.IDSociete}) }}">edit</a>
-		</button>
+
 	</div>
 	<br>
 {% endblock %}
