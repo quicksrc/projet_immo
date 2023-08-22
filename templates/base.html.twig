@@ -63,7 +63,7 @@ window.location = $(this).data("href");
 		<header>
 			<a href="{{ path('immeubles') }}"><img style="height: 50px;" class="m-3" src="{{ asset('img/LOGO_VALORIM-01.png')}}"></a>
 			{% if app.user %}
-				<button type="button" class="btn btn-danger float-end m-3">
+				<button type="button" class="btn btn-danger float-end m-3 no-print">
 					<a class="text-light text-decoration-none" href="{{ path('app_logout') }}">Déconnexion</a>
 				</button>
 				{% include "shared/_navbar.html.twig" %}
