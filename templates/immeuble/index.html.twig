@@ -78,10 +78,12 @@ box.style.display = 'block';
 								<a class="text-decoration-underline-remove" href="{{ path('immeuble_edit', {'IDImmeuble': immeuble.IDImmeuble}) }}">
 									<i class="bi bi-pen" style="margin-right:10px"></i>
 								</a>
-
-								<a class="text-decoration-underline-remove" href="{{ path('immeuble_delete', {'IDImmeuble': immeuble.IDImmeuble}) }}">
-									<i class="bi bi-trash3"></i>
-								</a>
+								<form method="post" action="{{ path('immeuble_delete', {'IDImmeuble': immeuble.IDImmeuble}) }}" onsubmit="return confirm('Etes-vous sûr de vouloir supprimer cet immeuble ?');">
+									<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ immeuble.IDImmeuble) }}">
+									<button class="btn">
+										<i class="bi bi-trash3"></i>
+									</button>
+								</form>
 							</td>
 						</tr>
 					{% endfor %}
