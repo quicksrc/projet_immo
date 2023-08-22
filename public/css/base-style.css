@@ -60,6 +60,11 @@ body {
     box-shadow: 0 0 0 2px #158cba !important;
 }
 
+.bg-infos {
+    background-color: #1a3a6f !important;
+    border-radius: 5px !important;
+  }
+
 
 /* input::placeholder {
     opacity: 0.2 !important;
