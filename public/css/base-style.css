@@ -82,3 +82,5 @@ body {
         display: none !important;
     }
 }
+
+@page { size: auto;  margin: 0mm; }
