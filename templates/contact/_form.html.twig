@@ -186,6 +186,12 @@
 		</div>
 	</div>
 	<br>
-	<button class="btn btn-light no-print float-end">{{ button_label|default('Save') }}</button>
+	{% if app.request.get('_route') == 'contact_new' %}
+		<button class="btn btn-light float-end">{{ button_label|default('Créer') }}</button>
+	{% elseif app.request.get('_route') == 'contact_edit' %}
+		<button class="btn btn-light float-end">{{ button_label|default('Modifier') }}</button>
+	{% else %}
+		<button class="btn btn-light float-end">{{ button_label|default('Enregistrer') }}</button>
+	{% endif %}
 </div>
 {{ form_end(form) }}
