@@ -239,7 +239,7 @@
 							<th data-field="cp" data-sortable="true" scope="col">CP</th>
 							<th data-field="ville" data-sortable="true" scope="col">Ville</th>
 							<th data-field="adressePrincipale" data-sortable="true" scope="col">Adresse Principale</th>
-							<th data-field="action">Actions</th>
+							<th data-field="action" class="no-print">Actions</th>
 						</tr>
 					</thead>
 					<tbody class="table-group-divider">
@@ -261,7 +261,7 @@
 										<i class="fa-solid fa-xmark"></i>
 									</td>
 								{% endif %}
-								<td>
+								<td class="no-print">
 									<a class="text-decoration-underline-remove" href="{{ path('adresse_show', {'IDAdresse': adresse.IDAdresse}) }}">
 										<i class="bi bi-eye" style="margin-right:15px"></i>
 									</a>
@@ -293,7 +293,7 @@
 							<th data-field="qualite" data-sortable="true" scope="col">Qualité</th>
 							<th data-field="contactP" data-sortable="true" scope="col">P</th>
 							<th data-field="npai" data-sortable="true" scope="col">NPAI</th>
-							<th data-field="action">Actions</th>
+							<th data-field="action" class="no-print">Actions</th>
 						</tr>
 					</thead>
 					<tbody class="table-group-divider">
@@ -326,7 +326,7 @@
 										<i class="fa-solid fa-xmark"></i>
 									</td>
 								{% endif %}
-								<td>
+								<td class="no-print">
 									<a class="text-decoration-underline-remove" href="{{ path('contact_show', {'IDContact': contact.IDContact.IDContact}) }}">
 										<i class="bi bi-eye" style="margin-right:15px"></i>
 									</a>
@@ -359,7 +359,7 @@
 							<th data-field="theme" data-sortable="true" scope="col">Thème</th>
 							<th data-field="commentaire" data-sortable="true" scope="col" data-width="700">Commentaire</th>
 							<th data-field="action" data-sortable="true" scope="col" data-width="200">Action</th>
-							<th data-field="actions" data-width="100"></th>
+							<th data-field="actions" data-width="100" class="no-print"></th>
 						</tr>
 					</thead>
 					<tbody class="table-group-divider">
@@ -370,7 +370,7 @@
 								<td>{{ activite.Theme }}</td>
 								<td>{{ activite.Commentaire }}</td>
 								<td>{{ activite.Action }}</td>
-								<td>
+								<td class="no-print">
 									<a class="text-decoration-underline-remove" href="{{ path('activite_show', {'IDActivite': activite.IDActivite}) }}">
 										<i class="bi bi-eye" style="margin-right:15px"></i>
 									</a>
@@ -402,7 +402,7 @@
 							<th data-field="date" data-sortable="true" scope="col">Date</th>
 							<th data-field="societe" data-sortable="true" scope="col">Société</th>
 							<th data-field="cp" data-sortable="true" scope="col">Commentaire</th>
-							<th data-field="action">Actions</th>
+							<th data-field="action" class="no-print">Actions</th>
 						</tr>
 					</thead>
 					<tbody class="table-group-divider">
@@ -412,7 +412,7 @@
 								<td>{{ opportunite.Date|date('d-m-Y') }}</td>
 								<td>{{ opportunite.SocieteConcernee }}</td>
 								<td>{{ opportunite.Commentaire }}</td>
-								<td>
+								<td class="no-print">
 									<a class="text-decoration-underline-remove" href="{{ path('opportunite_show', {'IDOpportunite': opportunite.IDOpportunite}) }}">
 										<i class="bi bi-eye" style="margin-right:15px"></i>
 									</a>
