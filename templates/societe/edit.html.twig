@@ -6,7 +6,13 @@
 {% block body %}
 	<h1>Edit Societe</h1>
 
-	{{ include('societe/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+	{{ include('societe/_form.html.twig') }}
 
-	{{ include('societe/_delete_form.html.twig', {'button_label': 'supprimer'}) }}
+	<div class="float-end ">
+		<button class="btn btn-light no-print" type="button">
+			<a class=" text-decoration-underline-remove" href="{{ path('societes') }}">Retourner à la liste</a>
+		</button>
+	</div>
+
+	{{ include('societe/_delete_form.html.twig', {'button_class': 'btn btn-light'}) }}
 {% endblock %}
