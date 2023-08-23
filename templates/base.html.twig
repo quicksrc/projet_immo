@@ -61,7 +61,7 @@ window.location = $(this).data("href");
 	</head>
 	<body>
 		<header>
-			<a href="{{ path('immeubles') }}"><img style="height: 50px;" class="m-3" src="{{ asset('img/LOGO_VALORIM-01.png')}}"></a>
+			<a {% if app.user %} href="{{ path('immeubles') }}" {% else %} href="/" {% endif %}><img style="height: 50px;" class="m-3" src="{{ asset('img/LOGO_VALORIM-01.png')}}"></a>
 			{% if app.user %}
 				<button type="button" class="btn btn-danger float-end m-3 no-print">
 					<a class="text-light text-decoration-none" href="{{ path('app_logout') }}">Déconnexion</a>
