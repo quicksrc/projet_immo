@@ -1,15 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Immeuble
+{% block title %}VALORIM | Immeuble
 {% endblock %}
 
 {% block body %}
 	<div class="float-end">
 		<button class="btn btn-light no-print" type="button">
-			<a class=" text-decoration-underline-remove" href="{{ path('immeuble_edit', {'IDImmeuble': immeuble.IDImmeuble}) }}">edit</a>
+			<a class=" text-decoration-underline-remove" href="{{ path('immeuble_edit', {'IDImmeuble': immeuble.IDImmeuble}) }}">Modifier un Immeuble</a>
 		</button>
 		<button class="btn btn-light no-print" type="button" onclick="printImmeuble(); ">
-			<a class=" text-decoration-underline-remove">Print</a>
+			<a class=" text-decoration-underline-remove">Imprimer</a>
 		</button>
 	</div>
 	<form>
