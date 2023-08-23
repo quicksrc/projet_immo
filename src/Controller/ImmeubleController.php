@@ -32,8 +32,7 @@ class ImmeubleController extends AbstractController
     {
 
         return $this->render('immeuble/index.html.twig', [
-            'immeubles' => $immeubleRepository->findBy(array(), array('ReferenceProprio' => 'desc'), 500, null),
-            'contacts' => $contactRepository->findBy(array(), null, 500, null),
+            'immeubles' => $immeubleRepository->findBy(array(), array('ReferenceProprio' => 'desc'), 100, null),
         ]);
     }
 
@@ -131,7 +130,7 @@ class ImmeubleController extends AbstractController
             } elseif (count($keyValueActivity) >= 1 && $form->get('rechercheActivite')->isClicked()) {
                 $activites = $activiteRepository->findImmeubleByActivity($rechercheImmeuble);
             } elseif (count($keyValue) == 0 && count($keyValueContact) == 0 && count($keyValueActivity) == 0) {
-                $immeubles = $immeubleRepository->findBy(array(), null, 500, null);
+                $immeubles = $immeubleRepository->findBy(array(), null, 100, null);
             };
 
             return $this->render(
@@ -152,7 +151,7 @@ class ImmeubleController extends AbstractController
                 'activites' => $activites,
                 'adresses' => $adresses,
                 'contacts' => $contacts,
-                'immeubles' => $immeubleRepository->findBy(array(), array('IDImmeuble' => 'desc'), 500, null),
+                'immeubles' => $immeubleRepository->findBy(array(), array('IDImmeuble' => 'desc'), 100, null),
                 'form' => $form->createView(),
             ]
         );
