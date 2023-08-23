@@ -38,6 +38,7 @@ class OpportuniteType extends AbstractType
                 'widget' => 'single_text',
                 'format' => 'yyyy-MM-dd 00:00:00',
                 'html5' => false,
+                'data' => new \DateTime(),
                 'attr' => [
                     'placeholder' => 'Date',
                     'class' => 'form-control js-datepicker',

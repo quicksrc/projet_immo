@@ -232,6 +232,7 @@ class SearchImmeubleType extends AbstractType
                 'widget' => 'single_text',
                 'format' => "yyyy-MM-dd 00:00:00",
                 'html5' => false,
+                'data' => new \DateTime(),
                 'attr' => [
                     'class' => 'form-control js-datepicker',
                 ]

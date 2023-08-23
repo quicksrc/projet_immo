@@ -311,7 +311,7 @@
 						<th data-field="adresse" data-sortable="true" scope="col">Adresse</th>
 						<th data-field="cp" data-sortable="true" scope="col">CP</th>
 						<th data-field="ville" data-sortable="true" scope="col">Ville</th>
-						<th data-field="action">Actions</th>
+						<th data-field="action" class="no-print">Actions</th>
 					</tr>
 				</thead>
 				<tbody class="table-group-divider">
@@ -326,7 +326,7 @@
 							<td>{{ contact.IDSociete.Adresse }}</td>
 							<td>{{ contact.IDSociete.CP }}</td>
 							<td>{{ contact.IDSociete.Ville }}</td>
-							<td>
+							<td class="no-print">
 								<a class="text-decoration-underline-remove" href="{{ path('contact_show', {'IDContact': contact.IDSociete.IDOpportunite}) }}">
 									<i class="bi bi-eye" style="margin-right:15px"></i>
 								</a>
@@ -351,7 +351,7 @@
 						<th data-field="date" data-sortable="true" scope="col">Date</th>
 						<th data-field="societe" data-sortable="true" scope="col">Société</th>
 						<th data-field="commentaire" data-sortable="true" scope="col">Commentaire</th>
-						<th data-field="action">Actions</th>
+						<th data-field="action" class="no-print">Actions</th>
 					</tr>
 				</thead>
 				<tbody class="table-group-divider">
@@ -362,7 +362,7 @@
 							<td>{{ opportunite.Date|date('d-m-Y') }}</td>
 							<td>{{ opportunite.SocieteConcernee }}</td>
 							<td>{{ opportunite.Commentaire }}</td>
-							<td>
+							<td class="no-print">
 								<a class="text-decoration-underline-remove" href="{{ path('opportunite_show', {'IDContact': opportunite.IDOpportunite}) }}">
 									<i class="bi bi-eye" style="margin-right:15px"></i>
 								</a>
