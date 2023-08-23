@@ -33,8 +33,8 @@ class ActiviteType extends AbstractType
                 'widget' => 'single_text',
                 'format' => 'yyyy-MM-dd 00:00:00',
                 'html5' => false,
+                'data' => new \DateTime(),
                 'attr' => [
-                    'placeholder' => 'Date Activite',
                     'class' => 'form-control js-datepicker',
                 ]
             ])

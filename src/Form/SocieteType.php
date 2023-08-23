@@ -24,6 +24,7 @@ class SocieteType extends AbstractType
             //     'widget' => 'single_text',
             //     'format' => 'yyyy-MM-dd 00:00:00',
             //     'html5' => false,
+            //'data' => new \DateTime(),
             //     'attr' => [
             //         'placeholder' => 'Date de Creation',
             //         'class' => 'form-control js-datepicker',
@@ -35,6 +36,7 @@ class SocieteType extends AbstractType
             //     'widget' => 'single_text',
             //     'format' => 'yyyy-MM-dd 00:00:00',
             //     'html5' => false,
+            //'data' => new \DateTime(),
             //     'attr' => [
             //         'placeholder' => 'Date de Modification',
             //         'class' => 'form-control js-datepicker',
@@ -67,6 +69,7 @@ class SocieteType extends AbstractType
                 'widget' => 'single_text',
                 'format' => 'yyyy-MM-dd 00:00:00',
                 'html5' => false,
+                'data' => new \DateTime(),
                 'attr' => [
                     'placeholder' => 'Date Edition Journal',
                     'class' => 'form-control js-datepicker',
@@ -230,6 +233,7 @@ class SocieteType extends AbstractType
                 'widget' => 'single_text',
                 'format' => 'yyyy-MM-dd 00:00:00',
                 'html5' => false,
+                'data' => new \DateTime(),
                 'attr' => [
                     'placeholder' => 'Date Acte Cession',
                     'class' => 'form-control js-datepicker',

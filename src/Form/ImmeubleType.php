@@ -26,7 +26,6 @@ class ImmeubleType extends AbstractType
                 'attr' => [
                     'class' => 'form-control',
                     'placeholder' => 'Réf. propriétaire',
-                    'readonly' => ""
                 ]
             ])
             ->add('NumPlancheCadastrale', TextType::class, [
@@ -71,8 +70,8 @@ class ImmeubleType extends AbstractType
                 'widget' => 'single_text',
                 'format' => 'yyyy-MM-dd 00:00:00',
                 'html5' => false,
+                'data' => new \DateTime(),
                 'attr' => [
-                    'placeholder' => 'Date Activite',
                     'class' => 'form-control js-datepicker',
                 ]
             ])
@@ -188,6 +187,7 @@ class ImmeubleType extends AbstractType
             // ->add('DateVente', DateType::class, [
             //     'required' => false,
             //     'label' => 'Date Vente',
+            //     'data' => new \DateTime(),
             //     'attr' => [
             //         'placeholder' => 'Date Vente',
             //         'class' => 'form-row col-md-3',
