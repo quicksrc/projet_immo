@@ -21,13 +21,23 @@
 						<i class="fa-brands fa-searchengin"></i>
 						Recherche Avancée</a>
 				</button>
-				<div class="form-horizontal float-right  me-2">
+				<div class="form-horizontal float-right me-2">
 					<select class="form-control mr-2">
 						<option value="">Export Basique</option>
 						<option value="all">Exporter Tout</option>
 						<option value="selected">Exporter Séléctionnés</option>
 					</select>
 				</div>
+				{# {{ form_start(formSave) }} #}
+				<select class="form-select mt-5 float-end" name="selectRechercheImmeuble" id="selectRechercheImmeuble">
+					<option>Recherches Sauvegardées</option>
+					{% for rechercheImmeuble in recherchesImmeubles %}
+						<option value="{{ rechercheImmeuble.id }}">{{ rechercheImmeuble.nomRecherche }}</option>
+					{% endfor %}
+				</select>
+				{# {{ form_widget(formSave.searchSaved) }} #}
+			{# {{ form_label(formSave.searchSaved) }} #}
+				{# {{ form_end(formSave) }} #}
 			</div>
 			<script>
 				setTimeout(() => {

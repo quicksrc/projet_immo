@@ -89,6 +89,9 @@ class RechercheImmeuble
     #[ORM\Column(length: 100, nullable: true)]
     private ?string $theme = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $nomRecherche = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -390,6 +393,18 @@ class RechercheImmeuble
     public function setTheme(?string $theme): self
     {
         $this->theme = $theme;
+
+        return $this;
+    }
+
+    public function getNomRecherche(): ?string
+    {
+        return $this->nomRecherche;
+    }
+
+    public function setNomRecherche(?string $nomRecherche): static
+    {
+        $this->nomRecherche = $nomRecherche;
 
         return $this;
     }

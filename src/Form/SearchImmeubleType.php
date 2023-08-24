@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\RechercheImmeuble;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -271,6 +272,23 @@ class SearchImmeubleType extends AbstractType
                 ],
                 'attr' => [
                     'class' => 'form-select',
+                ]
+            ])
+            ->add('nomRecherche', TextType::class, [
+                'required' => false,
+                'label' => 'Nom de la Recherche',
+                'label_attr' => [
+                    'class' => 'form-label'
+                ],
+                'attr' => [
+                    'class' => 'form-control',
+                    'placeholder' => 'Indiquer un nom pour sauvegarder'
+                ]
+            ])
+            ->add('saveRechercheImmeuble', SubmitType::class, [
+                'label' => 'Sauvegarder',
+                'attr' => [
+                    'class' => 'btn btn-primary mt-5 mb-1'
                 ]
             ])
             ->add('rechercheImmeuble', SubmitType::class, [

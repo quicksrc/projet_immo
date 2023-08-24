@@ -7,6 +7,7 @@ use App\Entity\Images;
 use App\Entity\Immeuble;
 use App\Entity\RechercheImmeuble;
 use App\Form\ImmeubleType;
+use App\Form\SaveSearchType;
 use App\Form\SearchImmeubleType;
 use App\Repository\ActiviteRepository;
 use App\Repository\AdresseRepository;
@@ -19,6 +20,7 @@ use App\Repository\OpportuniteRepository;
 use App\Repository\RechercheImmeubleRepository;
 use App\Service\PdfService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\SubmitButton;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -28,11 +30,26 @@ use Symfony\Component\Routing\Annotation\Route;
 class ImmeubleController extends AbstractController
 {
     #[Route('/', name: 'immeubles', methods: ['GET'])]
-    public function index(ImmeubleRepository $immeubleRepository, ContactRepository $contactRepository): Response
+    public function index(ImmeubleRepository $immeubleRepository, RechercheImmeubleRepository $rechercheImmeubleRepository, Request $request): Response
     {
+        // $formSave = $this->createFormBuilder()
+        //     ->add('searchSaved', SubmitButton::class, [
+        //         'label' => 'Rechercher',
+        //         'attr' => [
+        //             'class' => 'btn btn-primary mt-5 mb-1'
+        //         ]
+        //     ])
+        //     ->setMethod('POST')
+        //     ->getForm();
+        // $formSave->handleRequest($request);
 
+        // if ($formSave->isSubmitted() && $formSave->isValid()) {
+        //     dd($formSave);
+        // }
         return $this->render('immeuble/index.html.twig', [
             'immeubles' => $immeubleRepository->findBy(array(), array('ReferenceProprio' => 'desc'), 100, null),
+            'recherchesImmeubles' => $rechercheImmeubleRepository->findBy(array(), array('id' => 'desc'), 100, null),
+            // 'formSave' => $formSave->createView(),
         ]);
     }
 
@@ -120,9 +137,11 @@ class ImmeubleController extends AbstractController
                     array_push($keyValueActivity, array("Theme", $rechercheImmeuble->getTheme()));
                 }
             };
-
-            if (count($keyValue) >= 1 && $form->get('rechercheImmeuble')->isClicked()) {
+            if (count($keyValue) >= 1 && $form->get('rechercheImmeuble')->isClicked() || $form->get('saveRechercheImmeuble')->isClicked()) {
                 $immeubles = $immeubleRepository->findImmeubleBySearch($rechercheImmeuble);
+                if ($form->get('saveRechercheImmeuble')->isClicked() && $rechercheImmeuble->getNomRecherche() != "") {
+                    $rechercheImmeubleRepository->enregistrer($rechercheImmeuble, true);
+                }
             } elseif (count($keyValueAdress) >= 1 && $form->get('rechercheAdresse')->isClicked()) {
                 $adresses = $adresseRepository->findImmeubleByAdress($rechercheImmeuble);
             } elseif (count($keyValueContact) >= 1 && $form->get('rechercheContact')->isClicked()) {
@@ -132,6 +151,7 @@ class ImmeubleController extends AbstractController
             } elseif (count($keyValue) == 0 && count($keyValueContact) == 0 && count($keyValueActivity) == 0) {
                 $immeubles = $immeubleRepository->findBy(array(), null, 100, null);
             };
+
 
             return $this->render(
                 'immeuble/search.html.twig',
