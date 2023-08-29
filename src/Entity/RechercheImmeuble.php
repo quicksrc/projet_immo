@@ -92,6 +92,9 @@ class RechercheImmeuble
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $nomRecherche = null;
 
+    #[ORM\Column(type: Types::OBJECT, nullable: true)]
+    private ?object $data = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -405,6 +408,18 @@ class RechercheImmeuble
     public function setNomRecherche(?string $nomRecherche): static
     {
         $this->nomRecherche = $nomRecherche;
+
+        return $this;
+    }
+
+    public function getData(): ?object
+    {
+        return $this->data;
+    }
+
+    public function setData(?object $data): static
+    {
+        $this->data = $data;
 
         return $this;
     }

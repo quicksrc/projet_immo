@@ -28,16 +28,10 @@
 						<option value="selected">Exporter Séléctionnés</option>
 					</select>
 				</div>
-				{# {{ form_start(formSave) }} #}
-				<select class="form-select mt-5 float-end" name="selectRechercheImmeuble" id="selectRechercheImmeuble">
-					<option>Recherches Sauvegardées</option>
-					{% for rechercheImmeuble in recherchesImmeubles %}
-						<option value="{{ rechercheImmeuble.id }}">{{ rechercheImmeuble.nomRecherche }}</option>
-					{% endfor %}
-				</select>
-				{# {{ form_widget(formSave.searchSaved) }} #}
-			{# {{ form_label(formSave.searchSaved) }} #}
-				{# {{ form_end(formSave) }} #}
+				{{ form_start(formSave) }}
+				{{ form_widget(formSave.data) }}
+				{{ form_widget(formSave.searchSaved) }}
+				{{ form_end(formSave) }}
 			</div>
 			<script>
 				setTimeout(() => {

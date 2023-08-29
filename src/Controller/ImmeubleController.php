@@ -29,29 +29,26 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/immeubles')]
 class ImmeubleController extends AbstractController
 {
-    #[Route('/', name: 'immeubles', methods: ['GET'])]
+
+    #[Route('/', name: 'immeubles')]
     public function index(ImmeubleRepository $immeubleRepository, RechercheImmeubleRepository $rechercheImmeubleRepository, Request $request): Response
     {
-        // $formSave = $this->createFormBuilder()
-        //     ->add('searchSaved', SubmitButton::class, [
-        //         'label' => 'Rechercher',
-        //         'attr' => [
-        //             'class' => 'btn btn-primary mt-5 mb-1'
-        //         ]
-        //     ])
-        //     ->setMethod('POST')
-        //     ->getForm();
-        // $formSave->handleRequest($request);
+        /** @var $form symfony\component\form\clickableinterface */
+        $form = $this->createForm(SaveSearchType::class);
+        $form->handleRequest($request);
 
-        // if ($formSave->isSubmitted() && $formSave->isValid()) {
-        //     dd($formSave);
-        // }
+        if ($form->get('searchSaved')->isClicked()) {
+            dd($form->get('nomRecherche'));
+        }
+
+
         return $this->render('immeuble/index.html.twig', [
             'immeubles' => $immeubleRepository->findBy(array(), array('ReferenceProprio' => 'desc'), 100, null),
             'recherchesImmeubles' => $rechercheImmeubleRepository->findBy(array(), array('id' => 'desc'), 100, null),
-            // 'formSave' => $formSave->createView(),
+            'formSave' => $form->createView(),
         ]);
     }
+
 
 
 
@@ -137,6 +134,25 @@ class ImmeubleController extends AbstractController
                     array_push($keyValueActivity, array("Theme", $rechercheImmeuble->getTheme()));
                 }
             };
+            // Récupérer données de la recherche sauvegardée
+            for ($i = 0; $i < 1; $i++) {
+                if (!empty($rechercheImmeuble->getRefProprioImmeuble())) {
+                    array_push($keyValueSearch, array("ReferenceProprio", $rechercheImmeuble->getRefProprioImmeuble()));
+                }
+                if (!empty($rechercheImmeuble->isNcpcf())) {
+                    array_push($keyValueSearch, array("NCPCF", $rechercheImmeuble->isNcpcf()));
+                }
+                if (!empty($rechercheImmeuble->getOrigineContact())) {
+                    array_push($keyValueSearch, array("OrigineContact", $rechercheImmeuble->getOrigineContact()));
+                }
+                if (!empty($rechercheImmeuble->isVisite())) {
+                    array_push($keyValueSearch, array("Visite", $rechercheImmeuble->isVisite()));
+                }
+                if (!empty($rechercheImmeuble->getEtatDossier())) {
+                    array_push($keyValueSearch, array("EtatDossier", $rechercheImmeuble->getEtatDossier()));
+                }
+            };
+
             if (count($keyValue) >= 1 && $form->get('rechercheImmeuble')->isClicked() || $form->get('saveRechercheImmeuble')->isClicked()) {
                 $immeubles = $immeubleRepository->findImmeubleBySearch($rechercheImmeuble);
                 if ($form->get('saveRechercheImmeuble')->isClicked() && $rechercheImmeuble->getNomRecherche() != "") {
@@ -172,6 +188,7 @@ class ImmeubleController extends AbstractController
                 'adresses' => $adresses,
                 'contacts' => $contacts,
                 'immeubles' => $immeubleRepository->findBy(array(), array('IDImmeuble' => 'desc'), 100, null),
+                'recherchesImmeubles' => $rechercheImmeubleRepository->findBy(array(), array('id' => 'desc'), 100, null),
                 'form' => $form->createView(),
             ]
         );

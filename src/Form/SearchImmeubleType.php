@@ -3,6 +3,9 @@
 namespace App\Form;
 
 use App\Entity\RechercheImmeuble;
+use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\QueryBuilder;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -284,6 +287,22 @@ class SearchImmeubleType extends AbstractType
                     'class' => 'form-control',
                     'placeholder' => 'Indiquer un nom pour sauvegarder'
                 ]
+            ])
+            ->add('selectNomRecherche', EntityType::class, [
+                'required' => false,
+                'label' => 'Recherches Sauvegardées',
+                'label_attr' => [
+                    'class' => 'form-label mt-4'
+                ],
+                'class' => RechercheImmeuble::class,
+                'attr' => [
+                    'class' => 'form-select',
+                ],
+                'query_builder' => function (EntityRepository $er): QueryBuilder {
+                    return $er->createQueryBuilder('r')
+                        ->orderBy('r.id', 'ASC');
+                },
+                'choice_label' => 'nomRecherche',
             ])
             ->add('saveRechercheImmeuble', SubmitType::class, [
                 'label' => 'Sauvegarder',

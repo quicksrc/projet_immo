@@ -3,10 +3,13 @@
 namespace App\Form;
 
 use App\Entity\RechercheImmeuble;
+use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\QueryBuilder;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\SubmitButton;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class SaveSearchType extends AbstractType
@@ -14,22 +17,24 @@ class SaveSearchType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('nomRecherche', ChoiceType::class, [
+            ->add('data', EntityType::class, [
                 'required' => false,
                 'label' => 'Recherches Sauvegardées',
                 'label_attr' => [
                     'class' => 'form-label mt-4'
                 ],
-                'choices' => [
-                    function (?RechercheImmeuble $rechercheImmeuble): string {
-                        return $rechercheImmeuble->getNomRecherche();
-                    },
-                ],
+                'class' => RechercheImmeuble::class,
                 'attr' => [
                     'class' => 'form-select',
-                ]
+                ],
+                'query_builder' => function (EntityRepository $er): QueryBuilder {
+                    return $er->createQueryBuilder('r')
+                        ->orderBy('r.id', 'ASC');
+                },
+                'choice_label' => 'nomRecherche',
+                'mapped' => 'false'
             ])
-            ->add('searchSaved', SubmitButton::class, [
+            ->add('searchSaved', SubmitType::class, [
                 'label' => 'Rechercher',
                 'attr' => [
                     'class' => 'btn btn-primary mt-5 mb-1'
