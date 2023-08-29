@@ -65,6 +65,7 @@ box.style.display = 'block';
 					{% for immeuble in immeubles %}
 
 						<tr class='clickable-row' data-href="{{ path('immeuble_show', {'IDImmeuble': immeuble.IDImmeuble}) }}">
+							<td></td>
 							<td>{{ immeuble.IDImmeuble }}</td>
 							<td>{{ immeuble.Adresse }}</td>
 							<td>{{ immeuble.CP }}</td>
