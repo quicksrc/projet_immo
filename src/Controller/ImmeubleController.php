@@ -19,6 +19,8 @@ use App\Repository\ImmeubleRepository;
 use App\Repository\OpportuniteRepository;
 use App\Repository\RechercheImmeubleRepository;
 use App\Service\PdfService;
+use Doctrine\Common\Collections\Expr\Value;
+use Doctrine\ORM\Mapping\Id;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\SubmitButton;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -38,7 +40,20 @@ class ImmeubleController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->get('searchSaved')->isClicked()) {
-            dd($form->get('nomRecherche'));
+            $datas = (array)$form->get('nomRecherche')->getData();
+            $array =  array_values($datas);
+            // dd($array[2]);
+            for ($i = 0; $i < count($array); $i++) {
+                dd($i);
+            }
+            // dd($datas);
+            // $data = array($datas);
+            $counter = count((array)$datas);
+
+            // return $this->render('immeuble/index.html.twig', [
+            //     'immeubles' => $immeubleRepository->createQueryBuilder()
+            // ]);
+            //dd("hello");
         }
 
 

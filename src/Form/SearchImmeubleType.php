@@ -288,22 +288,6 @@ class SearchImmeubleType extends AbstractType
                     'placeholder' => 'Indiquer un nom pour sauvegarder'
                 ]
             ])
-            ->add('selectNomRecherche', EntityType::class, [
-                'required' => false,
-                'label' => 'Recherches Sauvegardées',
-                'label_attr' => [
-                    'class' => 'form-label mt-4'
-                ],
-                'class' => RechercheImmeuble::class,
-                'attr' => [
-                    'class' => 'form-select',
-                ],
-                'query_builder' => function (EntityRepository $er): QueryBuilder {
-                    return $er->createQueryBuilder('r')
-                        ->orderBy('r.id', 'ASC');
-                },
-                'choice_label' => 'nomRecherche',
-            ])
             ->add('saveRechercheImmeuble', SubmitType::class, [
                 'label' => 'Sauvegarder',
                 'attr' => [

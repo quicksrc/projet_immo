@@ -17,7 +17,7 @@ class SaveSearchType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('data', EntityType::class, [
+            ->add('nomRecherche', EntityType::class, [
                 'required' => false,
                 'label' => 'Recherches Sauvegardées',
                 'label_attr' => [
@@ -31,8 +31,7 @@ class SaveSearchType extends AbstractType
                     return $er->createQueryBuilder('r')
                         ->orderBy('r.id', 'ASC');
                 },
-                'choice_label' => 'nomRecherche',
-                'mapped' => 'false'
+                'choice_label' => 'nomRecherche'
             ])
             ->add('searchSaved', SubmitType::class, [
                 'label' => 'Rechercher',

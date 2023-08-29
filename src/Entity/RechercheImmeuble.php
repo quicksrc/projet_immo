@@ -95,6 +95,11 @@ class RechercheImmeuble
     #[ORM\Column(type: Types::OBJECT, nullable: true)]
     private ?object $data = null;
 
+    public function __toString()
+    {
+        return $this->nomRecherche;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
