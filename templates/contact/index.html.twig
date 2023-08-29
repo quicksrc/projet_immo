@@ -53,6 +53,7 @@ box.style.display = 'block';
 				<tbody>
 					{% for contact in contacts %}
 						<tr class='clickable-row' data-href="{{ path('contact_show', {'IDContact': contact.IDContact}) }}">
+							<td></td>
 							<td>{{ contact.IDContact }}</td>
 							<td>{{ contact.Nom }}</td>
 							<td>{{ contact.Prenom }}</td>
