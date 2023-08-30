@@ -206,7 +206,8 @@ class SocieteController extends AbstractController
         $form = $this->createForm(SocieteType::class, $societe);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted()) {
+            $societe->setDateModification(new \DateTime());
             $societeRepository->save($societe, true);
 
             return $this->redirectToRoute('societes', [], Response::HTTP_SEE_OTHER);

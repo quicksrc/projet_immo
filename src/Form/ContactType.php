@@ -22,7 +22,7 @@ class ContactType extends AbstractType
             //     'required' => false,
             //     'label' => 'Date Modification',
             //     'format' => 'yyyy-MM-dd',
-            //'data' => new \DateTime(),
+            //     'data' => new \DateTime(),
             //     'attr' => [
             //         'placeholder' => 'Date Modification',
             //         'class' => 'form-control',

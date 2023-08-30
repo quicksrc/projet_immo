@@ -17,6 +17,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\Constraints\Date;
 
 #[Route('/contact')]
 class ContactController extends AbstractController
@@ -243,13 +244,24 @@ class ContactController extends AbstractController
         ]);
     }
 
+    public function getDefaultOptions(array $options)
+    {
+        return array(
+            'csrf_protection' => false,
+            // Rest of options omitted
+        );
+    }
+
     #[Route('/{IDContact}/edit', name: 'contact_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Contact $contact, ContactRepository $contactRepository): Response
     {
         $form = $this->createForm(ContactType::class, $contact);
+
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        //dd($form->isValid());
+        if ($form->isSubmitted()) {
+            $contact->setDateModification(new \DateTime());
             $contactRepository->save($contact, true);
 
             return $this->redirectToRoute('contact_show', ['IDContact' => $contact->getIDContact()], Response::HTTP_SEE_OTHER);

@@ -41,7 +41,7 @@ class SearchImmeubleType extends AbstractType
                     'class' => 'form-label mt-3'
                 ],
                 'attr' => [
-                    'class' => 'form-check-input mt-4 ms-4'
+                    'class' => 'form-check-input mt-4 ms-2'
                 ]
             ])
             ->add('origineContact', ChoiceType::class, [
@@ -72,7 +72,7 @@ class SearchImmeubleType extends AbstractType
                     'for' => 'btnCheckVisite'
                 ],
                 'attr' => [
-                    'class' => 'form-check-input mt-4 ms-4',
+                    'class' => 'form-check-input mt-4 ms-2',
                     'id' => 'btnCheckVisite'
                 ]
             ])

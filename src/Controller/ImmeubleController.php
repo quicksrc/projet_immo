@@ -375,6 +375,7 @@ class ImmeubleController extends AbstractController
     {
         $immeuble = new Immeuble();
         $form = $this->createForm(ImmeubleType::class, $immeuble);
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -389,7 +390,7 @@ class ImmeubleController extends AbstractController
         ]);
     }
 
-    #[Route('/img/delete/{id}', name: 'immeubles_delete_img', methods: ["DELETE"])]
+    #[Route('/img/delete/{id}', name: 'immeubles_delete_img', methods: ['GET', 'POST'])]
     public function deleteImage(Images $image, Request $request, ImagesRepository $imagesRepository)
     {
         $data = json_decode($request->getContent(), true);
@@ -411,7 +412,7 @@ class ImmeubleController extends AbstractController
         }
     }
 
-    #[Route('/immeuble/doc/delete/{id}', name: 'immeubles_delete_doc', methods: ["DELETE"])]
+    #[Route('/doc/delete/{id}', name: 'immeubles_delete_doc', methods: ['GET', 'POST'])]
     public function deleteDocument(Documents $document, Request $request, DocumentsRepository $documentsRepository)
     {
         $data = json_decode($request->getContent(), true);
@@ -464,8 +465,8 @@ class ImmeubleController extends AbstractController
     public function edit(Request $request, Immeuble $immeuble, ImmeubleRepository $immeubleRepository): Response
     {
         $form = $this->createForm(ImmeubleType::class, $immeuble);
-        $form->handleRequest($request);
 
+        $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
 
 
