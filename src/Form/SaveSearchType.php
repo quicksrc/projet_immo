@@ -25,7 +25,7 @@ class SaveSearchType extends AbstractType
                 ],
                 'class' => RechercheImmeuble::class,
                 'attr' => [
-                    'class' => 'form-select',
+                    'class' => 'form-select sm-3',
                 ],
                 'query_builder' => function (EntityRepository $er): QueryBuilder {
                     return $er->createQueryBuilder('r')
@@ -36,7 +36,7 @@ class SaveSearchType extends AbstractType
             ->add('searchSaved', SubmitType::class, [
                 'label' => 'Rechercher',
                 'attr' => [
-                    'class' => 'btn btn-primary mt-5 mb-1'
+                    'class' => 'btn btn-primary mt-1'
                 ]
             ]);
     }
