@@ -80,6 +80,43 @@ class ImmeubleRepository extends ServiceEntityRepository
         return $qb->getQuery()->getResult();
     }
 
+    /**
+     * @param RechercheImmeuble $rechercheImmeuble
+     */
+    public function findImmeubleBySavedSearch(RechercheImmeuble $rechercheImmeuble)
+    {
+        $qb = $this->createQueryBuilder('i')
+            ->where('i.IDImmeuble IS NOT NULL');
+
+        if (!empty($rechercheImmeuble->getRefProprioImmeuble())) {
+            $qb
+                ->andWhere('i.ReferenceProprio LIKE :refProprioImmeuble')
+                ->setParameter('refProprioImmeuble', $rechercheImmeuble->getRefProprioImmeuble());
+        }
+        if (!empty($rechercheImmeuble->getOrigineContact())) {
+            $qb
+                ->andWhere('i.OrigineContact LIKE :origineContact')
+                ->setParameter('origineContact', $rechercheImmeuble->getOrigineContact());
+        }
+        if (!empty($rechercheImmeuble->isNcpcf())) {
+            $qb
+                ->andWhere('i.NCPCF LIKE :ncpcf')
+                ->setParameter('ncpcf', $rechercheImmeuble->isNcpcf());
+        }
+        if (!empty($rechercheImmeuble->isVisite())) {
+            $qb
+                ->andWhere('i.Visite LIKE :visite')
+                ->setParameter('visite', $rechercheImmeuble->isVisite());
+        }
+        if (!empty($rechercheImmeuble->getEtatDossier())) {
+            $qb
+                ->andWhere('i.EtatDossier LIKE :etatDossier')
+                ->setParameter('etatDossier', $rechercheImmeuble->getEtatDossier());
+        }
+        // dd($qb);
+        return $qb->getQuery()->getResult();
+    }
+
     //    public function findOneBySomeField($value): ?Immeuble
     //    {
     //        return $this->createQueryBuilder('i')

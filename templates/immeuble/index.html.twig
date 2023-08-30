@@ -29,6 +29,7 @@
 					</select>
 				</div>
 				{{ form_start(formSave) }}
+				{{ form_label(formSave.nomRecherche) }}
 				{{ form_widget(formSave.nomRecherche) }}
 				{{ form_widget(formSave.searchSaved) }}
 				{{ form_end(formSave) }}
@@ -85,6 +86,114 @@ box.style.display = 'block';
 								</a>
 								<form method="post" action="{{ path('immeuble_delete', {'IDImmeuble': immeuble.IDImmeuble}) }}" onsubmit="return confirm('Etes-vous sûr de vouloir supprimer cet immeuble ?');">
 									<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ immeuble.IDImmeuble) }}">
+									<button class="btn">
+										<i class="bi bi-trash3"></i>
+									</button>
+								</form>
+							</td>
+						</tr>
+					{% endfor %}
+					{% for adresse in adresses %}
+
+						<tr class='clickable-row' data-href="{{ path('immeuble_show', {'IDImmeuble': adresse.IDImmeuble.IDImmeuble}) }}">
+							<td></td>
+							<td>{{ adresse.IDImmeuble.IDImmeuble }}</td>
+							<td>{{ adresse.IDImmeuble.Adresse }}</td>
+							<td>{{ adresse.IDImmeuble.CP }}</td>
+							<td>{{ adresse.IDImmeuble.Ville }}</td>
+							<td>{{ adresse.IDImmeuble.ReferenceProprio }}</td>
+							<td>{{ adresse.IDImmeuble.DateEnquete|date("d/m/Y") }}</td>
+							{% if adresse.IDImmeuble.Intermediaire == "" %}
+								<td>✖️</td>
+							{% elseif adresse.IDImmeuble.Intermediaire == "null" %}
+								<td>✖️</td>
+							{% else %}
+								<td>{{ adresse.IDImmeuble.Intermediaire }}</td>
+							{% endif %}
+							<td>{{ adresse.IDImmeuble.SuiviPar }}</td>
+							<td>{{ adresse.IDImmeuble.Description }}</td>
+							<td>
+								<a class="text-decoration-underline-remove" href="{{ path('immeuble_show', {'IDImmeuble': adresse.IDImmeuble.IDImmeuble}) }}">
+									<i class="bi bi-eye" style="margin-right:15px"></i>
+								</a>
+
+								<a class="text-decoration-underline-remove" href="{{ path('immeuble_edit', {'IDImmeuble': adresse.IDImmeuble.IDImmeuble}) }}">
+									<i class="bi bi-pen" style="margin-right:10px"></i>
+								</a>
+								<form method="post" action="{{ path('immeuble_delete', {'IDImmeuble': adresse.IDImmeuble.IDImmeuble}) }}" onsubmit="return confirm('Etes-vous sûr de vouloir supprimer cet immeuble ?');">
+									<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ adresse.IDImmeuble.IDImmeuble) }}">
+									<button class="btn">
+										<i class="bi bi-trash3"></i>
+									</button>
+								</form>
+							</td>
+						</tr>
+					{% endfor %}
+					{% for contact in contacts %}
+
+						<tr class='clickable-row' data-href="{{ path('immeuble_show', {'IDImmeuble': contact.IDImmeuble.IDImmeuble}) }}">
+							<td></td>
+							<td>{{ contact.IDImmeuble.IDImmeuble }}</td>
+							<td>{{ contact.IDImmeuble.Adresse }}</td>
+							<td>{{ contact.IDImmeuble.CP }}</td>
+							<td>{{ contact.IDImmeuble.Ville }}</td>
+							<td>{{ contact.IDImmeuble.ReferenceProprio }}</td>
+							<td>{{ contact.IDImmeuble.DateEnquete|date("d/m/Y") }}</td>
+							{% if contact.IDImmeuble.Intermediaire == "" %}
+								<td>✖️</td>
+							{% elseif contact.IDImmeuble.Intermediaire == "null" %}
+								<td>✖️</td>
+							{% else %}
+								<td>{{ contact.IDImmeuble.Intermediaire }}</td>
+							{% endif %}
+							<td>{{ contact.IDImmeuble.SuiviPar }}</td>
+							<td>{{ contact.IDImmeuble.Description }}</td>
+							<td>
+								<a class="text-decoration-underline-remove" href="{{ path('immeuble_show', {'IDImmeuble': contact.IDImmeuble.IDImmeuble}) }}">
+									<i class="bi bi-eye" style="margin-right:15px"></i>
+								</a>
+
+								<a class="text-decoration-underline-remove" href="{{ path('immeuble_edit', {'IDImmeuble': contact.IDImmeuble.IDImmeuble}) }}">
+									<i class="bi bi-pen" style="margin-right:10px"></i>
+								</a>
+								<form method="post" action="{{ path('immeuble_delete', {'IDImmeuble': contact.IDImmeuble.IDImmeuble}) }}" onsubmit="return confirm('Etes-vous sûr de vouloir supprimer cet immeuble ?');">
+									<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ contact.IDImmeuble.IDImmeuble) }}">
+									<button class="btn">
+										<i class="bi bi-trash3"></i>
+									</button>
+								</form>
+							</td>
+						</tr>
+					{% endfor %}
+					{% for activite in activites %}
+
+						<tr class='clickable-row' data-href="{{ path('immeuble_show', {'IDImmeuble': activite.IDImmeuble.IDImmeuble}) }}">
+							<td></td>
+							<td>{{ activite.IDImmeuble.IDImmeuble }}</td>
+							<td>{{ activite.IDImmeuble.Adresse }}</td>
+							<td>{{ activite.IDImmeuble.CP }}</td>
+							<td>{{ activite.IDImmeuble.Ville }}</td>
+							<td>{{ activite.IDImmeuble.ReferenceProprio }}</td>
+							<td>{{ activite.IDImmeuble.DateEnquete|date("d/m/Y") }}</td>
+							{% if activite.IDImmeuble.Intermediaire == "" %}
+								<td>✖️</td>
+							{% elseif activite.IDImmeuble.Intermediaire == "null" %}
+								<td>✖️</td>
+							{% else %}
+								<td>{{ activite.IDImmeuble.Intermediaire }}</td>
+							{% endif %}
+							<td>{{ activite.IDImmeuble.SuiviPar }}</td>
+							<td>{{ activite.IDImmeuble.Description }}</td>
+							<td>
+								<a class="text-decoration-underline-remove" href="{{ path('immeuble_show', {'IDImmeuble': activite.IDImmeuble.IDImmeuble}) }}">
+									<i class="bi bi-eye" style="margin-right:15px"></i>
+								</a>
+
+								<a class="text-decoration-underline-remove" href="{{ path('immeuble_edit', {'IDImmeuble': activite.IDImmeuble.IDImmeuble}) }}">
+									<i class="bi bi-pen" style="margin-right:10px"></i>
+								</a>
+								<form method="post" action="{{ path('immeuble_delete', {'IDImmeuble': activite.IDImmeuble.IDImmeuble}) }}" onsubmit="return confirm('Etes-vous sûr de vouloir supprimer cet immeuble ?');">
+									<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ activite.IDImmeuble.IDImmeuble) }}">
 									<button class="btn">
 										<i class="bi bi-trash3"></i>
 									</button>

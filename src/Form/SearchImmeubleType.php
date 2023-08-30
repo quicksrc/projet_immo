@@ -294,6 +294,24 @@ class SearchImmeubleType extends AbstractType
                     'class' => 'btn btn-primary mt-5 mb-1'
                 ]
             ])
+            ->add('saveRechercheImmeubleAdress', SubmitType::class, [
+                'label' => 'Sauvegarder',
+                'attr' => [
+                    'class' => 'btn btn-primary mt-5 mb-1'
+                ]
+            ])
+            ->add('saveRechercheImmeubleContact', SubmitType::class, [
+                'label' => 'Sauvegarder',
+                'attr' => [
+                    'class' => 'btn btn-primary mt-5 mb-1'
+                ]
+            ])
+            ->add('saveRechercheImmeubleActivite', SubmitType::class, [
+                'label' => 'Sauvegarder',
+                'attr' => [
+                    'class' => 'btn btn-primary mt-5 mb-1'
+                ]
+            ])
             ->add('rechercheImmeuble', SubmitType::class, [
                 'label' => 'Rechercher Par Immeuble',
                 'attr' => [

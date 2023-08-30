@@ -31,7 +31,7 @@ class SaveSearchType extends AbstractType
                     return $er->createQueryBuilder('r')
                         ->orderBy('r.id', 'ASC');
                 },
-                'choice_label' => 'nomRecherche'
+                'choice_label' => 'nomRecherche',
             ])
             ->add('searchSaved', SubmitType::class, [
                 'label' => 'Rechercher',

@@ -2,24 +2,6 @@
 	{% include 'shared/_btnreturn.html.twig' %}
 	<h1>Recherche Immeubles</h1>
 	{{ form_start(form, {'attr': {'id': 'form_immeuble'}})}}
-	{# <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-																															<div class="modal-dialog modal-dialog-centered">
-																																<div class="modal-content">
-																																	<div class="modal-header text-center">
-																																		<h5 class="modal-title" id="staticBackdropLabel">Veuillez entrer un nom pour la recherche à sauvegarder</h5>
-																																		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-																																	</div>
-																																	<div class="modal-body input-group input-group-sm mb-3">
-																																		<span class="input-group-text" id="inputGroup-sizing-sm">Nom de la Recherche</span>
-																																		{{ form_widget(form.nomRecherche) }}
-																																	</div>
-																																	<div class="modal-footer">
-																																		<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-																																		<button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Enregistrer</button>
-																																	</div>
-																																</div>
-																															</div>
-																														</div> #}
 	<div class="row">
 		<div class="col-2 mt-4">
 			<div class="list-group" id="list-tab" role="tablist">
@@ -58,15 +40,10 @@
 							</div>
 						</div>
 					</div>
-					<div class="row">
-						<div class="row form-group align-items-end">
-							<div class="col-5 float-left">
-								{{ form_widget(form.nomRecherche) }}
-							</div>
-							<div class="col-7 float-right">
-								{{ form_widget(form.saveRechercheImmeuble) }}
-								{{ form_widget(form.rechercheImmeuble) }}
-							</div>
+					<div class="col">
+						<div class="form-group d-grid gap-2 d-md-flex justify-content-md-end">
+							{{ form_widget(form.saveRechercheImmeuble) }}
+							{{ form_widget(form.rechercheImmeuble) }}
 						</div>
 					</div>
 				</div>
@@ -104,7 +81,7 @@
 					</div>
 					<div class="col">
 						<div class="form-group d-grid gap-2 d-md-flex justify-content-md-end">
-							<button type="button" class="btn btn-primary mt-5 mb-1" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Enregistrer</button>
+							{{ form_widget(form.saveRechercheImmeubleAdress) }}
 							{{ form_widget(form.rechercheAdresse) }}
 						</div>
 					</div>
@@ -140,10 +117,9 @@
 					</div>
 					<div class="col">
 						<div class="form-group d-grid gap-2 d-md-flex justify-content-md-end">
-							<button type="button" class="btn btn-primary mt-5 mb-1" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Enregistrer</button>
+							{{ form_widget(form.saveRechercheImmeubleContact) }}
 							{{ form_widget(form.rechercheContact) }}
 						</div>
-
 					</div>
 				</div>
 				<div class="tab-pane fade" id="list-activite" role="tabpanel" aria-labelledby="list-activite-list">
@@ -161,13 +137,16 @@
 					</div>
 					<div class="col">
 						<div class="form-group d-grid gap-2 d-md-flex justify-content-md-end">
-							<button type="button" class="btn btn-primary mt-5 mb-1" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Enregistrer</button>
+							{{ form_widget(form.saveRechercheImmeubleActivite) }}
 							{{ form_widget(form.rechercheActivite) }}
 						</div>
 					</div>
-					{{ form_end(form) }}
 				</div>
 			</div>
+			<div class="col-5 float-left">
+				{{ form_widget(form.nomRecherche) }}
+			</div>
+			{{ form_end(form) }}
 		</div>
 	</div>
 </div>

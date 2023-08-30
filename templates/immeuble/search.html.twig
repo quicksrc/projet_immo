@@ -8,18 +8,8 @@
 	<div class="row">
 		{% include 'shared/_formsearchImmeuble.html.twig' with {form: form} %}
 	</div>
-	<div
-		class="row mt-5">
-		{# <div id="toolbarImmeubleSearch" class="me-4 mb-3">
-					{% for rechercheImmeuble in recherchesImmeubles %}
-						<select class="form-control" name="savedSearches" id="savedSearches">
-							<option>Recherches Sauvegardées</option>
-							<option value="{{ rechercheImmeuble.id }}">{{ rechercheImmeuble.nomRecherche }}</option>
-						</select>
-		
-					{% endfor %}
-					<button type="button" class="btn btn-primary">Rechercher</button>
-				</div> #}
+	<div class="row mt-5">
+		<div id="toolbarImmeubleSearch" class="me-4 mb-3"></div>
 		<table id="tableImmeubleSearch" data-pagination="true" data-toolbar="#toolbarImmeubleSearch" data-page-size="25" data-search="true" data-show-export="true" data-toggle="table" data-click-to-select="true" data-search-align="left" data-show-columns="true" data-show-print="true" class="table table-list table-bordered table-striped m-auto">
 			<thead>
 				<tr>

@@ -21,6 +21,7 @@ use App\Repository\RechercheImmeubleRepository;
 use App\Service\PdfService;
 use Doctrine\Common\Collections\Expr\Value;
 use Doctrine\ORM\Mapping\Id;
+use Reflector;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\SubmitButton;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -33,35 +34,196 @@ class ImmeubleController extends AbstractController
 {
 
     #[Route('/', name: 'immeubles')]
-    public function index(ImmeubleRepository $immeubleRepository, RechercheImmeubleRepository $rechercheImmeubleRepository, Request $request): Response
+    public function index(ImmeubleRepository $immeubleRepository, RechercheImmeubleRepository $rechercheImmeubleRepository, Request $request, AdresseRepository $adresseRepository, ImmeubleContactRepository $immeubleContactRepository, ActiviteRepository $activiteRepository): Response
     {
         /** @var $form symfony\component\form\clickableinterface */
         $form = $this->createForm(SaveSearchType::class);
         $form->handleRequest($request);
 
-        if ($form->get('searchSaved')->isClicked()) {
+        $immeubles = [];
+        $contacts = [];
+        $adresses = [];
+        $activites = [];
+
+        if ($form->isSubmitted() && $form->isValid()) {
             $datas = (array)$form->get('nomRecherche')->getData();
             $array =  array_values($datas);
-            // dd($array[2]);
-            for ($i = 0; $i < count($array); $i++) {
-                dd($i);
+            if ($array == []) {
+                return $this->render('immeuble/index.html.twig', [
+                    'immeubles' => $immeubleRepository->findBy(array(), array('ReferenceProprio' => 'desc'), 100, null),
+                    'recherchesImmeubles' => $rechercheImmeubleRepository->findBy(array(), array('id' => 'desc'), 100, null),
+                    'formSave' => $form->createView(),
+                ]);
             }
-            // dd($datas);
-            // $data = array($datas);
-            $counter = count((array)$datas);
+            $id = $array[0];
+            $refProprioImmeuble = $array[1];
+            $numPlanchCada = $array[2];
+            $etatDossier = $array[3];
+            $enquete = $array[4];
+            $dateEnquete = $array[5];
+            $description = $array[6];
+            $suiviPar = $array[7];
+            $vendu = $array[8];
+            $ncpcf = $array[9];
+            $origineContact = $array[10];
+            $visite = $array[11];
+            $commentaire = $array[12];
+            $numPrincipal = $array[13];
+            $typeVoie = $array[14];
+            $nomRue = $array[15];
+            $adresse = $array[16];
+            $cp = $array[17];
+            $ville = $array[18];
+            $nomContact = $array[19];
+            $RCS = $array[20];
+            $email = $array[21];
+            $civiliteContact = $array[22];
+            $prenomContact = $array[23];
+            $dateActivite = $array[24];
+            $theme = $array[25];
+            $nomRecherche = $array[26];
 
-            // return $this->render('immeuble/index.html.twig', [
-            //     'immeubles' => $immeubleRepository->createQueryBuilder()
-            // ]);
-            //dd("hello");
+            if (str_contains($nomRecherche, 'Immeuble : ')) {
+                $immeubles = $immeubleRepository->createQueryBuilder('i')
+                    ->where('i.IDImmeuble IS NOT NULL');
+                if ($refProprioImmeuble != null) {
+                    $immeubles
+                        ->andWhere('i.ReferenceProprio LIKE :refProprioImmeuble')
+                        ->setParameter('refProprioImmeuble', $refProprioImmeuble);
+                }
+                if ($origineContact != null) {
+                    $immeubles
+                        ->andWhere('i.OrigineContact LIKE :origineContact')
+                        ->setParameter('origineContact', $origineContact);
+                }
+                if ($ncpcf != null) {
+                    $immeubles
+                        ->andWhere('i.NCPCF LIKE :ncpcf')
+                        ->setParameter('ncpcf', $ncpcf);
+                }
+                if ($visite != null) {
+                    $immeubles
+                        ->andWhere('i.Visite LIKE :visite')
+                        ->setParameter('visite', $visite);
+                }
+                if ($etatDossier != null) {
+                    $immeubles
+                        ->andWhere('i.EtatDossier LIKE :etatDossier')
+                        ->setParameter('etatDossier', $etatDossier);
+                }
+
+                $immeubles = $immeubles->getQuery()->getResult();
+            } elseif (str_contains($nomRecherche, 'Adresse : ')) {
+
+                $adresses = $adresseRepository->createQueryBuilder('a')
+                    ->addSelect('i')
+                    ->leftJoin('a.IDImmeuble', 'i')
+                    ->where('i.IDImmeuble IS NOT NULL');
+
+
+                if ($numPrincipal != null) {
+                    $adresses
+                        ->andWhere('a.NumPrincipal LIKE :numPrincipal')
+                        ->setParameter('numPrincipal', $numPrincipal);
+                }
+                if ($typeVoie != null) {
+                    $adresses
+                        ->andWhere('a.TypeVoie LIKE :typeVoie')
+                        ->setParameter('typeVoie', $typeVoie);
+                }
+                if ($nomRue != null) {
+                    $adresses
+                        ->andWhere('a.Adresse LIKE :nomRue')
+                        ->setParameter('nomRue', $nomRue);
+                }
+                if ($cp != null) {
+                    $adresses
+                        ->andWhere('a.CP LIKE :cp')
+                        ->setParameter('cp', $cp);
+                }
+                if ($ville != null) {
+                    $adresses
+                        ->andWhere('a.Ville LIKE :ville')
+                        ->setParameter('ville', $ville);
+                }
+
+                $adresses = $adresses->getQuery()->getResult();
+            } elseif (str_contains($nomRecherche, 'Contact : ')) {
+
+                $contacts = $immeubleContactRepository->createQueryBuilder('ic')
+                    ->addSelect('c')
+                    ->leftJoin('ic.IDContact', 'c')
+                    ->addSelect('i')
+                    ->leftJoin('ic.IDImmeuble', 'i')
+                    ->where('i.IDImmeuble IS NOT NULL');
+
+                if ($nomContact != null) {
+                    $contacts
+                        ->andWhere('c.Nom LIKE :nomContact')
+                        ->setParameter('nomContact', $nomContact);
+                }
+                if ($prenomContact != null) {
+                    $contacts
+                        ->andWhere('c.Prenom LIKE :prenomContact')
+                        ->setParameter('prenomContact', $prenomContact);
+                }
+                if ($RCS != null) {
+                    $contacts
+                        ->andWhere('c.RCS LIKE :RCS')
+                        ->setParameter('RCS', $RCS);
+                }
+                if ($email != null) {
+                    $contacts
+                        ->andWhere('c.Email LIKE :Email')
+                        ->setParameter('Email', $email);
+                }
+                if ($civiliteContact != null) {
+                    $contacts
+                        ->andWhere('c.Civilite LIKE :civiliteContact')
+                        ->setParameter('civiliteContact', $civiliteContact);
+                }
+
+                $contacts = $contacts->getQuery()->getResult();
+            } elseif (str_contains($nomRecherche, 'Activite : ')) {
+
+                $activites = $activiteRepository->createQueryBuilder('a')
+                    ->addSelect('i')
+                    ->leftJoin('a.IDImmeuble', 'i')
+                    ->where('i.IDImmeuble IS NOT NULL');
+
+                if ($dateActivite != null) {
+                    $activites
+                        ->andWhere('a.DateActivite LIKE :dateActivite')
+                        ->setParameter('dateActivite', $dateActivite->format('Y-m-d 00:00:00'));
+                }
+                if ($theme != null) {
+                    $activites
+                        ->andWhere('a.Theme LIKE :theme')
+                        ->setParameter('theme', $theme);
+                }
+
+                $activites = $activites->getQuery()->getResult();
+            }
+            return $this->render(
+                'immeuble/index.html.twig',
+                [
+                    'immeubles' => $immeubles,
+                    'adresses' => $adresses,
+                    'contacts' => $contacts,
+                    'activites' => $activites,
+                    'formSave' => $form->createView(),
+                ]
+            );
+        } else {
+            return $this->render('immeuble/index.html.twig', [
+                'immeubles' => $immeubleRepository->findBy(array(), array('ReferenceProprio' => 'desc'), 100, null),
+                'adresses' => $adresses,
+                'contacts' => $contacts,
+                'activites' => $activites,
+                'recherchesImmeubles' => $rechercheImmeubleRepository->findBy(array(), array('id' => 'desc'), 100, null),
+                'formSave' => $form->createView(),
+            ]);
         }
-
-
-        return $this->render('immeuble/index.html.twig', [
-            'immeubles' => $immeubleRepository->findBy(array(), array('ReferenceProprio' => 'desc'), 100, null),
-            'recherchesImmeubles' => $rechercheImmeubleRepository->findBy(array(), array('id' => 'desc'), 100, null),
-            'formSave' => $form->createView(),
-        ]);
     }
 
 
@@ -149,36 +311,35 @@ class ImmeubleController extends AbstractController
                     array_push($keyValueActivity, array("Theme", $rechercheImmeuble->getTheme()));
                 }
             };
-            // Récupérer données de la recherche sauvegardée
-            for ($i = 0; $i < 1; $i++) {
-                if (!empty($rechercheImmeuble->getRefProprioImmeuble())) {
-                    array_push($keyValueSearch, array("ReferenceProprio", $rechercheImmeuble->getRefProprioImmeuble()));
-                }
-                if (!empty($rechercheImmeuble->isNcpcf())) {
-                    array_push($keyValueSearch, array("NCPCF", $rechercheImmeuble->isNcpcf()));
-                }
-                if (!empty($rechercheImmeuble->getOrigineContact())) {
-                    array_push($keyValueSearch, array("OrigineContact", $rechercheImmeuble->getOrigineContact()));
-                }
-                if (!empty($rechercheImmeuble->isVisite())) {
-                    array_push($keyValueSearch, array("Visite", $rechercheImmeuble->isVisite()));
-                }
-                if (!empty($rechercheImmeuble->getEtatDossier())) {
-                    array_push($keyValueSearch, array("EtatDossier", $rechercheImmeuble->getEtatDossier()));
-                }
-            };
 
             if (count($keyValue) >= 1 && $form->get('rechercheImmeuble')->isClicked() || $form->get('saveRechercheImmeuble')->isClicked()) {
                 $immeubles = $immeubleRepository->findImmeubleBySearch($rechercheImmeuble);
                 if ($form->get('saveRechercheImmeuble')->isClicked() && $rechercheImmeuble->getNomRecherche() != "") {
+                    $savedImmeubleName = "Immeuble : " . $rechercheImmeuble->getNomRecherche();
+                    $rechercheImmeuble->setNomRecherche($savedImmeubleName);
                     $rechercheImmeubleRepository->enregistrer($rechercheImmeuble, true);
                 }
-            } elseif (count($keyValueAdress) >= 1 && $form->get('rechercheAdresse')->isClicked()) {
+            } elseif (count($keyValueAdress) >= 1 && $form->get('rechercheAdresse')->isClicked() || $form->get('saveRechercheImmeubleAdress')->isClicked()) {
                 $adresses = $adresseRepository->findImmeubleByAdress($rechercheImmeuble);
-            } elseif (count($keyValueContact) >= 1 && $form->get('rechercheContact')->isClicked()) {
+                if ($form->get('saveRechercheImmeubleAdress')->isClicked() && $rechercheImmeuble->getNomRecherche() != "") {
+                    $savedAdressName = "Adresse : " . $rechercheImmeuble->getNomRecherche();
+                    $rechercheImmeuble->setNomRecherche($savedAdressName);
+                    $rechercheImmeubleRepository->enregistrer($rechercheImmeuble, true);
+                }
+            } elseif (count($keyValueContact) >= 1 && $form->get('rechercheContact')->isClicked() || $form->get('saveRechercheImmeubleContact')->isClicked()) {
                 $contacts = $immeubleContactRepository->findImmeubleByFieldsContact($rechercheImmeuble);
-            } elseif (count($keyValueActivity) >= 1 && $form->get('rechercheActivite')->isClicked()) {
+                if ($form->get('saveRechercheImmeubleContact')->isClicked() && $rechercheImmeuble->getNomRecherche() != "") {
+                    $savedContactName = "Contact : " . $rechercheImmeuble->getNomRecherche();
+                    $rechercheImmeuble->setNomRecherche($savedContactName);
+                    $rechercheImmeubleRepository->enregistrer($rechercheImmeuble, true);
+                }
+            } elseif (count($keyValueActivity) >= 1 && $form->get('rechercheActivite')->isClicked() || $form->get('saveRechercheImmeubleActivite')->isClicked()) {
                 $activites = $activiteRepository->findImmeubleByActivity($rechercheImmeuble);
+                if ($form->get('saveRechercheImmeubleActivite')->isClicked() && $rechercheImmeuble->getNomRecherche() != "") {
+                    $savedActiviteName = "Activite : " . $rechercheImmeuble->getNomRecherche();
+                    $rechercheImmeuble->setNomRecherche($savedActiviteName);
+                    $rechercheImmeubleRepository->enregistrer($rechercheImmeuble, true);
+                }
             } elseif (count($keyValue) == 0 && count($keyValueContact) == 0 && count($keyValueActivity) == 0) {
                 $immeubles = $immeubleRepository->findBy(array(), null, 100, null);
             };
