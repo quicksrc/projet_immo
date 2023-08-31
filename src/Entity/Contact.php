@@ -91,14 +91,14 @@ class Contact
     #[ORM\OneToMany(mappedBy: 'IDContact', targetEntity: Activite::class)]
     private Collection $activites;
 
-    public function __construct()
-    {
-        $this->activites = new ArrayCollection();
-    }
-
     public function __toString()
     {
         return $this->IDContact;
+    }
+
+    public function __construct()
+    {
+        $this->activites = new ArrayCollection();
     }
 
     public function getIDContact(): ?int

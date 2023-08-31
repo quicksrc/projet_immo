@@ -1,6 +1,7 @@
 <class="flexjustify-content-centerm-auto">
 	{% include 'shared/_btnreturn.html.twig' %}
 	<h1>Recherche Contact</h1>
+	{{ form_start(form) }}
 	<div class="row">
 		<div class="col-2 mt-4">
 			<div class="list-group" id="list-tab" role="tablist">
@@ -14,7 +15,6 @@
 		<div class="col-9 card pb-2">
 			<div class="tab-content" id="nav-tabContent">
 				<div class="tab-pane fade active show" id="list-contact" role="tabpanel">
-					{{ form_start(form) }}
 					<div class="row">
 						<div class="row align-items-end">
 							<div class="col-4">
@@ -89,6 +89,7 @@
 					</div>
 					<div class="col">
 						<div class="form-group d-grid gap-2 d-md-flex justify-content-md-end">
+							{{ form_widget(form.saveRechercheContact) }}
 							{{ form_widget(form.rechercheContact) }}
 						</div>
 					</div>
@@ -120,6 +121,7 @@
 					</div>
 					<div class="col">
 						<div class="form-group d-grid gap-2 d-md-flex justify-content-md-end">
+							{{ form_widget(form.saveRechercheActivite) }}
 							{{ form_widget(form.rechercheActivite) }}
 						</div>
 					</div>
@@ -149,6 +151,7 @@
 					</div>
 					<div class="col">
 						<div class="form-group d-grid gap-2 d-md-flex justify-content-md-end">
+							{{ form_widget(form.saveRechercheImmeuble) }}
 							{{ form_widget(form.rechercheImmeuble) }}
 						</div>
 					</div>
@@ -174,6 +177,7 @@
 					</div>
 					<div class="col">
 						<div class="form-group d-grid gap-2 d-md-flex justify-content-md-end">
+							{{ form_widget(form.saveRechercheAdresse) }}
 							{{ form_widget(form.rechercheAdresse) }}
 						</div>
 					</div>
@@ -221,11 +225,15 @@
 					</div>
 					<div class="col">
 						<div class="form-group d-grid gap-2 d-md-flex justify-content-md-end">
+							{{ form_widget(form.saveRechercheSociete) }}
 							{{ form_widget(form.rechercheSociete) }}
 						</div>
 					</div>
-					{{ form_end(form) }}
 				</div>
 			</div>
+			<div class="col-5 float-left">
+				{{ form_widget(form.nomRecherche) }}
+			</div>
+			{{ form_end(form) }}
 		</div>
 	</div>
