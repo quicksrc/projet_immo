@@ -27,6 +27,11 @@
 						<option value="all">Exporter Tout</option>
 						<option value="selected">Exporter Séléctionnés</option>
 					</select>
+					{{ form_start(formSave) }}
+					{{ form_label(formSave.nomRecherche) }}
+					{{ form_widget(formSave.nomRecherche) }}
+					{{ form_widget(formSave.searchSaved) }}
+					{{ form_end(formSave) }}
 				</div>
 			</div>
 			<script>
@@ -72,6 +77,110 @@ box.style.display = 'block';
 								</a>
 
 								<a class="text-decoration-underline-remove" href="{{ path('contact_delete', {'IDContact': contact.IDContact}) }}">
+									<i class="bi bi-trash3"></i>
+								</a>
+							</td>
+						</tr>
+					{% endfor %}
+					{% for activite in activites %}
+						<tr class='clickable-row' data-href="{{ path('contact_show', {'IDContact': activite.IDContact.IDContact}) }}">
+							<td></td>
+							<td>{{ activite.IDContact.IDContact }}</td>
+							<td>{{ activite.IDContact.Nom }}</td>
+							<td>{{ activite.IDContact.Prenom }}</td>
+							<td>{{ activite.IDContact.Telephone }}</td>
+							<td>{{ activite.IDContact.TelephonePortable }}</td>
+							<td>{{ activite.IDContact.Adresse }}</td>
+							<td>{{ activite.IDContact.CP }}</td>
+							<td>{{ activite.IDContact.Ville }}</td>
+							<td>
+								<a class="text-decoration-underline-remove" href="{{ path('contact_show', {'IDContact': activite.IDContact.IDContact}) }}">
+									<i class="bi bi-eye" style="margin-right:15px"></i>
+								</a>
+
+								<a class="text-decoration-underline-remove" href="{{ path('contact_edit', {'IDContact': activite.IDContact.IDContact}) }}">
+									<i class="bi bi-pen" style="margin-right:10px"></i>
+								</a>
+
+								<a class="text-decoration-underline-remove" href="{{ path('contact_delete', {'IDContact': activite.IDContact.IDContact}) }}">
+									<i class="bi bi-trash3"></i>
+								</a>
+							</td>
+						</tr>
+					{% endfor %}
+					{% for immeuble in immeubles %}
+						<tr class='clickable-row' data-href="{{ path('contact_show', {'IDContact': immeuble.IDContact.IDContact}) }}">
+							<td></td>
+							<td>{{ immeuble.IDContact.IDContact }}</td>
+							<td>{{ immeuble.IDContact.Nom }}</td>
+							<td>{{ immeuble.IDContact.Prenom }}</td>
+							<td>{{ immeuble.IDContact.Telephone }}</td>
+							<td>{{ immeuble.IDContact.TelephonePortable }}</td>
+							<td>{{ immeuble.IDContact.Adresse }}</td>
+							<td>{{ immeuble.IDContact.CP }}</td>
+							<td>{{ immeuble.IDContact.Ville }}</td>
+							<td>
+								<a class="text-decoration-underline-remove" href="{{ path('contact_show', {'IDContact': immeuble.IDContact.IDContact}) }}">
+									<i class="bi bi-eye" style="margin-right:15px"></i>
+								</a>
+
+								<a class="text-decoration-underline-remove" href="{{ path('contact_edit', {'IDContact': immeuble.IDContact.IDContact}) }}">
+									<i class="bi bi-pen" style="margin-right:10px"></i>
+								</a>
+
+								<a class="text-decoration-underline-remove" href="{{ path('contact_delete', {'IDContact': immeuble.IDContact.IDContact}) }}">
+									<i class="bi bi-trash3"></i>
+								</a>
+							</td>
+						</tr>
+					{% endfor %}
+					{% for adresse in adresses %}
+						<tr class='clickable-row' data-href="{{ path('contact_show', {'IDContact': adresse.IDContact}) }}">
+							<td></td>
+							<td>{{ adresse.IDContact }}</td>
+							<td>{{ adresse.Nom }}</td>
+							<td>{{ adresse.Prenom }}</td>
+							<td>{{ adresse.Telephone }}</td>
+							<td>{{ adresse.TelephonePortable }}</td>
+							<td>{{ adresse.Adresse }}</td>
+							<td>{{ adresse.CP }}</td>
+							<td>{{ adresse.Ville }}</td>
+							<td>
+								<a class="text-decoration-underline-remove" href="{{ path('contact_show', {'IDContact': adresse.IDContact}) }}">
+									<i class="bi bi-eye" style="margin-right:15px"></i>
+								</a>
+
+								<a class="text-decoration-underline-remove" href="{{ path('contact_edit', {'IDContact': adresse.IDContact}) }}">
+									<i class="bi bi-pen" style="margin-right:10px"></i>
+								</a>
+
+								<a class="text-decoration-underline-remove" href="{{ path('contact_delete', {'IDContact': adresse.IDContact}) }}">
+									<i class="bi bi-trash3"></i>
+								</a>
+							</td>
+						</tr>
+					{% endfor %}
+					{% for societe in societes %}
+						<tr class='clickable-row' data-href="{{ path('contact_show', {'IDContact': societe.IDContact.IDContact}) }}">
+							<td></td>
+							<td>{{ societe.IDContact.IDContact }}</td>
+							<td>{{ societe.IDContact.Nom }}</td>
+							<td>{{ societe.IDContact.Prenom }}</td>
+							<td>{{ societe.IDContact.Telephone }}</td>
+							<td>{{ societe.IDContact.TelephonePortable }}</td>
+							<td>{{ societe.IDContact.Adresse }}</td>
+							<td>{{ societe.IDContact.CP }}</td>
+							<td>{{ societe.IDContact.Ville }}</td>
+							<td>
+								<a class="text-decoration-underline-remove" href="{{ path('contact_show', {'IDContact': societe.IDContact.IDContact}) }}">
+									<i class="bi bi-eye" style="margin-right:15px"></i>
+								</a>
+
+								<a class="text-decoration-underline-remove" href="{{ path('contact_edit', {'IDContact': societe.IDContact.IDContact}) }}">
+									<i class="bi bi-pen" style="margin-right:10px"></i>
+								</a>
+
+								<a class="text-decoration-underline-remove" href="{{ path('contact_delete', {'IDContact': societe.IDContact.IDContact}) }}">
 									<i class="bi bi-trash3"></i>
 								</a>
 							</td>

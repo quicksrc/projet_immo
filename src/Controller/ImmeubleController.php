@@ -51,6 +51,9 @@ class ImmeubleController extends AbstractController
             if ($array == []) {
                 return $this->render('immeuble/index.html.twig', [
                     'immeubles' => $immeubleRepository->findBy(array(), array('ReferenceProprio' => 'desc'), 100, null),
+                    'adresses' => $adresses,
+                    'contacts' => $contacts,
+                    'activites' => $activites,
                     'recherchesImmeubles' => $rechercheImmeubleRepository->findBy(array(), array('id' => 'desc'), 100, null),
                     'formSave' => $form->createView(),
                 ]);

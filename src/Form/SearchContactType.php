@@ -440,6 +440,47 @@ class SearchContactType extends AbstractType
                     'class' => 'form-control',
                 ]
             ])
+            ->add('nomRecherche', TextType::class, [
+                'required' => false,
+                'label' => 'Nom de la Recherche',
+                'label_attr' => [
+                    'class' => 'form-label'
+                ],
+                'attr' => [
+                    'class' => 'form-control',
+                    'placeholder' => 'Indiquer un nom pour sauvegarder'
+                ]
+            ])
+            ->add('saveRechercheContact', SubmitType::class, [
+                'label' => 'Sauvegarder',
+                'attr' => [
+                    'class' => 'btn btn-primary mt-5 mb-1'
+                ]
+            ])
+            ->add('saveRechercheActivite', SubmitType::class, [
+                'label' => 'Sauvegarder',
+                'attr' => [
+                    'class' => 'btn btn-primary mt-5 mb-1'
+                ]
+            ])
+            ->add('saveRechercheImmeuble', SubmitType::class, [
+                'label' => 'Sauvegarder',
+                'attr' => [
+                    'class' => 'btn btn-primary mt-5 mb-1'
+                ]
+            ])
+            ->add('saveRechercheAdresse', SubmitType::class, [
+                'label' => 'Sauvegarder',
+                'attr' => [
+                    'class' => 'btn btn-primary mt-5 mb-1'
+                ]
+            ])
+            ->add('saveRechercheSociete', SubmitType::class, [
+                'label' => 'Sauvegarder',
+                'attr' => [
+                    'class' => 'btn btn-primary mt-5 mb-1'
+                ]
+            ])
             ->add('rechercheSociete', SubmitType::class, [
                 'label' => 'Rechercher Par Société',
                 'attr' => [
