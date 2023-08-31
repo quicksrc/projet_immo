@@ -69,9 +69,22 @@ class ContactRepository extends ServiceEntityRepository
                 ->setParameter('adresseContact', $rechercheContact->getAdresseContact());
         }
         if (!empty($rechercheContact->getCpContact())) {
-            $qb
-                ->andWhere('c.CP LIKE :cpContact')
-                ->setParameter('cpContact', $rechercheContact->getCpContact());
+            if (str_contains($rechercheContact->getCpContact(), ',')) {
+                $cpExplode = explode(',', $rechercheContact->getCpContact());
+                $cpExplode = str_replace(' ', '', $cpExplode);
+                foreach ($cpExplode as $cp) {
+
+                    $qb
+                        ->andWhere('c.CP LIKE :cpContact')
+                        ->setParameter('cpContact', $cp);
+                    var_dump($cp);
+                }
+                // dd($qb);
+            } else {
+                $qb
+                    ->andWhere('c.CP LIKE :cpContact')
+                    ->setParameter('cpContact', $rechercheContact->getCpContact());
+            }
         }
         if (!empty($rechercheContact->getVilleContact())) {
             $qb
