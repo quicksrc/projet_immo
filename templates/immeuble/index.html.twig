@@ -92,12 +92,15 @@ box.style.display = 'block';
 								<a class="text-decoration-underline-remove" href="{{ path('immeuble_edit', {'IDImmeuble': immeuble.IDImmeuble}) }}">
 									<i class="bi bi-pen" style="margin-right:10px"></i>
 								</a>
-								<form method="post" action="{{ path('immeuble_delete', {'IDImmeuble': immeuble.IDImmeuble}) }}" onsubmit="return confirm('Etes-vous sûr de vouloir supprimer cet immeuble ?');">
-									<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ immeuble.IDImmeuble) }}">
-									<button class="btn">
-										<i class="bi bi-trash3"></i>
-									</button>
-								</form>
+								<a class="text-decoration-underline-remove" href="{{ path('immeuble_delete', {'IDImmeuble': immeuble.IDImmeuble}) }}">
+									<i class="bi bi-trash3" style="margin-right:10px"></i>
+								</a>
+								{# <form method="post" action="{{ path('immeuble_delete', {'IDImmeuble': immeuble.IDImmeuble}) }}" onsubmit="return confirm('Etes-vous sûr de vouloir supprimer cet immeuble ?');">
+																																																	<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ immeuble.IDImmeuble) }}">
+																																																	<button class="btn">
+																																																		<i class="bi bi-trash3"></i>
+																																																	</button>
+																																																</form> #}
 							</td>
 						</tr>
 					{% endfor %}
@@ -128,12 +131,15 @@ box.style.display = 'block';
 								<a class="text-decoration-underline-remove" href="{{ path('immeuble_edit', {'IDImmeuble': adresse.IDImmeuble.IDImmeuble}) }}">
 									<i class="bi bi-pen" style="margin-right:10px"></i>
 								</a>
-								<form method="post" action="{{ path('immeuble_delete', {'IDImmeuble': adresse.IDImmeuble.IDImmeuble}) }}" onsubmit="return confirm('Etes-vous sûr de vouloir supprimer cet immeuble ?');">
-									<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ adresse.IDImmeuble.IDImmeuble) }}">
-									<button class="btn">
-										<i class="bi bi-trash3"></i>
-									</button>
-								</form>
+								<a class="text-decoration-underline-remove" href="{{ path('immeuble_delete', {'IDImmeuble': adresse.IDImmeuble.IDImmeuble}) }}">
+									<i class="bi bi-trash3" style="margin-right:10px"></i>
+								</a>
+								{# <form method="post" action="{{ path('immeuble_delete', {'IDImmeuble': adresse.IDImmeuble.IDImmeuble}) }}" onsubmit="return confirm('Etes-vous sûr de vouloir supprimer cet immeuble ?');">
+																									<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ adresse.IDImmeuble.IDImmeuble) }}">
+																									<button class="btn">
+																										<i class="bi bi-trash3"></i>
+																									</button>
+																								</form> #}
 							</td>
 						</tr>
 					{% endfor %}
@@ -164,12 +170,15 @@ box.style.display = 'block';
 								<a class="text-decoration-underline-remove" href="{{ path('immeuble_edit', {'IDImmeuble': contact.IDImmeuble.IDImmeuble}) }}">
 									<i class="bi bi-pen" style="margin-right:10px"></i>
 								</a>
-								<form method="post" action="{{ path('immeuble_delete', {'IDImmeuble': contact.IDImmeuble.IDImmeuble}) }}" onsubmit="return confirm('Etes-vous sûr de vouloir supprimer cet immeuble ?');">
-									<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ contact.IDImmeuble.IDImmeuble) }}">
-									<button class="btn">
-										<i class="bi bi-trash3"></i>
-									</button>
-								</form>
+								<a class="text-decoration-underline-remove" href="{{ path('immeuble_delete', {'IDImmeuble': contact.IDImmeuble.IDImmeuble}) }}">
+									<i class="bi bi-trash3" style="margin-right:10px"></i>
+								</a>
+								{# <form method="post" action="{{ path('immeuble_delete', {'IDImmeuble': contact.IDImmeuble.IDImmeuble}) }}" onsubmit="return confirm('Etes-vous sûr de vouloir supprimer cet immeuble ?');">
+																	<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ contact.IDImmeuble.IDImmeuble) }}">
+																	<button class="btn">
+																		<i class="bi bi-trash3"></i>
+																	</button>
+																</form> #}
 							</td>
 						</tr>
 					{% endfor %}
@@ -200,12 +209,15 @@ box.style.display = 'block';
 								<a class="text-decoration-underline-remove" href="{{ path('immeuble_edit', {'IDImmeuble': activite.IDImmeuble.IDImmeuble}) }}">
 									<i class="bi bi-pen" style="margin-right:10px"></i>
 								</a>
-								<form method="post" action="{{ path('immeuble_delete', {'IDImmeuble': activite.IDImmeuble.IDImmeuble}) }}" onsubmit="return confirm('Etes-vous sûr de vouloir supprimer cet immeuble ?');">
-									<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ activite.IDImmeuble.IDImmeuble) }}">
-									<button class="btn">
-										<i class="bi bi-trash3"></i>
-									</button>
-								</form>
+								<a class="text-decoration-underline-remove" href="{{ path('immeuble_delete', {'IDImmeuble': activite.IDImmeuble.IDImmeuble}) }}">
+									<i class="bi bi-pen" style="margin-right:10px"></i>
+								</a>
+								{# <form method="post" action="{{ path('immeuble_delete', {'IDImmeuble': activite.IDImmeuble.IDImmeuble}) }}" onsubmit="return confirm('Etes-vous sûr de vouloir supprimer cet immeuble ?');">
+																																																																									<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ activite.IDImmeuble.IDImmeuble) }}">
+																																																																									<button class="btn">
+																																																																										<i class="bi bi-trash3"></i>
+																																																																									</button>
+																																																																								</form> #}
 							</td>
 						</tr>
 					{% endfor %}
