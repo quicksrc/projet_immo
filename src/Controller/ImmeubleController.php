@@ -390,7 +390,7 @@ class ImmeubleController extends AbstractController
         ]);
     }
 
-    #[Route('/img/delete/{id}', name: 'immeubles_delete_img', methods: ['GET', 'POST'])]
+    #[Route('/img/delete/{id}', name: 'immeubles_delete_img', methods: ['DELETE'])]
     public function deleteImage(Images $image, Request $request, ImagesRepository $imagesRepository)
     {
         $data = json_decode($request->getContent(), true);
@@ -412,7 +412,7 @@ class ImmeubleController extends AbstractController
         }
     }
 
-    #[Route('/doc/delete/{id}', name: 'immeubles_delete_doc', methods: ['GET', 'POST'])]
+    #[Route('/doc/delete/{id}', name: 'immeubles_delete_doc', methods: ['DELETE'])]
     public function deleteDocument(Documents $document, Request $request, DocumentsRepository $documentsRepository)
     {
         $data = json_decode($request->getContent(), true);
