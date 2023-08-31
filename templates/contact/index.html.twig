@@ -27,12 +27,20 @@
 						<option value="all">Exporter Tout</option>
 						<option value="selected">Exporter Séléctionnés</option>
 					</select>
-					{{ form_start(formSave) }}
-					{{ form_label(formSave.nomRecherche) }}
-					{{ form_widget(formSave.nomRecherche) }}
-					{{ form_widget(formSave.searchSaved) }}
-					{{ form_end(formSave) }}
 				</div>
+				{{ form_start(formSave) }}
+				<div class="row">
+					<div class="row form-group align-items-end">
+						<div class="col-6">
+							{{ form_label(formSave.nomRecherche) }}
+							{{ form_widget(formSave.nomRecherche) }}
+						</div>
+						<div class="col-sm-4">
+							{{ form_widget(formSave.searchSaved) }}
+						</div>
+					</div>
+				</div>
+				{{ form_end(formSave) }}
 			</div>
 			<script>
 				setTimeout(() => {

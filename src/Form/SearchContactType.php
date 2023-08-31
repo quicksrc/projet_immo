@@ -454,31 +454,36 @@ class SearchContactType extends AbstractType
             ->add('saveRechercheContact', SubmitType::class, [
                 'label' => 'Sauvegarder',
                 'attr' => [
-                    'class' => 'btn btn-primary mt-5 mb-1'
+                    'class' => 'btn btn-primary mt-5 mb-1',
+                    'style' => 'margin-right: 30%;'
                 ]
             ])
             ->add('saveRechercheActivite', SubmitType::class, [
                 'label' => 'Sauvegarder',
                 'attr' => [
-                    'class' => 'btn btn-primary mt-5 mb-1'
+                    'class' => 'btn btn-primary mt-5 mb-1',
+                    'style' => 'margin-right: 30%;'
                 ]
             ])
             ->add('saveRechercheImmeuble', SubmitType::class, [
                 'label' => 'Sauvegarder',
                 'attr' => [
-                    'class' => 'btn btn-primary mt-5 mb-1'
+                    'class' => 'btn btn-primary mt-5 mb-1',
+                    'style' => 'margin-right: 30%;'
                 ]
             ])
             ->add('saveRechercheAdresse', SubmitType::class, [
                 'label' => 'Sauvegarder',
                 'attr' => [
-                    'class' => 'btn btn-primary mt-5 mb-1'
+                    'class' => 'btn btn-primary mt-5 mb-1',
+                    'style' => 'margin-right: 30%;'
                 ]
             ])
             ->add('saveRechercheSociete', SubmitType::class, [
                 'label' => 'Sauvegarder',
                 'attr' => [
-                    'class' => 'btn btn-primary mt-5 mb-1'
+                    'class' => 'btn btn-primary mt-5 mb-1',
+                    'style' => 'margin-right: 30%;'
                 ]
             ])
             ->add('rechercheSociete', SubmitType::class, [
