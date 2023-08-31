@@ -488,7 +488,7 @@ class ImmeubleController extends AbstractController
             // Upload PDF
             $documents = $form->get('documents')->getData();
             foreach ($documents as $document) {
-                $documentName = 'PDF' . '_' . $immeuble->getIDImmeuble() . $document->getClientOriginalName();
+                $documentName = 'DOC' . '_' . $immeuble->getIDImmeuble() . $document->getClientOriginalName();
                 $document->move($this->getParameter('doc_immeuble_directory'), $documentName);
                 $doc = new Documents();
                 $doc->setName($documentName);
