@@ -125,14 +125,30 @@ class SocieteContactRepository extends ServiceEntityRepository
                 ->setParameter('adresseContact', $rechercheSociete->getAdresseContact());
         }
         if (!empty($rechercheSociete->getCpContact())) {
-            $qb
-                ->andWhere('c.CP LIKE :cpContact')
-                ->setParameter('cpContact', $rechercheSociete->getCpContact());
+            if (str_contains($rechercheSociete->getCpContact(), ',')) {
+                $cpExplode = explode(',', $rechercheSociete->getCpContact());
+
+                $qb
+                    ->andWhere('a.CP IN (:cpContact)')
+                    ->setParameter('cpContact', $cpExplode);
+            } else {
+                $qb
+                    ->andWhere('c.CP LIKE :cpContact')
+                    ->setParameter('cpContact', $rechercheSociete->getCpContact());
+            }
         }
         if (!empty($rechercheSociete->getVilleContact())) {
-            $qb
-                ->andWhere('c.Ville LIKE :villeContact')
-                ->setParameter('villeContact', $rechercheSociete->getVilleContact());
+            if (str_contains($rechercheSociete->getVilleContact(), ',')) {
+                $cpExplode = explode(',', $rechercheSociete->getVilleContact());
+
+                $qb
+                    ->andWhere('a.Ville IN (:villeContact)')
+                    ->setParameter('villeContact', $cpExplode);
+            } else {
+                $qb
+                    ->andWhere('c.Ville LIKE :villeContact')
+                    ->setParameter('villeContact', $rechercheSociete->getVilleContact());
+            }
         }
         if (!empty($rechercheSociete->getFonctionContact())) {
             $qb

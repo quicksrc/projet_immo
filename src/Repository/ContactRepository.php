@@ -71,15 +71,10 @@ class ContactRepository extends ServiceEntityRepository
         if (!empty($rechercheContact->getCpContact())) {
             if (str_contains($rechercheContact->getCpContact(), ',')) {
                 $cpExplode = explode(',', $rechercheContact->getCpContact());
-                $cpExplode = str_replace(' ', '', $cpExplode);
-                foreach ($cpExplode as $cp) {
 
-                    $qb
-                        ->andWhere('c.CP LIKE :cpContact')
-                        ->setParameter('cpContact', $cp);
-                    var_dump($cp);
-                }
-                // dd($qb);
+                $qb
+                    ->andWhere('c.CP IN (:cpContact)')
+                    ->setParameter('cpContact', $cpExplode);
             } else {
                 $qb
                     ->andWhere('c.CP LIKE :cpContact')
@@ -87,9 +82,17 @@ class ContactRepository extends ServiceEntityRepository
             }
         }
         if (!empty($rechercheContact->getVilleContact())) {
-            $qb
-                ->andWhere('c.Ville LIKE :villeContact')
-                ->setParameter('villeContact', $rechercheContact->getVilleContact());
+            if (str_contains($rechercheContact->getVilleContact(), ',')) {
+                $cpExplode = explode(',', $rechercheContact->getVilleContact());
+
+                $qb
+                    ->andWhere('c.Ville IN (:villeContact)')
+                    ->setParameter('villeContact', $cpExplode);
+            } else {
+                $qb
+                    ->andWhere('c.Ville LIKE :villeContact')
+                    ->setParameter('villeContact', $rechercheContact->getVilleContact());
+            }
         }
         if (!empty($rechercheContact->getFonction())) {
             $qb

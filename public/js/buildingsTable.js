@@ -14,8 +14,12 @@ $(function () {
               visible: $(this).val() === "selected",
             },
             {
-              field: "id",
-              title: "N°",
+              field: "action",
+              title: "Actions",
+            },
+            {
+              field: "refPropriete",
+              title: "Réf. Propriétaire",
             },
             {
               field: "adresse",
@@ -28,10 +32,6 @@ $(function () {
             {
               field: "ville",
               title: "Ville",
-            },
-            {
-              field: "refPropriete",
-              title: "Réf. Propriétaire",
             },
             {
               field: "date",
@@ -49,10 +49,7 @@ $(function () {
               field: "description",
               title: "Description",
             },
-            {
-              field: "action",
-              title: "Actions",
-            },
+            
           ],
         });
     })
@@ -74,8 +71,12 @@ $(function () {
               visible: $(this).val() === "selected",
             },
             {
-              field: "id",
-              title: "N°",
+              field: "action",
+              title: "Actions",
+            },
+            {
+              field: "refPropriete",
+              title: "Réf. Propriétaire",
             },
             {
               field: "adresse",
@@ -89,10 +90,7 @@ $(function () {
               field: "ville",
               title: "Ville",
             },
-            {
-              field: "refPropriete",
-              title: "Réf. Propriétaire",
-            },
+            
             {
               field: "date",
               title: "Date de l'Enquête",
@@ -108,10 +106,6 @@ $(function () {
             {
               field: "description",
               title: "Description",
-            },
-            {
-              field: "action",
-              title: "Actions",
             },
           ],
         });
@@ -133,6 +127,10 @@ $(function () {
               field: "state",
               checkbox: true,
               visible: $(this).val() === "selected",
+            },
+            {
+              field: "action",
+              title: "Actions",
             },
             {
               field: "id",
@@ -166,10 +164,6 @@ $(function () {
               field: "ville",
               title: "Ville",
             },
-            {
-              field: "action",
-              title: "Actions",
-            },
           ],
         });
     })
@@ -190,6 +184,10 @@ $(function () {
               field: "state",
               checkbox: true,
               visible: $(this).val() === "selected",
+            },
+            {
+              field: "action",
+              title: "Actions",
             },
             {
               field: "id",

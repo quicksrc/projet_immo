@@ -136,7 +136,7 @@ class SearchImmeubleType extends AbstractType
                     'class' => 'form-control col-5'
                 ]
             ])
-            ->add('cp', IntegerType::class, [
+            ->add('cp', TextType::class, [
                 'required' => false,
                 'label' => 'CP',
                 'label_attr' => [

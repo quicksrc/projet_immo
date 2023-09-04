@@ -38,26 +38,18 @@ box.style.display = 'block';
 
 				<thead>
 					<tr>
+						<th data-field="action">Actions</th>
 						<th data-sortable="true" data-field="id">ID Societe</th>
 						<th data-sortable="true" data-field="etatDossier">Etat</th>
 						<th data-sortable="true" data-field="jal">JAL</th>
 						<th data-sortable="true" data-field="vrs">Raison Sociale du Vendeur</th>
 						<th data-sortable="true" data-field="ars">Raison Sociale de l'Acheteur</th>
-						<th data-field="action">Actions</th>
 					</tr>
 				</thead>
 				<tbody>
 					{% for societe in societes %}
 						<tr class='clickable-row' data-href="{{ path('societe_show', {'IDSociete': societe.IDSociete}) }}">
-							<td>{{ societe.IDSociete }}</td>
-							{% if societe.EtatDossier == "" %}
-								<td>✖️</td>
-							{% else %}
-								<td>{{ societe.EtatDossier }}</td>
-							{% endif %}
-							<td>{{ societe.NumJAL }}</td>
-							<td>{{ societe.VendeurRaisonSociale }}</td>
-							<td>{{ societe.AcheteurRaisonSociale }}</td>
+							<td></td>
 							<td>
 								<a class="text-decoration-underline-remove" href="{{ path('societe_show', {'IDSociete': societe.IDSociete}) }}">
 									<i class="bi bi-eye" style="margin-right:15px"></i>
@@ -71,6 +63,15 @@ box.style.display = 'block';
 									<i class="bi bi-trash3"></i>
 								</a>
 							</td>
+							<td>{{ societe.IDSociete }}</td>
+							{% if societe.EtatDossier == "" %}
+								<td>✖️</td>
+							{% else %}
+								<td>{{ societe.EtatDossier }}</td>
+							{% endif %}
+							<td>{{ societe.NumJAL }}</td>
+							<td>{{ societe.VendeurRaisonSociale }}</td>
+							<td>{{ societe.AcheteurRaisonSociale }}</td>
 						</tr>
 					{% else %}
 						<tr>

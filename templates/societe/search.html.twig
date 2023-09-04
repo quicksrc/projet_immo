@@ -11,6 +11,7 @@
 		<table id="tableSociete" data-pagination="true" data-toolbar="#toolbarSociete" data-page-size="25" data-search="true" data-show-export="true" data-toggle="table" data-click-to-select="true" data-search-align="left" data-show-columns="true" data-show-print="true" class="table table-list table-bordered table-striped m-auto">
 			<thead>
 				<tr>
+					<th data-field="action">Actions</th>
 					<th data-sortable="true" data-field="id">ID</th>
 					<th data-sortable="true" data-field="etatDossier">État</th>
 					<th data-sortable="true" data-field="jal">JAL</th>
@@ -18,23 +19,11 @@
 					<th data-sortable="true" data-field="vcp">CP du vendeur</th>
 					<th data-sortable="true" data-field="ars">Raison Sociale de l'acheteur</th>
 					<th data-sortable="true" data-field="acp">CP de l'acheteur</th>
-					<th data-field="action">Actions</th>
 				</tr>
 			</thead>
 			<tbody class="table-group-divider">
 				{% for societe in societes %}
 					<tr class='clickable-row' data-href="{{ path('societe_show', {'IDSociete': societe.IDSociete}) }}">
-						<td>{{ societe.IDSociete }}</td>
-						{% if societe.EtatDossier == "" %}
-							<td>✖️</td>
-						{% else %}
-							<td>{{ societe.EtatDossier }}</td>
-						{% endif %}
-						<td>{{ societe.NumJAL }}</td>
-						<td>{{ societe.VendeurRaisonSociale }}</td>
-						<td>{{ societe.VendeurCP }}</td>
-						<td>{{ societe.AcheteurRaisonSociale }}</td>
-						<td>{{ societe.AcheteurCP }}</td>
 						<td>
 							<a class="text-decoration-underline-remove" href="{{ path('societe_show', {'IDSociete': societe.IDSociete}) }}">
 								<i class="bi bi-eye" style="margin-right:15px"></i>
@@ -48,21 +37,22 @@
 								<i class="bi bi-trash3"></i>
 							</a>
 						</td>
+						<td>{{ societe.IDSociete }}</td>
+						{% if societe.EtatDossier == "" %}
+							<td>✖️</td>
+						{% else %}
+							<td>{{ societe.EtatDossier }}</td>
+						{% endif %}
+						<td>{{ societe.NumJAL }}</td>
+						<td>{{ societe.VendeurRaisonSociale }}</td>
+						<td>{{ societe.VendeurCP }}</td>
+						<td>{{ societe.AcheteurRaisonSociale }}</td>
+						<td>{{ societe.AcheteurCP }}</td>
+
 					</tr>
 				{% endfor %}
 				{% for contact in contacts %}
 					<tr class='clickable-row' data-href="{{ path('societe_show', {'IDSociete': contact.IDSociete.IDSociete}) }}">
-						<td>{{ contact.IDSociete.IDSociete }}</td>
-						{% if contact.IDSociete.EtatDossier == "" %}
-							<td>✖️</td>
-						{% else %}
-							<td>{{ contact.IDSociete.EtatDossier }}</td>
-						{% endif %}
-						<td>{{ contact.IDSociete.NumJAL }}</td>
-						<td>{{ contact.IDSociete.VendeurRaisonSociale }}</td>
-						<td>{{ contact.IDSociete.VendeurCP }}</td>
-						<td>{{ contact.IDSociete.AcheteurRaisonSociale }}</td>
-						<td>{{ contact.IDSociete.AcheteurCP }}</td>
 						<td>
 							<a class="text-decoration-underline-remove" href="{{ path('societe_show', {'IDSociete': contact.IDSociete.IDSociete}) }}">
 								<i class="bi bi-eye" style="margin-right:15px"></i>
@@ -76,21 +66,22 @@
 								<i class="bi bi-trash3"></i>
 							</a>
 						</td>
+						<td>{{ contact.IDSociete.IDSociete }}</td>
+						{% if contact.IDSociete.EtatDossier == "" %}
+							<td>✖️</td>
+						{% else %}
+							<td>{{ contact.IDSociete.EtatDossier }}</td>
+						{% endif %}
+						<td>{{ contact.IDSociete.NumJAL }}</td>
+						<td>{{ contact.IDSociete.VendeurRaisonSociale }}</td>
+						<td>{{ contact.IDSociete.VendeurCP }}</td>
+						<td>{{ contact.IDSociete.AcheteurRaisonSociale }}</td>
+						<td>{{ contact.IDSociete.AcheteurCP }}</td>
+
 					</tr>
 				{% endfor %}
 				{% for activite in activites %}
 					<tr class='clickable-row' data-href="{{ path('societe_show', {'IDSociete': activite.IDSociete.IDSociete}) }}">
-						<td>{{ activite.IDSociete.IDSociete }}</td>
-						{% if activite.IDSociete.EtatDossier == "" %}
-							<td>✖️</td>
-						{% else %}
-							<td>{{ activite.IDSociete.EtatDossier }}</td>
-						{% endif %}
-						<td>{{ activite.IDSociete.NumJAL }}</td>
-						<td>{{ activite.IDSociete.VendeurRaisonSociale }}</td>
-						<td>{{ activite.IDSociete.VendeurCP }}</td>
-						<td>{{ activite.IDSociete.AcheteurRaisonSociale }}</td>
-						<td>{{ activite.IDSociete.AcheteurCP }}</td>
 						<td>
 							<a class="text-decoration-underline-remove" href="{{ path('societe_show', {'IDSociete': activite.IDSociete.IDSociete}) }}">
 								<i class="bi bi-eye" style="margin-right:15px"></i>
@@ -104,6 +95,18 @@
 								<i class="bi bi-trash3"></i>
 							</a>
 						</td>
+						<td>{{ activite.IDSociete.IDSociete }}</td>
+						{% if activite.IDSociete.EtatDossier == "" %}
+							<td>✖️</td>
+						{% else %}
+							<td>{{ activite.IDSociete.EtatDossier }}</td>
+						{% endif %}
+						<td>{{ activite.IDSociete.NumJAL }}</td>
+						<td>{{ activite.IDSociete.VendeurRaisonSociale }}</td>
+						<td>{{ activite.IDSociete.VendeurCP }}</td>
+						<td>{{ activite.IDSociete.AcheteurRaisonSociale }}</td>
+						<td>{{ activite.IDSociete.AcheteurCP }}</td>
+
 					</tr>
 				{% endfor %}
 			</tbody>

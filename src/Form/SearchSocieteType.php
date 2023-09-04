@@ -160,7 +160,7 @@ class SearchSocieteType extends AbstractType
                     'class' => 'form-control col-5'
                 ]
             ])
-            ->add('cpContact', TypeIntegerType::class, [
+            ->add('cpContact', TextType::class, [
                 'required' => false,
                 'label' => 'CP',
                 'label_attr' => [

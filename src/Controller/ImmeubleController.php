@@ -495,7 +495,7 @@ class ImmeubleController extends AbstractController
                 $immeuble->addDocument($doc);
             }
 
-
+            $immeuble->setDateEnquete(new \DateTime());
             $immeubleRepository->save($immeuble, true);
 
             return $this->redirectToRoute('immeuble_show', ['IDImmeuble' => $immeuble->getIDImmeuble()], Response::HTTP_SEE_OTHER);

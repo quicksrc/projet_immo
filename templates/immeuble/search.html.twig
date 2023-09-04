@@ -13,36 +13,21 @@
 		<table id="tableImmeubleSearch" data-pagination="true" data-toolbar="#toolbarImmeubleSearch" data-page-size="25" data-search="true" data-show-export="true" data-toggle="table" data-click-to-select="true" data-search-align="left" data-show-columns="true" data-show-print="true" class="table table-list table-bordered table-striped m-auto">
 			<thead>
 				<tr>
-					<th data-field="id" data-sortable="true" scope="col">ID Immeuble</th>
+					{# <th data-field="id" data-sortable="true" scope="col">ID Immeuble</th> #}
+					<th data-field="action">Actions</th>
+					<th data-field="refProprio" data-sortable="true" scope="col">Réf. Propriétaire</th>
 					<th data-field="adresse" data-sortable="true" scope="col">Adresse</th>
 					<th data-field="cp" data-sortable="true" scope="col">CP</th>
 					<th data-field="ville" data-sortable="true" scope="col">Ville</th>
-					<th data-field="refProprio" data-sortable="true" scope="col">Réf. Propriétaire</th>
 					<th data-field="date" data-sortable="true" scope="col">Date de l'Enquête</th>
 					<th data-field="intermediaire" data-sortable="true" scope="col">Intermédiaire</th>
 					<th data-field="suiviPar" data-sortable="true" scope="col">Resp. du Dossier</th>
 					<th data-field="description" data-sortable="true" scope="col">Description</th>
-					<th data-field="action">Actions</th>
 				</tr>
 			</thead>
 			<tbody class="table-group-divider">
 				{% for immeuble in immeubles %}
 					<tr class='clickable-row' data-href="{{ path('immeuble_show', {'IDImmeuble': immeuble.IDImmeuble}) }}">
-						<td>{{ immeuble.IDImmeuble }}</td>
-						<td>{{ immeuble.Adresse }}</td>
-						<td>{{ immeuble.CP }}</td>
-						<td>{{ immeuble.Ville }}</td>
-						<td>{{ immeuble.ReferenceProprio }}</td>
-						<td>{{ immeuble.DateEnquete|date("d/m/Y") }}</td>
-						{% if immeuble.Intermediaire == "" %}
-							<td>✖️</td>
-						{% elseif immeuble.Intermediaire == "null" %}
-							<td>✖️</td>
-						{% else %}
-							<td>{{ immeuble.Intermediaire }}</td>
-						{% endif %}
-						<td>{{ immeuble.SuiviPar }}</td>
-						<td>{{ immeuble.Description }}</td>
 						<td>
 							<a class="text-decoration-underline-remove" href="{{ path('immeuble_show', {'IDImmeuble': immeuble.IDImmeuble}) }}">
 								<i class="bi bi-eye" style="margin-right:15px"></i>
@@ -56,25 +41,28 @@
 								<i class="bi bi-trash3"></i>
 							</a>
 						</td>
+						<td>{{ immeuble.ReferenceProprio }}</td>
+						{# <td>{{ immeuble.IDImmeuble }}</td> #}
+						<td>{{ immeuble.Adresse }}</td>
+						<td>{{ immeuble.CP }}</td>
+						<td>{{ immeuble.Ville }}</td>
+						<td>{{ immeuble.DateEnquete|date("d/m/Y") }}</td>
+						{% if immeuble.Intermediaire == "" %}
+							<td>✖️</td>
+						{% elseif immeuble.Intermediaire == "null" %}
+							<td>✖️</td>
+						{% else %}
+							<td>{{ immeuble.Intermediaire }}</td>
+						{% endif %}
+						<td>{{ immeuble.SuiviPar }}</td>
+						<td>{{ immeuble.Description }}</td>
+
 					</tr>
 				{% endfor %}
 				{% for contact in contacts %}
-					<tr class='clickable-row' data-href="{{ path('immeuble_show', {'IDImmeuble': contact.IDImmeuble.IDImmeuble}) }}">
-						<td>{{ contact.IDImmeuble.IDImmeuble }}</td>
-						<td>{{ contact.IDImmeuble.Adresse }}</td>
-						<td>{{ contact.IDImmeuble.CP }}</td>
-						<td>{{ contact.IDImmeuble.Ville }}</td>
-						<td>{{ contact.IDImmeuble.ReferenceProprio }}</td>
-						<td>{{ contact.IDImmeuble.DateEnquete|date("d/m/Y") }}</td>
-						{% if contact.IDImmeuble.Intermediaire == "" %}
-							<td>✖️</td>
-						{% elseif contact.IDImmeuble.Intermediaire == "null" %}
-							<td>✖️</td>
-						{% else %}
-							<td>{{ contact.IDImmeuble.Intermediaire }}</td>
-						{% endif %}
-						<td>{{ contact.IDImmeuble.SuiviPar }}</td>
-						<td>{{ contact.IDImmeuble.Description }}</td>
+					<tr
+						class='clickable-row' data-href="{{ path('immeuble_show', {'IDImmeuble': contact.IDImmeuble.IDImmeuble}) }}">
+						{# <td>{{ contact.IDImmeuble.IDImmeuble }}</td> #}
 						<td>
 							<a class="text-decoration-underline-remove" href="{{ path('immeuble_show', {'IDImmeuble': contact.IDImmeuble.IDImmeuble}) }}">
 								<i class="bi bi-eye" style="margin-right:15px"></i>
@@ -88,25 +76,27 @@
 								<i class="bi bi-trash3"></i>
 							</a>
 						</td>
+						<td>{{ contact.IDImmeuble.ReferenceProprio }}</td>
+						<td>{{ contact.IDImmeuble.Adresse }}</td>
+						<td>{{ contact.IDImmeuble.CP }}</td>
+						<td>{{ contact.IDImmeuble.Ville }}</td>
+						<td>{{ contact.IDImmeuble.DateEnquete|date("d/m/Y") }}</td>
+						{% if contact.IDImmeuble.Intermediaire == "" %}
+							<td>✖️</td>
+						{% elseif contact.IDImmeuble.Intermediaire == "null" %}
+							<td>✖️</td>
+						{% else %}
+							<td>{{ contact.IDImmeuble.Intermediaire }}</td>
+						{% endif %}
+						<td>{{ contact.IDImmeuble.SuiviPar }}</td>
+						<td>{{ contact.IDImmeuble.Description }}</td>
+
 					</tr>
 				{% endfor %}
 				{% for adresse in adresses %}
-					<tr class='clickable-row' data-href="{{ path('immeuble_show', {'IDImmeuble': adresse.IDImmeuble.IDImmeuble}) }}">
-						<td>{{ adresse.IDImmeuble.IDImmeuble }}</td>
-						<td>{{ adresse.IDImmeuble.Adresse }}</td>
-						<td>{{ adresse.IDImmeuble.CP }}</td>
-						<td>{{ adresse.IDImmeuble.Ville }}</td>
-						<td>{{ adresse.IDImmeuble.ReferenceProprio }}</td>
-						<td>{{ adresse.IDImmeuble.DateEnquete|date("d/m/Y") }}</td>
-						{% if adresse.IDImmeuble.Intermediaire == "" %}
-							<td>✖️</td>
-						{% elseif adresse.IDImmeuble.Intermediaire == "null" %}
-							<td>✖️</td>
-						{% else %}
-							<td>{{ adresse.IDImmeuble.Intermediaire }}</td>
-						{% endif %}
-						<td>{{ adresse.IDImmeuble.SuiviPar }}</td>
-						<td>{{ adresse.IDImmeuble.Description }}</td>
+					<tr
+						class='clickable-row' data-href="{{ path('immeuble_show', {'IDImmeuble': adresse.IDImmeuble.IDImmeuble}) }}">
+						{# <td>{{ adresse.IDImmeuble.IDImmeuble }}</td> #}
 						<td>
 							<a class="text-decoration-underline-remove" href="{{ path('immeuble_show', {'IDImmeuble': adresse.IDImmeuble.IDImmeuble}) }}">
 								<i class="bi bi-eye" style="margin-right:15px"></i>
@@ -120,25 +110,27 @@
 								<i class="bi bi-trash3"></i>
 							</a>
 						</td>
+						<td>{{ adresse.IDImmeuble.ReferenceProprio }}</td>
+						<td>{{ adresse.IDImmeuble.Adresse }}</td>
+						<td>{{ adresse.IDImmeuble.CP }}</td>
+						<td>{{ adresse.IDImmeuble.Ville }}</td>
+						<td>{{ adresse.IDImmeuble.DateEnquete|date("d/m/Y") }}</td>
+						{% if adresse.IDImmeuble.Intermediaire == "" %}
+							<td>✖️</td>
+						{% elseif adresse.IDImmeuble.Intermediaire == "null" %}
+							<td>✖️</td>
+						{% else %}
+							<td>{{ adresse.IDImmeuble.Intermediaire }}</td>
+						{% endif %}
+						<td>{{ adresse.IDImmeuble.SuiviPar }}</td>
+						<td>{{ adresse.IDImmeuble.Description }}</td>
+
 					</tr>
 				{% endfor %}
 				{% for activite in activites %}
-					<tr class='clickable-row' data-href="{{ path('immeuble_show', {'IDImmeuble': activite.IDImmeuble.IDImmeuble}) }}">
-						<td>{{ activite.IDImmeuble.IDImmeuble }}</td>
-						<td>{{ activite.IDImmeuble.Adresse }}</td>
-						<td>{{ activite.IDImmeuble.CP }}</td>
-						<td>{{ activite.IDImmeuble.Ville }}</td>
-						<td>{{ activite.IDImmeuble.ReferenceProprio }}</td>
-						<td>{{ activite.IDImmeuble.DateEnquete|date("d/m/Y") }}</td>
-						{% if activite.IDImmeuble.Intermediaire == "" %}
-							<td>✖️</td>
-						{% elseif activite.IDImmeuble.Intermediaire == "null" %}
-							<td>✖️</td>
-						{% else %}
-							<td>{{ activite.IDImmeuble.Intermediaire }}</td>
-						{% endif %}
-						<td>{{ activite.IDImmeuble.SuiviPar }}</td>
-						<td>{{ activite.IDImmeuble.Description }}</td>
+					<tr
+						class='clickable-row' data-href="{{ path('immeuble_show', {'IDImmeuble': activite.IDImmeuble.IDImmeuble}) }}">
+						{# <td>{{ activite.IDImmeuble.IDImmeuble }}</td> #}
 						<td>
 							<a class="text-decoration-underline-remove" href="{{ path('immeuble_show', {'IDImmeuble': activite.IDImmeuble.IDImmeuble}) }}">
 								<i class="bi bi-eye" style="margin-right:15px"></i>
@@ -152,6 +144,21 @@
 								<i class="bi bi-trash3"></i>
 							</a>
 						</td>
+						<td>{{ activite.IDImmeuble.ReferenceProprio }}</td>
+						<td>{{ activite.IDImmeuble.Adresse }}</td>
+						<td>{{ activite.IDImmeuble.CP }}</td>
+						<td>{{ activite.IDImmeuble.Ville }}</td>
+						<td>{{ activite.IDImmeuble.DateEnquete|date("d/m/Y") }}</td>
+						{% if activite.IDImmeuble.Intermediaire == "" %}
+							<td>✖️</td>
+						{% elseif activite.IDImmeuble.Intermediaire == "null" %}
+							<td>✖️</td>
+						{% else %}
+							<td>{{ activite.IDImmeuble.Intermediaire }}</td>
+						{% endif %}
+						<td>{{ activite.IDImmeuble.SuiviPar }}</td>
+						<td>{{ activite.IDImmeuble.Description }}</td>
+
 					</tr>
 				{% endfor %}
 			</tbody>

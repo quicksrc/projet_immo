@@ -68,14 +68,30 @@ class AdresseRepository extends ServiceEntityRepository
                 ->setParameter('nomRue', $rechercheImmeuble->getNomRue());
         }
         if (!empty($rechercheImmeuble->getCp())) {
-            $qb
-                ->andWhere('a.CP LIKE :cp')
-                ->setParameter('cp', $rechercheImmeuble->getCp());
+            if (str_contains($rechercheImmeuble->getCp(), ',')) {
+                $cpExplode = explode(',', $rechercheImmeuble->getCp());
+
+                $qb
+                    ->andWhere('a.CP IN (:cp)')
+                    ->setParameter('cp', $cpExplode);
+            } else {
+                $qb
+                    ->andWhere('a.CP LIKE :cp')
+                    ->setParameter('cp', $rechercheImmeuble->getCp());
+            }
         }
         if (!empty($rechercheImmeuble->getVille())) {
-            $qb
-                ->andWhere('a.Ville LIKE :ville')
-                ->setParameter('ville', $rechercheImmeuble->getVille());
+            if (str_contains($rechercheImmeuble->getVille(), ',')) {
+                $cpExplode = explode(',', $rechercheImmeuble->getVille());
+
+                $qb
+                    ->andWhere('a.Ville IN (:ville)')
+                    ->setParameter('ville', $cpExplode);
+            } else {
+                $qb
+                    ->andWhere('a.Ville LIKE :ville')
+                    ->setParameter('ville', $rechercheImmeuble->getVille());
+            }
         }
         // dd($qb);
         return $qb->getQuery()->getResult();
