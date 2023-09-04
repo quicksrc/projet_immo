@@ -28,9 +28,29 @@ class ContactType extends AbstractType
             //         'class' => 'form-control',
             //     ]
             // ])
-            ->add('Civilite', TextType::class, [
+            ->add('Civilite', ChoiceType::class, [
                 'required' => false,
                 'label' => 'Civilite',
+                'choices' => [
+                    'Maître' => 'Maître',
+                    'SCI' => 'SCI',
+                    'Madame' => 'Madame',
+                    'Monsieur' => 'Monsieur',
+                    'Cabinet' => 'Cabinet',
+                    'Indivision' => 'Indivision',
+                    'Copropriété' => 'Copropriété',
+                    'SNC' => 'SNC',
+                    'Sté' => 'Sté',
+                    'Association' => 'Association',
+                    'Succession' => 'Succession',
+                    'Consort' => 'Consort',
+                    'Mme et Mr' => 'Mme et Mr',
+                    'Entreprise' => 'Entreprise',
+                    'Melle' => 'Melle',
+                    'Etude' => 'Etude',
+                    'Agence' => 'Agence',
+                    'Messieurs' => 'Messieurs',
+                ],
                 'attr' => [
                     'placeholder' => 'Civilite',
                     'class' => 'form-control'
