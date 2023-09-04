@@ -381,7 +381,11 @@ class ImmeubleController extends AbstractController
 
         $form->handleRequest($request);
 
+        $lastQuestion = $immeubleRepository->findOneBy([], ['ReferenceProprio' => 'desc']);
+        $lastId = $lastQuestion->getReferenceProprio();
+        // dd($lastId);
         if ($form->isSubmitted() && $form->isValid()) {
+            $immeuble->setReferenceProprio($lastId + 1);
             $immeubleRepository->save($immeuble, true);
 
             return $this->redirectToRoute('immeubles', [], Response::HTTP_SEE_OTHER);
