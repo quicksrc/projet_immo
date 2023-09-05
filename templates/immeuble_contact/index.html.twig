@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ImmeubleContact index
+{% endblock %}
+
+{% block body %}
+	<h1>ImmeubleContact index</h1>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>IDImmeubleContact</th>
+				<th>Qualite</th>
+				<th>QualiteProprietaire</th>
+				<th>Genre</th>
+				<th>Principal</th>
+				<th>NeVendPas</th>
+				<th>DateNVP</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for immeuble_contact in immeuble_contacts %}
+				<tr>
+					<td>{{ immeuble_contact.IDImmeubleContact }}</td>
+					<td>{{ immeuble_contact.Qualite }}</td>
+					<td>{{ immeuble_contact.QualiteProprietaire }}</td>
+					<td>{{ immeuble_contact.Genre }}</td>
+					<td>{{ immeuble_contact.Principal }}</td>
+					<td>{{ immeuble_contact.NeVendPas }}</td>
+					<td>{{ immeuble_contact.DateNVP ? immeuble_contact.DateNVP|date('Y-m-d H:i:s') : '' }}</td>
+					<td>
+						<a href="{{ path('app_immeuble_contact_show', {'IDImmeubleContact': immeuble_contact.IDImmeubleContact}) }}">show</a>
+						<a href="{{ path('app_immeuble_contact_edit', {'IDImmeubleContact': immeuble_contact.IDImmeubleContact}) }}">edit</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="8">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<a href="{{ path('app_immeuble_contact_new') }}">Create new</a>
+{% endblock %}

@@ -271,6 +271,13 @@
 				</table>
 			</div>
 			<div class="tab-pane fade" id="contact" role="tabpanel">
+				<div id="toolbarContact" class="mr-2">
+					<button class="btn btn-secondary " style="margin-right:20px" type="button">
+						<a class="fs-5" href="{{ path('immeuble_contact_new', {immeuble}) }}">
+							<i class="bi bi-file-earmark-plus"></i>
+						</a>
+					</button>
+				</div>
 				<table id="tableImmeuble" data-pagination="true" data-toolbar="#toolbarImmeuble" data-page-size="25" data-search="true" data-show-export="true" data-toggle="table" data-click-to-select="true" data-search-align="left" data-show-columns="true" data-show-print="true" class="table table-list table-bordered table-striped m-auto">
 					<thead>
 						<tr>

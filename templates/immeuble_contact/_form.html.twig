@@ -1,0 +1,72 @@
+{{ form_start(form) }}
+<div id="myTabContent" class="tab-content">
+	<div class="tab-pane fade active show" id="home" role="tabpanel">
+		<div class="accordion" id="accordionExample">
+			<div class="accordion-item">
+				<h2 class="accordion-header" id="headingOne">
+					<button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+						Immeuble / Contact
+					</button>
+				</h2>
+				<div id="collapseOne" style="padding:2%" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample" style="">
+					<div class="accordion-body">
+						<div class="form-group row">
+							<div class="col-md-4 mb-3">
+								<label for="readOnlyInput">ID Immeuble</label>
+								{{ form_widget(form.IDImmeuble) }}
+							</div>
+							<div class="col-md-4 mb-3">
+								<label>ID Contact</label>
+								{{ form_widget(form.IDContact) }}
+								<button type="button" class="btn btn-primary">
+									<a class="text-light" target="_blank" href="{{ path('contact_search') }}">Rechercher un Contact</a>
+								</button>
+								<p>(Une fois le Contact trouvé via la recherche, veuillez copier le N° du Contact et le coller dans le champs ci-dessus ID Contact)</p>
+							</div>
+						</div>
+						<div class="form-group row">
+							<div class="col-md-4 mb-3">
+								<label for="readOnlyInput">Date NVP</label>
+								{{ form_widget(form.DateNVP) }}
+							</div>
+							<div class="col-md-4 mb-3">
+								{{ form_label(form.Genre) }}
+								{{ form_widget(form.Genre) }}
+							</div>
+						</div>
+						<div class="form-group row">
+							<div class="col-md-4 mb-3">
+								<label for="readOnlyInput">Qualité</label>
+								{{ form_widget(form.Qualite) }}
+							</div>
+
+							<div class="col-md-4 mb-3">
+								<label for="readOnlyInput">Qualité Propriétaire</label>
+								{{ form_widget(form.QualiteProprietaire) }}
+							</div>
+						</div>
+
+						<div class="form-group row">
+							<div class="col-md-4 mb-3">
+								{{ form_label(form.Principal) }}
+								{{ form_widget(form.Principal) }}
+							</div>
+							<div class="col-md-4 mb-3">
+								{{ form_label(form.NeVendPas) }}
+								{{ form_widget(form.NeVendPas) }}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<br>
+<div class="float-end ">
+	<button class="btn btn-light no-print" type="button">
+		<a class=" text-decoration-underline-remove" href="{{ path('activites') }}">Retourner à la liste</a>
+	</button>
+	<button class="btn btn-light">{{ button_label|default('Save') }}</button>
+</div>
+{{ form_end(form) }}

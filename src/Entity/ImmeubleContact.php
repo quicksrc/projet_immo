@@ -46,7 +46,7 @@ class ImmeubleContact
     {
     }
 
-    public function getId(): ?int
+    public function getIDImmeubleContact(): ?int
     {
         return $this->IDImmeubleContact;
     }

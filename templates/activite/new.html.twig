@@ -1,12 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Activite
+{% block title %}VALORIM | Activite
 {% endblock %}
 
 {% block body %}
-	<h1>Create new Activite</h1>
+	<h1>Créer une Activite</h1>
 
 	{{ include('activite/_form.html.twig') }}
-
-	<a href="{{ path('activites') }}">back to list</a>
 {% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit ImmeubleContact
+{% endblock %}
+
+{% block body %}
+	<h1>Modifier l'association Immeuble/Contact</h1>
+
+	{{ include('immeuble_contact/_form.html.twig', {'button_label': 'Update'}) }}
+
+	<a href="{{ path('immeubles_contacts') }}">back to list</a>
+
+	{{ include('immeuble_contact/_delete_form.html.twig') }}
+{% endblock %}

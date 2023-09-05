@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ImmeubleContact{% endblock %}
+
+{% block body %}
+    <h1>ImmeubleContact</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>IDImmeubleContact</th>
+                <td>{{ immeuble_contact.IDImmeubleContact }}</td>
+            </tr>
+            <tr>
+                <th>Qualite</th>
+                <td>{{ immeuble_contact.Qualite }}</td>
+            </tr>
+            <tr>
+                <th>QualiteProprietaire</th>
+                <td>{{ immeuble_contact.QualiteProprietaire }}</td>
+            </tr>
+            <tr>
+                <th>Genre</th>
+                <td>{{ immeuble_contact.Genre }}</td>
+            </tr>
+            <tr>
+                <th>Principal</th>
+                <td>{{ immeuble_contact.Principal }}</td>
+            </tr>
+            <tr>
+                <th>NeVendPas</th>
+                <td>{{ immeuble_contact.NeVendPas }}</td>
+            </tr>
+            <tr>
+                <th>DateNVP</th>
+                <td>{{ immeuble_contact.DateNVP ? immeuble_contact.DateNVP|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_immeuble_contact_index') }}">back to list</a>
+
+    <a href="{{ path('app_immeuble_contact_edit', {'IDImmeubleContact': immeuble_contact.IDImmeubleContact}) }}">edit</a>
+
+    {{ include('immeuble_contact/_delete_form.html.twig') }}
+{% endblock %}
