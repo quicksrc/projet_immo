@@ -5,13 +5,13 @@ namespace App\Controller;
 use App\Entity\Documents;
 use App\Entity\Images;
 use App\Entity\Immeuble;
+use App\Entity\ImmeubleContact;
 use App\Entity\RechercheImmeuble;
 use App\Form\ImmeubleType;
 use App\Form\SaveSearchType;
 use App\Form\SearchImmeubleType;
 use App\Repository\ActiviteRepository;
 use App\Repository\AdresseRepository;
-use App\Repository\ContactRepository;
 use App\Repository\DocumentsRepository;
 use App\Repository\ImagesRepository;
 use App\Repository\ImmeubleContactRepository;
@@ -19,11 +19,7 @@ use App\Repository\ImmeubleRepository;
 use App\Repository\OpportuniteRepository;
 use App\Repository\RechercheImmeubleRepository;
 use App\Service\PdfService;
-use Doctrine\Common\Collections\Expr\Value;
-use Doctrine\ORM\Mapping\Id;
-use Reflector;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\SubmitButton;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -54,7 +50,7 @@ class ImmeubleController extends AbstractController
                     'adresses' => $adresses,
                     'contacts' => $contacts,
                     'activites' => $activites,
-                    'recherchesImmeubles' => $rechercheImmeubleRepository->findBy(array(), array('id' => 'desc'), 100, null),
+                    'recherchesImmeubles' => $rechercheImmeubleRepository->findBy(array(), array('id' => 'desc'), 5, null),
                     'formSave' => $form->createView(),
                 ]);
             }
@@ -223,7 +219,7 @@ class ImmeubleController extends AbstractController
                 'adresses' => $adresses,
                 'contacts' => $contacts,
                 'activites' => $activites,
-                'recherchesImmeubles' => $rechercheImmeubleRepository->findBy(array(), array('id' => 'desc'), 100, null),
+                'recherchesImmeubles' => $rechercheImmeubleRepository->findBy(array(), array('id' => 'desc'), 5, null),
                 'formSave' => $form->createView(),
             ]);
         }
@@ -524,6 +520,11 @@ class ImmeubleController extends AbstractController
     public function delete(Request $request, Immeuble $immeuble, ImmeubleRepository $immeubleRepository): Response
     {
         if ($this->isCsrfTokenValid('delete' . $immeuble->getIDImmeuble(), $request->request->get('_token'))) {
+            // dd($immeubleContact);
+            $query = $immeubleRepository->createQueryBuilder('i');
+
+            $query->set('foreign_key_checks', false);
+            // $immeubleContactRepository->remove($immeubleContact, true);
             $immeubleRepository->remove($immeuble, true);
         }
 

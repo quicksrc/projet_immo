@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Description index
+{% endblock %}
+
+{% block body %}
+	<h1>Description index</h1>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>IDDescription</th>
+				<th>Libelle</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for description in descriptions %}
+				<tr>
+					<td>{{ description.IDDescription }}</td>
+					<td>{{ description.Libelle }}</td>
+					<td>
+						<a href="{{ path('description_show', {'IDDescription': description.IDDescription}) }}">show</a>
+						<a href="{{ path('description_edit', {'IDDescription': description.IDDescription}) }}">edit</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="3">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<a href="{{ path('description_new') }}">Create new</a>
+{% endblock %}

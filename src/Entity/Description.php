@@ -16,7 +16,7 @@ class Description
     #[ORM\Column(length: 100, nullable: true)]
     private ?string $Libelle = null;
 
-    public function getId(): ?int
+    public function getIDDescription(): ?int
     {
         return $this->IDDescription;
     }

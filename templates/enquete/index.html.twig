@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Enquete index
+{% endblock %}
+
+{% block body %}
+	<h1>Enquete index</h1>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>IDEnquete</th>
+				<th>Libelle</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for enquete in enquetes %}
+				<tr>
+					<td>{{ enquete.IDEnquete }}</td>
+					<td>{{ enquete.Libelle }}</td>
+					<td>
+						<a href="{{ path('enquete_show', {'IDEnquete': enquete.IDEnquete}) }}">show</a>
+						<a href="{{ path('enquete_edit', {'IDEnquete': enquete.IDEnquete}) }}">edit</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="3">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<a href="{{ path('app_enquete_new') }}">Create new</a>
+{% endblock %}

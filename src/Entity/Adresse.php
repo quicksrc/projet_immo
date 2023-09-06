@@ -35,7 +35,7 @@ class Adresse
     #[ORM\Column(type: Types::SMALLINT, nullable: true)]
     private ?int $AdressePrincipale = null;
 
-    #[ORM\ManyToOne(inversedBy: 'adresses')]
+    #[ORM\ManyToOne(inversedBy: 'adresses', cascade: ['persist'])]
     #[ORM\JoinColumn(name: "IDImmeuble", referencedColumnName: "idimmeuble")]
     private ?Immeuble $IDImmeuble = null;
 

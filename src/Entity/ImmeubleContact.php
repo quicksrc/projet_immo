@@ -34,11 +34,11 @@ class ImmeubleContact
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $DateNVP = null;
 
-    #[ORM\ManyToOne]
+    #[ORM\ManyToOne(targetEntity: Immeuble::class, cascade: ['remove'])]
     #[ORM\JoinColumn(name: "IDImmeuble", referencedColumnName: "idimmeuble")]
     private ?Immeuble $IDImmeuble = null;
 
-    #[ORM\ManyToOne]
+    #[ORM\ManyToOne(targetEntity: Contact::class, cascade: ['remove'])]
     #[ORM\JoinColumn(name: "IDContact", referencedColumnName: "idcontact")]
     private ?Contact $IDContact = null;
 

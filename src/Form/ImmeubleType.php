@@ -2,13 +2,15 @@
 
 namespace App\Form;
 
+use App\Entity\Description;
+use App\Entity\Enquete;
 use App\Entity\Immeuble;
+use App\Entity\SuiviPar;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -50,19 +52,14 @@ class ImmeubleType extends AbstractType
                     'placeholder' => 'Etat Dossier'
                 ]
             ])
-            ->add('Enquete', ChoiceType::class, [
-                'required' => false,
-                'label' => 'Enquete',
-                'choices' => [
-                    'Enquete juste' => 'Enquete juste',
-                    'Enquete a faire' => 'Enquete a faire',
-                    'Cadastre' => 'Cadastre',
-                    'Memotel' => 'Memotel',
-                ],
+            ->add('Enquete', EntityType::class, [
+                'required' => true,
+                'label' => 'Enquête',
                 'attr' => [
                     'class' => 'form-control',
-                    'placeholder' => 'Enquete'
-                ]
+                ],
+                'class' => Enquete::class,
+                'choice_label' => 'libelle',
             ])
             ->add('DateEnquete', DateType::class, [
                 'required' => false,
@@ -75,43 +72,23 @@ class ImmeubleType extends AbstractType
                     'class' => 'form-control js-datepicker',
                 ]
             ])
-            ->add('Description', ChoiceType::class, [
-                'required' => false,
+            ->add('Description', EntityType::class, [
+                'required' => true,
                 'label' => 'Description',
-                'choices' => [
-                    'Maison' => 'Maison',
-                    'Lot' => 'Lot',
-                    'Immeuble' => 'Immeuble',
-                    'Hotel' => 'Hotel',
-                    'Batiment' => 'Batiment',
-                ],
                 'attr' => [
                     'class' => 'form-control',
-                    'placeholder' => 'Description'
-                ]
+                ],
+                'class' => Description::class,
+                'choice_label' => 'libelle',
             ])
-            ->add('SuiviPar', ChoiceType::class, [
-                'required' => false,
-                'label' => 'Suivi par',
-                'choices' => [
-                    'AD' => 'AD',
-                    'AH' => 'AH',
-                    'AK' => 'AK',
-                    'AMV' => 'AMV',
-                    'BdP' => 'BdP',
-                    'DP' => 'DP',
-                    'EDH' => 'EDH',
-                    'OC' => 'OC',
-                    'IC' => 'IC',
-                    'MB' => 'MB',
-                    'MT' => 'MT',
-                    'TP' => 'TP',
-                    'LC' => 'LC',
-                ],
+            ->add('SuiviPar', EntityType::class, [
+                'required' => true,
+                'label' => 'Suivi Par',
                 'attr' => [
                     'class' => 'form-control',
-                    'placeholder' => 'Suivi par'
-                ]
+                ],
+                'class' => SuiviPar::class,
+                'choice_label' => 'libelle',
             ])
             ->add('Vendu', ChoiceType::class, [
                 'required' => false,

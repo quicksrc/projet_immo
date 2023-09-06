@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Description
+{% endblock %}
+
+{% block body %}
+	<h1>Description</h1>
+
+	<table class="table">
+		<tbody>
+			<tr>
+				<th>IDDescription</th>
+				<td>{{ description.IDDescription }}</td>
+			</tr>
+			<tr>
+				<th>Libelle</th>
+				<td>{{ description.Libelle }}</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<a href="{{ path('descriptions') }}">back to list</a>
+
+	<a href="{{ path('description_edit', {'IDDescription': description.IDDescription}) }}">edit</a>
+
+	{{ include('description/_delete_form.html.twig') }}
+{% endblock %}

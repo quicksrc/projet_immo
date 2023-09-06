@@ -16,7 +16,7 @@ class Enquete
     #[ORM\Column(length: 100, nullable: true)]
     private ?string $Libelle = null;
 
-    public function getId(): ?int
+    public function getIDEnquete(): ?int
     {
         return $this->IDEnquete;
     }
