@@ -1,10 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}VALORIM | Description
+{% block title %}New Description
 {% endblock %}
 
 {% block body %}
-	<h1>Créer une Description</h1>
+	<h1>Create new Description</h1>
 
 	{{ include('description/_form.html.twig') }}
+
+	<a href="{{ path('descriptions') }}">back to list</a>
 {% endblock %}

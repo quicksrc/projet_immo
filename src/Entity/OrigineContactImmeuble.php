@@ -16,7 +16,7 @@ class OrigineContactImmeuble
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $Libelle = null;
 
-    public function getId(): ?int
+    public function getIDOrigineContactImmeuble(): ?int
     {
         return $this->IDOrigineContactImmeuble;
     }

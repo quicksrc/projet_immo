@@ -33,9 +33,7 @@ class DescriptionController extends AbstractController
             $entityManager->persist($description);
             $entityManager->flush();
 
-            // return $this->redirectToRoute('descriptions', [], Response::HTTP_SEE_OTHER);
-
-            echo '<script>history.go(-2);</script>';
+            return $this->redirectToRoute('descriptions', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('description/new.html.twig', [

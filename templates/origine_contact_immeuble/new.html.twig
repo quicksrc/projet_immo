@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New OrigineContactImmeuble
+{% endblock %}
+
+{% block body %}
+	<h1>Create new OrigineContactImmeuble</h1>
+
+	{{ include('origine_contact_immeuble/_form.html.twig') }}
+
+	<a href="{{ path('origines_contact_immeuble') }}">back to list</a>
+{% endblock %}

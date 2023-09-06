@@ -84,7 +84,6 @@
 								<a href="{{ path('description_new') }}" id="addEnquete">
 									<i class="fa-regular fa-square-plus"></i>
 								</a>
-
 							</div>
 						</div>
 
@@ -114,6 +113,9 @@
 							<div class="col-md-4 mb-3">
 								<label for="readOnlyInput">Origine Contact</label>
 								{{ form_widget(form.OrigineContact) }}
+								<a href="{{ path('origine_contact_immeuble_new') }}" id="addEnquete">
+									<i class="fa-regular fa-square-plus"></i>
+								</a>
 							</div>
 							<div class="col-md-4 mb-3">
 								<label for="readOnlyInput">Intermediaire</label>
@@ -144,15 +146,15 @@
 			<div
 				class="accordion" id="accordionExample">
 				{# <div class="accordion-item">
-																																																																																																																																																																																																																																																					<h2 class="accordion-header" id="headingOne">
-																																																																																																																																																																																																																																																						<button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-																																																																																																																																																																																																																																																							Situation
-																																																																																																																																																																																																																																																						</button>
-																																																																																																																																																																																																																																																					</h2>
-																																																																																																																																																																																																																																																					<div id="collapseOne" style="padding:2%" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample" style="">
-																																																																																																																																																																																																																																																						<div class="accordion-body"></div>
-																																																																																																																																																																																																																																																					</div>
-																																																																																																																																																																																																																																																				</div> #}
+																																																																																																																																																																																																																																																																																									<h2 class="accordion-header" id="headingOne">
+																																																																																																																																																																																																																																																																																										<button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+																																																																																																																																																																																																																																																																																											Situation
+																																																																																																																																																																																																																																																																																										</button>
+																																																																																																																																																																																																																																																																																									</h2>
+																																																																																																																																																																																																																																																																																									<div id="collapseOne" style="padding:2%" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample" style="">
+																																																																																																																																																																																																																																																																																										<div class="accordion-body"></div>
+																																																																																																																																																																																																																																																																																									</div>
+																																																																																																																																																																																																																																																																																								</div> #}
 				<div class="accordion-item">
 					<h2 class="accordion-header" id="headingTwo">
 						<button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">

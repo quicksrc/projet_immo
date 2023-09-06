@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}OrigineContactImmeuble index
+{% endblock %}
+
+{% block body %}
+	<h1>OrigineContactImmeuble index</h1>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>IDOrigineContactImmeuble</th>
+				<th>Libelle</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for origine_contact_immeuble in origine_contact_immeubles %}
+				<tr>
+					<td>{{ origine_contact_immeuble.IDOrigineContactImmeuble }}</td>
+					<td>{{ origine_contact_immeuble.Libelle }}</td>
+					<td>
+						<a href="{{ path('app_origine_contact_immeuble_show', {'IDOrigineContactImmeuble': origine_contact_immeuble.IDOrigineContactImmeuble}) }}">show</a>
+						<a href="{{ path('origine_contact_immeuble_edit', {'IDOrigineContactImmeuble': origine_contact_immeuble.IDOrigineContactImmeuble}) }}">edit</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="3">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<a href="{{ path('origine_contact_immeuble_new') }}">Create new</a>
+{% endblock %}

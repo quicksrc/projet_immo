@@ -471,10 +471,8 @@ class ImmeubleController extends AbstractController
     public function edit(Request $request, Immeuble $immeuble, ImmeubleRepository $immeubleRepository): Response
     {
         $form = $this->createForm(ImmeubleType::class, $immeuble);
-
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-
 
             // Upload Image
             $images = $form->get('images')->getData();

@@ -2,12 +2,12 @@
 
 namespace App\Form;
 
-use App\Entity\Description;
+use App\Entity\OrigineContactImmeuble;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class DescriptionType extends AbstractType
+class OrigineContactImmeubleType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -25,7 +25,7 @@ class DescriptionType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Description::class,
+            'data_class' => OrigineContactImmeuble::class,
         ]);
     }
 }

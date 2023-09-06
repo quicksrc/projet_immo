@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}OrigineContactImmeuble
+{% endblock %}
+
+{% block body %}
+	<h1>OrigineContactImmeuble</h1>
+
+	<table class="table">
+		<tbody>
+			<tr>
+				<th>IDOrigineContactImmeuble</th>
+				<td>{{ origine_contact_immeuble.IDOrigineContactImmeuble }}</td>
+			</tr>
+			<tr>
+				<th>Libelle</th>
+				<td>{{ origine_contact_immeuble.Libelle }}</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<a href="{{ path('origines_contact_immeuble') }}">back to list</a>
+
+	<a href="{{ path('origine_contact_immeuble_edit', {'IDOrigineContactImmeuble': origine_contact_immeuble.IDOrigineContactImmeuble}) }}">edit</a>
+
+	{{ include('origine_contact_immeuble/_delete_form.html.twig') }}
+{% endblock %}

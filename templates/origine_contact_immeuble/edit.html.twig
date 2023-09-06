@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit OrigineContactImmeuble
+{% endblock %}
+
+{% block body %}
+	<h1>Edit OrigineContactImmeuble</h1>
+
+	{{ include('origine_contact_immeuble/_form.html.twig', {'button_label': 'Update'}) }}
+
+	<a href="{{ path('origines_contact_immeuble') }}">back to list</a>
+
+	{{ include('origine_contact_immeuble/_delete_form.html.twig') }}
+{% endblock %}

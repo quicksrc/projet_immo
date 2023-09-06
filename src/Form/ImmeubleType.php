@@ -5,13 +5,17 @@ namespace App\Form;
 use App\Entity\Description;
 use App\Entity\Enquete;
 use App\Entity\Immeuble;
+use App\Entity\OrigineContactImmeuble;
 use App\Entity\SuiviPar;
+use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -60,6 +64,10 @@ class ImmeubleType extends AbstractType
                 ],
                 'class' => Enquete::class,
                 'choice_label' => 'libelle',
+                'query_builder' => function (EntityRepository $er): QueryBuilder {
+                    return $er->createQueryBuilder('e')
+                        ->orderBy('e.IDEnquete', 'ASC');
+                },
             ])
             ->add('DateEnquete', DateType::class, [
                 'required' => false,
@@ -72,23 +80,18 @@ class ImmeubleType extends AbstractType
                     'class' => 'form-control js-datepicker',
                 ]
             ])
-            ->add('Description', EntityType::class, [
-                'required' => true,
-                'label' => 'Description',
-                'attr' => [
-                    'class' => 'form-control',
-                ],
-                'class' => Description::class,
-                'choice_label' => 'libelle',
-            ])
             ->add('SuiviPar', EntityType::class, [
-                'required' => true,
+                'required' => false,
                 'label' => 'Suivi Par',
                 'attr' => [
                     'class' => 'form-control',
                 ],
                 'class' => SuiviPar::class,
                 'choice_label' => 'libelle',
+                'query_builder' => function (EntityRepository $er): QueryBuilder {
+                    return $er->createQueryBuilder('s')
+                        ->orderBy('s.IDSuiviPar', 'ASC');
+                },
             ])
             ->add('Vendu', ChoiceType::class, [
                 'required' => false,
@@ -102,7 +105,20 @@ class ImmeubleType extends AbstractType
                     'class' => 'form-control',
                 ]
             ])
-
+            ->add('Description', EntityType::class, [
+                'required' => true,
+                'label' => 'Suivi Par',
+                'attr' => [
+                    'class' => 'form-control',
+                ],
+                'class' => Description::class,
+                'choice_label' => function (Description $description) {
+                    return sprintf('%s', $description->getLibelle());
+                },
+                'multiple' => false,
+                'expanded' => false,
+                'mapped' => false
+            ])
             ->add('NCPCF', ChoiceType::class, [
                 'required' => false,
                 'label' => 'NCPCF',
@@ -115,21 +131,18 @@ class ImmeubleType extends AbstractType
                     'class' => 'form-control',
                 ]
             ])
-            ->add('OrigineContact', ChoiceType::class, [
-                'required' => false,
+            ->add('OrigineContact', EntityType::class, [
+                'required' => true,
                 'label' => 'Origine Contact',
-                'choices' => [
-                    'Mailing' => 'Mailing',
-                    'Intermédiaire' => 'Intermédiaire',
-                    'Téléphone' => 'Téléphone',
-                    'Prospection' => 'Prospection',
-                    'Presse' => 'Presse',
-                    'Retombée clientèle' => 'Retombée clientèle',
-                ],
                 'attr' => [
                     'class' => 'form-control',
-                    'placeholder' => 'Suivi par'
-                ]
+                ],
+                'class' => OrigineContactImmeuble::class,
+                'choice_label' => 'libelle',
+                'query_builder' => function (EntityRepository $er): QueryBuilder {
+                    return $er->createQueryBuilder('oc')
+                        ->orderBy('oc.IDOrigineContactImmeuble', 'ASC');
+                },
             ])
             ->add('Visite', ChoiceType::class, [
                 'required' => false,
