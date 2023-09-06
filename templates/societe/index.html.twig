@@ -38,7 +38,9 @@ box.style.display = 'block';
 
 				<thead>
 					<tr>
-						<th data-field="action">Actions</th>
+						<th data-field="ligne">N°</th>
+						<th data-field="ligne">N°</th>
+						<th data-field="action" class="no-print">Actions</th>
 						<th data-sortable="true" data-field="id">ID Societe</th>
 						<th data-sortable="true" data-field="etatDossier">Etat</th>
 						<th data-sortable="true" data-field="jal">JAL</th>
@@ -47,9 +49,10 @@ box.style.display = 'block';
 					</tr>
 				</thead>
 				<tbody>
-					{% for societe in societes %}
+					{% for key, societe in societes %}
 						<tr class='clickable-row' data-href="{{ path('societe_show', {'IDSociete': societe.IDSociete}) }}">
 							<td></td>
+							<td>{{key + 1}}</td>
 							<td>
 								<a class="text-decoration-underline-remove" href="{{ path('societe_show', {'IDSociete': societe.IDSociete}) }}">
 									<i class="bi bi-eye" style="margin-right:15px"></i>

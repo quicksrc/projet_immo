@@ -8,9 +8,24 @@
 		{% include 'shared/_formsearchSociete.html.twig' with {form: form} %}
 	</div>
 	<div class="row mt-5">
-		<table id="tableSociete" data-pagination="true" data-toolbar="#toolbarSociete" data-page-size="25" data-search="true" data-show-export="true" data-toggle="table" data-click-to-select="true" data-search-align="left" data-show-columns="true" data-show-print="true" class="table table-list table-bordered table-striped m-auto">
+		<div id="toolbarSocieteSearch" class="me-4 mb-3">
+			<button class="btn btn-light no-print me-2" type="button">
+				<a href="{{ path('societe_new') }}">
+					<i class="bi bi-file-earmark-plus"></i>
+				</a>
+			</button>
+			<div class="form-horizontal float-right me-2">
+				<select class="form-control mr-2">
+					<option value="">Export Basique</option>
+					<option value="all">Exporter Tout</option>
+					<option value="selected">Exporter Séléctionnés</option>
+				</select>
+			</div>
+		</div>
+		<table id="tableSocieteSearch" data-pagination="true" data-toolbar="#toolbarSocieteSearch" data-page-size="25" data-search="true" data-show-export="true" data-toggle="table" data-click-to-select="true" data-search-align="left" data-show-columns="true" data-show-print="true" class="table table-list table-bordered table-striped m-auto">
 			<thead>
 				<tr>
+					<th data-field="ligne"></th>
 					<th data-field="action">Actions</th>
 					<th data-sortable="true" data-field="id">ID</th>
 					<th data-sortable="true" data-field="etatDossier">État</th>
@@ -22,8 +37,9 @@
 				</tr>
 			</thead>
 			<tbody class="table-group-divider">
-				{% for societe in societes %}
+				{% for key, societe in societes %}
 					<tr class='clickable-row' data-href="{{ path('societe_show', {'IDSociete': societe.IDSociete}) }}">
+						<td>{{key + 1}}</td>
 						<td>
 							<a class="text-decoration-underline-remove" href="{{ path('societe_show', {'IDSociete': societe.IDSociete}) }}">
 								<i class="bi bi-eye" style="margin-right:15px"></i>
@@ -51,8 +67,9 @@
 
 					</tr>
 				{% endfor %}
-				{% for contact in contacts %}
+				{% for key, contact in contacts %}
 					<tr class='clickable-row' data-href="{{ path('societe_show', {'IDSociete': contact.IDSociete.IDSociete}) }}">
+						<td>{{key + 1}}</td>
 						<td>
 							<a class="text-decoration-underline-remove" href="{{ path('societe_show', {'IDSociete': contact.IDSociete.IDSociete}) }}">
 								<i class="bi bi-eye" style="margin-right:15px"></i>
@@ -80,8 +97,9 @@
 
 					</tr>
 				{% endfor %}
-				{% for activite in activites %}
+				{% for key, activite in activites %}
 					<tr class='clickable-row' data-href="{{ path('societe_show', {'IDSociete': activite.IDSociete.IDSociete}) }}">
+						<td>{{key + 1}}</td>
 						<td>
 							<a class="text-decoration-underline-remove" href="{{ path('societe_show', {'IDSociete': activite.IDSociete.IDSociete}) }}">
 								<i class="bi bi-eye" style="margin-right:15px"></i>

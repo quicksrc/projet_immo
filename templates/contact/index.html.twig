@@ -52,6 +52,10 @@ box.style.display = 'block';
 			<table id="tableContact" data-pagination="true" data-toolbar="#toolbarContact" data-page-size="25" data-search="true" data-show-export="true" data-toggle="table" data-locale="fr-FR" data-click-to-select="true" data-search-align="left" data-show-columns="true" data-show-print="true" class="table table-list table-bordered table-striped m-auto">
 				<thead>
 					<tr>
+
+						<th data-field="ligne">N°</th>
+						<th data-field="ligne">N°</th>
+						<th data-field="action">Actions</th>
 						<th data-sortable="true" data-field="id" data-sortable="true">ID Contact</th>
 						<th data-sortable="true" data-field="nom">Nom</th>
 						<th data-sortable="true" data-field="prenom">Prenom</th>
@@ -60,13 +64,13 @@ box.style.display = 'block';
 						<th data-sortable="true" data-field="adresse">Adresse</th>
 						<th data-sortable="true" data-field="cp">CP</th>
 						<th data-sortable="true" data-field="ville">Ville</th>
-						<th data-field="action">Actions</th>
 					</tr>
 				</thead>
 				<tbody>
-					{% for contact in contacts %}
+					{% for key, contact in contacts %}
 						<tr class='clickable-row' data-href="{{ path('contact_show', {'IDContact': contact.IDContact}) }}">
 							<td></td>
+							<td>{{key + 1}}</td>
 							<td>
 								<a class="text-decoration-underline-remove" href="{{ path('contact_show', {'IDContact': contact.IDContact}) }}">
 									<i class="bi bi-eye" style="margin-right:15px"></i>
@@ -90,9 +94,10 @@ box.style.display = 'block';
 							<td>{{ contact.Ville }}</td>
 						</tr>
 					{% endfor %}
-					{% for activite in activites %}
+					{% for key, activite in activites %}
 						<tr class='clickable-row' data-href="{{ path('contact_show', {'IDContact': activite.IDContact.IDContact}) }}">
 							<td></td>
+							<td>{{key + 1}}</td>
 							<td>
 								<a class="text-decoration-underline-remove" href="{{ path('contact_show', {'IDContact': activite.IDContact.IDContact}) }}">
 									<i class="bi bi-eye" style="margin-right:15px"></i>
@@ -117,9 +122,10 @@ box.style.display = 'block';
 
 						</tr>
 					{% endfor %}
-					{% for immeuble in immeubles %}
+					{% for key,immeuble in immeubles %}
 						<tr class='clickable-row' data-href="{{ path('contact_show', {'IDContact': immeuble.IDContact.IDContact}) }}">
 							<td></td>
+							<td>{{key + 1}}</td>
 							<td>
 								<a class="text-decoration-underline-remove" href="{{ path('contact_show', {'IDContact': immeuble.IDContact.IDContact}) }}">
 									<i class="bi bi-eye" style="margin-right:15px"></i>
@@ -144,9 +150,10 @@ box.style.display = 'block';
 
 						</tr>
 					{% endfor %}
-					{% for adresse in adresses %}
+					{% for key, adresse in adresses %}
 						<tr class='clickable-row' data-href="{{ path('contact_show', {'IDContact': adresse.IDContact}) }}">
 							<td></td>
+							<td>{{key + 1}}</td>
 							<td>
 								<a class="text-decoration-underline-remove" href="{{ path('contact_show', {'IDContact': adresse.IDContact}) }}">
 									<i class="bi bi-eye" style="margin-right:15px"></i>
@@ -171,9 +178,10 @@ box.style.display = 'block';
 
 						</tr>
 					{% endfor %}
-					{% for societe in societes %}
+					{% for key, societe in societes %}
 						<tr class='clickable-row' data-href="{{ path('contact_show', {'IDContact': societe.IDContact.IDContact}) }}">
 							<td></td>
+							<td>{{key + 1}}</td>
 							<td>
 								<a class="text-decoration-underline-remove" href="{{ path('contact_show', {'IDContact': societe.IDContact.IDContact}) }}">
 									<i class="bi bi-eye" style="margin-right:15px"></i>

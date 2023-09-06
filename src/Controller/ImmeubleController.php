@@ -50,7 +50,7 @@ class ImmeubleController extends AbstractController
             $array =  array_values($datas);
             if ($array == []) {
                 return $this->render('immeuble/index.html.twig', [
-                    'immeubles' => $immeubleRepository->findBy(array(), array('ReferenceProprio' => 'desc'), 100, null),
+                    'immeubles' => $immeubleContactRepository->findBy(array(), array('IDImmeuble' => 'desc'), 100, null),
                     'adresses' => $adresses,
                     'contacts' => $contacts,
                     'activites' => $activites,
@@ -87,13 +87,16 @@ class ImmeubleController extends AbstractController
             $nomRecherche = $array[26];
 
             if (str_contains($nomRecherche, 'Immeuble : ')) {
-                $immeubles = $immeubleRepository->createQueryBuilder('i')
+                $immeubles = $immeubleContactRepository->createQueryBuilder('ic')
+                    ->addSelect('i')
+                    ->leftJoin('ic.IDImmeuble', 'i')
                     ->where('i.IDImmeuble IS NOT NULL');
                 if ($refProprioImmeuble != null) {
                     $immeubles
                         ->andWhere('i.ReferenceProprio LIKE :refProprioImmeuble')
                         ->setParameter('refProprioImmeuble', $refProprioImmeuble);
                 }
+                // dd($immeubles);
                 if ($origineContact != null) {
                     $immeubles
                         ->andWhere('i.OrigineContact LIKE :origineContact')
@@ -219,7 +222,7 @@ class ImmeubleController extends AbstractController
             );
         } else {
             return $this->render('immeuble/index.html.twig', [
-                'immeubles' => $immeubleRepository->findBy(array(), array('ReferenceProprio' => 'desc'), 100, null),
+                'immeubles' => $immeubleContactRepository->findBy(array(), array('IDImmeuble' => 'desc'), 100, null),
                 'adresses' => $adresses,
                 'contacts' => $contacts,
                 'activites' => $activites,
@@ -316,7 +319,7 @@ class ImmeubleController extends AbstractController
             };
 
             if (count($keyValue) >= 1 && $form->get('rechercheImmeuble')->isClicked() || $form->get('saveRechercheImmeuble')->isClicked()) {
-                $immeubles = $immeubleRepository->findImmeubleBySearch($rechercheImmeuble);
+                $immeubles = $immeubleContactRepository->findImmeubleBySearch($rechercheImmeuble);
                 if ($form->get('saveRechercheImmeuble')->isClicked() && $rechercheImmeuble->getNomRecherche() != "") {
                     $savedImmeubleName = "Immeuble : " . $rechercheImmeuble->getNomRecherche();
                     $rechercheImmeuble->setNomRecherche($savedImmeubleName);
@@ -366,7 +369,7 @@ class ImmeubleController extends AbstractController
                 'activites' => $activites,
                 'adresses' => $adresses,
                 'contacts' => $contacts,
-                'immeubles' => $immeubleRepository->findBy(array(), array('IDImmeuble' => 'desc'), 100, null),
+                'immeubles' => $immeubleContactRepository->findBy(array(), array('IDImmeuble' => 'desc'), 100, null),
                 'recherchesImmeubles' => $rechercheImmeubleRepository->findBy(array(), array('id' => 'desc'), 100, null),
                 'form' => $form->createView(),
             ]

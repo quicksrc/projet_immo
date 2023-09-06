@@ -9,25 +9,59 @@
 		{% include 'shared/_formsearchImmeuble.html.twig' with {form: form} %}
 	</div>
 	<div class="row mt-5">
-		<div id="toolbarImmeubleSearch" class="me-4 mb-3"></div>
+		<div id="toolbarImmeubleSearch" class="me-4 mb-3">
+			<button class="btn btn-light no-print me-2" type="button">
+				<a href="{{ path('immeuble_new') }}">
+					<i class="bi bi-file-earmark-plus"></i>
+				</a>
+			</button>
+			<div class="form-horizontal float-right me-2">
+				<select class="form-control mr-2">
+					<option value="">Export Basique</option>
+					<option value="all">Exporter Tout</option>
+					<option value="selected">Exporter Séléctionnés</option>
+				</select>
+			</div>
+		</div>
 		<table id="tableImmeubleSearch" data-pagination="true" data-toolbar="#toolbarImmeubleSearch" data-page-size="25" data-search="true" data-show-export="true" data-toggle="table" data-click-to-select="true" data-search-align="left" data-show-columns="true" data-show-print="true" class="table table-list table-bordered table-striped m-auto">
 			<thead>
 				<tr>
 					{# <th data-field="id" data-sortable="true" scope="col">ID Immeuble</th> #}
-					<th data-field="action">Actions</th>
-					<th data-field="refProprio" data-sortable="true" scope="col">Réf. Propriétaire</th>
-					<th data-field="adresse" data-sortable="true" scope="col">Adresse</th>
-					<th data-field="cp" data-sortable="true" scope="col">CP</th>
-					<th data-field="ville" data-sortable="true" scope="col">Ville</th>
-					<th data-field="date" data-sortable="true" scope="col">Date de l'Enquête</th>
-					<th data-field="intermediaire" data-sortable="true" scope="col">Intermédiaire</th>
-					<th data-field="suiviPar" data-sortable="true" scope="col">Resp. du Dossier</th>
-					<th data-field="description" data-sortable="true" scope="col">Description</th>
+					{% if (immeubles != null) or (contacts != null) %}
+						<th></th>
+						<th data-field="ligne">N°</th>
+						<th data-field="action">Actions</th>
+						<th data-field="refProprio" data-sortable="true" scope="col">Réf. Propriétaire</th>
+						<th data-field="adresse" data-sortable="true" scope="col">Adresse</th>
+						<th data-field="cp" data-sortable="true" scope="col">CP</th>
+						<th data-field="ville" data-sortable="true" scope="col">Ville</th>
+						<th data-field="civiliteAdress" data-sortable="true" scope="col">Civilite Adress</th>
+						<th data-field="nomProprio" data-sortable="true" scope="col">Nom Proprio</th>
+						<th data-field="adresseProprio" data-sortable="true" scope="col">Adresse Proprio</th>
+						<th data-field="cpProprio" data-sortable="true" scope="col">CP Proprio</th>
+						<th data-field="villeProprio" data-sortable="true" scope="col">Ville Proprio</th>
+						<th data-field="correspondant" data-sortable="true" scope="col">Correspondant</th>
+
+					{% else %}
+						<th></th>
+						<th data-field="ligne">N°</th>
+						<th data-field="action">Actions</th>
+						<th data-field="adresse" data-sortable="true" scope="col">Adresse</th>
+						<th data-field="cp" data-sortable="true" scope="col">CP</th>
+						<th data-field="ville" data-sortable="true" scope="col">Ville</th>
+						<th data-field="refProprio" data-sortable="true" scope="col">Réf. Propriétaire</th>
+						<th data-field="date" data-sortable="true" scope="col">Date de l'Enquête</th>
+						<th data-field="intermediaire" data-sortable="true" scope="col">Intermédiaire</th>
+						<th data-field="suiviPar" data-sortable="true" scope="col">Resp. du Dossier</th>
+						<th data-field="description" data-sortable="true" scope="col">Description</th>
+					{% endif %}
 				</tr>
 			</thead>
 			<tbody class="table-group-divider">
-				{% for immeuble in immeubles %}
+				{% for key, immeuble in immeubles %}
 					<tr class='clickable-row' data-href="{{ path('immeuble_show', {'IDImmeuble': immeuble.IDImmeuble}) }}">
+						<td></td>
+						<td>{{key + 1}}</td>
 						<td>
 							<a class="text-decoration-underline-remove" href="{{ path('immeuble_show', {'IDImmeuble': immeuble.IDImmeuble}) }}">
 								<i class="bi bi-eye" style="margin-right:15px"></i>
@@ -41,28 +75,40 @@
 								<i class="bi bi-trash3"></i>
 							</a>
 						</td>
-						<td>{{ immeuble.ReferenceProprio }}</td>
-						{# <td>{{ immeuble.IDImmeuble }}</td> #}
-						<td>{{ immeuble.Adresse }}</td>
-						<td>{{ immeuble.CP }}</td>
-						<td>{{ immeuble.Ville }}</td>
-						<td>{{ immeuble.DateEnquete|date("d/m/Y") }}</td>
-						{% if immeuble.Intermediaire == "" %}
-							<td>✖️</td>
-						{% elseif immeuble.Intermediaire == "null" %}
-							<td>✖️</td>
-						{% else %}
-							<td>{{ immeuble.Intermediaire }}</td>
-						{% endif %}
-						<td>{{ immeuble.SuiviPar }}</td>
-						<td>{{ immeuble.Description }}</td>
+						{# <td>{{ immeuble.ReferenceProprio }}</td>
+																																				<td>{{ immeuble.IDImmeuble }}</td>
+																																				<td>{{ immeuble.Adresse }}</td>
+																																				<td>{{ immeuble.CP }}</td>
+																																				<td>{{ immeuble.Ville }}</td>
+																																				<td>{{ immeuble.DateEnquete|date("d/m/Y") }}</td>
+																																				{% if immeuble.Intermediaire == "" %}
+																																					<td>✖️</td>
+																																				{% elseif immeuble.Intermediaire == "null" %}
+																																					<td>✖️</td>
+																																				{% else %}
+																																					<td>{{ immeuble.Intermediaire }}</td>
+																																				{% endif %}
+																																				<td>{{ immeuble.SuiviPar }}</td>
+																																				<td>{{ immeuble.Description }}</td> #}
+						<td>{{ immeuble.IDImmeuble.ReferenceProprio }}</td>
+						<td>{{ immeuble.IDImmeuble.Adresse }}</td>
+						<td>{{ immeuble.IDImmeuble.CP }}</td>
+						<td>{{ immeuble.IDImmeuble.Ville }}</td>
+						<td>{{ immeuble.IDContact.Civilite }}</td>
+						<td>{{ immeuble.IDContact.Nom }}</td>
+						<td>{{ immeuble.IDContact.Adresse }}</td>
+						<td>{{ immeuble.IDContact.CP }}</td>
+						<td>{{ immeuble.IDContact.Ville }}</td>
+						<td>{{ immeuble.IDContact.Correspondant }}</td>
 
 					</tr>
 				{% endfor %}
-				{% for contact in contacts %}
+				{% for key, contact in contacts %}
 					<tr
 						class='clickable-row' data-href="{{ path('immeuble_show', {'IDImmeuble': contact.IDImmeuble.IDImmeuble}) }}">
 						{# <td>{{ contact.IDImmeuble.IDImmeuble }}</td> #}
+						<td></td>
+						<td>{{key}}</td>
 						<td>
 							<a class="text-decoration-underline-remove" href="{{ path('immeuble_show', {'IDImmeuble': contact.IDImmeuble.IDImmeuble}) }}">
 								<i class="bi bi-eye" style="margin-right:15px"></i>
@@ -76,27 +122,39 @@
 								<i class="bi bi-trash3"></i>
 							</a>
 						</td>
+						{# <td>{{ contact.IDImmeuble.ReferenceProprio }}</td>
+																														<td>{{ contact.IDImmeuble.Adresse }}</td>
+																														<td>{{ contact.IDImmeuble.CP }}</td>
+																														<td>{{ contact.IDImmeuble.Ville }}</td>
+																														<td>{{ contact.IDImmeuble.DateEnquete|date("d/m/Y") }}</td>
+																														{% if contact.IDImmeuble.Intermediaire == "" %}
+																															<td>✖️</td>
+																														{% elseif contact.IDImmeuble.Intermediaire == "null" %}
+																															<td>✖️</td>
+																														{% else %}
+																															<td>{{ contact.IDImmeuble.Intermediaire }}</td>
+																														{% endif %}
+																														<td>{{ contact.IDImmeuble.SuiviPar }}</td>
+																														<td>{{ contact.IDImmeuble.Description }}</td> #}
 						<td>{{ contact.IDImmeuble.ReferenceProprio }}</td>
 						<td>{{ contact.IDImmeuble.Adresse }}</td>
 						<td>{{ contact.IDImmeuble.CP }}</td>
 						<td>{{ contact.IDImmeuble.Ville }}</td>
-						<td>{{ contact.IDImmeuble.DateEnquete|date("d/m/Y") }}</td>
-						{% if contact.IDImmeuble.Intermediaire == "" %}
-							<td>✖️</td>
-						{% elseif contact.IDImmeuble.Intermediaire == "null" %}
-							<td>✖️</td>
-						{% else %}
-							<td>{{ contact.IDImmeuble.Intermediaire }}</td>
-						{% endif %}
-						<td>{{ contact.IDImmeuble.SuiviPar }}</td>
-						<td>{{ contact.IDImmeuble.Description }}</td>
+						<td>{{ contact.IDContact.Civilite }}</td>
+						<td>{{ contact.IDContact.Nom }}</td>
+						<td>{{ contact.IDContact.Adresse }}</td>
+						<td>{{ contact.IDContact.CP }}</td>
+						<td>{{ contact.IDContact.Ville }}</td>
+						<td>{{ contact.IDContact.Correspondant }}</td>
 
 					</tr>
 				{% endfor %}
-				{% for adresse in adresses %}
+				{% for key, adresse in adresses %}
 					<tr
 						class='clickable-row' data-href="{{ path('immeuble_show', {'IDImmeuble': adresse.IDImmeuble.IDImmeuble}) }}">
 						{# <td>{{ adresse.IDImmeuble.IDImmeuble }}</td> #}
+						<td></td>
+						<td>{{key + 1}}</td>
 						<td>
 							<a class="text-decoration-underline-remove" href="{{ path('immeuble_show', {'IDImmeuble': adresse.IDImmeuble.IDImmeuble}) }}">
 								<i class="bi bi-eye" style="margin-right:15px"></i>
@@ -127,10 +185,12 @@
 
 					</tr>
 				{% endfor %}
-				{% for activite in activites %}
+				{% for key, activite in activites %}
 					<tr
 						class='clickable-row' data-href="{{ path('immeuble_show', {'IDImmeuble': activite.IDImmeuble.IDImmeuble}) }}">
 						{# <td>{{ activite.IDImmeuble.IDImmeuble }}</td> #}
+						<td></td>
+						<td>{{key + 1}}</td>
 						<td>
 							<a class="text-decoration-underline-remove" href="{{ path('immeuble_show', {'IDImmeuble': activite.IDImmeuble.IDImmeuble}) }}">
 								<i class="bi bi-eye" style="margin-right:15px"></i>

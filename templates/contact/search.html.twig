@@ -9,9 +9,25 @@
 		{% include 'shared/_formsearchContact.html.twig' with {form: form} %}
 	</div>
 	<div class="row mt-5">
-		<table id="tableContact" data-pagination="true" data-toolbar="#toolbarContact" data-page-size="25" data-search="true" data-show-export="true" data-toggle="table" data-click-to-select="true" data-search-align="left" data-show-columns="true" data-show-print="true" class="table table-list table-bordered table-striped m-auto">
+		<div id="toolbarContactSearch" class="me-4 mb-3">
+			<button class="btn btn-light no-print me-2" type="button">
+				<a href="{{ path('contact_new') }}">
+					<i class="bi bi-file-earmark-plus"></i>
+				</a>
+			</button>
+			<div class="form-horizontal float-right me-2">
+				<select class="form-control mr-2">
+					<option value="">Export Basique</option>
+					<option value="all">Exporter Tout</option>
+					<option value="selected">Exporter Séléctionnés</option>
+				</select>
+			</div>
+		</div>
+		<table id="tableContactSearch" data-pagination="true" data-toolbar="#toolbarContactSearch" data-page-size="25" data-search="true" data-show-export="true" data-toggle="table" data-click-to-select="true" data-search-align="left" data-show-columns="true" data-show-print="true" class="table table-list table-bordered table-striped m-auto">
 			<thead>
 				<tr>
+					<th data-field="ligne">N°</th>
+					<th data-field="ligne">N°</th>
 					<th data-field="action" class="no-print">Actions</th>
 					<th data-sortable="true" data-field="id">ID Contact</th>
 					<th data-sortable="true" data-field="nom">Nom</th>
@@ -25,8 +41,10 @@
 				</tr>
 			</thead>
 			<tbody class="table-group-divider">
-				{% for contact in contacts %}
+				{% for key, contact in contacts %}
 					<tr class='clickable-row' data-href="{{ path('contact_show', {'IDContact': contact.IDContact}) }}">
+						<td></td>
+						<td>{{key + 1}}</td>
 						<td class="no-print">
 							<a class="text-decoration-underline-remove" href="{{ path('contact_show', {'IDContact': contact.IDContact}) }}">
 								<i class="bi bi-eye" style="margin-right:15px"></i>
@@ -53,8 +71,9 @@
 					</tr>
 				{% endfor %}
 
-				{% for activite in activites %}
+				{% for key, activite in activites %}
 					<tr class='clickable-row' data-href="{{ path('contact_show', {'IDActivite': activite.IDContact.IDContact}) }}">
+						<td>{{key + 1}}</td>
 						<td class="no-print">
 							<a class="text-decoration-underline-remove" href="{{ path('contact_show', {'IDActivite': activite.IDContact.IDContact}) }}">
 								<i class="bi bi-eye" style="margin-right:15px"></i>
@@ -81,8 +100,9 @@
 					</tr>
 				{% endfor %}
 
-				{% for immeubleContact in immeublesContacts %}
+				{% for key, immeubleContact in immeublesContacts %}
 					<tr class='clickable-row' data-href="{{ path('contact_show', {'IDContact': immeubleContact.IDContact.IDContact}) }}">
+						<td>{{key + 1}}</td>
 						<td class="no-print">
 							<a class="text-decoration-underline-remove" href="{{ path('contact_show', {'IDContact': immeubleContact.IDContact.IDContact}) }}">
 								<i class="bi bi-eye" style="margin-right:15px"></i>
@@ -107,8 +127,9 @@
 					</tr>
 				{% endfor %}
 
-				{% for adresse in adresses %}
+				{% for key, adresse in adresses %}
 					<tr class='clickable-row' data-href="{{ path('contact_show', {'IDContact': adresse.IDContact}) }}">
+						<td>{{key + 1}}</td>
 						<td class="no-print">
 							<a class="text-decoration-underline-remove" href="{{ path('contact_show', {'IDContact': adresse.IDContact}) }}">
 								<i class="bi bi-eye" style="margin-right:15px"></i>
@@ -134,8 +155,9 @@
 
 					</tr>
 				{% endfor %}
-				{% for societe in societes %}
+				{% for key, societe in societes %}
 					<tr class='clickable-row' data-href="{{ path('contact_show', {'IDContact': societe.IDContact.IDContact}) }}">
+						<td>{{key + 1}}</td>
 						<td class="no-print">
 							<a class="text-decoration-underline-remove" href="{{ path('contact_show', {'IDContact': societe.IDContact.IDContact}) }}">
 								<i class="bi bi-eye" style="margin-right:15px"></i>
