@@ -6,50 +6,13 @@ $(function () {
         .bootstrapTable("destroy")
         .bootstrapTable({
           exportDataType: $(this).val(),
-          exportTypes: ["csv", "excel"],
+          exportTypes: ["excel"],
           columns: [
             {
               field: "state",
               checkbox: true,
               visible: $(this).val() === "selected",
             },
-            {
-              field: "action",
-              title: "Actions",
-            },
-            {
-              field: "refPropriete",
-              title: "Réf. Propriétaire",
-            },
-            {
-              field: "adresse",
-              title: "Adresse",
-            },
-            {
-              field: "cp",
-              title: "CP",
-            },
-            {
-              field: "ville",
-              title: "Ville",
-            },
-            {
-              field: "date",
-              title: "Date de l'Enquête",
-            },
-            {
-              field: "intermediaire",
-              title: "Intermédiaire",
-            },
-            {
-              field: "suiviPar",
-              title: "Resp. du Dossier",
-            },
-            {
-              field: "description",
-              title: "Description",
-            },
-            
           ],
         });
     })
@@ -63,49 +26,12 @@ $(function () {
         .bootstrapTable("destroy")
         .bootstrapTable({
           exportDataType: $(this).val(),
-          exportTypes: ["csv", "excel"],
+          exportTypes: ["excel"],
           columns: [
             {
               field: "state",
               checkbox: true,
               visible: $(this).val() === "selected",
-            },
-            {
-              field: "action",
-              title: "Actions",
-            },
-            {
-              field: "refPropriete",
-              title: "Réf. Propriétaire",
-            },
-            {
-              field: "adresse",
-              title: "Adresse",
-            },
-            {
-              field: "cp",
-              title: "CP",
-            },
-            {
-              field: "ville",
-              title: "Ville",
-            },
-            
-            {
-              field: "date",
-              title: "Date de l'Enquête",
-            },
-            {
-              field: "intermediaire",
-              title: "Intermédiaire",
-            },
-            {
-              field: "suiviPar",
-              title: "Resp. du Dossier",
-            },
-            {
-              field: "description",
-              title: "Description",
             },
           ],
         });
@@ -121,48 +47,33 @@ $(function () {
         .bootstrapTable("destroy")
         .bootstrapTable({
           exportDataType: $(this).val(),
-          exportTypes: ["csv", "excel"],
+          exportTypes: ["excel"],
           columns: [
             {
               field: "state",
               checkbox: true,
               visible: $(this).val() === "selected",
             },
+          ],
+        });
+    })
+    .trigger("change");
+});
+
+$(function () {
+  $("#toolbarContactSearch")
+    .find("select")
+    .change(function () {
+      $("#tableContactSearch")
+        .bootstrapTable("destroy")
+        .bootstrapTable({
+          exportDataType: $(this).val(),
+          exportTypes: ["excel"],
+          columns: [
             {
-              field: "action",
-              title: "Actions",
-            },
-            {
-              field: "id",
-              title: "N°",
-            },
-            {
-              field: "nom",
-              title: "Nom",
-            },
-            {
-              field: "prenom",
-              title: "Prenom",
-            },
-            {
-              field: "tel",
-              title: "Telephone",
-            },
-            {
-              field: "telPor",
-              title: "Telephone Portable",
-            },
-            {
-              field: "adresse",
-              title: "Adresse",
-            },
-            {
-              field: "cp",
-              title: "CP",
-            },
-            {
-              field: "ville",
-              title: "Ville",
+              field: "state",
+              checkbox: true,
+              visible: $(this).val() === "selected",
             },
           ],
         });
@@ -178,36 +89,35 @@ $(function () {
         .bootstrapTable("destroy")
         .bootstrapTable({
           exportDataType: $(this).val(),
-          exportTypes: ["csv", "excel"],
+          exportTypes: ["excel"],
           columns: [
             {
               field: "state",
               checkbox: true,
               visible: $(this).val() === "selected",
             },
+            
+          ],
+        });
+    })
+    .trigger("change");
+});
+
+
+$(function () {
+  $("#toolbarSocieteSearch")
+    .find("select")
+    .change(function () {
+      $("#tableSocieteSearch")
+        .bootstrapTable("destroy")
+        .bootstrapTable({
+          exportDataType: $(this).val(),
+          exportTypes: ["excel"],
+          columns: [
             {
-              field: "action",
-              title: "Actions",
-            },
-            {
-              field: "id",
-              title: "N°",
-            },
-            {
-              field: "etatDossier",
-              title: "Etat",
-            },
-            {
-              field: "jal",
-              title: "JAL",
-            },
-            {
-              field: "vrs",
-              title: "Raison Sociale du Vendeur",
-            },
-            {
-              field: "ars",
-              title: "Raison Sociale de l'Acheteur",
+              field: "state",
+              checkbox: true,
+              visible: $(this).val() === "selected",
             },
           ],
         });

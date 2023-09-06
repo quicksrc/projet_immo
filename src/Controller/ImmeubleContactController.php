@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\ImmeubleContact;
+use App\Entity\RechercheImmeuble;
 use App\Form\ImmeubleContactType;
 use App\Repository\ImmeubleContactRepository;
 use Doctrine\ORM\EntityManagerInterface;

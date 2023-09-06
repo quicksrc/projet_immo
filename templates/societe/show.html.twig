@@ -305,6 +305,7 @@
 			<table id="tableContact" data-pagination="true" data-toolbar="#toolbarContact" data-page-size="25" data-search="true" data-show-export="true" data-toggle="table" data-click-to-select="true" data-search-align="left" data-show-columns="true" data-show-print="true" class="table table-list table-bordered table-striped m-auto">
 				<thead>
 					<tr>
+						<th data-field="ligne"></th>
 						<th data-field="id" data-sortable="true" scope="col">ID</th>
 						<th data-field="nom" data-sortable="true" scope="col">Nom</th>
 						<th data-field="prenom" data-sortable="true" scope="col">Prenom</th>
@@ -318,8 +319,9 @@
 				</thead>
 				<tbody class="table-group-divider">
 					<h3 class="d-none text-center">Contacts</h3>
-					{% for contact in contacts %}
+					{% for key, contact in contacts %}
 						<tr class='clickable-row' data-href="{{ path('contact_show', {'IDContact': contact.IDContact.IDContact}) }}">
+							<td>{{key + 1}}</td>
 							<td>{{ contact.IDContact.IDContact }}</td>
 							<td>{{ contact.IDContact.Nom }}</td>
 							<td>{{ contact.IDContact.Prenom }}</td>
