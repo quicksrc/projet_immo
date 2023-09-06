@@ -68,6 +68,12 @@ class ImmeubleType extends AbstractType
                     return $er->createQueryBuilder('e')
                         ->orderBy('e.IDEnquete', 'ASC');
                 },
+                'choice_value' => function (Enquete $enquete) {
+                    if ($enquete->getLibelle() != null) {
+                        dd($enquete->getLibelle());
+                    }
+                    return $enquete ? $enquete->getLibelle() : '';
+                },
             ])
             ->add('DateEnquete', DateType::class, [
                 'required' => false,
@@ -92,6 +98,7 @@ class ImmeubleType extends AbstractType
                     return $er->createQueryBuilder('s')
                         ->orderBy('s.IDSuiviPar', 'ASC');
                 },
+                'choice_value' => 'libelle',
             ])
             ->add('Vendu', ChoiceType::class, [
                 'required' => false,
@@ -115,6 +122,7 @@ class ImmeubleType extends AbstractType
                 'choice_label' => function (Description $description) {
                     return sprintf('%s', $description->getLibelle());
                 },
+                'choice_value' => 'libelle',
                 'multiple' => false,
                 'expanded' => false,
                 'mapped' => false
@@ -143,6 +151,7 @@ class ImmeubleType extends AbstractType
                     return $er->createQueryBuilder('oc')
                         ->orderBy('oc.IDOrigineContactImmeuble', 'ASC');
                 },
+                'choice_value' => 'libelle',
             ])
             ->add('Visite', ChoiceType::class, [
                 'required' => false,
