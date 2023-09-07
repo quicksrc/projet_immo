@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Documents;
+use App\Entity\Enquete;
 use App\Entity\Images;
 use App\Entity\Immeuble;
 use App\Entity\ImmeubleContact;
@@ -19,6 +20,8 @@ use App\Repository\ImmeubleRepository;
 use App\Repository\OpportuniteRepository;
 use App\Repository\RechercheImmeubleRepository;
 use App\Service\PdfService;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -468,11 +471,14 @@ class ImmeubleController extends AbstractController
 
 
     #[Route('/{IDImmeuble}/edit', name: 'immeuble_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Immeuble $immeuble, ImmeubleRepository $immeubleRepository): Response
+    public function edit(Request $request, Immeuble $immeuble, ImmeubleRepository $immeubleRepository, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(ImmeubleType::class, $immeuble);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            $immeuble = $form->getData();
+            $enquete = $form->get('Enquete')->getData();
+            $immeuble->setEnquete($enquete);
 
             // Upload Image
             $images = $form->get('images')->getData();
