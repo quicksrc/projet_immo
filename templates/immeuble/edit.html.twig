@@ -9,9 +9,9 @@
 	{{ include('immeuble/_form.html.twig') }}
 
 	<div class="float-end ">
+		{{ include('immeuble/_delete_form.html.twig') }}
 		<button class="btn btn-light no-print" type="button">
 			<a class=" text-decoration-underline-remove" href="{{ path('immeubles') }}">Retourner à la liste</a>
 		</button>
 	</div>
-	{{ include('immeuble/_delete_form.html.twig') }}
 {% endblock %}

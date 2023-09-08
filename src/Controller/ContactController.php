@@ -589,8 +589,18 @@ class ContactController extends AbstractController
     }
 
     #[Route('/{IDContact}', name: 'contact_delete', methods: ['POST'])]
-    public function delete(Request $request, Contact $contact, ContactRepository $contactRepository): Response
+    public function delete(Request $request, Contact $contact, ContactRepository $contactRepository, ImmeubleContactRepository $immeubleContactRepository): Response
     {
+        // dd($contact->getIDContact());
+        // $toto = $immeubleContactRepository->findBy(['IDContact' => $contact->getIDContact()]);
+        // $titi = [];
+        // $titi = array_search('IDImmeubleContact', $toto);
+        // dd($titi);
+        // for ($i = 0; $i < count($toto); $i++) {
+        //     dd($toto[$i] . IDImmeubleContact);
+        //     //array_push($titi, $toto[$i] . IDImmeubleContact);
+        // }
+        //$immeubleContactRepository->remove
         if ($this->isCsrfTokenValid('delete' . $contact->getIDContact(), $request->request->get('_token'))) {
             $contactRepository->remove($contact, true);
         }

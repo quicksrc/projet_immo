@@ -9,10 +9,11 @@
 	{{ include('societe/_form.html.twig') }}
 
 	<div class="float-end ">
+		{{ include('societe/_delete_form.html.twig') }}
 		<button class="btn btn-light no-print" type="button">
 			<a class=" text-decoration-underline-remove" href="{{ path('societes') }}">Retourner à la liste</a>
 		</button>
 	</div>
 
-	{{ include('societe/_delete_form.html.twig', {'button_class': 'btn btn-light'}) }}
+	{# {{ include('societe/_delete_form.html.twig', {'button_class': 'btn btn-light'}) }} #}
 {% endblock %}

@@ -60,7 +60,7 @@ window.location = $(this).data("href");
 		{% endblock %}
 	</head>
 	<body>
-		<header>
+		<header class="no-print">
 			<a {% if app.user %} href="{{ path('immeubles') }}" {% else %} href="/" {% endif %}><img style="height: 50px;" class="m-3" src="{{ asset('img/LOGO_VALORIM-01.png')}}"></a>
 			{% if app.user %}
 				<button type="button" class="btn btn-danger float-end m-3 no-print">

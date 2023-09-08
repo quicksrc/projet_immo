@@ -31,16 +31,16 @@
 						<th></th>
 						<th data-field="ligne">N°</th>
 						<th data-field="action">Actions</th>
-						<th data-field="refProprio" data-sortable="true" scope="col">Réf. Propriétaire</th>
-						<th data-field="adresse" data-sortable="true" scope="col">Adresse</th>
-						<th data-field="cp" data-sortable="true" scope="col">CP</th>
-						<th data-field="ville" data-sortable="true" scope="col">Ville</th>
+						<th data-field="cp" data-sortable="true" scope="col">CP Immeuble</th>
+						<th data-field="ville" data-sortable="true" scope="col">Ville Immeuble</th>
 						<th data-field="civiliteAdress" data-sortable="true" scope="col">Civilite Adress</th>
 						<th data-field="nomProprio" data-sortable="true" scope="col">Nom Proprio</th>
 						<th data-field="adresseProprio" data-sortable="true" scope="col">Adresse Proprio</th>
 						<th data-field="cpProprio" data-sortable="true" scope="col">CP Proprio</th>
 						<th data-field="villeProprio" data-sortable="true" scope="col">Ville Proprio</th>
+						<th data-field="refProprio" data-sortable="true" scope="col">Réf. Propriétaire</th>
 						<th data-field="correspondant" data-sortable="true" scope="col">Correspondant</th>
+						<th data-field="adresse" data-sortable="true" scope="col">Adresse Immeuble</th>
 
 					{% else %}
 						<th></th>
@@ -75,23 +75,6 @@
 								<i class="bi bi-trash3"></i>
 							</a>
 						</td>
-						{# <td>{{ immeuble.ReferenceProprio }}</td>
-																																				<td>{{ immeuble.IDImmeuble }}</td>
-																																				<td>{{ immeuble.Adresse }}</td>
-																																				<td>{{ immeuble.CP }}</td>
-																																				<td>{{ immeuble.Ville }}</td>
-																																				<td>{{ immeuble.DateEnquete|date("d/m/Y") }}</td>
-																																				{% if immeuble.Intermediaire == "" %}
-																																					<td>✖️</td>
-																																				{% elseif immeuble.Intermediaire == "null" %}
-																																					<td>✖️</td>
-																																				{% else %}
-																																					<td>{{ immeuble.Intermediaire }}</td>
-																																				{% endif %}
-																																				<td>{{ immeuble.SuiviPar }}</td>
-																																				<td>{{ immeuble.Description }}</td> #}
-						<td>{{ immeuble.IDImmeuble.ReferenceProprio }}</td>
-						<td>{{ immeuble.IDImmeuble.Adresse }}</td>
 						<td>{{ immeuble.IDImmeuble.CP }}</td>
 						<td>{{ immeuble.IDImmeuble.Ville }}</td>
 						<td>{{ immeuble.IDContact.Civilite }}</td>
@@ -99,7 +82,9 @@
 						<td>{{ immeuble.IDContact.Adresse }}</td>
 						<td>{{ immeuble.IDContact.CP }}</td>
 						<td>{{ immeuble.IDContact.Ville }}</td>
+						<td>{{ immeuble.IDImmeuble.ReferenceProprio }}</td>
 						<td>{{ immeuble.IDContact.Correspondant }}</td>
+						<td>{{ immeuble.IDImmeuble.Adresse }}</td>
 
 					</tr>
 				{% endfor %}
@@ -122,22 +107,6 @@
 								<i class="bi bi-trash3"></i>
 							</a>
 						</td>
-						{# <td>{{ contact.IDImmeuble.ReferenceProprio }}</td>
-																														<td>{{ contact.IDImmeuble.Adresse }}</td>
-																														<td>{{ contact.IDImmeuble.CP }}</td>
-																														<td>{{ contact.IDImmeuble.Ville }}</td>
-																														<td>{{ contact.IDImmeuble.DateEnquete|date("d/m/Y") }}</td>
-																														{% if contact.IDImmeuble.Intermediaire == "" %}
-																															<td>✖️</td>
-																														{% elseif contact.IDImmeuble.Intermediaire == "null" %}
-																															<td>✖️</td>
-																														{% else %}
-																															<td>{{ contact.IDImmeuble.Intermediaire }}</td>
-																														{% endif %}
-																														<td>{{ contact.IDImmeuble.SuiviPar }}</td>
-																														<td>{{ contact.IDImmeuble.Description }}</td> #}
-						<td>{{ contact.IDImmeuble.ReferenceProprio }}</td>
-						<td>{{ contact.IDImmeuble.Adresse }}</td>
 						<td>{{ contact.IDImmeuble.CP }}</td>
 						<td>{{ contact.IDImmeuble.Ville }}</td>
 						<td>{{ contact.IDContact.Civilite }}</td>
@@ -145,7 +114,9 @@
 						<td>{{ contact.IDContact.Adresse }}</td>
 						<td>{{ contact.IDContact.CP }}</td>
 						<td>{{ contact.IDContact.Ville }}</td>
+						<td>{{ contact.IDImmeuble.ReferenceProprio }}</td>
 						<td>{{ contact.IDContact.Correspondant }}</td>
+						<td>{{ contact.IDImmeuble.Adresse }}</td>
 
 					</tr>
 				{% endfor %}

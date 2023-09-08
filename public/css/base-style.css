@@ -86,6 +86,13 @@ body {
     .navigationMenu {
         display: none !important;
     }
+
+    .fixed-table-pagination {
+        display: none !important;
+    }
+    .page-list * {
+        display: none !important;
+    }
 }
 
 @page { size: auto;  margin: 0mm; }
