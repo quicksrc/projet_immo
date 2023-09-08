@@ -61,6 +61,7 @@ class ImmeubleType extends AbstractType
             ])
             ->add('Enquete', EntityType::class, [
                 'required' => true,
+                'mapped' => false,
                 'label' => 'Enquête',
                 'attr' => [
                     'class' => 'form-control',
@@ -81,18 +82,15 @@ class ImmeubleType extends AbstractType
                 ]
             ])
             ->add('SuiviPar', EntityType::class, [
-                'required' => false,
+                'required' => true,
+                'mapped' => false,
                 'label' => 'Suivi Par',
                 'attr' => [
                     'class' => 'form-control',
                 ],
                 'class' => SuiviPar::class,
                 'choice_label' => 'libelle',
-                'query_builder' => function (EntityRepository $er): QueryBuilder {
-                    return $er->createQueryBuilder('s')
-                        ->orderBy('s.IDSuiviPar', 'ASC');
-                },
-                'choice_value' => 'libelle',
+                'choice_value' => 'libelle'
             ])
             ->add('Vendu', ChoiceType::class, [
                 'required' => false,
@@ -107,16 +105,15 @@ class ImmeubleType extends AbstractType
                 ]
             ])
             ->add('Description', EntityType::class, [
-                'required' => false,
-                'label' => 'Suivi Par',
+                'required' => true,
+                'mapped' => false,
+                'label' => 'Description',
                 'attr' => [
                     'class' => 'form-control',
                 ],
                 'class' => Description::class,
-                'choice_value' => 'libelle',
-                'multiple' => false,
-                'expanded' => false,
-                'mapped' => false
+                'choice_label' => 'libelle',
+                'choice_value' => 'libelle'
             ])
             ->add('NCPCF', ChoiceType::class, [
                 'required' => false,
@@ -131,18 +128,15 @@ class ImmeubleType extends AbstractType
                 ]
             ])
             ->add('OrigineContact', EntityType::class, [
-                'required' => false,
+                'required' => true,
+                'mapped' => false,
                 'label' => 'Origine Contact',
                 'attr' => [
                     'class' => 'form-control',
                 ],
                 'class' => OrigineContactImmeuble::class,
                 'choice_label' => 'libelle',
-                'query_builder' => function (EntityRepository $er): QueryBuilder {
-                    return $er->createQueryBuilder('oc')
-                        ->orderBy('oc.IDOrigineContactImmeuble', 'ASC');
-                },
-                'choice_value' => 'libelle',
+                'choice_value' => 'libelle'
             ])
             ->add('Visite', ChoiceType::class, [
                 'required' => false,

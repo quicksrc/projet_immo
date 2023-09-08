@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Civilite index
+{% endblock %}
+
+{% block body %}
+	<h1>Civilite index</h1>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>IDCivilite</th>
+				<th>Libelle</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for civilite in civilites %}
+				<tr>
+					<td>{{ civilite.IDCivilite }}</td>
+					<td>{{ civilite.Libelle }}</td>
+					<td>
+						<a href="{{ path('civilite_show', {'IDCivilite': civilite.IDCivilite}) }}">show</a>
+						<a href="{{ path('civilite_edit', {'IDCivilite': civilite.IDCivilite}) }}">edit</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="3">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<a href="{{ path('civilite_new') }}">Create new</a>
+{% endblock %}

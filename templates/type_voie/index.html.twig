@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}TypeVoie index
+{% endblock %}
+
+{% block body %}
+	<h1>TypeVoie index</h1>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>IDTypeVoie</th>
+				<th>Libelle</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for type_voie in type_voies %}
+				<tr>
+					<td>{{ type_voie.IDTypeVoie }}</td>
+					<td>{{ type_voie.Libelle }}</td>
+					<td>
+						<a href="{{ path('type_voie_show', {'IDTypeVoie': type_voie.IDTypeVoie}) }}">show</a>
+						<a href="{{ path('type_voie_edit', {'IDTypeVoie': type_voie.IDTypeVoie}) }}">edit</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="3">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<a href="{{ path('type_voie_new') }}">Create new</a>
+{% endblock %}

@@ -2,7 +2,11 @@
 
 namespace App\Form;
 
+use App\Entity\Civilite;
+use App\Entity\OrigineContactImmeuble;
 use App\Entity\RechercheImmeuble;
+use App\Entity\TypeVoie;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -40,25 +44,36 @@ class SearchImmeubleType extends AbstractType
                     'class' => 'form-check-input mt-4 ms-2'
                 ]
             ])
-            ->add('origineContact', ChoiceType::class, [
-                'required' => false,
-                'label' => 'Origine Contact',
-                'label_attr' => [
-                    'class' => 'form-label mt-4'
-                ],
+            // ->add('origineContact', ChoiceType::class, [
+            //     'required' => false,
+            //     'label' => 'Origine Contact',
+            //     'label_attr' => [
+            //         'class' => 'form-label mt-4'
+            //     ],
 
-                'choices' => [
-                    'Mailing' => 'Mailing',
-                    'Intermédiaire' => 'Intermédiaire',
-                    'Téléphone' => 'Téléphone',
-                    'Prospection' => 'Prospection',
-                    'Presse' => 'Presse',
-                    'Retombée clientèle' => 'Retombée clientèle',
-                ],
+            //     'choices' => [
+            //         'Mailing' => 'Mailing',
+            //         'Intermédiaire' => 'Intermédiaire',
+            //         'Téléphone' => 'Téléphone',
+            //         'Prospection' => 'Prospection',
+            //         'Presse' => 'Presse',
+            //         'Retombée clientèle' => 'Retombée clientèle',
+            //     ],
+            //     'attr' => [
+            //         'class' => 'form-select',
+            //         'placeholder' => 'Description'
+            //     ]
+            // ])
+            ->add('origineContact', EntityType::class, [
+                'required' => false,
+                'mapped' => false,
+                'label' => 'Origine Contact',
                 'attr' => [
-                    'class' => 'form-select',
-                    'placeholder' => 'Description'
-                ]
+                    'class' => 'form-control',
+                ],
+                'class' => OrigineContactImmeuble::class,
+                'choice_label' => 'libelle',
+                'choice_value' => 'libelle'
             ])
             ->add('visite', CheckboxType::class, [
                 'required' => false,
@@ -82,49 +97,16 @@ class SearchImmeubleType extends AbstractType
                     'class' => 'form-control col-5'
                 ]
             ])
-            ->add('typeVoie', ChoiceType::class, [
-                'required' => false,
-                'label' => 'Type Voie',
-                'label_attr' => [
-                    'class' => 'form-label'
-                ],
-                'choices' => [
-                    'place' => 'place',
-                    'rue' => 'rue',
-                    'porte' => 'porte',
-                    'imp' => 'imp',
-                    'gale' => 'gale',
-                    'av' => 'av',
-                    'bd' => 'bd',
-                    'qual' => 'qual',
-                    'pass' => 'pass',
-                    'cite' => 'cite',
-                    'cour' => 'cour',
-                    'sq' => 'sq',
-                    'port' => 'port',
-                    'allee' => 'allee',
-                    'carre' => 'carre',
-                    'villa' => 'villa',
-                    'espl' => 'espl',
-                    'parc' => 'parc',
-                    'cours' => 'cours',
-                    'rdpt' => 'rdpt',
-                    'ham' => 'ham',
-                    'pking' => 'pking',
-                    'gde' => 'gde',
-                    'chaus' => 'chaus',
-                    'sente' => 'sente',
-                    'route' => 'route',
-                    'chem' => 'chem',
-                    'voie' => 'voie',
-                    'resid' => 'resid',
-                    'z.c.' => 'z.c.',
-                    'ruelle' => 'ruelle',
-                    'gde rue' => 'gde rue',
-                ],
+            ->add('typeVoie', EntityType::class, [
+                'required' => true,
+                'mapped' => false,
+                'label' => 'Type de Voie',
                 'attr' => [
-                    'class' => 'form-select',
-                ]
+                    'class' => 'form-control',
+                ],
+                'class' => TypeVoie::class,
+                'choice_label' => 'libelle',
+                'choice_value' => 'libelle'
             ])
             ->add('nomRue', TextType::class, [
                 'required' => false,
@@ -186,35 +168,16 @@ class SearchImmeubleType extends AbstractType
                     'class' => 'form-control'
                 ]
             ])
-            ->add('civiliteContact', ChoiceType::class, [
-                'required' => false,
+            ->add('civiliteContact', EntityType::class, [
+                'required' => true,
+                'mapped' => false,
                 'label' => 'Civilité',
-                'label_attr' => [
-                    'class' => 'form-label mt-4'
-                ],
-                'choices' => [
-                    'Maître' => 'Maître',
-                    'SCI' => 'SCI',
-                    'Madame' => 'Madame',
-                    'Monsieur' => 'Monsieur',
-                    'Cabinet' => 'Cabinet',
-                    'Indivision' => 'Indivision',
-                    'Copropriété' => 'Copropriété',
-                    'SNC' => 'SNC',
-                    'Sté' => 'Sté',
-                    'Association' => 'Association',
-                    'Succession' => 'Succession',
-                    'Consort' => 'Consort',
-                    'Mme et Mr' => 'Mme et Mr',
-                    'Entreprise' => 'Entreprise',
-                    'Melle' => 'Melle',
-                    'Etude' => 'Etude',
-                    'Agence' => 'Agence',
-                    'Messieurs' => 'Messieurs',
-                ],
                 'attr' => [
-                    'class' => 'form-select',
-                ]
+                    'class' => 'form-control',
+                ],
+                'class' => Civilite::class,
+                'choice_label' => 'libelle',
+                'choice_value' => 'libelle'
             ])
             ->add('prenomContact', TextType::class, [
                 'required' => false,

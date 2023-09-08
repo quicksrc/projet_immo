@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Pays
+{% endblock %}
+
+{% block body %}
+	<h1>Pays</h1>
+
+	<table class="table">
+		<tbody>
+			<tr>
+				<th>IDPays</th>
+				<td>{{ pay.IDPays }}</td>
+			</tr>
+			<tr>
+				<th>Libelle</th>
+				<td>{{ pay.Libelle }}</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<a href="{{ path('pays') }}">back to list</a>
+
+	<a href="{{ path('pays_edit', {'IDPays': pay.IDPays}) }}">edit</a>
+
+	{{ include('pays/_delete_form.html.twig') }}
+{% endblock %}

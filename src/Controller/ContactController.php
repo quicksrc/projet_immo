@@ -576,6 +576,20 @@ class ContactController extends AbstractController
 
         //dd($form->isValid());
         if ($form->isSubmitted()) {
+            // Modification des selects en bdd
+
+            // // Récupération des données du form
+            $contact = $form->getData();
+            // // Récupération des données du select
+            $civilite = $form->get('Civilite')->getData();
+            $fonction = $form->get('Fonction')->getData();
+            $pays = $form->get('Pays')->getData();
+            dd($form->get('Pays')->getData());
+            // // Set du libelle en bdd
+            $contact->setCivilite($civilite->getLibelle());
+            $contact->setFonction($fonction->getLibelle());
+            $contact->setPays($pays->getLibelle());
+
             $contact->setDateModification(new \DateTime());
             $contactRepository->save($contact, true);
 

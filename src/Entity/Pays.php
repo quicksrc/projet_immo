@@ -2,23 +2,23 @@
 
 namespace App\Entity;
 
-use App\Repository\FonctionRepository;
+use App\Repository\PaysRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: FonctionRepository::class)]
-class Fonction
+#[ORM\Entity(repositoryClass: PaysRepository::class)]
+class Pays
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    private ?int $IDFonction = null;
+    private ?int $IDPays = null;
 
-    #[ORM\Column(length: 100, nullable: true)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $Libelle = null;
 
-    public function getIDFonction(): ?int
+    public function getIDPays(): ?int
     {
-        return $this->IDFonction;
+        return $this->IDPays;
     }
 
     public function getLibelle(): ?string
@@ -26,7 +26,7 @@ class Fonction
         return $this->Libelle;
     }
 
-    public function setLibelle(?string $Libelle): self
+    public function setLibelle(?string $Libelle): static
     {
         $this->Libelle = $Libelle;
 

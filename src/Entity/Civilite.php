@@ -16,7 +16,7 @@ class Civilite
     #[ORM\Column(length: 100, nullable: true)]
     private ?string $Libelle = null;
 
-    public function getId(): ?int
+    public function getIDCivilite(): ?int
     {
         return $this->IDCivilite;
     }
