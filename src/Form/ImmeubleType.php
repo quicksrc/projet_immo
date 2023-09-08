@@ -7,10 +7,13 @@ use App\Entity\Enquete;
 use App\Entity\Immeuble;
 use App\Entity\OrigineContactImmeuble;
 use App\Entity\SuiviPar;
+use App\Repository\EnqueteRepository;
+use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\QueryBuilder;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\ChoiceList\ChoiceList;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -64,16 +67,7 @@ class ImmeubleType extends AbstractType
                 ],
                 'class' => Enquete::class,
                 'choice_label' => 'libelle',
-                'query_builder' => function (EntityRepository $er): QueryBuilder {
-                    return $er->createQueryBuilder('e')
-                        ->orderBy('e.IDEnquete', 'ASC');
-                },
-                'choice_value' => function (Enquete $enquete) {
-                    if ($enquete->getLibelle() != null) {
-                        dd($enquete->getLibelle());
-                    }
-                    return $enquete ? $enquete->getLibelle() : '';
-                },
+                'choice_value' => 'libelle'
             ])
             ->add('DateEnquete', DateType::class, [
                 'required' => false,
@@ -113,15 +107,12 @@ class ImmeubleType extends AbstractType
                 ]
             ])
             ->add('Description', EntityType::class, [
-                'required' => true,
+                'required' => false,
                 'label' => 'Suivi Par',
                 'attr' => [
                     'class' => 'form-control',
                 ],
                 'class' => Description::class,
-                'choice_label' => function (Description $description) {
-                    return sprintf('%s', $description->getLibelle());
-                },
                 'choice_value' => 'libelle',
                 'multiple' => false,
                 'expanded' => false,
@@ -140,7 +131,7 @@ class ImmeubleType extends AbstractType
                 ]
             ])
             ->add('OrigineContact', EntityType::class, [
-                'required' => true,
+                'required' => false,
                 'label' => 'Origine Contact',
                 'attr' => [
                     'class' => 'form-control',
