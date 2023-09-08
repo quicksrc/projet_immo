@@ -30,6 +30,9 @@
 									<div class="col-md-4 mb-3">
 										<label for="readOnlyInput">Civilité</label>
 										{{ form_widget(form.Civilite) }}
+										<a href="{{ path('civilite_new') }}" id="addCivilite">
+											<i class="fa-regular fa-square-plus"></i>
+										</a>
 									</div>
 
 									<div class="col-md-4 mb-3">
@@ -59,6 +62,9 @@
 									<div class="col-md-6 mb-3">
 										<label for="readOnlyInput">Fonction</label>
 										{{ form_widget(form.Fonction) }}
+										<a href="{{ path('fonction_new') }}" id="addFonction">
+											<i class="fa-regular fa-square-plus"></i>
+										</a>
 									</div>
 								</div>
 								<div class="form-group row">
@@ -155,6 +161,9 @@
 								<div class="col-md-4 mb-3">
 									<label for="readOnlyInput">Pays</label>
 									{{ form_widget(form.Pays) }}
+									<a href="{{ path('pays_new') }}" id="addPays">
+										<i class="fa-regular fa-square-plus"></i>
+									</a>
 								</div>
 							</div>
 							<div class="form-group row">

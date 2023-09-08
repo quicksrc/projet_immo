@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Civilite
+{% endblock %}
+
+{% block body %}
+	<h1>Civilite</h1>
+
+	<table class="table">
+		<tbody>
+			<tr>
+				<th>IDCivilite</th>
+				<td>{{ civilite.IDCivilite }}</td>
+			</tr>
+			<tr>
+				<th>Libelle</th>
+				<td>{{ civilite.Libelle }}</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<a href="{{ path('civilites') }}">back to list</a>
+
+	<a href="{{ path('civilite_edit', {'IDCivilite': civilite.IDCivilite}) }}">edit</a>
+
+	{{ include('civilite/_delete_form.html.twig') }}
+{% endblock %}

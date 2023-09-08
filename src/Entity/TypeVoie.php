@@ -16,7 +16,7 @@ class TypeVoie
     #[ORM\Column(length: 100, nullable: true)]
     private ?string $Libelle = null;
 
-    public function getId(): ?int
+    public function getIDTypeVoie(): ?int
     {
         return $this->IDTypeVoie;
     }

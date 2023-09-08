@@ -476,9 +476,21 @@ class ImmeubleController extends AbstractController
         $form = $this->createForm(ImmeubleType::class, $immeuble);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+
+            // Modification des selects en bdd
+
+            // // Récupération des données du form
             $immeuble = $form->getData();
+            // // Récupération des données du select
             $enquete = $form->get('Enquete')->getData();
-            $immeuble->setEnquete($enquete);
+            $suiviPar = $form->get('SuiviPar')->getData();
+            $description = $form->get('Description')->getData();
+            $origineContact = $form->get('OrigineContact')->getData();
+            // // Set du libelle en bdd
+            $immeuble->setEnquete($enquete->getLibelle());
+            $immeuble->setSuiviPar($suiviPar->getLibelle());
+            $immeuble->setDescription($description->getLibelle());
+            $immeuble->setOrigineContact($origineContact->getLibelle());
 
             // Upload Image
             $images = $form->get('images')->getData();

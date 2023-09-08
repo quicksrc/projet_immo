@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New TypeVoie
+{% endblock %}
+
+{% block body %}
+	<h1>Create new TypeVoie</h1>
+
+	{{ include('type_voie/_form.html.twig') }}
+
+	<a href="{{ path('types_voie') }}">back to list</a>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Civilite
+{% endblock %}
+
+{% block body %}
+	<h1>Create new Civilite</h1>
+
+	{{ include('civilite/_form.html.twig') }}
+
+	<a href="{{ path('civilites') }}">back to list</a>
+{% endblock %}

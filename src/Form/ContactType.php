@@ -2,7 +2,11 @@
 
 namespace App\Form;
 
+use App\Entity\Civilite;
 use App\Entity\Contact;
+use App\Entity\Fonction;
+use App\Entity\Pays;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -28,33 +32,16 @@ class ContactType extends AbstractType
             //         'class' => 'form-control',
             //     ]
             // ])
-            ->add('Civilite', ChoiceType::class, [
-                'required' => false,
-                'label' => 'Civilite',
-                'choices' => [
-                    'Maître' => 'Maître',
-                    'SCI' => 'SCI',
-                    'Madame' => 'Madame',
-                    'Monsieur' => 'Monsieur',
-                    'Cabinet' => 'Cabinet',
-                    'Indivision' => 'Indivision',
-                    'Copropriété' => 'Copropriété',
-                    'SNC' => 'SNC',
-                    'Sté' => 'Sté',
-                    'Association' => 'Association',
-                    'Succession' => 'Succession',
-                    'Consort' => 'Consort',
-                    'Mme et Mr' => 'Mme et Mr',
-                    'Entreprise' => 'Entreprise',
-                    'Melle' => 'Melle',
-                    'Etude' => 'Etude',
-                    'Agence' => 'Agence',
-                    'Messieurs' => 'Messieurs',
-                ],
+            ->add('Civilite', EntityType::class, [
+                'required' => true,
+                'mapped' => false,
+                'label' => 'Civilité',
                 'attr' => [
-                    'placeholder' => 'Civilite',
-                    'class' => 'form-control'
-                ]
+                    'class' => 'form-control',
+                ],
+                'class' => Civilite::class,
+                'choice_label' => 'libelle',
+                'choice_value' => 'libelle',
             ])
             ->add('Nom', TextType::class, [
                 'required' => false,
@@ -112,13 +99,16 @@ class ContactType extends AbstractType
                     'class' => 'form-control'
                 ]
             ])
-            ->add('Pays', TextType::class, [
-                'required' => false,
+            ->add('Pays', EntityType::class, [
+                'required' => true,
+                'mapped' => false,
                 'label' => 'Pays',
                 'attr' => [
-                    'placeholder' => 'Pays',
-                    'class' => 'form-control'
-                ]
+                    'class' => 'form-control',
+                ],
+                'class' => Pays::class,
+                'choice_label' => 'libelle',
+                'choice_value' => 'libelle'
             ])
             ->add('Telephone', TelType::class, [
                 'required' => false,
@@ -227,13 +217,16 @@ class ContactType extends AbstractType
                     'class' => 'form-control',
                 ]
             ])
-            ->add('Fonction', TextType::class, [
-                'required' => false,
+            ->add('Fonction', EntityType::class, [
+                'required' => true,
+                'mapped' => false,
                 'label' => 'Fonction',
                 'attr' => [
-                    'placeholder' => 'Fonction',
                     'class' => 'form-control',
-                ]
+                ],
+                'class' => Fonction::class,
+                'choice_label' => 'libelle',
+                'choice_value' => 'libelle'
             ])
             ->add('DCD', ChoiceType::class, [
                 'required' => false,
