@@ -25,10 +25,10 @@
 
 	<ul class="nav nav-tabs" role="tablist">
 		<li class="nav-item" role="presentation">
-			<a class="nav-link active" data-bs-toggle="tab" href="#home" aria-selected="true" role="tab" tabindex="-1">Général</a>
+			<a class="nav-link active no-print" data-bs-toggle="tab" href="#home" aria-selected="true" role="tab" tabindex="-1">Général</a>
 		</li>
 		<li class="nav-item" role="presentation">
-			<a class="nav-link " data-bs-toggle="tab" href="#piece_jointe" aria-selected="true" role="tab">Pièce jointe</a>
+			<a class="nav-link no-print" data-bs-toggle="tab" href="#piece_jointe" aria-selected="true" role="tab">Pièce jointe</a>
 		</li>
 	</ul>
 	<div id="myTabContent" class="tab-content">
@@ -47,7 +47,7 @@
 							Situation
 						</button>
 					</h2>
-					<div id="collapseOne" style="padding:2%" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample" style="">
+					<div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample" style="">
 						<div class="accordion-body">
 							<div class="form-group row justify-content-around">
 								<div class="col-md-4 mb-3">
@@ -71,7 +71,7 @@
 							Complément
 						</button>
 					</h2>
-					<div id="collapseTwo" style="padding:2%" class="accordion-collapse collapse show" aria-labelledby="headingTwo" data-bs-parent="#accordionExample" style="">
+					<div id="collapseTwo" style="padding: 10px;" class="accordion-collapse collapse show" aria-labelledby="headingTwo" data-bs-parent="#accordionExample" style="">
 						<form>
 							<div class="form-group row justify-content-around">
 								<div class="col-md-4 mb-3">
@@ -143,7 +143,7 @@
 							Commentaire
 						</button>
 					</h2>
-					<div id="collapseThree" style="padding:2%" class="accordion-collapse collapse show" aria-labelledby="headingThree" data-bs-parent="#accordionExample" style="">
+					<div id="collapseThree" style="padding: 10px;" class="accordion-collapse collapse show" aria-labelledby="headingThree" data-bs-parent="#accordionExample" style="">
 						<div class="form-group row">
 							<div class="col-md-12 mb-3">
 								<textarea class="form-control" id="exampleTextarea" rows="3" readonly="">{{ immeuble.Commentaire }}</textarea>
@@ -280,7 +280,7 @@
 						</a>
 					</button>
 				</div>
-				<table id="tableImmeuble" data-pagination="true" data-toolbar="#toolbarImmeuble" data-page-size="25" data-search="true" data-show-export="true" data-toggle="table" data-click-to-select="true" data-search-align="left" data-show-columns="true" data-show-print="true" class="table table-list table-bordered table-striped m-auto">
+				<table id="tableImmeuble" data-pagination="true" data-toolbar="#toolbarContact" data-page-size="25" data-search="true" data-show-export="true" data-toggle="table" data-click-to-select="true" data-search-align="left" data-show-columns="true" data-show-print="true" class="table table-list table-bordered table-striped m-auto">
 					<thead>
 						<tr>
 							<th data-field="civilite" data-sortable="true" scope="col">Civilite</th>

@@ -11,6 +11,7 @@
 		<button class="btn btn-light no-print" type="button" onclick="printContact(); ">
 			<a class=" text-decoration-underline-remove">Imprimer</a>
 		</button>
+		{{ include('contact/_delete_form.html.twig') }}
 	</div>
 	<h1 style="margin-top: -2px; border-radius: 5px;" class="mt-5 text-center text-white">{{ contact.Nom }}</h1>
 	<div class="col-sm-10 fw-bold mb-2">
