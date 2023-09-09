@@ -3,7 +3,9 @@
 namespace App\Form;
 
 use App\Entity\Civilite;
+use App\Entity\Enquete;
 use App\Entity\OrigineContactImmeuble;
+use App\Entity\QualiteProprietaire;
 use App\Entity\RechercheImmeuble;
 use App\Entity\TypeVoie;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -169,15 +171,81 @@ class SearchImmeubleType extends AbstractType
                 ]
             ])
             ->add('civiliteContact', EntityType::class, [
-                'required' => true,
+                'required' => false,
                 'mapped' => false,
                 'label' => 'Civilité',
+                'label_attr' => [
+                    'class' => 'form-label mt-4'
+                ],
                 'attr' => [
                     'class' => 'form-control',
                 ],
                 'class' => Civilite::class,
                 'choice_label' => 'libelle',
                 'choice_value' => 'libelle'
+            ])
+            ->add('enqueteImmeuble', EntityType::class, [
+                'required' => true,
+                'mapped' => false,
+                'label' => 'Enquête',
+                'label_attr' => [
+                    'class' => 'form-label mt-4'
+                ],
+                'attr' => [
+                    'class' => 'form-control',
+                ],
+                'class' => Enquete::class,
+                'choice_label' => 'libelle',
+                'choice_value' => 'libelle'
+            ])
+            ->add('cpImmeubleContact', TextType::class, [
+                'required' => false,
+                'label' => 'CP',
+                'label_attr' => [
+                    'class' => 'form-label mt-4'
+                ],
+                'attr' => [
+                    'class' => 'form-control col-5'
+                ]
+            ])
+            ->add('villeImmeubleContact', TextType::class, [
+                'required' => false,
+                'label' => 'Ville',
+                'label_attr' => [
+                    'class' => 'form-label mt-4'
+                ],
+                'attr' => [
+                    'class' => 'form-control col-5'
+                ]
+            ])
+            ->add('qualiteProprietaire', EntityType::class, [
+                'required' => false,
+                'mapped' => false,
+                'label' => 'Qualité Propriétaire',
+                'label_attr' => [
+                    'class' => 'form-label mt-4'
+                ],
+                'attr' => [
+                    'class' => 'form-control',
+                ],
+                'class' => QualiteProprietaire::class,
+                'choice_label' => 'libelle',
+                'choice_value' => 'libelle'
+            ])
+            ->add('antiMailing', ChoiceType::class, [
+                'required' => false,
+                'label' => 'Anti-Mailing',
+                'label_attr' => [
+                    'class' => 'form-label mt-4'
+                ],
+                'choices' => [
+                    'Oui' => 1,
+                    'Non' => 0
+                ],
+                'attr' => [
+                    'placeholder' => 'Anti-Mailing',
+                    'class' => 'form-control',
+                ]
             ])
             ->add('prenomContact', TextType::class, [
                 'required' => false,

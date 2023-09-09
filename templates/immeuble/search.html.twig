@@ -75,21 +75,6 @@
 								<i class="bi bi-trash3"></i>
 							</a>
 						</td>
-						{# <td>{{ immeuble.ReferenceProprio }}</td>
-																																				<td>{{ immeuble.IDImmeuble }}</td>
-																																				<td>{{ immeuble.Adresse }}</td>
-																																				<td>{{ immeuble.CP }}</td>
-																																				<td>{{ immeuble.Ville }}</td>
-																																				<td>{{ immeuble.DateEnquete|date("d/m/Y") }}</td>
-																																				{% if immeuble.Intermediaire == "" %}
-																																					<td>✖️</td>
-																																				{% elseif immeuble.Intermediaire == "null" %}
-																																					<td>✖️</td>
-																																				{% else %}
-																																					<td>{{ immeuble.Intermediaire }}</td>
-																																				{% endif %}
-																																				<td>{{ immeuble.SuiviPar }}</td>
-																																				<td>{{ immeuble.Description }}</td> #}
 						<td>{{ immeuble.IDImmeuble.ReferenceProprio }}</td>
 						<td>{{ immeuble.IDImmeuble.Adresse }}</td>
 						<td>{{ immeuble.IDImmeuble.CP }}</td>
@@ -122,20 +107,6 @@
 								<i class="bi bi-trash3"></i>
 							</a>
 						</td>
-						{# <td>{{ contact.IDImmeuble.ReferenceProprio }}</td>
-																														<td>{{ contact.IDImmeuble.Adresse }}</td>
-																														<td>{{ contact.IDImmeuble.CP }}</td>
-																														<td>{{ contact.IDImmeuble.Ville }}</td>
-																														<td>{{ contact.IDImmeuble.DateEnquete|date("d/m/Y") }}</td>
-																														{% if contact.IDImmeuble.Intermediaire == "" %}
-																															<td>✖️</td>
-																														{% elseif contact.IDImmeuble.Intermediaire == "null" %}
-																															<td>✖️</td>
-																														{% else %}
-																															<td>{{ contact.IDImmeuble.Intermediaire }}</td>
-																														{% endif %}
-																														<td>{{ contact.IDImmeuble.SuiviPar }}</td>
-																														<td>{{ contact.IDImmeuble.Description }}</td> #}
 						<td>{{ contact.IDImmeuble.ReferenceProprio }}</td>
 						<td>{{ contact.IDImmeuble.Adresse }}</td>
 						<td>{{ contact.IDImmeuble.CP }}</td>

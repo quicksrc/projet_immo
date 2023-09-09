@@ -80,6 +80,31 @@ class ImmeubleContactRepository extends ServiceEntityRepository
                 ->andWhere('c.Civilite LIKE :civiliteContact')
                 ->setParameter('civiliteContact', $rechercheImmeuble->getCiviliteContact());
         }
+        if (!empty($rechercheImmeuble->getQualiteProprietaire())) {
+            $qb
+                ->andWhere('ic.QualiteProprietaire LIKE :qualiteProprietaire')
+                ->setParameter('qualiteProprietaire', $rechercheImmeuble->getQualiteProprietaire());
+        }
+        if (!empty($rechercheImmeuble->getVilleImmeubleContact())) {
+            $qb
+                ->andWhere('i.Ville LIKE :villeImmeubleContact')
+                ->setParameter('villeImmeubleContact', $rechercheImmeuble->getVilleImmeubleContact());
+        }
+        if (!empty($rechercheImmeuble->getCpImmeubleContact())) {
+            $qb
+                ->andWhere('i.CP LIKE :cpImmeubleContact')
+                ->setParameter('cpImmeubleContact', $rechercheImmeuble->getCpImmeubleContact());
+        }
+        if (!empty($rechercheImmeuble->getEnqueteImmeuble())) {
+            $qb
+                ->andWhere('i.Enquete LIKE :enqueteImmeuble')
+                ->setParameter('enqueteImmeuble', $rechercheImmeuble->getEnqueteImmeuble());
+        }
+        if (!empty($rechercheImmeuble->getAntiMailing())) {
+            $qb
+                ->andWhere('c.AntiMailing LIKE :antiMailing')
+                ->setParameter('antiMailing', $rechercheImmeuble->getAntiMailing());
+        }
         // dd($qb);
         return $qb->getQuery()->getResult();
     }

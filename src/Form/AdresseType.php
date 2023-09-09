@@ -3,6 +3,10 @@
 namespace App\Form;
 
 use App\Entity\Adresse;
+use App\Entity\Immeuble;
+use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\QueryBuilder as ORMQueryBuilder;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -10,9 +14,16 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 class AdresseType extends AbstractType
 {
+    public $requestStack;
+
+    public function __construct(RequestStack $requestStack)
+    {
+        $this->requestStack = $requestStack;
+    }
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -110,13 +121,19 @@ class AdresseType extends AbstractType
                     'class' => 'form-control',
                 ]
             ])
-            ->add('IDImmeuble', TextType::class, [
-                'required' => false,
+            ->add('IDImmeuble', EntityType::class, [
+                'required' => true,
                 'label' => 'ID Immeuble',
                 'attr' => [
-                    'placeholder' => 'ID Immeuble',
                     'class' => 'form-control',
-                ]
+                    'readonly' => true,
+                ],
+                'class' => Immeuble::class,
+                'query_builder' => function (EntityRepository $er): ORMQueryBuilder {
+                    $request = $this->requestStack->getCurrentRequest();
+                    return $er->createQueryBuilder('i')
+                        ->where('i.IDImmeuble = ' . $request->query->get('immeuble'));
+                }
             ]);
     }
 

@@ -584,10 +584,11 @@ class ContactController extends AbstractController
             $civilite = $form->get('Civilite')->getData();
             $fonction = $form->get('Fonction')->getData();
             $pays = $form->get('Pays')->getData();
-            dd($form->get('Pays')->getData());
+            // dd($form->get('Pays')->getData());
             // // Set du libelle en bdd
             $contact->setCivilite($civilite->getLibelle());
             $contact->setFonction($fonction->getLibelle());
+            dd($form->getData());
             $contact->setPays($pays->getLibelle());
 
             $contact->setDateModification(new \DateTime());

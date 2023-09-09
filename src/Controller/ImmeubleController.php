@@ -3,10 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Documents;
-use App\Entity\Enquete;
 use App\Entity\Images;
 use App\Entity\Immeuble;
-use App\Entity\ImmeubleContact;
 use App\Entity\RechercheImmeuble;
 use App\Form\ImmeubleType;
 use App\Form\SaveSearchType;
@@ -20,7 +18,6 @@ use App\Repository\ImmeubleRepository;
 use App\Repository\OpportuniteRepository;
 use App\Repository\RechercheImmeubleRepository;
 use App\Service\PdfService;
-use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -256,6 +253,29 @@ class ImmeubleController extends AbstractController
         $activites = [];
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // Modification des selects en bdd
+
+            // // Récupération des données du form
+            $rechercheImmeuble = $form->getData();
+            // // Récupération des données du select
+            $origineContact = $form->get('origineContact')->getData();
+            $civiliteContact = $form->get('civiliteContact')->getData();
+            $enqueteImmeuble = $form->get('enqueteImmeuble')->getData();
+            $qualiteProprietaire = $form->get('qualiteProprietaire')->getData();
+            // // Set du libelle en bdd
+            if ($origineContact != null) {
+                $rechercheImmeuble->setOrigineContact($origineContact->getLibelle());
+            }
+            if ($civiliteContact != null) {
+                $rechercheImmeuble->setCiviliteContact($civiliteContact->getLibelle());
+            }
+            if ($enqueteImmeuble != null) {
+                $rechercheImmeuble->setEnqueteImmeuble($enqueteImmeuble->getLibelle());
+            }
+            if ($qualiteProprietaire != null) {
+                $rechercheImmeuble->setQualiteProprietaire($qualiteProprietaire->getLibelle());
+            }
+
 
             $keyValue = [];
             $keyValueContact = [];
@@ -308,6 +328,21 @@ class ImmeubleController extends AbstractController
                 }
                 if (!empty($rechercheImmeuble->getPrenomContact())) {
                     array_push($keyValueContact, array("Prenom", $rechercheImmeuble->getPrenomContact()));
+                }
+                if (!empty($rechercheImmeuble->getQualiteProprietaire())) {
+                    array_push($keyValueContact, array("QualiteProprietaire", $rechercheImmeuble->getQualiteProprietaire()));
+                }
+                if (!empty($rechercheImmeuble->getVilleImmeubleContact())) {
+                    array_push($keyValueContact, array("VilleImmeubleContact", $rechercheImmeuble->getVilleImmeubleContact()));
+                }
+                if (!empty($rechercheImmeuble->getCpImmeubleContact())) {
+                    array_push($keyValueContact, array("CPImmeubleContact", $rechercheImmeuble->getCpImmeubleContact()));
+                }
+                if (!empty($rechercheImmeuble->getEnqueteImmeuble())) {
+                    array_push($keyValueContact, array("EnqueteImmeuble", $rechercheImmeuble->getEnqueteImmeuble()));
+                }
+                if (!empty($rechercheImmeuble->getAntiMailing())) {
+                    array_push($keyValueContact, array("AntiMailing", $rechercheImmeuble->getAntiMailing()));
                 }
                 if (!empty($rechercheImmeuble->getDateActivite())) {
                     array_push($keyValueActivity, array("DateActivite", $rechercheImmeuble->getDateActivite()));

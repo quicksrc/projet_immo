@@ -92,6 +92,21 @@ class RechercheImmeuble
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $nomRecherche = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $cpImmeubleContact = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $villeImmeubleContact = null;
+
+    #[ORM\Column(type: Types::SMALLINT, nullable: true)]
+    private ?int $antiMailing = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $enqueteImmeuble = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $qualiteProprietaire = null;
+
     public function __toString()
     {
         return $this->nomRecherche;
@@ -410,6 +425,66 @@ class RechercheImmeuble
     public function setNomRecherche(?string $nomRecherche): static
     {
         $this->nomRecherche = $nomRecherche;
+
+        return $this;
+    }
+
+    public function getCpImmeubleContact(): ?string
+    {
+        return $this->cpImmeubleContact;
+    }
+
+    public function setCpImmeubleContact(?string $cpImmeubleContact): static
+    {
+        $this->cpImmeubleContact = $cpImmeubleContact;
+
+        return $this;
+    }
+
+    public function getVilleImmeubleContact(): ?string
+    {
+        return $this->villeImmeubleContact;
+    }
+
+    public function setVilleImmeubleContact(?string $villeImmeubleContact): static
+    {
+        $this->villeImmeubleContact = $villeImmeubleContact;
+
+        return $this;
+    }
+
+    public function getAntiMailing(): ?int
+    {
+        return $this->antiMailing;
+    }
+
+    public function setAntiMailing(?int $antiMailing): static
+    {
+        $this->antiMailing = $antiMailing;
+
+        return $this;
+    }
+
+    public function getEnqueteImmeuble(): ?string
+    {
+        return $this->enqueteImmeuble;
+    }
+
+    public function setEnqueteImmeuble(?string $enqueteImmeuble): static
+
+    {
+        $this->enqueteImmeuble = $enqueteImmeuble;
+        return $this;
+    }
+
+    public function getQualiteProprietaire(): ?string
+    {
+        return $this->qualiteProprietaire;
+    }
+
+    public function setQualiteProprietaire(?string $qualiteProprietaire): static
+    {
+        $this->qualiteProprietaire = $qualiteProprietaire;
 
         return $this;
     }
