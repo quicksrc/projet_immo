@@ -457,6 +457,7 @@ class ImmeubleController extends AbstractController
     }
 
 
+
     #[Route('/{IDImmeuble}', name: 'immeuble_show', methods: ['GET'])]
     public function show(Immeuble $immeuble, AdresseRepository $adresseRepository, ImmeubleContactRepository $immeubleContactRepository, ActiviteRepository $activiteRepository, OpportuniteRepository $opportuniteRepository): Response
     {
@@ -613,6 +614,8 @@ class ImmeubleController extends AbstractController
         ]);
         $pdf->showPdfFile($html);
     }
+
+
 
     #[Route('/{IDImmeuble}', name: 'immeuble_delete', methods: ['POST'])]
     public function delete(Request $request, Immeuble $immeuble, ImmeubleRepository $immeubleRepository, ImmeubleContactRepository $immeubleContactRepository, AdresseRepository $adresseRepository, ImagesRepository $imagesRepository, DocumentsRepository $documentsRepository): Response
