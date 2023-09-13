@@ -456,49 +456,6 @@ class ImmeubleController extends AbstractController
         ]);
     }
 
-    #[Route('/img/delete/{id}', name: 'immeubles_delete_img', methods: ['DELETE'])]
-    public function deleteImage(Images $image, Request $request, ImagesRepository $imagesRepository)
-    {
-        $data = json_decode($request->getContent(), true);
-
-        // On vérifie si le token est valide
-        if ($this->isCsrfTokenValid('delete' . $image->getId(), $data['_token'])) {
-            // On récupère le nom de l'image
-            $nom = $image->getName();
-            // On supprime le fichier
-            unlink($this->getParameter('img_immeuble_directory') . '/' . $nom);
-
-            // On supprime l'entrée de la base
-            $imagesRepository->remove($image, true);
-
-            // On répond en json
-            return new JsonResponse(['success' => 1]);
-        } else {
-            return new JsonResponse(['error' => 'Token Invalide'], 400);
-        }
-    }
-
-    #[Route('/doc/delete/{id}', name: 'immeubles_delete_doc', methods: ['DELETE'])]
-    public function deleteDocument(Documents $document, Request $request, DocumentsRepository $documentsRepository)
-    {
-        $data = json_decode($request->getContent(), true);
-
-        // On vérifie si le token est valide
-        if ($this->isCsrfTokenValid('delete' . $document->getId(), $data['_token'])) {
-            // On récupère le nom de l'image
-            $nom = $document->getName();
-            // On supprime le fichier
-            unlink($this->getParameter('doc_immeuble_directory') . '/' . $nom);
-
-            // On supprime l'entrée de la base
-            $documentsRepository->remove($document, true);
-
-            // On répond en json
-            return new JsonResponse(['success' => 1]);
-        } else {
-            return new JsonResponse(['error' => 'Token Invalide'], 400);
-        }
-    }
 
     #[Route('/{IDImmeuble}', name: 'immeuble_show', methods: ['GET'])]
     public function show(Immeuble $immeuble, AdresseRepository $adresseRepository, ImmeubleContactRepository $immeubleContactRepository, ActiviteRepository $activiteRepository, OpportuniteRepository $opportuniteRepository): Response
@@ -533,7 +490,7 @@ class ImmeubleController extends AbstractController
         $form = $this->createForm(ImmeubleType::class, $immeuble);
         $form->handleRequest($request);
         $enquete = $form->get('Enquete')->getData();
-        $suiviPar = $form->get('SuiviPar')->setData($immeuble->getSuiviPar());
+        $suiviPar = $form->get('SuiviPar')->getData();
         $description = $form->get('Description')->getData();
         $origineContact = $form->get('OrigineContact')->getData();
         //$suiviPar = $immeuble->getSuiviPar();
@@ -604,6 +561,50 @@ class ImmeubleController extends AbstractController
         ]);
     }
 
+    #[Route('/img/delete/{id}', name: 'immeubles_delete_img', methods: ['DELETE'])]
+    public function deleteImage(Images $image, Request $request, ImagesRepository $imagesRepository)
+    {
+        $data = json_decode($request->getContent(), true);
+
+        // On vérifie si le token est valide
+        if ($this->isCsrfTokenValid('delete' . $image->getId(), $data['_token'])) {
+            // On récupère le nom de l'image
+            $nom = $image->getName();
+            // On supprime le fichier
+            unlink($this->getParameter('img_immeuble_directory') . '/' . $nom);
+
+            // On supprime l'entrée de la base
+            $imagesRepository->remove($image, true);
+
+            // On répond en json
+            return new JsonResponse(['success' => 1]);
+        } else {
+            return new JsonResponse(['error' => 'Token Invalide'], 400);
+        }
+    }
+
+    #[Route('/doc/delete/{id}', name: 'immeubles_delete_doc', methods: ['DELETE'])]
+    public function deleteDocument(Documents $document, Request $request, DocumentsRepository $documentsRepository)
+    {
+        $data = json_decode($request->getContent(), true);
+
+        // On vérifie si le token est valide
+        if ($this->isCsrfTokenValid('delete' . $document->getId(), $data['_token'])) {
+            // On récupère le nom de l'image
+            $nom = $document->getName();
+            // On supprime le fichier
+            unlink($this->getParameter('doc_immeuble_directory') . '/' . $nom);
+
+            // On supprime l'entrée de la base
+            $documentsRepository->remove($document, true);
+
+            // On répond en json
+            return new JsonResponse(['success' => 1]);
+        } else {
+            return new JsonResponse(['error' => 'Token Invalide'], 400);
+        }
+    }
+
     #[Route('/{IDImmeuble}/edit/pdf', name: 'immeuble.pdf')]
     public function generatePdfImmeuble(Immeuble $immeuble = null, PdfService $pdf)
     {
@@ -614,15 +615,24 @@ class ImmeubleController extends AbstractController
     }
 
     #[Route('/{IDImmeuble}', name: 'immeuble_delete', methods: ['POST'])]
-    public function delete(Request $request, Immeuble $immeuble, ImmeubleRepository $immeubleRepository, ImmeubleContactRepository $immeubleContactRepository, AdresseRepository $adresseRepository): Response
+    public function delete(Request $request, Immeuble $immeuble, ImmeubleRepository $immeubleRepository, ImmeubleContactRepository $immeubleContactRepository, AdresseRepository $adresseRepository, ImagesRepository $imagesRepository, DocumentsRepository $documentsRepository): Response
     {
         if ($this->isCsrfTokenValid('delete' . $immeuble->getIDImmeuble(), $request->request->get('_token'))) {
+
             $ar = $adresseRepository->findOneBy(['IDImmeuble' => $immeuble->getIDImmeuble()]);
             $icr = $immeubleContactRepository->findOneBy(['IDImmeuble' => $immeuble->getIDImmeuble()]);
+            $img = $imagesRepository->findOneBy(['immeubles' => $immeuble->getIDImmeuble()]);
+            $doc = $documentsRepository->findOneBy(['immeubles' => $immeuble->getIDImmeuble()]);
+
             if ($ar != null) {
                 $adresseRepository->remove($ar, true);
             }
-            // dd($icr);
+            if ($img != null) {
+                $imagesRepository->remove($img, true);
+            }
+            if ($doc != null) {
+                $documentsRepository->remove($doc, true);
+            }
             if ($icr != null) {
                 $immeubleContactRepository->remove($icr, true);
             }

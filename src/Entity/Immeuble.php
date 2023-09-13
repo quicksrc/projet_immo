@@ -101,7 +101,7 @@ class Immeuble
     #[ORM\Column(length: 50, nullable: true)]
     private ?string $RegroupementAct = null;
 
-    #[ORM\OneToMany(mappedBy: 'IDImmeuble', targetEntity: Activite::class)]
+    #[ORM\OneToMany(mappedBy: 'IDImmeuble', targetEntity: Activite::class, cascade: ['persist'])]
     private Collection $activites;
 
     #[ORM\OneToMany(mappedBy: 'IDImmeuble', targetEntity: Adresse::class)]
