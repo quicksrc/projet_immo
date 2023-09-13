@@ -88,7 +88,8 @@ class SearchImmeubleType extends AbstractType
                 ],
                 'class' => TypeVoie::class,
                 'choice_label' => 'libelle',
-                'choice_value' => 'libelle'
+                //dd('libelle')
+                'choice_value' => 'Libelle'
             ])
             ->add('nomRue', TextType::class, [
                 'required' => false,
@@ -165,7 +166,7 @@ class SearchImmeubleType extends AbstractType
                 'choice_value' => 'libelle'
             ])
             ->add('enqueteImmeuble', EntityType::class, [
-                'required' => true,
+                'required' => false,
                 'mapped' => false,
                 'label' => 'Enquête',
                 'label_attr' => [

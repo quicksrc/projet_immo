@@ -35,6 +35,12 @@
 		<li class="nav-item" role="presentation">
 			<a class="nav-link active" data-bs-toggle="tab" href="#home" aria-selected="true" role="tab" tabindex="-1">Général</a>
 		</li>
+		<li class="nav-item" role="presentation">
+			<a class="nav-link " data-bs-toggle="tab" href="#contacts" aria-selected="true" role="tab">Contacts...</a>
+		</li>
+		<li class="nav-item" role="presentation">
+			<a class="nav-link " data-bs-toggle="tab" href="#opportunites" aria-selected="true" role="tab">Opportunités</a>
+		</li>
 	</ul>
 	<div id="myTabContent" class="tab-content">
 		<div class="tab-pane fade active show" id="home" role="tabpanel">
@@ -302,11 +308,12 @@
 				</div>
 			</div>
 		</div>
-		<div class="tab-pane" id="contact" role="tabpanel">
+		<div class="tab-pane" id="contacts" role="tabpanel">
 			<table id="tableContact" data-pagination="true" data-toolbar="#toolbarContact" data-page-size="25" data-search="true" data-show-export="true" data-toggle="table" data-click-to-select="true" data-search-align="left" data-show-columns="true" data-show-print="true" class="table table-list table-bordered table-striped m-auto">
 				<thead>
 					<tr>
-						<th data-field="ligne"></th>
+						<th data-field="ligne">N°</th>
+						<th data-field="action" class="no-print">Actions</th>
 						<th data-field="id" data-sortable="true" scope="col">ID</th>
 						<th data-field="nom" data-sortable="true" scope="col">Nom</th>
 						<th data-field="prenom" data-sortable="true" scope="col">Prenom</th>
@@ -315,7 +322,6 @@
 						<th data-field="adresse" data-sortable="true" scope="col">Adresse</th>
 						<th data-field="cp" data-sortable="true" scope="col">CP</th>
 						<th data-field="ville" data-sortable="true" scope="col">Ville</th>
-						<th data-field="action" class="no-print">Actions</th>
 					</tr>
 				</thead>
 				<tbody class="table-group-divider">
@@ -323,14 +329,6 @@
 					{% for key, contact in contacts %}
 						<tr class='clickable-row' data-href="{{ path('contact_show', {'IDContact': contact.IDContact.IDContact}) }}">
 							<td>{{key + 1}}</td>
-							<td>{{ contact.IDContact.IDContact }}</td>
-							<td>{{ contact.IDContact.Nom }}</td>
-							<td>{{ contact.IDContact.Prenom }}</td>
-							<td>{{ contact.IDContact.Telephone }}</td>
-							<td>{{ contact.IDContact.TelephonePortable }}</td>
-							<td>{{ contact.IDContact.Adresse }}</td>
-							<td>{{ contact.IDContact.CP }}</td>
-							<td>{{ contact.IDContact.Ville }}</td>
 							<td class="no-print">
 								<a class="text-decoration-underline-remove" href="{{ path('contact_show', {'IDContact': contact.IDContact.IDContact}) }}">
 									<i class="bi bi-eye" style="margin-right:15px"></i>
@@ -344,6 +342,54 @@
 									<i class="bi bi-trash3"></i>
 								</a>
 							</td>
+							<td>{{ contact.IDContact.IDContact }}</td>
+							<td>{{ contact.IDContact.Nom }}</td>
+							<td>{{ contact.IDContact.Prenom }}</td>
+							<td>{{ contact.IDContact.Telephone }}</td>
+							<td>{{ contact.IDContact.TelephonePortable }}</td>
+							<td>{{ contact.IDContact.Adresse }}</td>
+							<td>{{ contact.IDContact.CP }}</td>
+							<td>{{ contact.IDContact.Ville }}</td>
+
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+		<div class="tab-pane" id="opportunites" role="tabpanel">
+			<table id="tableOpportunite" data-pagination="true" data-toolbar="#toolbarOpportunite" data-page-size="25" data-search="true" data-show-export="true" data-toggle="table" data-click-to-select="true" data-search-align="left" data-show-columns="true" data-show-print="true" class="table table-list table-bordered table-striped m-auto">
+				<thead>
+					<tr>
+						<th data-field="ligne">N°</th>
+						<th data-field="actions" scope="col">Actions</th>
+						<th data-field="date" data-sortable="true" scope="col">Date</th>
+						<th data-field="societe" data-sortable="true" scope="col">Société</th>
+						<th data-field="commentaire" data-sortable="true" scope="col">Commentaire</th>
+					</tr>
+				</thead>
+				<tbody class="table-group-divider">
+					<h3 class="d-none text-center">Opportunités</h3>
+					{% for key, opportunite in opportunites %}
+
+						<tr class='clickable-row' data-href="{{ path('opportunite_show', {'IDOpportunite': opportunite.IDOpportunite}) }}">
+							<td>{{key + 1}}</td>
+
+							<td>
+								<a class="text-decoration-underline-remove" href="{{ path('opportunite_show', {'IDOpportunite': opportunite.IDOpportunite}) }}">
+									<i class="bi bi-eye" style="margin-right:15px"></i>
+								</a>
+
+								<a class="text-decoration-underline-remove" href="{{ path('opportunite_edit', {'IDOpportunite': opportunite.IDOpportunite}) }}">
+									<i class="bi bi-pen" style="margin-right:10px"></i>
+								</a>
+
+								<a class="text-decoration-underline-remove" href="{{ path('opportunite_delete', {'IDOpportunite': opportunite.IDOpportunite}) }}">
+									<i class="bi bi-trash3"></i>
+								</a>
+							</td>
+							<td>{{ opportunite.Date|date('d-m-Y') }}</td>
+							<td>{{ opportunite.SocieteConcernee }}</td>
+							<td>{{ opportunite.Commentaire }}</td>
 						</tr>
 					{% endfor %}
 				</tbody>

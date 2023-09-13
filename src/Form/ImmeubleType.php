@@ -56,8 +56,19 @@ class ImmeubleType extends AbstractType
                     'placeholder' => 'Etat Dossier'
                 ]
             ])
+            // ->add('origineContact', EntityType::class, [
+            //     'required' => false,
+            //     'mapped' => false,
+            //     'label' => 'Origine Contact',
+            //     'attr' => [
+            //         'class' => 'form-control',
+            //     ],
+            //     'class' => OrigineContactImmeuble::class,
+            //     'choice_label' => 'libelle',
+            //     'choice_value' => 'libelle'
+            // ])
             ->add('Enquete', EntityType::class, [
-                'required' => true,
+                'required' => false,
                 'mapped' => false,
                 'label' => 'Enquête',
                 'attr' => [
@@ -79,7 +90,6 @@ class ImmeubleType extends AbstractType
                 ]
             ])
             ->add('SuiviPar', EntityType::class, [
-                'required' => true,
                 'mapped' => false,
                 'label' => 'Suivi Par',
                 'attr' => [
@@ -87,7 +97,9 @@ class ImmeubleType extends AbstractType
                 ],
                 'class' => SuiviPar::class,
                 'choice_label' => 'libelle',
-                'choice_value' => 'libelle'
+                'choice_value' => 'libelle',
+                'multiple' => false,
+                'required' => false
             ])
             ->add('Vendu', ChoiceType::class, [
                 'required' => false,
@@ -102,7 +114,7 @@ class ImmeubleType extends AbstractType
                 ]
             ])
             ->add('Description', EntityType::class, [
-                'required' => true,
+                'required' => false,
                 'mapped' => false,
                 'label' => 'Description',
                 'attr' => [
@@ -125,7 +137,7 @@ class ImmeubleType extends AbstractType
                 ]
             ])
             ->add('OrigineContact', EntityType::class, [
-                'required' => true,
+                'required' => false,
                 'mapped' => false,
                 'label' => 'Origine Contact',
                 'attr' => [

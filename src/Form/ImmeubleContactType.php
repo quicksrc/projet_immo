@@ -15,6 +15,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -45,17 +46,25 @@ class ImmeubleContactType extends AbstractType
                         ->where('i.IDImmeuble = ' . $request->query->get('immeuble'));
                 }
             ])
-            ->add('IDContact', IntegerType::class, [
+            ->add('IDContact', TextType::class, [
                 'required' => true,
+                'mapped' => false,
                 'label' => 'ID Contact',
                 'attr' => [
                     'class' => 'form-control',
+                    'readonly' => false,
                 ],
                 // 'class' => Contact::class,
-                // 'choice_label' => 'Nom'
+                // 'query_builder' => function (EntityRepository $er) {
+                //     return $er->createQueryBuilder('c')
+                //         ->where('u.idContact', '?0');
+                // },
+                // 'choice_label' => 'IDContact',
+                // 'choice_value' => null,
+                // 'placeholder' => "Choisir une ville",
             ])
             ->add('Qualite', EntityType::class, [
-                'required' => false,
+                'required' => true,
                 'mapped' => false,
                 'label' => 'Qualité',
                 'label_attr' => [
@@ -70,6 +79,7 @@ class ImmeubleContactType extends AbstractType
             ])
             ->add('QualiteProprietaire', EntityType::class, [
                 'required' => true,
+                'mapped' => false,
                 'label' => 'Qualité Propriétaire',
                 'attr' => [
                     'class' => 'form-control',
@@ -80,6 +90,7 @@ class ImmeubleContactType extends AbstractType
             ])
             ->add('Genre', EntityType::class, [
                 'required' => true,
+                'mapped' => false,
                 'label' => 'Civilite',
                 'attr' => [
                     'class' => 'form-control',
@@ -121,6 +132,12 @@ class ImmeubleContactType extends AbstractType
                 'data' => new \DateTime(),
                 'attr' => [
                     'class' => 'form-control js-datepicker',
+                ]
+            ])
+            ->add('saveImmeubleContact', SubmitType::class, [
+                'label' => 'Enregistrer',
+                'attr' => [
+                    'class' => 'btn btn-success'
                 ]
             ]);
     }

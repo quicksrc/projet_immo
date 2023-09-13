@@ -41,7 +41,6 @@
 						<th data-field="refProprio" data-sortable="true" scope="col">Réf. Propriétaire</th>
 						<th data-field="correspondant" data-sortable="true" scope="col">Correspondant</th>
 						<th data-field="adresse" data-sortable="true" scope="col">Adresse Immeuble</th>
-
 					{% else %}
 						<th></th>
 						<th data-field="ligne">N°</th>
@@ -75,8 +74,7 @@
 								<i class="bi bi-trash3"></i>
 							</a>
 						</td>
-						<td>{{ immeuble.IDImmeuble.ReferenceProprio }}</td>
-						<td>{{ immeuble.IDImmeuble.Adresse }}</td>
+
 						<td>{{ immeuble.IDImmeuble.CP }}</td>
 						<td>{{ immeuble.IDImmeuble.Ville }}</td>
 						<td>{{ immeuble.IDContact.Civilite }}</td>
@@ -109,8 +107,6 @@
 								<i class="bi bi-trash3"></i>
 							</a>
 						</td>
-						<td>{{ contact.IDImmeuble.ReferenceProprio }}</td>
-						<td>{{ contact.IDImmeuble.Adresse }}</td>
 						<td>{{ contact.IDImmeuble.CP }}</td>
 						<td>{{ contact.IDImmeuble.Ville }}</td>
 						<td>{{ contact.IDContact.Civilite }}</td>
