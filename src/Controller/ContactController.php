@@ -526,8 +526,29 @@ class ContactController extends AbstractController
         $contact = new Contact();
         $form = $this->createForm(ContactType::class, $contact);
         $form->handleRequest($request);
+        if ($form->isSubmitted()) {
+            $pays = $form->get('Pays')->getData();
+            // dd($pays);
+            $contact = $form->getData();
+            // // Récupération des données du select
+            $civilite = $form->get('Civilite')->getData();
+            $fonction = $form->get('Fonction')->getData();
+            $pays = $form->get('Pays')->getData();
+            // dd($form->get('Pays')->getData());
+            // // Set du libelle en bdd
+            if ($civilite != null) {
+                $contact->setCivilite($civilite->getLibelle());
+            }
+            if ($fonction != null) {
+                $contact->setFonction($fonction->getLibelle());
+            }
+            if ($pays != null) {
+                $contact->setPays($pays->getLibelle());
+            }
+            //dd($form->getData());
 
-        if ($form->isSubmitted() && $form->isValid()) {
+            $contact->setDateModification(new \DateTime());
+            // dd($contact);
             $contactRepository->save($contact, true);
 
             return $this->redirectToRoute('contacts', [], Response::HTTP_SEE_OTHER);
@@ -586,10 +607,15 @@ class ContactController extends AbstractController
             $pays = $form->get('Pays')->getData();
             // dd($form->get('Pays')->getData());
             // // Set du libelle en bdd
-            $contact->setCivilite($civilite->getLibelle());
-            $contact->setFonction($fonction->getLibelle());
-            dd($form->getData());
-            $contact->setPays($pays->getLibelle());
+            if ($civilite != null) {
+                $contact->setCivilite($civilite->getLibelle());
+            }
+            if ($fonction != null) {
+                $contact->setFonction($fonction->getLibelle());
+            }
+            if ($pays != null) {
+                $contact->setPays($pays->getLibelle());
+            }
 
             $contact->setDateModification(new \DateTime());
             $contactRepository->save($contact, true);

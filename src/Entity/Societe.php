@@ -136,7 +136,7 @@ class Societe
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $Commentaire = null;
 
-    #[ORM\OneToMany(mappedBy: 'IDSociete', targetEntity: Activite::class)]
+    #[ORM\OneToMany(mappedBy: 'IDSociete', targetEntity: Activite::class, cascade: ['persist'])]
     private Collection $activites;
 
     #[ORM\Column(length: 255, nullable: true)]

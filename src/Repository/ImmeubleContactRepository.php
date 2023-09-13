@@ -85,15 +85,33 @@ class ImmeubleContactRepository extends ServiceEntityRepository
                 ->andWhere('ic.QualiteProprietaire LIKE :qualiteProprietaire')
                 ->setParameter('qualiteProprietaire', $rechercheImmeuble->getQualiteProprietaire());
         }
+
         if (!empty($rechercheImmeuble->getVilleImmeubleContact())) {
-            $qb
-                ->andWhere('i.Ville LIKE :villeImmeubleContact')
-                ->setParameter('villeImmeubleContact', $rechercheImmeuble->getVilleImmeubleContact());
+            if (str_contains($rechercheImmeuble->getVilleImmeubleContact(), ',')) {
+                $cpExplode = explode(',', $rechercheImmeuble->getVilleImmeubleContact());
+
+                $qb
+                    ->andWhere('i.Ville IN (:villeImmeubleContact)')
+                    ->setParameter('villeImmeubleContact', $cpExplode);
+            } else {
+                $qb
+                    ->andWhere('i.Ville LIKE :villeImmeubleContact')
+                    ->setParameter('villeImmeubleContact', $rechercheImmeuble->getVilleImmeubleContact());
+            }
         }
+
         if (!empty($rechercheImmeuble->getCpImmeubleContact())) {
-            $qb
-                ->andWhere('i.CP LIKE :cpImmeubleContact')
-                ->setParameter('cpImmeubleContact', $rechercheImmeuble->getCpImmeubleContact());
+            if (str_contains($rechercheImmeuble->getCpImmeubleContact(), ',')) {
+                $cpExplode = explode(',', $rechercheImmeuble->getCpImmeubleContact());
+
+                $qb
+                    ->andWhere('i.CP IN (:cpImmeubleContact)')
+                    ->setParameter('cpImmeubleContact', $cpExplode);
+            } else {
+                $qb
+                    ->andWhere('i.CP LIKE :cpImmeubleContact')
+                    ->setParameter('cpImmeubleContact', $rechercheImmeuble->getCpImmeubleContact());
+            }
         }
         if (!empty($rechercheImmeuble->getEnqueteImmeuble())) {
             $qb

@@ -67,6 +67,8 @@
 	<button class="btn btn-light no-print" type="button">
 		<a class=" text-decoration-underline-remove" href="{{ path('activites') }}">Retourner à la liste</a>
 	</button>
-	<button class="btn btn-light">{{ button_label|default('Save') }}</button>
+	{# {{ form_label(form.saveImmeubleContact) }} #}
+	{{ form_widget(form.saveImmeubleContact) }}
+	{# <button name="saveImmeubleContact" class="btn btn-light">{{ button_label|default('Save') }}</button> #}
 </div>
 {{ form_end(form) }}

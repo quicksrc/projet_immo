@@ -6,6 +6,7 @@ use App\Entity\Documents;
 use App\Entity\Images;
 use App\Entity\Immeuble;
 use App\Entity\RechercheImmeuble;
+use App\Entity\SuiviPar;
 use App\Form\ImmeubleType;
 use App\Form\SaveSearchType;
 use App\Form\SearchImmeubleType;
@@ -420,12 +421,29 @@ class ImmeubleController extends AbstractController
 
         $lastQuestion = $immeubleRepository->findOneBy([], ['ReferenceProprio' => 'desc']);
         $lastId = $lastQuestion->getReferenceProprio();
-        // dd($lastId);
+        $lastImmeuble = $immeubleRepository->findOneBy([], ['IDImmeuble' => 'desc']);
+        $enquete = $form->get('Enquete')->getData();
+        $suiviPar = $form->get('SuiviPar')->getData();
+        $description = $form->get('Description')->getData();
+        $origineContact = $form->get('OrigineContact')->getData();
+
         if ($form->isSubmitted() && $form->isValid()) {
+            $imcon = $form->getData();
+            if ($enquete != null) {
+                $imcon->setEnquete($enquete->getLibelle());
+            }
+            if ($suiviPar != null) {
+                $imcon->setSuiviPar($suiviPar->getLibelle());
+            }
+            if ($description != null) {
+                $imcon->setDescription($description->getLibelle());
+            }
+            if ($origineContact != null) {
+                $imcon->setOrigineContact($origineContact->getLibelle());
+            }
             $immeuble->setReferenceProprio($lastId + 1);
             $immeubleRepository->save($immeuble, true);
-
-            return $this->redirectToRoute('immeubles', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('immeuble_contact_new', array('immeuble' => $immeuble), Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('immeuble/new.html.twig', [
@@ -510,6 +528,19 @@ class ImmeubleController extends AbstractController
     {
         $form = $this->createForm(ImmeubleType::class, $immeuble);
         $form->handleRequest($request);
+        $enquete = $form->get('Enquete')->getData();
+        $suiviPar = $form->get('SuiviPar')->setData($immeuble->getSuiviPar());
+        $description = $form->get('Description')->getData();
+        $origineContact = $form->get('OrigineContact')->getData();
+        //$suiviPar = $immeuble->getSuiviPar();
+        //dd($form->get('SuiviPar')->getData());
+        // = ($immeuble->getSuiviPar());
+        // $form->get('SuiviPar')->setData($immeuble->getSuiviPar());
+        //dd($form->get('SuiviPar')->getData());
+        // $immeuble->setEnquete($enquete->getLibelle());
+        // $immeuble->setSuiviPar($suiviPar->getLibelle());
+        // $immeuble->setDescription($description->getLibelle());
+        // $immeuble->setOrigineContact($origineContact->getLibelle());
         if ($form->isSubmitted() && $form->isValid()) {
 
             // Modification des selects en bdd
@@ -522,10 +553,18 @@ class ImmeubleController extends AbstractController
             $description = $form->get('Description')->getData();
             $origineContact = $form->get('OrigineContact')->getData();
             // // Set du libelle en bdd
-            $immeuble->setEnquete($enquete->getLibelle());
-            $immeuble->setSuiviPar($suiviPar->getLibelle());
-            $immeuble->setDescription($description->getLibelle());
-            $immeuble->setOrigineContact($origineContact->getLibelle());
+            if ($enquete != null) {
+                $immeuble->setEnquete($enquete->getLibelle());
+            }
+            if ($suiviPar != null) {
+                $immeuble->setSuiviPar($suiviPar->getLibelle());
+            }
+            if ($description != null) {
+                $immeuble->setDescription($description->getLibelle());
+            }
+            if ($origineContact != null) {
+                $immeuble->setOrigineContact($origineContact->getLibelle());
+            }
 
             // Upload Image
             $images = $form->get('images')->getData();
@@ -571,14 +610,18 @@ class ImmeubleController extends AbstractController
     }
 
     #[Route('/{IDImmeuble}', name: 'immeuble_delete', methods: ['POST'])]
-    public function delete(Request $request, Immeuble $immeuble, ImmeubleRepository $immeubleRepository): Response
+    public function delete(Request $request, Immeuble $immeuble, ImmeubleRepository $immeubleRepository, ImmeubleContactRepository $immeubleContactRepository, AdresseRepository $adresseRepository): Response
     {
         if ($this->isCsrfTokenValid('delete' . $immeuble->getIDImmeuble(), $request->request->get('_token'))) {
-            // dd($immeubleContact);
-            $query = $immeubleRepository->createQueryBuilder('i');
-
-            $query->set('foreign_key_checks', false);
-            // $immeubleContactRepository->remove($immeubleContact, true);
+            $ar = $adresseRepository->findOneBy(['IDImmeuble' => $immeuble->getIDImmeuble()]);
+            $icr = $immeubleContactRepository->findOneBy(['IDImmeuble' => $immeuble->getIDImmeuble()]);
+            if ($ar != null) {
+                $adresseRepository->remove($ar, true);
+            }
+            // dd($icr);
+            if ($icr != null) {
+                $immeubleContactRepository->remove($icr, true);
+            }
             $immeubleRepository->remove($immeuble, true);
         }
 

@@ -5,7 +5,10 @@ namespace App\Controller;
 use App\Entity\ImmeubleContact;
 use App\Entity\RechercheImmeuble;
 use App\Form\ImmeubleContactType;
+use App\Repository\ContactRepository;
 use App\Repository\ImmeubleContactRepository;
+use App\Repository\QualiteProprietaireRepository;
+use App\Repository\QualiteRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -24,17 +27,33 @@ class ImmeubleContactController extends AbstractController
     }
 
     #[Route('/new', name: 'immeuble_contact_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, ImmeubleContactRepository $immeubleContactRepository, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, ImmeubleContactRepository $immeubleContactRepository, EntityManagerInterface $entityManager, ContactRepository $contactRepository, QualiteRepository $qualiteRepository, QualiteProprietaireRepository $qualiteProprietaireRepository): Response
     {
         $immeubleContact = new ImmeubleContact();
         $form = $this->createForm(ImmeubleContactType::class, $immeubleContact);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
+            $imcon = $form->getData();
+            $immeubleContactt = $form->get('IDContact')->getData();
+            $qualite = $form->get('Qualite')->getData();
+            $qualiteProprietaire = $form->get('QualiteProprietaire')->getData();
+            $genre = $form->get('Genre')->getData();
+            if ($qualiteProprietaire != null) {
+                $imcon->setQualiteProprietaire($qualiteProprietaire->getLibelle());
+            }
+            if ($genre != null) {
+                $imcon->setGenre($genre->getLibelle());
+            }
+            if ($qualite != null) {
+                $imcon->setQualite($qualite->getLibelle());
+            }
+            if ($immeubleContactt != null) {
+                $idC = $contactRepository->findOneBy(['IDContact' => $immeubleContactt]);
+                $immeubleContact->setIDContact($idC);
+            }
             $immeubleContactRepository->save($immeubleContact, true);
             return $this->redirectToRoute('immeubles', [], Response::HTTP_SEE_OTHER);
         }
-
         return $this->render('immeuble_contact/new.html.twig', [
             'immeuble_contact' => $immeubleContact,
             'form' => $form,

@@ -33,7 +33,7 @@ class ContactType extends AbstractType
             //     ]
             // ])
             ->add('Civilite', EntityType::class, [
-                'required' => true,
+                'required' => false,
                 'mapped' => false,
                 'label' => 'Civilité',
                 'attr' => [
@@ -43,6 +43,18 @@ class ContactType extends AbstractType
                 'choice_label' => 'libelle',
                 'choice_value' => 'libelle',
             ])
+            ->add('Pays', EntityType::class, [
+                'required' => false,
+                'mapped' => false,
+                'label' => 'Pays',
+                'attr' => [
+                    'class' => 'form-control',
+                ],
+                'class' => Pays::class,
+                'choice_label' => 'libelle',
+                'choice_value' => 'libelle',
+            ])
+
             ->add('Nom', TextType::class, [
                 'required' => false,
                 'label' => 'Nom',
@@ -99,17 +111,7 @@ class ContactType extends AbstractType
                     'class' => 'form-control'
                 ]
             ])
-            ->add('Pays', EntityType::class, [
-                'required' => true,
-                'mapped' => false,
-                'label' => 'Pays',
-                'attr' => [
-                    'class' => 'form-control',
-                ],
-                'class' => Pays::class,
-                'choice_label' => 'libelle',
-                'choice_value' => 'libelle'
-            ])
+
             ->add('Telephone', TelType::class, [
                 'required' => false,
                 'label' => 'Téléphone',
@@ -218,7 +220,7 @@ class ContactType extends AbstractType
                 ]
             ])
             ->add('Fonction', EntityType::class, [
-                'required' => true,
+                'required' => false,
                 'mapped' => false,
                 'label' => 'Fonction',
                 'attr' => [
