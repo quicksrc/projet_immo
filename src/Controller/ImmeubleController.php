@@ -621,22 +621,30 @@ class ImmeubleController extends AbstractController
     {
         if ($this->isCsrfTokenValid('delete' . $immeuble->getIDImmeuble(), $request->request->get('_token'))) {
 
-            $ar = $adresseRepository->findOneBy(['IDImmeuble' => $immeuble->getIDImmeuble()]);
-            $icr = $immeubleContactRepository->findOneBy(['IDImmeuble' => $immeuble->getIDImmeuble()]);
-            $img = $imagesRepository->findOneBy(['immeubles' => $immeuble->getIDImmeuble()]);
-            $doc = $documentsRepository->findOneBy(['immeubles' => $immeuble->getIDImmeuble()]);
-
+            $ar = $adresseRepository->findBy(['IDImmeuble' => $immeuble->getIDImmeuble()]);
+            $icr = $immeubleContactRepository->findBy(['IDImmeuble' => $immeuble->getIDImmeuble()]);
+            $img = $imagesRepository->findBy(['immeubles' => $immeuble->getIDImmeuble()]);
+            $doc = $documentsRepository->findBy(['immeubles' => $immeuble->getIDImmeuble()]);
+            //dd($ar);
             if ($ar != null) {
-                $adresseRepository->remove($ar, true);
+                foreach ($ar as $value) {
+                    $adresseRepository->remove($value, true);
+                }
             }
             if ($img != null) {
-                $imagesRepository->remove($img, true);
+                foreach ($img as $value) {
+                    $imagesRepository->remove($value, true);
+                }
             }
             if ($doc != null) {
-                $documentsRepository->remove($doc, true);
+                foreach ($doc as $value) {
+                    $documentsRepository->remove($value, true);
+                }
             }
             if ($icr != null) {
-                $immeubleContactRepository->remove($icr, true);
+                foreach ($icr as $value) {
+                    $immeubleContactRepository->remove($value, true);
+                }
             }
             $immeubleRepository->remove($immeuble, true);
         }
