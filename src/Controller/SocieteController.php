@@ -220,13 +220,22 @@ class SocieteController extends AbstractController
     }
 
     #[Route('/{IDSociete}', name: 'societe_delete', methods: ['POST'])]
-    public function delete(Request $request, Societe $societe, SocieteRepository $societeRepository, SocieteContactRepository $societeContactRepository): Response
+    public function delete(Request $request, Societe $societe, SocieteRepository $societeRepository, SocieteContactRepository $societeContactRepository, ActiviteRepository $activiteRepository): Response
     {
         if ($this->isCsrfTokenValid('delete' . $societe->getIDSociete(), $request->request->get('_token'))) {
-            $scr = $societeContactRepository->findOneBy(['IDSociete' => $societe->getIDSociete()]);
+            $scr = $societeContactRepository->findBy(['IDSociete' => $societe->getIDSociete()]);
+            $ar = $activiteRepository->findBy(['IDSociete' => $societe->getIDSociete()]);
             if ($scr != null) {
-                $societeContactRepository->remove($scr, true);
+                foreach ($scr as $value) {
+                    $societeContactRepository->remove($value, true);
+                }
             }
+            if ($ar != null) {
+                foreach ($ar as $value) {
+                    $activiteRepository->remove($value, true);
+                }
+            }
+
             $societeRepository->remove($societe, true);
         }
 
