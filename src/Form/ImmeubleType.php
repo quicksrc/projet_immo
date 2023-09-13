@@ -7,22 +7,19 @@ use App\Entity\Enquete;
 use App\Entity\Immeuble;
 use App\Entity\OrigineContactImmeuble;
 use App\Entity\SuiviPar;
-use App\Repository\EnqueteRepository;
-use Doctrine\ORM\EntityManager;
-use Doctrine\ORM\EntityRepository;
-use Doctrine\ORM\QueryBuilder;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\ChoiceList\ChoiceList;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\File;
+use Symfony\Component\Validator\Constraints\Image;
+use Webmozart\Assert\Assert;
 
 class ImmeubleType extends AbstractType
 {
@@ -167,37 +164,6 @@ class ImmeubleType extends AbstractType
                     'class' => 'form-control',
                 ]
             ])
-
-            // ->add('DateVente', DateType::class, [
-            //     'required' => false,
-            //     'label' => 'Date Vente',
-            //     'data' => new \DateTime(),
-            //     'attr' => [
-            //         'placeholder' => 'Date Vente',
-            //         'class' => 'form-row col-md-3',
-            //     ]
-            // ])
-            // ->add('OrigineContact', ChoiceType::class, [
-            //     'required' => false,
-            //     'label' => 'Origine Contact',
-            //     'choices' => [
-            //         'JAL' => 'JAL',
-            //         'JAL-JSS' => 'JAL-JSS',
-            //         'JAL-GP' => 'JAL-GP',
-            //         'JAL-AS' => 'JAL-AS',
-            //         'JAL-PA' => 'JAL-PA',
-            //         'Fichier Immobilier' => 'Fichier Immobilier',
-            //         'INT-Avocat' => 'INT-Avocat',
-            //         'INT' => 'INT',
-            //         'INT-Notaire' => 'INT-Notaire',
-            //         'INT-Expert Comptable' => 'INT-Expert Comptable',
-            //         'Propection' => 'Propection'
-            //     ],
-            //     'attr' => [
-            //         'class' => 'form-control',
-            //         'placeholder' => 'Origine Contact'
-            //     ]
-            // ])
             ->add('Intermediaire', TextType::class, [
                 'required' => false,
                 'label' => 'Intermediaire',
@@ -311,6 +277,17 @@ class ImmeubleType extends AbstractType
                     'class' => 'form-control',
                     'multiple' => 'multiple'
                 ],
+                // 'constraints' => [
+                //     new Image([
+                //         'mimeTypes' => [
+                //             'image/png',
+                //             'image/jpg',
+                //             'image/jpeg',
+                //             'image/gif',
+                //         ],
+                //         'mimeTypesMessage' => 'Please upload a valid image',
+                //     ])
+                // ],
                 'data_class' => null,
                 'multiple' => true,
                 'mapped' => false
@@ -322,27 +299,18 @@ class ImmeubleType extends AbstractType
                     'class' => 'form-control',
                     'multiple' => 'multiple'
                 ],
+                // 'constraints' => [
+                //     new File([
+                //         'mimeTypes' => [
+                //             'application/pdf',
+                //         ],
+                //         'mimeTypesMessage' => 'Please upload a valid image',
+                //     ])
+                // ],
                 'data_class' => null,
                 'multiple' => true,
                 'mapped' => false
             ]);
-
-        // ->add('DateVisite', DateType::class, [
-        //     'required' => false,
-        //     'label' => 'Date Visite',
-        //     'attr' => [
-        //         'class' => 'Date Visite',
-        //         'class' => 'form-control',
-        //     ]
-        // ])
-        // ->add('RegroupementAct', TextType::class, [
-        //     'required' => false,
-        //     'label' => 'Regroupement Act',
-        //     'attr' => [
-        //         'class' => 'Regroupement Act',
-        //         'class' => 'form-control',
-        //     ]
-        // ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

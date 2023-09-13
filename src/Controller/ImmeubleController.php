@@ -230,7 +230,6 @@ class ImmeubleController extends AbstractController
 
 
 
-
     #[Route('/search', name: 'immeuble_search')]
     public function search(ImmeubleRepository $immeubleRepository, RechercheImmeubleRepository $rechercheImmeubleRepository, ImmeubleContactRepository $immeubleContactRepository, AdresseRepository $adresseRepository, ActiviteRepository $activiteRepository, Request $request): Response
     {
@@ -239,7 +238,7 @@ class ImmeubleController extends AbstractController
         /** @var $form symfony\component\form\clickableinterface */
         $form = $this->createForm(SearchImmeubleType::class, $rechercheImmeuble);
         $form->handleRequest($request);
-        //$form->get('block_john')->isClicked();
+
         // $immeubles => Array pour afficher les immeubles
         $immeubles = [];
 
@@ -251,7 +250,8 @@ class ImmeubleController extends AbstractController
 
         // $contacts => Array pour afficher les activités
         $activites = [];
-
+        // ImmeubleController
+        // public function search()
         if ($form->isSubmitted() && $form->isValid()) {
             // Modification des selects en bdd
 
@@ -284,6 +284,7 @@ class ImmeubleController extends AbstractController
 
             // Vérifier si on rempli les champs
             for ($i = 0; $i < 1; $i++) {
+                // Tableau pour recherche via Immeuble
                 if (!empty($rechercheImmeuble->getRefProprioImmeuble())) {
                     array_push($keyValue, array("ReferenceProprio", $rechercheImmeuble->getRefProprioImmeuble()));
                 }
@@ -299,6 +300,7 @@ class ImmeubleController extends AbstractController
                 if (!empty($rechercheImmeuble->getEtatDossier())) {
                     array_push($keyValue, array("EtatDossier", $rechercheImmeuble->getEtatDossier()));
                 }
+                // Tableau pour recherche via Adresse
                 if (!empty($rechercheImmeuble->getNumPrincipal())) {
                     array_push($keyValueAdress, array("NumPrincipal", $rechercheImmeuble->getNumPrincipal()));
                 }
@@ -314,6 +316,7 @@ class ImmeubleController extends AbstractController
                 if (!empty($rechercheImmeuble->getVille())) {
                     array_push($keyValueAdress, array("Ville", $rechercheImmeuble->getVille()));
                 }
+                // Tableau pour recherche via Contact
                 if (!empty($rechercheImmeuble->getNomContact())) {
                     array_push($keyValueContact, array("Nom", $rechercheImmeuble->getNomContact()));
                 }
@@ -344,6 +347,7 @@ class ImmeubleController extends AbstractController
                 if (!empty($rechercheImmeuble->getAntiMailing())) {
                     array_push($keyValueContact, array("AntiMailing", $rechercheImmeuble->getAntiMailing()));
                 }
+                // Tableau pour recherche via Activité
                 if (!empty($rechercheImmeuble->getDateActivite())) {
                     array_push($keyValueActivity, array("DateActivite", $rechercheImmeuble->getDateActivite()));
                 }

@@ -55,14 +55,18 @@ class ImmeubleContactType extends AbstractType
                 // 'choice_label' => 'Nom'
             ])
             ->add('Qualite', EntityType::class, [
-                'required' => true,
+                'required' => false,
+                'mapped' => false,
                 'label' => 'Qualité',
+                'label_attr' => [
+                    'class' => 'form-label mt-4'
+                ],
                 'attr' => [
                     'class' => 'form-control',
-                    'readonly' => true,
                 ],
                 'class' => Qualite::class,
                 'choice_label' => 'libelle',
+                'choice_value' => 'libelle'
             ])
             ->add('QualiteProprietaire', EntityType::class, [
                 'required' => true,

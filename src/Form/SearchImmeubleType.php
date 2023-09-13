@@ -46,26 +46,6 @@ class SearchImmeubleType extends AbstractType
                     'class' => 'form-check-input mt-4 ms-2'
                 ]
             ])
-            // ->add('origineContact', ChoiceType::class, [
-            //     'required' => false,
-            //     'label' => 'Origine Contact',
-            //     'label_attr' => [
-            //         'class' => 'form-label mt-4'
-            //     ],
-
-            //     'choices' => [
-            //         'Mailing' => 'Mailing',
-            //         'Intermédiaire' => 'Intermédiaire',
-            //         'Téléphone' => 'Téléphone',
-            //         'Prospection' => 'Prospection',
-            //         'Presse' => 'Presse',
-            //         'Retombée clientèle' => 'Retombée clientèle',
-            //     ],
-            //     'attr' => [
-            //         'class' => 'form-select',
-            //         'placeholder' => 'Description'
-            //     ]
-            // ])
             ->add('origineContact', EntityType::class, [
                 'required' => false,
                 'mapped' => false,
