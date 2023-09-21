@@ -96,13 +96,11 @@ $(function () {
               checkbox: true,
               visible: $(this).val() === "selected",
             },
-            
           ],
         });
     })
     .trigger("change");
 });
-
 
 $(function () {
   $("#toolbarSocieteSearch")

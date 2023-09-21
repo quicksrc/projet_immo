@@ -185,7 +185,7 @@ class ImmeubleType extends AbstractType
                 ]
             ])
             ->add('NumPrincipal', TelType::class, [
-                'required' => false,
+                'required' => true,
                 'label' => 'N° Principal',
                 'attr' => [
                     'placeholder' => 'N° Principal',
@@ -201,7 +201,7 @@ class ImmeubleType extends AbstractType
                 ]
             ])
             ->add('TypeVoie', ChoiceType::class, [
-                'required' => false,
+                'required' => true,
                 'label' => 'Type Voie',
                 'choices' => [
                     'place' => 'place',
@@ -243,7 +243,7 @@ class ImmeubleType extends AbstractType
                 ]
             ])
             ->add('NomRue', TextType::class, [
-                'required' => false,
+                'required' => true,
                 'label' => 'Nom Rue',
                 'attr' => [
                     'placeholder' => 'Nom Rue',
@@ -259,7 +259,7 @@ class ImmeubleType extends AbstractType
                 ]
             ])
             ->add('CP', TextType::class, [
-                'required' => false,
+                'required' => true,
                 'label' => 'Code Postal',
                 'attr' => [
                     'placeholder' => 'CP',
@@ -267,7 +267,7 @@ class ImmeubleType extends AbstractType
                 ]
             ])
             ->add('Ville', TextType::class, [
-                'required' => false,
+                'required' => true,
                 'label' => 'Ville',
                 'attr' => [
                     'placeholder' => 'Ville',
@@ -289,17 +289,6 @@ class ImmeubleType extends AbstractType
                     'class' => 'form-control',
                     'multiple' => 'multiple'
                 ],
-                // 'constraints' => [
-                //     new Image([
-                //         'mimeTypes' => [
-                //             'image/png',
-                //             'image/jpg',
-                //             'image/jpeg',
-                //             'image/gif',
-                //         ],
-                //         'mimeTypesMessage' => 'Please upload a valid image',
-                //     ])
-                // ],
                 'data_class' => null,
                 'multiple' => true,
                 'mapped' => false
@@ -311,14 +300,6 @@ class ImmeubleType extends AbstractType
                     'class' => 'form-control',
                     'multiple' => 'multiple'
                 ],
-                // 'constraints' => [
-                //     new File([
-                //         'mimeTypes' => [
-                //             'application/pdf',
-                //         ],
-                //         'mimeTypesMessage' => 'Please upload a valid image',
-                //     ])
-                // ],
                 'data_class' => null,
                 'multiple' => true,
                 'mapped' => false

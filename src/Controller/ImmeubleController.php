@@ -31,7 +31,7 @@ class ImmeubleController extends AbstractController
 {
 
     #[Route('/', name: 'immeubles')]
-    public function index(ImmeubleRepository $immeubleRepository, RechercheImmeubleRepository $rechercheImmeubleRepository, Request $request, AdresseRepository $adresseRepository, ImmeubleContactRepository $immeubleContactRepository, ActiviteRepository $activiteRepository): Response
+    public function index(RechercheImmeubleRepository $rechercheImmeubleRepository, Request $request, AdresseRepository $adresseRepository, ImmeubleContactRepository $immeubleContactRepository, ActiviteRepository $activiteRepository): Response
     {
         /** @var $form symfony\component\form\clickableinterface */
         $form = $this->createForm(SaveSearchType::class);
@@ -236,7 +236,9 @@ class ImmeubleController extends AbstractController
     {
         // Recherche avancée
         $rechercheImmeuble = new RechercheImmeuble();
+
         /** @var $form symfony\component\form\clickableinterface */
+
         $form = $this->createForm(SearchImmeubleType::class, $rechercheImmeuble);
         $form->handleRequest($request);
 
@@ -251,8 +253,7 @@ class ImmeubleController extends AbstractController
 
         // $contacts => Array pour afficher les activités
         $activites = [];
-        // ImmeubleController
-        // public function search()
+
         if ($form->isSubmitted() && $form->isValid()) {
             // Modification des selects en bdd
 
@@ -538,7 +539,6 @@ class ImmeubleController extends AbstractController
                 $img->setName($imageName);
                 $immeuble->addImage($img);
             }
-            // dd($photos);
 
             // Upload PDF
             $documents = $form->get('documents')->getData();
