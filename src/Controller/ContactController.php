@@ -454,8 +454,10 @@ class ContactController extends AbstractController
                     array_push($keyValueSociete, array("cpAcheteurSociete", $rechercheContact->getCpAcheteurSociete()));
                 }
             };
+
             if (count($keyValueContact) >= 1 && $form->get('rechercheContact')->isClicked() || $form->get('saveRechercheContact')->isClicked()) {
                 $contacts = $contactRepository->findContactBySearch($rechercheContact);
+
                 if ($form->get('saveRechercheContact')->isClicked() && $rechercheContact->getNomRecherche() != "") {
                     $savedContactName = "Contact : " . $rechercheContact->getNomRecherche();
                     $rechercheContact->setNomRecherche($savedContactName);

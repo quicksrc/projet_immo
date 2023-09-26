@@ -4,6 +4,8 @@
 {% endblock %}
 
 {% block body %}
+
+
 	<div class="float-end">
 		<button class="btn btn-light no-print" type="button">
 			<a class=" text-decoration-underline-remove" href="{{ path('immeuble_edit', {'IDImmeuble': immeuble.IDImmeuble}) }}">Modifier un Immeuble</a>
@@ -75,12 +77,12 @@
 						<form>
 							<div class="form-group row justify-content-around">
 								<div class="col-md-4 mb-3">
-									<label for="readOnlyInput">Etat Dossier</label>
+									<label for="readOnlyInput">État Dossier</label>
 									<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ immeuble.EtatDossier }}" readonly="">
 								</div>
 
 								<div class="col-md-4 mb-3">
-									<label for="readOnlyInput">Enquete</label>
+									<label for="readOnlyInput">Enquête</label>
 									<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ immeuble.Enquete }}" readonly="">
 
 								</div>
@@ -103,7 +105,7 @@
 									<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ immeuble.OrigineContact }}" readonly="">
 								</div>
 								<div class="col-md-4 mb-4">
-									<label for="readOnlyInput">Intermediaire</label>
+									<label for="readOnlyInput">Intermédiaire</label>
 									<input class="form-control " id="readOnlyInput" type="text" placeholder="{{ immeuble.Intermediaire }}" readonly="">
 								</div>
 							</div>
@@ -168,10 +170,10 @@
 											</a>
 										</div>
 										{# <button type="button" class="btn btn-danger w-25 mx-auto">
-																					<a href="{{ path('immeubles_delete_img', {id: image.id})}}" data-delete data-token="{{ csrf_token('delete' ~ image.id )}}" class="text-white">
-																						<i class="bi bi-trash3"></i>
-																					</a>
-																				</button> #}
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																													<a href="{{ path('immeubles_delete_img', {id: image.id})}}" data-delete data-token="{{ csrf_token('delete' ~ image.id )}}" class="text-white">
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																														<i class="bi bi-trash3"></i>
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																													</a>
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																												</button> #}
 									</div>
 								</div>
 							{% endfor %}
@@ -192,10 +194,10 @@
 								</button>
 								{{ document.name }}
 								{# <button type="button" class="btn btn-danger float-end">
-																	<a href="{{ path('immeubles_delete_doc', {id: document.id})}}" data-delete data-token="{{ csrf_token('delete' ~ document.id )}}" class="text-white">
-																		<i class="bi bi-trash3"></i>
-																	</a>
-																</button> #}
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																	<a href="{{ path('immeubles_delete_doc', {id: document.id})}}" data-delete data-token="{{ csrf_token('delete' ~ document.id )}}" class="text-white">
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																		<i class="bi bi-trash3"></i>
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																	</a>
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																</button> #}
 							</li>
 							{# On ajoute un lien permettant de supprimer une image (sera géré en Ajax) #}
 						{% endfor %}
@@ -249,7 +251,11 @@
 									</a>
 
 									<a class="text-decoration-underline-remove" href="{{ path('adresse_delete', {'IDAdresse': adresse.IDAdresse}) }}">
-										<i class="bi bi-trash3"></i>
+										<i class="bi bi-trash3" style="margin-right:10px"></i>
+									</a>
+
+									<a class="text-decoration-underline-remove" href="{{ path('adress_copy', {'IDAdresse': adresse.IDAdresse}) }}">
+										<i class="bi bi-recycle"></i>
 									</a>
 								</td>
 								<td>{{ adresse.IDAdresse }}</td>
@@ -270,172 +276,169 @@
 							</tr>
 						{% endfor %}
 					</tbody>
-				</table>
-			</div>
-			<div class="tab-pane fade" id="contact" role="tabpanel">
-				<div id="toolbarContact" class="mr-2">
-					<button class="btn btn-secondary " style="margin-right:20px" type="button">
-						<a class="fs-5" href="{{ path('immeuble_contact_new', {immeuble}) }}">
-							<i class="bi bi-file-earmark-plus"></i>
+				</tr>
+			</tbody>
+		</tbody>
+	</table>
+</div>
+<div class="tab-pane fade" id="contact" role="tabpanel">
+	<div id="toolbarContact" class="mr-2">
+		<button class="btn btn-secondary " style="margin-right:20px" type="button">
+			<a class="fs-5" href="{{ path('immeuble_contact_new', {immeuble}) }}">
+				<i class="bi bi-file-earmark-plus"></i>
+			</a>
+		</button>
+	</div>
+	<table id="tableImmeuble" data-pagination="true" data-toolbar="#toolbarContact" data-page-size="25" data-search="true" data-show-export="true" data-toggle="table" data-click-to-select="true" data-search-align="left" data-show-columns="true" data-show-print="true" class="table table-list table-bordered table-striped m-auto">
+		<thead>
+			<tr>
+				<th data-field="civilite" data-sortable="true" scope="col">Civilité</th>
+				<th data-field="nom" data-sortable="true" scope="col">Nom</th>
+				<th data-field="prenom" data-sortable="true" scope="col">Prénom</th>
+				<th data-field="adresse" data-sortable="true" scope="col">Adresse</th>
+				<th data-field="cp" data-sortable="true" scope="col">CP</th>
+				<th data-field="ville" data-sortable="true" scope="col">Ville</th>
+				<th data-field="tel" data-sortable="true" scope="col">Téléphone</th>
+				<th data-field="qualite" data-sortable="true" scope="col">Qualité</th>
+				<th data-field="contactP" data-sortable="true" scope="col">P</th>
+				<th data-field="npai" data-sortable="true" scope="col">NPAI</th>
+				<th data-field="action" class="no-print">Actions</th>
+			</tr>
+		</thead>
+		<tbody class="table-group-divider">
+			<h3 class="d-none text-center">Contact</h3>
+			{% for contact in contacts %}
+				<tr class='clickable-row' data-href="{{ path('contact_show', {'IDContact': contact.IDContact.IDContact}) }}">
+					<td>{{ contact.IDContact.Civilite }}</td>
+					<td>{{ contact.IDContact.Nom }}</td>
+					<td>{{ contact.IDContact.Prenom }}</td>
+					<td>{{ contact.IDContact.Adresse }}</td>
+					<td>{{ contact.IDContact.CP }}</td>
+					<td>{{ contact.IDContact.Ville }}</td>
+					<td>{{ contact.IDContact.TelephoneDomicile }}</td>
+					<td>{{ contact.Qualite }}</td>
+					{% if contact.Principal == 1 %}
+						<td class="text-success">
+							<i class="fa-solid fa-check"></i>
+						</td>
+					{% elseif contact.Principal == 0 %}
+						<td class="text-danger">
+							<i class="fa-solid fa-xmark"></i>
+						</td>
+					{% endif %}
+					{% if contact.IDContact.NPAI == 1 %}
+						<td class="text-success">
+							<i class="fa-solid fa-check"></i>
+						</td>
+					{% elseif contact.IDContact.NPAI == 0 %}
+						<td class="text-danger">
+							<i class="fa-solid fa-xmark"></i>
+						</td>
+					{% endif %}
+					<td class="no-print">
+						<a class="text-decoration-underline-remove" href="{{ path('contact_show', {'IDContact': contact.IDContact.IDContact}) }}">
+							<i class="bi bi-eye" style="margin-right:15px"></i>
 						</a>
-					</button>
-				</div>
-				<table id="tableImmeuble" data-pagination="true" data-toolbar="#toolbarContact" data-page-size="25" data-search="true" data-show-export="true" data-toggle="table" data-click-to-select="true" data-search-align="left" data-show-columns="true" data-show-print="true" class="table table-list table-bordered table-striped m-auto">
-					<thead>
-						<tr>
-							<th data-field="civilite" data-sortable="true" scope="col">Civilite</th>
-							<th data-field="nom" data-sortable="true" scope="col">Nom</th>
-							<th data-field="prenom" data-sortable="true" scope="col">Prenom</th>
-							<th data-field="adresse" data-sortable="true" scope="col">Adresse</th>
-							<th data-field="cp" data-sortable="true" scope="col">CP</th>
-							<th data-field="ville" data-sortable="true" scope="col">Ville</th>
-							<th data-field="tel" data-sortable="true" scope="col">Téléphone</th>
-							<th data-field="qualite" data-sortable="true" scope="col">Qualité</th>
-							<th data-field="contactP" data-sortable="true" scope="col">P</th>
-							<th data-field="npai" data-sortable="true" scope="col">NPAI</th>
-							<th data-field="action" class="no-print">Actions</th>
-						</tr>
-					</thead>
-					<tbody class="table-group-divider">
-						<h3 class="d-none text-center">Contact</h3>
-						{% for contact in contacts %}
-							<tr class='clickable-row' data-href="{{ path('contact_show', {'IDContact': contact.IDContact.IDContact}) }}">
-								<td>{{ contact.IDContact.Civilite }}</td>
-								<td>{{ contact.IDContact.Nom }}</td>
-								<td>{{ contact.IDContact.Prenom }}</td>
-								<td>{{ contact.IDContact.Adresse }}</td>
-								<td>{{ contact.IDContact.CP }}</td>
-								<td>{{ contact.IDContact.Ville }}</td>
-								<td>{{ contact.IDContact.TelephoneDomicile }}</td>
-								<td>{{ contact.Qualite }}</td>
-								{% if contact.Principal == 1 %}
-									<td class="text-success">
-										<i class="fa-solid fa-check"></i>
-									</td>
-								{% elseif contact.Principal == 0 %}
-									<td class="text-danger">
-										<i class="fa-solid fa-xmark"></i>
-									</td>
-								{% endif %}
-								{% if contact.IDContact.NPAI == 1 %}
-									<td class="text-success">
-										<i class="fa-solid fa-check"></i>
-									</td>
-								{% elseif contact.IDContact.NPAI == 0 %}
-									<td class="text-danger">
-										<i class="fa-solid fa-xmark"></i>
-									</td>
-								{% endif %}
-								<td class="no-print">
-									<a class="text-decoration-underline-remove" href="{{ path('contact_show', {'IDContact': contact.IDContact.IDContact}) }}">
-										<i class="bi bi-eye" style="margin-right:15px"></i>
-									</a>
 
-									<a class="text-decoration-underline-remove" href="{{ path('contact_edit', {'IDContact': contact.IDContact.IDContact}) }}">
-										<i class="bi bi-pen" style="margin-right:10px"></i>
-									</a>
-
-									<a class="text-decoration-underline-remove" href="{{ path('contact_delete', {'IDContact': contact.IDContact.IDContact}) }}">
-										<i class="bi bi-trash3"></i>
-									</a>
-								</td>
-							</tr>
-						{% endfor %}
-					</tbody>
-				</table>
-			</div>
-			<div class="tab-pane fade" id="activites" role="tabpanel">
-				<div id="toolbarActivite" class="mr-2">
-					<button class="btn btn-secondary " style="margin-right:20px" type="button">
-						<a class="fs-5" href="{{ path('activite_new', {immeuble}) }}">
-							<i class="bi bi-file-earmark-plus"></i>
+						<a class="text-decoration-underline-remove" href="{{ path('contact_edit', {'IDContact': contact.IDContact.IDContact}) }}">
+							<i class="bi bi-pen" style="margin-right:10px"></i>
 						</a>
-					</button>
-				</div>
-				<table id="tableImmeuble" data-pagination="true" data-toolbar="#toolbarActivite" data-page-size="25" data-search="true" data-show-export="true" data-toggle="table" data-click-to-select="true" data-search-align="left" data-show-columns="true" data-show-print="true" class="table table-list table-bordered table-striped m-auto">
-					<thead>
-						<tr>
-							<th data-field="date" data-sortable="true" scope="col">Date</th>
-							<th data-field="theme" data-sortable="true" scope="col">Thème</th>
-							<th data-field="commentaire" data-sortable="true" scope="col" data-width="700">Commentaire</th>
-							<th data-field="action" data-sortable="true" scope="col" data-width="200">Action</th>
-							<th data-field="actions" data-width="100" class="no-print"></th>
-						</tr>
-					</thead>
-					<tbody class="table-group-divider">
-						<h3 class="d-none text-center">Activite</h3>
-						{% for activite in activites %}
-							<tr class='clickable-row' data-href="{{ path('activite_show', {'IDActivite': activite.IDActivite}) }}">
-								<td>{{ activite.DateActivite|date('d-m-Y') }}</td>
-								<td>{{ activite.Theme }}</td>
-								<td>{{ activite.Commentaire }}</td>
-								<td>{{ activite.Action }}</td>
-								<td class="no-print">
-									<a class="text-decoration-underline-remove" href="{{ path('activite_show', {'IDActivite': activite.IDActivite}) }}">
-										<i class="bi bi-eye" style="margin-right:15px"></i>
-									</a>
 
-									<a class="text-decoration-underline-remove" href="{{ path('activite_edit', {'IDActivite': activite.IDActivite, immeuble}) }}">
-										<i class="bi bi-pen" style="margin-right:10px"></i>
-									</a>
-
-									<a class="text-decoration-underline-remove" href="{{ path('activite_delete', {'IDActivite': activite.IDActivite}) }}">
-										<i class="bi bi-trash3"></i>
-									</a>
-								</td>
-							</tr>
-						{% endfor %}
-					</tbody>
-				</table>
-			</div>
-			<div class="tab-pane fade" id="opportunites" role="tabpanel">
-				<div id="toolbarOpportunite" class="mr-2">
-					<button class="btn btn-secondary " style="margin-right:20px" type="button">
-						<a class="fs-5" href="{{ path('opportunite_new', {immeuble}) }}">
-							<i class="bi bi-file-earmark-plus"></i>
+						<a class="text-decoration-underline-remove" href="{{ path('contact_delete', {'IDContact': contact.IDContact.IDContact}) }}">
+							<i class="bi bi-trash3"></i>
 						</a>
-					</button>
-				</div>
-				<table id="tableImmeuble" data-pagination="true" data-toolbar="#toolbarOpportunite" data-page-size="25" data-search="true" data-show-export="true" data-toggle="table" data-click-to-select="true" data-search-align="left" data-show-columns="true" data-show-print="true" class="table table-list table-bordered table-striped m-auto">
-					<thead>
-						<tr>
-							<th data-field="date" data-sortable="true" scope="col">Date</th>
-							<th data-field="societe" data-sortable="true" scope="col">Société</th>
-							<th data-field="cp" data-sortable="true" scope="col">Commentaire</th>
-							<th data-field="action" class="no-print">Actions</th>
-						</tr>
-					</thead>
-					<tbody class="table-group-divider">
-						<h3 class="d-none text-center">Opportunite</h3>
-						{% for opportunite in opportunites %}
-							<tr class='clickable-row' data-href="{{ path('opportunite_show', {'IDOpportunite': opportunite.IDOpportunite}) }}">
-								<td>{{ opportunite.Date|date('d-m-Y') }}</td>
-								<td>{{ opportunite.SocieteConcernee }}</td>
-								<td>{{ opportunite.Commentaire }}</td>
-								<td class="no-print">
-									<a class="text-decoration-underline-remove" href="{{ path('opportunite_show', {'IDOpportunite': opportunite.IDOpportunite}) }}">
-										<i class="bi bi-eye" style="margin-right:15px"></i>
-									</a>
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</div>
+<div class="tab-pane fade" id="activites" role="tabpanel">
+	<div id="toolbarActivite" class="mr-2">
+		<button class="btn btn-secondary " style="margin-right:20px" type="button">
+			<a class="fs-5" href="{{ path('activite_new', {immeuble}) }}">
+				<i class="bi bi-file-earmark-plus"></i>
+			</a>
+		</button>
+	</div>
+	<table id="tableImmeuble" data-pagination="true" data-toolbar="#toolbarActivite" data-page-size="25" data-search="true" data-show-export="true" data-toggle="table" data-click-to-select="true" data-search-align="left" data-show-columns="true" data-show-print="true" class="table table-list table-bordered table-striped m-auto">
+		<thead>
+			<tr>
+				<th data-field="date" data-sortable="true" scope="col">Date</th>
+				<th data-field="theme" data-sortable="true" scope="col">Thème</th>
+				<th data-field="commentaire" data-sortable="true" scope="col" data-width="700">Commentaire</th>
+				<th data-field="action" data-sortable="true" scope="col" data-width="200">Action</th>
+				<th data-field="actions" data-width="100" class="no-print"></th>
+			</tr>
+		</thead>
+		<tbody class="table-group-divider">
+			<h3 class="d-none text-center">Activite</h3>
+			{% for activite in activites %}
+				<tr class='clickable-row' data-href="{{ path('activite_show', {'IDActivite': activite.IDActivite}) }}">
+					<td>{{ activite.DateActivite|date('d-m-Y') }}</td>
+					<td>{{ activite.Theme }}</td>
+					<td>{{ activite.Commentaire }}</td>
+					<td>{{ activite.Action }}</td>
+					<td class="no-print">
+						<a class="text-decoration-underline-remove" href="{{ path('activite_show', {'IDActivite': activite.IDActivite}) }}">
+							<i class="bi bi-eye" style="margin-right:15px"></i>
+						</a>
 
-									<a class="text-decoration-underline-remove" href="{{ path('opportunite_edit', {'IDOpportunite': opportunite.IDOpportunite, immeuble}) }}">
-										<i class="bi bi-pen" style="margin-right:10px"></i>
-									</a>
+						<a class="text-decoration-underline-remove" href="{{ path('activite_edit', {'IDActivite': activite.IDActivite, immeuble}) }}">
+							<i class="bi bi-pen" style="margin-right:10px"></i>
+						</a>
 
-									<a class="text-decoration-underline-remove" href="{{ path('opportunite_delete', {'IDOpportunite': opportunite.IDOpportunite}) }}">
-										<i class="bi bi-trash3"></i>
-									</a>
-								</td>
-							</tr>
-						{% endfor %}
-					</tbody>
-				</table>
-			</div>
-		</div>
-		<br>
-		<div class="float-end ">
-			<button class="btn btn-light no-print" type="button">
-				<a class=" text-decoration-underline-remove" href="{{ path('immeubles') }}">Retourner à la liste</a>
-			</button>
-		</div>
-		<br>
-	{% endblock %}
+						<a class="text-decoration-underline-remove" href="{{ path('activite_delete', {'IDActivite': activite.IDActivite}) }}">
+							<i class="bi bi-trash3"></i>
+						</a>
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</div>
+<div class="tab-pane fade" id="opportunites" role="tabpanel">
+	<div id="toolbarOpportunite" class="mr-2">
+		<button class="btn btn-secondary " style="margin-right:20px" type="button">
+			<a class="fs-5" href="{{ path('opportunite_new', {immeuble}) }}">
+				<i class="bi bi-file-earmark-plus"></i>
+			</a>
+		</button>
+	</div>
+	<table id="tableImmeuble" data-pagination="true" data-toolbar="#toolbarOpportunite" data-page-size="25" data-search="true" data-show-export="true" data-toggle="table" data-click-to-select="true" data-search-align="left" data-show-columns="true" data-show-print="true" class="table table-list table-bordered table-striped m-auto">
+		<thead>
+			<tr>
+				<th data-field="date" data-sortable="true" scope="col">Date</th>
+				<th data-field="societe" data-sortable="true" scope="col">Société</th>
+				<th data-field="cp" data-sortable="true" scope="col">Commentaire</th>
+				<th data-field="action" class="no-print">Actions</th>
+			</tr>
+		</thead>
+		<tbody class="table-group-divider">
+			<h3 class="d-none text-center">Opportunite</h3>
+			{% for opportunite in opportunites %}
+				<tr class='clickable-row' data-href="{{ path('opportunite_show', {'IDOpportunite': opportunite.IDOpportunite}) }}">
+					<td>{{ opportunite.Date|date('d-m-Y') }}</td>
+					<td>{{ opportunite.SocieteConcernee }}</td>
+					<td>{{ opportunite.Commentaire }}</td>
+					<td class="no-print">
+						<a class="text-decoration-underline-remove" href="{{ path('opportunite_show', {'IDOpportunite': opportunite.IDOpportunite}) }}">
+							<i class="bi bi-eye" style="margin-right:15px"></i>
+						</a>
+
+						<a class="text-decoration-underline-remove" href="{{ path('opportunite_edit', {'IDOpportunite': opportunite.IDOpportunite, immeuble}) }}">
+							<i class="bi bi-pen" style="margin-right:10px"></i>
+						</a>
+
+						<a class="text-decoration-underline-remove" href="{{ path('opportunite_delete', {'IDOpportunite': opportunite.IDOpportunite}) }}">
+							<i class="bi bi-trash3"></i>
+						</a>
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</div></div><br><div class="float-end ">
+<button class="btn btn-light no-print" type="button">
+	<a class=" text-decoration-underline-remove" href="{{ path('immeubles') }}">Retourner à la liste</a>
+</button></div><br>{% endblock %}

@@ -69,21 +69,21 @@ class ActiviteType extends AbstractType
                     'placeholder' => 'Action',
                     'class' => 'form-control',
                 ]
-            ])
-            ->add('IDImmeuble', EntityType::class, [
-                'required' => true,
-                'label' => 'ID Immeuble',
-                'attr' => [
-                    'class' => 'form-control',
-                    'readonly' => true,
-                ],
-                'class' => Immeuble::class,
-                'query_builder' => function (EntityRepository $er): ORMQueryBuilder {
-                    $request = $this->requestStack->getCurrentRequest();
-                    return $er->createQueryBuilder('i')
-                        ->where('i.IDImmeuble = ' . $request->query->get('immeuble'));
-                }
             ]);
+        // ->add('IDImmeuble', EntityType::class, [
+        //     'required' => true,
+        //     'label' => 'ID Immeuble',
+        //     'attr' => [
+        //         'class' => 'form-control',
+        //         'readonly' => true,
+        //     ],
+        //     'class' => Immeuble::class,
+        //     // 'query_builder' => function (EntityRepository $er): ORMQueryBuilder {
+        //     //     $request = $this->requestStack->getCurrentRequest();
+        //     //     return $er->createQueryBuilder('i')
+        //     //         ->where('i.IDImmeuble = ' . $request->query->get('immeuble'));
+        //     // }
+        // ]);
 
         // ->add('NomFichier', TextType::class, [
         //     'required' => false,

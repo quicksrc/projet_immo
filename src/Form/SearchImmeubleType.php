@@ -10,6 +10,7 @@ use App\Entity\RechercheImmeuble;
 use App\Entity\TypeVoie;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -40,10 +41,10 @@ class SearchImmeubleType extends AbstractType
                 'required' => false,
                 'label' => 'NCPCF',
                 'label_attr' => [
-                    'class' => 'form-label mt-3'
+                    'class' => 'form-label  ms-2'
                 ],
                 'attr' => [
-                    'class' => 'form-check-input mt-4 ms-2'
+                    'class' => 'form-check-input  ms-2'
                 ]
             ])
             ->add('origineContact', EntityType::class, [
@@ -61,11 +62,11 @@ class SearchImmeubleType extends AbstractType
                 'required' => false,
                 'label' => 'Visite',
                 'label_attr' => [
-                    'class' => 'form-label mt-3',
+                    'class' => 'form-label',
                     'for' => 'btnCheckVisite'
                 ],
                 'attr' => [
-                    'class' => 'form-check-input mt-4 ms-2',
+                    'class' => 'form-check-input ms-2',
                     'id' => 'btnCheckVisite'
                 ]
             ])
@@ -80,7 +81,7 @@ class SearchImmeubleType extends AbstractType
                 ]
             ])
             ->add('typeVoie', EntityType::class, [
-                'required' => true,
+                'required' => false,
                 'mapped' => false,
                 'label' => 'Type de Voie',
                 'attr' => [
@@ -294,6 +295,13 @@ class SearchImmeubleType extends AbstractType
                 'attr' => [
                     'class' => 'form-control',
                     'placeholder' => 'Indiquer un nom pour sauvegarder'
+                ]
+            ])
+            ->add('creeactiv', SubmitType::class, [
+                'label' => 'Créer Activité',
+                'attr' => [
+                    'class' => 'btn btn-primary mt-5 mb-1',
+                    'style' => 'margin-right: 30%;'
                 ]
             ])
             ->add('saveRechercheImmeuble', SubmitType::class, [

@@ -18,7 +18,7 @@ class SaveContactSearchType extends AbstractType
         $builder
             ->add('nomRecherche', EntityType::class, [
                 'required' => false,
-                'label' => 'Recherches Sauvegardées',
+                'label' => 'Recherche sauvegardée',
                 'label_attr' => [
                     'class' => 'form-label mt-4'
                 ],

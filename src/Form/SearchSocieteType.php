@@ -22,7 +22,7 @@ class SearchSocieteType extends AbstractType
         $builder
             ->add('etatDossier', ChoiceType::class, [
                 'required' => false,
-                'label' => 'Etat Dossier',
+                'label' => 'État Dossier',
                 'choices' => [
                     'En cours' => 'En cours',
                     'À classer' => 'A classer'
@@ -184,7 +184,7 @@ class SearchSocieteType extends AbstractType
                 'required' => false,
                 'label' => 'Fonction',
                 'label_attr' => [
-                    'class' => 'form-label mt-4'
+                    'class' => 'form-label'
                 ],
                 'choices' => [
                     'Notaire' => 'Notaire',
@@ -221,7 +221,7 @@ class SearchSocieteType extends AbstractType
             ])
             ->add('correspondantContact', TextType::class, [
                 'required' => false,
-                'label' => 'Ville',
+                'label' => 'Correspondant',
                 'label_attr' => [
                     'class' => 'form-label'
                 ],
@@ -233,11 +233,11 @@ class SearchSocieteType extends AbstractType
                 'required' => false,
                 'label' => 'Anti-Mailing',
                 'label_attr' => [
-                    'class' => 'form-label mt-3',
+                    'class' => 'form-label',
                     'for' => 'btnCheckAntiMailing'
                 ],
                 'attr' => [
-                    'class' => 'form-check-input mt-4 ms-4',
+                    'class' => 'form-check-input ms-2',
                     'id' => 'btnCheckAntiMailing'
                 ]
             ])
@@ -245,11 +245,11 @@ class SearchSocieteType extends AbstractType
                 'required' => false,
                 'label' => 'Contact Principal',
                 'label_attr' => [
-                    'class' => 'form-label mt-3',
+                    'class' => 'form-label',
                     'for' => 'btnCheckprincipalContact'
                 ],
                 'attr' => [
-                    'class' => 'form-check-input mt-4 ms-4',
+                    'class' => 'form-check-input ms-2',
                     'id' => 'btnCheckprincipalContact'
                 ],
             ])
@@ -267,11 +267,11 @@ class SearchSocieteType extends AbstractType
                 'required' => false,
                 'label' => 'NPAI',
                 'label_attr' => [
-                    'class' => 'form-label mt-3',
+                    'class' => 'form-label',
                     'for' => 'btnCheckNPAI'
                 ],
                 'attr' => [
-                    'class' => 'form-check-input mt-4 ms-4',
+                    'class' => 'form-check-input ms-2',
                     'id' => 'btnCheckNPAI'
                 ]
             ])
@@ -279,7 +279,7 @@ class SearchSocieteType extends AbstractType
                 'required' => false,
                 'label' => 'Activité',
                 'label_attr' => [
-                    'class' => 'form-label mt-4'
+                    'class' => 'form-label'
                 ],
                 'choices' => [
                     'Vente de meubles' => 'Vente de meubles',
@@ -296,7 +296,7 @@ class SearchSocieteType extends AbstractType
                 'required' => false,
                 'label' => 'RCS',
                 'label_attr' => [
-                    'class' => 'form-label mt-4'
+                    'class' => 'form-label'
                 ],
                 'attr' => [
                     'class' => 'form-control'
@@ -309,14 +309,14 @@ class SearchSocieteType extends AbstractType
                 'format' => "yyyy-MM-dd 00:00:00",
                 'html5' => false,
                 'attr' => [
-                    'class' => 'form-control js-datepicker',
+                    'class' => 'form-control js-datepicker mt-2',
                 ]
             ])
             ->add('themeActivite', ChoiceType::class, [
                 'required' => false,
                 'label' => 'Thème',
                 'label_attr' => [
-                    'class' => 'form-label mt-4'
+                    'class' => 'form-label'
                 ],
                 'choices' => [
                     'Date du contact' => 'Date du contact',
@@ -336,7 +336,7 @@ class SearchSocieteType extends AbstractType
                 'required' => false,
                 'label' => 'Action',
                 'label_attr' => [
-                    'class' => 'form-label mt-4'
+                    'class' => 'form-label'
                 ],
                 'choices' => [
                     'Actions commerciales' => 'Actions commerciales',

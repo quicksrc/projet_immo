@@ -19,6 +19,7 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class ActiviteRepository extends ServiceEntityRepository
 {
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Activite::class);
@@ -40,6 +41,20 @@ class ActiviteRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    private ?array $SavedActivity = null;
+
+    public function getSavedActivity(): ?array
+    {
+        return $this->SavedActivity;
+    }
+
+    public function setSavedActivity(?array $SavedActivity): self
+    {
+        $this->SavedActivity = $SavedActivity;
+
+        return $this;
     }
 
     /**

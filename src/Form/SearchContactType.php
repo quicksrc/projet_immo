@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\RechercheContact;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
@@ -105,7 +106,7 @@ class SearchContactType extends AbstractType
                 'required' => false,
                 'label' => 'Fonction',
                 'label_attr' => [
-                    'class' => 'form-label mt-4'
+                    'class' => 'form-label'
                 ],
                 'choices' => [
                     'Notaire' => 'Notaire',
@@ -164,11 +165,11 @@ class SearchContactType extends AbstractType
                 'required' => false,
                 'label' => 'Anti-Mailing',
                 'label_attr' => [
-                    'class' => 'form-label mt-3',
+                    'class' => 'form-label',
                     'for' => 'btnCheckAntiMailing'
                 ],
                 'attr' => [
-                    'class' => 'form-check-input mt-4 ms-4',
+                    'class' => 'form-check-input ms-2',
                     'id' => 'btnCheckAntiMailing'
                 ]
             ])
@@ -186,11 +187,11 @@ class SearchContactType extends AbstractType
                 'required' => false,
                 'label' => 'NPAI',
                 'label_attr' => [
-                    'class' => 'form-label mt-3',
+                    'class' => 'form-label',
                     'for' => 'btnCheckNPAI'
                 ],
                 'attr' => [
-                    'class' => 'form-check-input mt-4 ms-4',
+                    'class' => 'form-check-input ms-2',
                     'id' => 'btnCheckNPAI'
                 ]
             ])
@@ -198,7 +199,7 @@ class SearchContactType extends AbstractType
                 'required' => false,
                 'label' => 'Activité',
                 'label_attr' => [
-                    'class' => 'form-label mt-4'
+                    'class' => 'form-label'
                 ],
                 'choices' => [
                     'Vente de meubles' => 'Vente de meubles',
@@ -215,7 +216,7 @@ class SearchContactType extends AbstractType
                 'required' => false,
                 'label' => 'RCS',
                 'label_attr' => [
-                    'class' => 'form-label mt-4'
+                    'class' => 'form-label'
                 ],
                 'attr' => [
                     'class' => 'form-control'
@@ -312,11 +313,11 @@ class SearchContactType extends AbstractType
                 'required' => false,
                 'label' => 'Visite',
                 'label_attr' => [
-                    'class' => 'form-label mt-3',
+                    'class' => 'form-label ',
                     'for' => 'btnCheckVisite'
                 ],
                 'attr' => [
-                    'class' => 'form-check-input mt-4 ms-4',
+                    'class' => 'form-check-input ms-2',
                     'id' => 'btnCheckVisite'
                 ]
             ])
@@ -324,10 +325,10 @@ class SearchContactType extends AbstractType
                 'required' => false,
                 'label' => 'NCPCF',
                 'label_attr' => [
-                    'class' => 'form-label mt-3'
+                    'class' => 'form-label '
                 ],
                 'attr' => [
-                    'class' => 'form-check-input mt-4 ms-4'
+                    'class' => 'form-check-input ms-2'
                 ]
             ])
             ->add('adresseAdresse', TextType::class, [
@@ -451,6 +452,7 @@ class SearchContactType extends AbstractType
                     'placeholder' => 'Indiquer un nom pour sauvegarder'
                 ]
             ])
+
             ->add('saveRechercheContact', SubmitType::class, [
                 'label' => 'Sauvegarder',
                 'attr' => [

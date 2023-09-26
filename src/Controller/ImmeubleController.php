@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Activite;
+use App\Entity\Adresse;
 use App\Entity\Documents;
 use App\Entity\Images;
 use App\Entity\Immeuble;
@@ -18,6 +20,7 @@ use App\Repository\ImmeubleContactRepository;
 use App\Repository\ImmeubleRepository;
 use App\Repository\OpportuniteRepository;
 use App\Repository\RechercheImmeubleRepository;
+use App\Repository\SuiviParRepository;
 use App\Service\PdfService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -25,6 +28,9 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Cookie;
+
+use function Symfony\Component\DependencyInjection\Loader\Configurator\param;
 
 #[Route('/immeubles')]
 class ImmeubleController extends AbstractController
@@ -357,6 +363,8 @@ class ImmeubleController extends AbstractController
                 }
             };
 
+
+
             if (count($keyValue) >= 1 && $form->get('rechercheImmeuble')->isClicked() || $form->get('saveRechercheImmeuble')->isClicked()) {
                 $immeubles = $immeubleContactRepository->findImmeubleBySearch($rechercheImmeuble);
                 if ($form->get('saveRechercheImmeuble')->isClicked() && $rechercheImmeuble->getNomRecherche() != "") {
@@ -371,12 +379,27 @@ class ImmeubleController extends AbstractController
                     $rechercheImmeuble->setNomRecherche($savedAdressName);
                     $rechercheImmeubleRepository->enregistrer($rechercheImmeuble, true);
                 }
-            } elseif (count($keyValueContact) >= 1 && $form->get('rechercheContact')->isClicked() || $form->get('saveRechercheImmeubleContact')->isClicked()) {
+            } elseif (count($keyValueContact) >= 1 && $form->get('rechercheContact')->isClicked() || $form->get('saveRechercheImmeubleContact')->isClicked() || $form->get('creeactiv')->isClicked()) {
+
                 $contacts = $immeubleContactRepository->findImmeubleByFieldsContact($rechercheImmeuble);
                 if ($form->get('saveRechercheImmeubleContact')->isClicked() && $rechercheImmeuble->getNomRecherche() != "") {
                     $savedContactName = "Contact : " . $rechercheImmeuble->getNomRecherche();
                     $rechercheImmeuble->setNomRecherche($savedContactName);
                     $rechercheImmeubleRepository->enregistrer($rechercheImmeuble, true);
+                }
+
+                $ids = [];
+                $toto = [];
+                if ($form->get('creeactiv')->isClicked()) {
+                    foreach ($contacts as $contact) {
+                        $ids['immeuble'] = $contact->getIDImmeuble();
+                        array_push($toto, $ids);
+                    }
+                    // $activiteRepository->setSavedActivity($toto);
+                    //dd($toto[0]);
+                    // $this->container->set('task', $toto);
+                    //$this->forward('App\Controller\ActiviteController::new', $toto);
+                    return $this->redirectToRoute('activite_save', $toto, Response::HTTP_SEE_OTHER);
                 }
             } elseif (count($keyValueActivity) >= 1 && $form->get('rechercheActivite')->isClicked() || $form->get('saveRechercheImmeubleActivite')->isClicked()) {
                 $activites = $activiteRepository->findImmeubleByActivity($rechercheImmeuble);
@@ -416,7 +439,7 @@ class ImmeubleController extends AbstractController
     }
 
     #[Route('/new', name: 'immeuble_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, ImmeubleRepository $immeubleRepository): Response
+    public function new(Request $request, ImmeubleRepository $immeubleRepository, AdresseController $adresse, AdresseRepository $adresseRepository): Response
     {
         $immeuble = new Immeuble();
         $form = $this->createForm(ImmeubleType::class, $immeuble);
@@ -425,13 +448,20 @@ class ImmeubleController extends AbstractController
 
         $lastQuestion = $immeubleRepository->findOneBy([], ['ReferenceProprio' => 'desc']);
         $lastId = $lastQuestion->getReferenceProprio();
-        $lastImmeuble = $immeubleRepository->findOneBy([], ['IDImmeuble' => 'desc']);
         $enquete = $form->get('Enquete')->getData();
         $suiviPar = $form->get('SuiviPar')->getData();
         $description = $form->get('Description')->getData();
         $origineContact = $form->get('OrigineContact')->getData();
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $adresse = new Adresse();
+            $adresse->setNumPrincipal($form->get('NumPrincipal')->getData());
+            $adresse->setNumSecondaire($form->get('NumSecondaire')->getData());
+            $adresse->setTypeVoie($form->get('TypeVoie')->getData());
+            $adresse->setAdresse($form->get('Adresse')->getData());
+            $adresse->setCP($form->get('CP')->getData());
+            $adresse->setVille($form->get('Ville')->getData());
+            $adresse->setAdressePrincipale(0);
             $imcon = $form->getData();
             if ($enquete != null) {
                 $imcon->setEnquete($enquete->getLibelle());
@@ -447,6 +477,10 @@ class ImmeubleController extends AbstractController
             }
             $immeuble->setReferenceProprio($lastId + 1);
             $immeubleRepository->save($immeuble, true);
+            $lastImmeuble = $immeubleRepository->findOneBy([], ['IDImmeuble' => 'desc']);
+            //$lastIdm = $lastImmeuble->getIDImmeuble();
+            $adresse->setIDImmeuble($lastImmeuble);
+            $adresseRepository->save($adresse, true);
             return $this->redirectToRoute('immeuble_contact_new', array('immeuble' => $immeuble), Response::HTTP_SEE_OTHER);
         }
 
@@ -483,9 +517,8 @@ class ImmeubleController extends AbstractController
     }
 
 
-
     #[Route('/{IDImmeuble}/edit', name: 'immeuble_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Immeuble $immeuble, ImmeubleRepository $immeubleRepository, EntityManagerInterface $entityManager): Response
+    public function edit(Request $request, Immeuble $immeuble, ImmeubleRepository $immeubleRepository,  AdresseRepository $adresseRepository, EntityManagerInterface $entityManager, SuiviParRepository $suiviParRepository): Response
     {
         $form = $this->createForm(ImmeubleType::class, $immeuble);
         $form->handleRequest($request);
@@ -493,6 +526,15 @@ class ImmeubleController extends AbstractController
         $suiviPar = $form->get('SuiviPar')->getData();
         $description = $form->get('Description')->getData();
         $origineContact = $form->get('OrigineContact')->getData();
+        // // dd($immeuble->getSuiviPar());
+        // $sp = $this->getEntityManager()
+        //     ->createQuery(
+        //         'SELECT * FROM AppBundle:suiviePar where libelle = "LS"'
+        //     )
+        //     ->getResult();
+        // // $suiviParRepository
+        // dd($sp);
+        // $immeuble->setSuiviPar($suiviPar);
         //$suiviPar = $immeuble->getSuiviPar();
         //dd($form->get('SuiviPar')->getData());
         // = ($immeuble->getSuiviPar());
@@ -507,6 +549,18 @@ class ImmeubleController extends AbstractController
             // Modification des selects en bdd
 
             // // Récupération des données du form
+            $adresse = new Adresse();
+            $adresse->setNumPrincipal($form->get('NumPrincipal')->getData());
+            $adresse->setNumSecondaire($form->get('NumSecondaire')->getData());
+            $adresse->setTypeVoie($form->get('TypeVoie')->getData());
+            $adresse->setAdresse($form->get('Adresse')->getData());
+            $adresse->setCP($form->get('CP')->getData());
+            $adresse->setVille($form->get('Ville')->getData());
+            $adresse->setAdressePrincipale(0);
+            $adresse->setIDImmeuble($immeuble);
+            //dd($immeuble);
+            $adresseRepository->save($adresse, true);
+
             $immeuble = $form->getData();
             // // Récupération des données du select
             $enquete = $form->get('Enquete')->getData();
@@ -613,6 +667,8 @@ class ImmeubleController extends AbstractController
         ]);
         $pdf->showPdfFile($html);
     }
+
+
 
 
 
