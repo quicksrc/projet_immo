@@ -13,11 +13,11 @@
 					<div
 						class="accordion-body">
 						{# <div class="form-group row">
-													<div class="col-md-4 mb-3">
-														<label for="readOnlyInput">ID Immeuble</label>
-														{{ form_widget(form.IDImmeuble) }}
-													</div>
-												</div> #}
+																			<div class="col-md-4 mb-3">
+																				<label for="readOnlyInput">ID Immeuble</label>
+																				{{ form_widget(form.IDImmeuble) }}
+																			</div>
+																		</div> #}
 						<div class="form-group row">
 							<div class="col-md-4 mb-3">
 								<label for="readOnlyInput">Date Activite</label>
@@ -59,6 +59,6 @@
 	<button class="btn btn-light no-print" type="button">
 		<a class=" text-decoration-underline-remove" href="{{ path('activites') }}">Retourner à la liste</a>
 	</button>
-	<button class="btn btn-light">{{ button_label|default('Save') }}</button>
+	<button class="btn btn-light">{{ button_label|default('Enregistrer') }}</button>
 </div>
 {{ form_end(form) }}

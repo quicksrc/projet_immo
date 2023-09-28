@@ -53,7 +53,7 @@ class ImmeubleController extends AbstractController
             $array =  array_values($datas);
             if ($array == []) {
                 return $this->render('immeuble/index.html.twig', [
-                    'immeubles' => $immeubleContactRepository->findBy(array(), array('IDImmeuble' => 'desc'), 100, null),
+                    'immeubles' => $immeubleContactRepository->findBy(array(), array('IDImmeuble' => 'desc'), 500, null),
                     'adresses' => $adresses,
                     'contacts' => $contacts,
                     'activites' => $activites,
@@ -225,7 +225,7 @@ class ImmeubleController extends AbstractController
             );
         } else {
             return $this->render('immeuble/index.html.twig', [
-                'immeubles' => $immeubleContactRepository->findBy(array(), array('IDImmeuble' => 'desc'), 100, null),
+                'immeubles' => $immeubleContactRepository->findBy(array(), array('IDImmeuble' => 'desc'), 500, null),
                 'adresses' => $adresses,
                 'contacts' => $contacts,
                 'activites' => $activites,
@@ -409,14 +409,14 @@ class ImmeubleController extends AbstractController
                     $rechercheImmeubleRepository->enregistrer($rechercheImmeuble, true);
                 }
             } elseif (count($keyValue) == 0 && count($keyValueContact) == 0 && count($keyValueActivity) == 0) {
-                $immeubles = $immeubleRepository->findBy(array(), null, 100, null);
+                $immeubles = $immeubleRepository->findBy(array(), null, 500, null);
             };
 
 
             return $this->render(
                 'immeuble/search.html.twig',
                 [
-                    // 'list_immeubles' => $immeubleRepository->findBy(array(), null, 100, null),
+                    // 'list_immeubles' => $immeubleRepository->findBy(array(), null, 500, null),
                     'activites' => $activites,
                     'adresses' => $adresses,
                     'contacts' => $contacts,
@@ -431,8 +431,8 @@ class ImmeubleController extends AbstractController
                 'activites' => $activites,
                 'adresses' => $adresses,
                 'contacts' => $contacts,
-                'immeubles' => $immeubleContactRepository->findBy(array(), array('IDImmeuble' => 'desc'), 100, null),
-                'recherchesImmeubles' => $rechercheImmeubleRepository->findBy(array(), array('id' => 'desc'), 100, null),
+                'immeubles' => $immeubleContactRepository->findBy(array(), array('IDImmeuble' => 'desc'), 500, null),
+                'recherchesImmeubles' => $rechercheImmeubleRepository->findBy(array(), array('id' => 'desc'), 500, null),
                 'form' => $form->createView(),
             ]
         );

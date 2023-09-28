@@ -263,7 +263,7 @@
 				<thead>
 					<tr>
 						<th data-field="ligne">N°</th>
-						<th data-field="actions" scope="col">Action</th>
+						<th data-field="actions" scope="col" class="no-print">Action</th>
 						<th data-field="id" data-sortable="true" scope="col">ID</th>
 						<th data-field="adresse" data-sortable="true" scope="col">Adresse</th>
 						<th data-field="cp" data-sortable="true" scope="col">CP</th>
@@ -281,7 +281,7 @@
 
 						<tr class='clickable-row' data-href="{{ path('immeuble_show', {'IDImmeuble': immeuble.IDImmeuble.IDImmeuble}) }}">
 							<td>{{key + 1}}</td>
-							<td>
+							<td class="no-print">
 								<a class="text-decoration-underline-remove" href="{{ path('immeuble_show', {'IDImmeuble': immeuble.IDImmeuble.IDImmeuble}) }}">
 									<i class="bi bi-eye" style="margin-right:15px"></i>
 								</a>
@@ -313,7 +313,7 @@
 				<thead>
 					<tr>
 						<th data-field="ligne">N°</th>
-						<th data-field="actions" scope="col">Action</th>
+						<th data-field="actions" scope="col" class="no-print">Action</th>
 						<th data-field="date" data-sortable="true" scope="col">Date</th>
 						<th data-field="societe" data-sortable="true" scope="col">Société</th>
 						<th data-field="commentaire" data-sortable="true" scope="col">Commentaire</th>
@@ -326,7 +326,7 @@
 						<tr class='clickable-row' data-href="{{ path('opportunite_show', {'IDOpportunite': opportunite.IDOpportunite}) }}">
 							<td>{{key + 1}}</td>
 
-							<td>
+							<td class="no-print">
 								<a class="text-decoration-underline-remove" href="{{ path('opportunite_show', {'IDOpportunite': opportunite.IDOpportunite}) }}">
 									<i class="bi bi-eye" style="margin-right:15px"></i>
 								</a>
