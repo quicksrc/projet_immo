@@ -64,7 +64,7 @@ class ImmeubleContactType extends AbstractType
                 // 'placeholder' => "Choisir une ville",
             ])
             ->add('Qualite', EntityType::class, [
-                'required' => true,
+                'required' => false,
                 'mapped' => false,
                 'label' => 'Qualité',
                 'label_attr' => [
@@ -78,7 +78,7 @@ class ImmeubleContactType extends AbstractType
                 'choice_value' => 'libelle'
             ])
             ->add('QualiteProprietaire', EntityType::class, [
-                'required' => true,
+                'required' => false,
                 'mapped' => false,
                 'label' => 'Qualité Propriétaire',
                 'attr' => [
@@ -89,7 +89,7 @@ class ImmeubleContactType extends AbstractType
                 'choice_label' => 'libelle',
             ])
             ->add('Genre', EntityType::class, [
-                'required' => true,
+                'required' => false,
                 'mapped' => false,
                 'label' => 'Civilite',
                 'attr' => [

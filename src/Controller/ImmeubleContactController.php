@@ -7,6 +7,7 @@ use App\Entity\RechercheImmeuble;
 use App\Form\ImmeubleContactType;
 use App\Repository\ContactRepository;
 use App\Repository\ImmeubleContactRepository;
+use App\Repository\ImmeubleRepository;
 use App\Repository\QualiteProprietaireRepository;
 use App\Repository\QualiteRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -27,12 +28,14 @@ class ImmeubleContactController extends AbstractController
     }
 
     #[Route('/new', name: 'immeuble_contact_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, ImmeubleContactRepository $immeubleContactRepository, EntityManagerInterface $entityManager, ContactRepository $contactRepository, QualiteRepository $qualiteRepository, QualiteProprietaireRepository $qualiteProprietaireRepository): Response
+    public function new(Request $request, ImmeubleContactRepository $immeubleContactRepository, ImmeubleRepository $immeubleRepository, EntityManagerInterface $entityManager, ContactRepository $contactRepository, QualiteRepository $qualiteRepository, QualiteProprietaireRepository $qualiteProprietaireRepository): Response
     {
         $immeubleContact = new ImmeubleContact();
         $form = $this->createForm(ImmeubleContactType::class, $immeubleContact);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            $ar = $immeubleRepository->findOneBy(['IDImmeuble' => $request->query->get("immeuble")]);
+
             $imcon = $form->getData();
             $immeubleContactt = $form->get('IDContact')->getData();
             $qualite = $form->get('Qualite')->getData();
@@ -52,7 +55,7 @@ class ImmeubleContactController extends AbstractController
                 $immeubleContact->setIDContact($idC);
             }
             $immeubleContactRepository->save($immeubleContact, true);
-            return $this->redirectToRoute('immeubles', [], Response::HTTP_SEE_OTHER);
+            return $this->redirect('/immeubles' . '/' . $ar, Response::HTTP_SEE_OTHER);
         }
         return $this->render('immeuble_contact/new.html.twig', [
             'immeuble_contact' => $immeubleContact,
@@ -87,13 +90,15 @@ class ImmeubleContactController extends AbstractController
     }
 
     #[Route('/{IDImmeubleContact}', name: 'immeuble_contact_delete', methods: ['POST'])]
-    public function delete(Request $request, ImmeubleContact $immeubleContact, EntityManagerInterface $entityManager): Response
+    public function delete(Request $request, ImmeubleContact $immeubleContact, ImmeubleRepository $immeubleRepository, EntityManagerInterface $entityManager): Response
     {
+        $ar = $immeubleContact->getIDImmeuble();
         if ($this->isCsrfTokenValid('delete' . $immeubleContact->getIDImmeubleContact(), $request->request->get('_token'))) {
-            $entityManager->remove($immeubleContact);
+            $entityManager->remove($immeubleContact, true);
             $entityManager->flush();
         }
-
-        return $this->redirectToRoute('immeubles_contacts', [], Response::HTTP_SEE_OTHER);
+        //dd($ar);
+        return $this->redirect('/immeubles' . '/' . $ar, Response::HTTP_SEE_OTHER);
+        // return $this->redirectToRoute('immeubles', [], Response::HTTP_SEE_OTHER);
     }
 }

@@ -1,46 +1,75 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}ImmeubleContact{% endblock %}
+{% block title %}ImmeubleContact
+{% endblock %}
 
 {% block body %}
-    <h1>ImmeubleContact</h1>
+	<div id="myTabContent" class="tab-content">
+		<div class="tab-pane fade active show" id="home" role="tabpanel">
+			<div class="accordion" id="accordionExample">
+				<div class="accordion-item">
+					<h2 class="accordion-header" id="headingOne">
+						<button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+							Immeuble Contact
+						</button>
+					</h2>
+					<div id="collapseOne" style="padding:2%" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample" style="">
+						<div class="accordion-body">
+							<div class="form-group row">
+								<div class="col-md-4 mb-3">
+									<label for="readOnlyInput">ID Immeuble Contact</label>
+									<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ immeuble_contact.IDImmeubleContact }}" readonly="">
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-md-4 mb-3">
+									<label for="readOnlyInput">Qualité</label>
+									<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ immeuble_contact.Qualite }}" readonly="">
+								</div>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>IDImmeubleContact</th>
-                <td>{{ immeuble_contact.IDImmeubleContact }}</td>
-            </tr>
-            <tr>
-                <th>Qualite</th>
-                <td>{{ immeuble_contact.Qualite }}</td>
-            </tr>
-            <tr>
-                <th>QualiteProprietaire</th>
-                <td>{{ immeuble_contact.QualiteProprietaire }}</td>
-            </tr>
-            <tr>
-                <th>Genre</th>
-                <td>{{ immeuble_contact.Genre }}</td>
-            </tr>
-            <tr>
-                <th>Principal</th>
-                <td>{{ immeuble_contact.Principal }}</td>
-            </tr>
-            <tr>
-                <th>NeVendPas</th>
-                <td>{{ immeuble_contact.NeVendPas }}</td>
-            </tr>
-            <tr>
-                <th>DateNVP</th>
-                <td>{{ immeuble_contact.DateNVP ? immeuble_contact.DateNVP|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
+								<div class="col-md-4 mb-3">
+									<label for="readOnlyInput">Qualité Proprietaire</label>
+									<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ immeuble_contact.QualiteProprietaire }}" readonly="">
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-md-4 mb-3">
+									<label for="readOnlyInput">Genre</label>
+									<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ immeuble_contact.Genre}}" readonly="">
+								</div>
 
-    <a href="{{ path('app_immeuble_contact_index') }}">back to list</a>
+								<div class="col-md-4 mb-3">
+									<label for="readOnlyInput">Principal</label>
+									<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ immeuble_contact.Principal }}" readonly="">
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-md-4 mb-3">
+									<label for="readOnlyInput">Ne Vend Pas</label>
+									<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ immeuble_contact.NeVendPas}}" readonly="">
+								</div>
 
-    <a href="{{ path('app_immeuble_contact_edit', {'IDImmeubleContact': immeuble_contact.IDImmeubleContact}) }}">edit</a>
+								<div class="col-md-4 mb-3">
+									<label for="readOnlyInput">Date NVP</label>
+									<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ immeuble_contact.DateNVP ? immeuble_contact.DateNVP|date('Y-m-d H:i:s') : '' }}" readonly="">
+								</div>
+							</div>
 
-    {{ include('immeuble_contact/_delete_form.html.twig') }}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<br>
+	<div class="float-end ">
+		<button class="btn btn-light no-print" type="button">
+			<a class=" text-decoration-underline-remove" href="javascript:history.go(-1)">Retourner à la liste</a>
+		</button>
+		{# <button class="btn btn-light no-print" type="button">
+											<a class=" text-decoration-underline-remove" href="{{ path('immeuble_contact_edit', {'IDImmeubleContact': immeuble_contact.IDImmeubleContact}) }}">edit</a>
+										</button> #}
+	</div>
+
+	{{ include('immeuble_contact/_delete_form.html.twig') }}
 {% endblock %}
