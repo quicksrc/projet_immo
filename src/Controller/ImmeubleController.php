@@ -257,6 +257,8 @@ class ImmeubleController extends AbstractController
 
         // $contacts => Array pour afficher les activités
         $activites = [];
+
+        $etatDossierImmeuble = [];
         // ImmeubleController
         // public function search()
         if ($form->isSubmitted() && $form->isValid()) {
@@ -354,6 +356,11 @@ class ImmeubleController extends AbstractController
                 if (!empty($rechercheImmeuble->getAntiMailing())) {
                     array_push($keyValueContact, array("AntiMailing", $rechercheImmeuble->getAntiMailing()));
                 }
+                if (!empty($rechercheImmeuble->getNpai())) {
+                    array_push($keyValueContact, array("NPAI", $rechercheImmeuble->getNpai()));
+                }
+
+
                 // Tableau pour recherche via Activité
                 if (!empty($rechercheImmeuble->getDateActivite())) {
                     array_push($keyValueActivity, array("DateActivite", $rechercheImmeuble->getDateActivite()));
@@ -366,11 +373,17 @@ class ImmeubleController extends AbstractController
 
 
             if (count($keyValue) >= 1 && $form->get('rechercheImmeuble')->isClicked() || $form->get('saveRechercheImmeuble')->isClicked()) {
-                $immeubles = $immeubleContactRepository->findImmeubleBySearch($rechercheImmeuble);
-                if ($form->get('saveRechercheImmeuble')->isClicked() && $rechercheImmeuble->getNomRecherche() != "") {
-                    $savedImmeubleName = "Immeuble : " . $rechercheImmeuble->getNomRecherche();
-                    $rechercheImmeuble->setNomRecherche($savedImmeubleName);
-                    $rechercheImmeubleRepository->enregistrer($rechercheImmeuble, true);
+
+                if ($rechercheImmeuble->getEtatDossier() != null && $rechercheImmeuble->getOrigineContact() == null && $rechercheImmeuble->getRefProprioImmeuble() == null) {
+                    $etatDossierImmeuble = $immeubleRepository->findImmeubleBySearch($rechercheImmeuble);
+                    //dd($etatDossierImmeuble);
+                } else {
+                    $immeubles = $immeubleContactRepository->findImmeubleBySearch($rechercheImmeuble);
+                    if ($form->get('saveRechercheImmeuble')->isClicked() && $rechercheImmeuble->getNomRecherche() != "") {
+                        $savedImmeubleName = "Immeuble : " . $rechercheImmeuble->getNomRecherche();
+                        $rechercheImmeuble->setNomRecherche($savedImmeubleName);
+                        $rechercheImmeubleRepository->enregistrer($rechercheImmeuble, true);
+                    }
                 }
             } elseif (count($keyValueAdress) >= 1 && $form->get('rechercheAdresse')->isClicked() || $form->get('saveRechercheImmeubleAdress')->isClicked()) {
                 $adresses = $adresseRepository->findImmeubleByAdress($rechercheImmeuble);
@@ -421,9 +434,11 @@ class ImmeubleController extends AbstractController
                     'adresses' => $adresses,
                     'contacts' => $contacts,
                     'immeubles' => $immeubles,
+                    'etatDossierImmeuble' => $etatDossierImmeuble,
                     'form' => $form,
                 ]
             );
+            dd($etatDossierImmeuble);
         }
         return $this->render(
             'immeuble/search.html.twig',
@@ -431,6 +446,7 @@ class ImmeubleController extends AbstractController
                 'activites' => $activites,
                 'adresses' => $adresses,
                 'contacts' => $contacts,
+                'etatDossierImmeuble' => $etatDossierImmeuble,
                 'immeubles' => $immeubleContactRepository->findBy(array(), array('IDImmeuble' => 'desc'), 500, null),
                 'recherchesImmeubles' => $rechercheImmeubleRepository->findBy(array(), array('id' => 'desc'), 500, null),
                 'form' => $form->createView(),

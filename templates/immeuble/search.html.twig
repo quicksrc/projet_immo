@@ -16,8 +16,8 @@
 				</a>
 			</button>
 			{# <button class="btn btn-light no-print" type="button" onclick="printSelection(); ">
-																															<a class=" text-decoration-underline-remove">Imprimer</a>
-																														</button> #}
+																																											<a class=" text-decoration-underline-remove">Imprimer</a>
+																																										</button> #}
 			<div class="form-horizontal float-right me-2">
 				<select class="form-control mr-2">
 					<option value="">Export Basique</option>
@@ -193,6 +193,40 @@
 						<td>{{ activite.IDImmeuble.SuiviPar }}</td>
 						<td>{{ activite.IDImmeuble.Description }}</td>
 
+					</tr>
+				{% endfor %}
+				{% for key, eDImmeuble in etatDossierImmeuble %}
+
+					<tr class='clickable-row' data-href="{{ path('immeuble_show', {'IDImmeuble': eDImmeuble.IDImmeuble}) }}">
+						<td></td>
+						<td>{{key + 1}}</td>
+						<td>
+							<a class="text-decoration-underline-remove" href="{{ path('immeuble_show', {'IDImmeuble': eDImmeuble.IDImmeuble}) }}">
+								<i class="bi bi-eye" style="margin-right:15px"></i>
+							</a>
+
+							<a class="text-decoration-underline-remove" href="{{ path('immeuble_edit', {'IDImmeuble': eDImmeuble.IDImmeuble}) }}">
+								<i class="bi bi-pen" style="margin-right:10px"></i>
+							</a>
+							<a class="text-decoration-underline-remove" href="{{ path('immeuble_delete', {'IDImmeuble': eDImmeuble.IDImmeuble}) }}">
+								<i class="bi bi-pen" style="margin-right:10px"></i>
+							</a>
+						</td>
+						{# <td>{{ activite.IDImmeuble.IDImmeuble }}</td> #}
+						<td>{{ eDImmeuble.Adresse }}</td>
+						<td>{{ eDImmeuble.CP }}</td>
+						<td>{{ eDImmeuble.Ville }}</td>
+						<td>{{ eDImmeuble.ReferenceProprio }}</td>
+						<td>{{ eDImmeuble.DateEnquete|date("d/m/Y") }}</td>
+						{% if eDImmeuble.Intermediaire == "" %}
+							<td>✖️</td>
+						{% elseif eDImmeuble.Intermediaire == "null" %}
+							<td>✖️</td>
+						{% else %}
+							<td>{{ eDImmeuble.Intermediaire }}</td>
+						{% endif %}
+						<td>{{ eDImmeuble.SuiviPar }}</td>
+						<td>{{ eDImmeuble.Description }}</td>
 					</tr>
 				{% endfor %}
 			</tbody>

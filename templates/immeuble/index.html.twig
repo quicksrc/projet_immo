@@ -132,10 +132,10 @@ box.style.display = 'block';
 								</a>
 							</td>
 							{# <td>{{ adresse.IDImmeuble.IDImmeuble }}</td> #}
-							<td>{{ adresse.IDImmeuble.ReferenceProprio }}</td>
 							<td>{{ adresse.IDImmeuble.Adresse }}</td>
 							<td>{{ adresse.IDImmeuble.CP }}</td>
 							<td>{{ adresse.IDImmeuble.Ville }}</td>
+							<td>{{ adresse.IDImmeuble.ReferenceProprio }}</td>
 							<td>{{ adresse.IDImmeuble.DateEnquete|date("d/m/Y") }}</td>
 							{% if adresse.IDImmeuble.Intermediaire == "" %}
 								<td>✖️</td>
@@ -195,10 +195,10 @@ box.style.display = 'block';
 								</a>
 							</td>
 							{# <td>{{ activite.IDImmeuble.IDImmeuble }}</td> #}
-							<td>{{ activite.IDImmeuble.ReferenceProprio }}</td>
 							<td>{{ activite.IDImmeuble.Adresse }}</td>
 							<td>{{ activite.IDImmeuble.CP }}</td>
 							<td>{{ activite.IDImmeuble.Ville }}</td>
+							<td>{{ activite.IDImmeuble.ReferenceProprio }}</td>
 							<td>{{ activite.IDImmeuble.DateEnquete|date("d/m/Y") }}</td>
 							{% if activite.IDImmeuble.Intermediaire == "" %}
 								<td>✖️</td>
@@ -211,6 +211,7 @@ box.style.display = 'block';
 							<td>{{ activite.IDImmeuble.Description }}</td>
 						</tr>
 					{% endfor %}
+
 				</tbody>
 			</table>
 		</div>

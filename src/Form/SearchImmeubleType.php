@@ -229,6 +229,21 @@ class SearchImmeubleType extends AbstractType
                     'class' => 'form-control',
                 ]
             ])
+            ->add('npai', ChoiceType::class, [
+                'required' => false,
+                'label' => 'NPAI',
+                'label_attr' => [
+                    'class' => 'form-label mt-4'
+                ],
+                'choices' => [
+                    'Oui' => 1,
+                    'Non' => 0
+                ],
+                'attr' => [
+                    'placeholder' => 'NPAI',
+                    'class' => 'form-control',
+                ]
+            ])
             ->add('prenomContact', TextType::class, [
                 'required' => false,
                 'label' => 'Prénom',

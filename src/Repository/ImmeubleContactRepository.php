@@ -123,6 +123,11 @@ class ImmeubleContactRepository extends ServiceEntityRepository
                 ->andWhere('c.AntiMailing LIKE :antiMailing')
                 ->setParameter('antiMailing', $rechercheImmeuble->getAntiMailing());
         }
+        if (!empty($rechercheImmeuble->getNpai())) {
+            $qb
+                ->andWhere('c.NPAI LIKE :npai')
+                ->setParameter('npai', $rechercheImmeuble->getAntiMailing());
+        }
         //dd($qb);
         return $qb->getQuery()->getResult();
     }

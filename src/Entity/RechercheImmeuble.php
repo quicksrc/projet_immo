@@ -107,6 +107,9 @@ class RechercheImmeuble
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $qualiteProprietaire = null;
 
+    #[ORM\Column(type: Types::SMALLINT, nullable: true)]
+    private ?int $npai = null;
+
     public function __toString()
     {
         return $this->nomRecherche;
@@ -485,6 +488,18 @@ class RechercheImmeuble
     public function setQualiteProprietaire(?string $qualiteProprietaire): static
     {
         $this->qualiteProprietaire = $qualiteProprietaire;
+
+        return $this;
+    }
+
+    public function getNpai(): ?int
+    {
+        return $this->npai;
+    }
+
+    public function setNpai(?int $npai): self
+    {
+        $this->npai = $npai;
 
         return $this;
     }
