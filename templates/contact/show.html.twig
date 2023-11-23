@@ -56,9 +56,9 @@
 											NPAI
 										</label>
 										{% if contact.NPAI == 0 %}
-											<input class="form-check-input" type="checkbox" disabled="" value="{{ contact.NPAI }}" id="flexCheckDefault">
+											<input class="form-check-input ms-2" type="checkbox" disabled="" value="{{ contact.NPAI }}" id="flexCheckDefault">
 										{% elseif contact.NPAI == 1 %}
-											<input class="form-check-input" type="checkbox" disabled="" value="{{ contact.NPAI }}" checked id="flexCheckDefault">
+											<input class="form-check-input ms-2" type="checkbox" disabled="" value="{{ contact.NPAI }}" checked id="flexCheckDefault">
 										{% endif %}
 									</div>
 									<div class="col-md-4 mb-3">
@@ -66,9 +66,9 @@
 											Décédé
 										</label>
 										{% if contact.DCD == 0 %}
-											<input class="form-check-input" type="checkbox" disabled="" value="{{ contact.DCD }}" id="flexCheckDefault">
+											<input class="form-check-input ms-2" type="checkbox" disabled="" value="{{ contact.DCD }}" id="flexCheckDefault">
 										{% elseif contact.DCD == 1 %}
-											<input class="form-check-input" type="checkbox" disabled="" value="{{ contact.DCD }}" checked id="flexCheckDefault">
+											<input class="form-check-input ms-2" type="checkbox" disabled="" value="{{ contact.DCD }}" checked id="flexCheckDefault">
 										{% endif %}
 									</div>
 								</div>
@@ -113,9 +113,9 @@
 											Liste rouge
 										</label>
 										{% if contact.ListeRouge == 0 %}
-											<input class="form-check-input" type="checkbox" disabled="" value="{{ contact.ListeRouge }}" id="flexCheckDefault">
+											<input class="form-check-input ms-2" type="checkbox" disabled="" value="{{ contact.ListeRouge }}" id="flexCheckDefault">
 										{% elseif contact.ListeRouge == 1 %}
-											<input class="form-check-input" type="checkbox" disabled="" value="{{ contact.ListeRouge }}" checked id="flexCheckDefault">
+											<input class="form-check-input ms-2" type="checkbox" disabled="" value="{{ contact.ListeRouge }}" checked id="flexCheckDefault">
 										{% endif %}
 									</div>
 								</div>
@@ -123,6 +123,15 @@
 									<div class="col-md-6 mb-3">
 										<label for="readOnlyInput">Correspondant</label>
 										<input class="form-control" id="readOnlyInput" type="text" placeholder="{{ contact.Correspondant }}" readonly="">
+									</div>
+									<div class="col-md-3 mb-3">
+										<label for="readOnlyInput">AntiMailing</label>
+										{% if contact.AntiMailing == 0 %}
+											<input class="form-check-input ms-2" type="checkbox" disabled="" value="{{ contact.AntiMailing }}" id="flexCheckDefault">
+										{% elseif contact.AntiMailing == 1 %}
+											<input class="form-check-input ms-2" type="checkbox" disabled="" value="{{ contact.AntiMailing }}" checked id="flexCheckDefault">
+										{% endif %}
+										{# <input class="form-control" id="readOnlyInput" type="text" placeholder="{{ contact.AntiMailing }}" readonly=""> #}
 									</div>
 								</div>
 								<div class="form-group row">

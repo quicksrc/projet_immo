@@ -532,6 +532,7 @@ class ContactController extends AbstractController
             $pays = $form->get('Pays')->getData();
             // dd($pays);
             $contact = $form->getData();
+            //dd($form->get('Pays')->getData());
             // // Récupération des données du select
             $civilite = $form->get('Civilite')->getData();
             $fonction = $form->get('Fonction')->getData();

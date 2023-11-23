@@ -120,61 +120,61 @@
 						</div>
 					</div>
 				</div>
-				<div class="accordion-item">
-					<h2 class="accordion-header" id="headingTwo">
-						<button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-							Renseignements société
-						</button>
-					</h2>
-					<div id="collapseTwo" style="padding:2%" class="accordion-collapse collapse " aria-labelledby="headingTwo" data-bs-parent="#accordionExample" style="">
-						<form>
-							<div class="form-group row">
-								<div class="col-md-6 mb-3">
-									<label for="readOnlyInput">Raison sociale</label>
-									{{ form_widget(form.Societe) }}
-								</div>
-							</div>
-
-							<div class="form-group row">
-								<div class="col-md-6 mb-3">
-									<label for="readOnlyInput">Activité</label>
-									{{ form_widget(form.Activite) }}
-								</div>
-							</div>
-
-							<div class="form-group row">
-								<div class="col-md-6 mb-3">
-									<label for="readOnlyInput">Adresse</label>
-									{{ form_widget(form.Adresse) }}
-								</div>
-							</div>
-
-							<div class="form-group row">
-								<div class="col-md-4 mb-3">
-									<label for="readOnlyInput">CP</label>
-									{{ form_widget(form.CP) }}
-								</div>
-								<div class="col-md-4 mb-3">
-									<label for="readOnlyInput">Ville</label>
-									{{ form_widget(form.Ville) }}
-								</div>
-								<div class="col-md-4 mb-3">
-									<label for="readOnlyInput">Pays</label>
-									{{ form_widget(form.Pays) }}
-									<a href="{{ path('pays_new') }}" id="addPays">
-										<i class="fa-regular fa-square-plus"></i>
-									</a>
-								</div>
-							</div>
-							<div class="form-group row">
-								<div class="col-md-6 mb-3">
-									<label for="readOnlyInput">RCS</label>
-									{{ form_widget(form.RCS) }}
-								</div>
-							</div>
-						</form>
-					</div>
-				</div>
+				<!--div class="accordion-item">
+									<h2 class="accordion-header" id="headingTwo">
+										<button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+											Renseignements société
+										</button>
+									</h2>
+									<div id="collapseTwo" style="padding:2%" class="accordion-collapse collapse " aria-labelledby="headingTwo" data-bs-parent="#accordionExample" style="">
+										<form>
+											<div class="form-group row">
+												<div class="col-md-6 mb-3">
+													<label for="readOnlyInput">Raison sociale</label>
+													{{ form_widget(form.Societe) }}
+												</div>
+											</div>
+				
+											<div class="form-group row">
+												<div class="col-md-6 mb-3">
+													<label for="readOnlyInput">Activité</label>
+													{{ form_widget(form.Activite) }}
+												</div>
+											</div>
+				
+											<div class="form-group row">
+												<div class="col-md-6 mb-3">
+													<label for="readOnlyInput">Adresse</label>
+													{{ form_widget(form.Adresse) }}
+												</div>
+											</div>
+				
+											<div class="form-group row">
+												<div class="col-md-4 mb-3">
+													<label for="readOnlyInput">CP</label>
+													{{ form_widget(form.CP) }}
+												</div>
+												<div class="col-md-4 mb-3">
+													<label for="readOnlyInput">Ville</label>
+													{{ form_widget(form.Ville) }}
+												</div>
+												<div class="col-md-4 mb-3">
+													<label for="readOnlyInput">Pays</label>
+													{{ form_widget(form.Pays) }}
+													<a href="{{ path('pays_new') }}" id="addPays">
+														<i class="fa-regular fa-square-plus"></i>
+													</a>
+												</div>
+											</div>
+											<div class="form-group row">
+												<div class="col-md-6 mb-3">
+													<label for="readOnlyInput">RCS</label>
+													{{ form_widget(form.RCS) }}
+												</div>
+											</div>
+										</form>
+									</div>
+								</div-->
 				<div class="accordion-item">
 					<h2 class="accordion-header" id="headingThree">
 						<button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
