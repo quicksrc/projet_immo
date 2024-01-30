@@ -16,8 +16,8 @@
 				</a>
 			</button>
 			{# <button class="btn btn-light no-print" type="button" onclick="printSelection(); ">
-																																														<a class=" text-decoration-underline-remove">Imprimer</a>
-																																													</button> #}
+																																																													<a class=" text-decoration-underline-remove">Imprimer</a>
+																																																												</button> #}
 			<div class="form-horizontal float-right me-2">
 				<select class="form-control mr-2">
 					<option value="">Export Basique</option>
@@ -38,6 +38,7 @@
 						<th data-field="ville" data-sortable="true" scope="col">Ville Immeuble</th>
 						<th data-field="civiliteAdress" data-sortable="true" scope="col">Civilité Adresse</th>
 						<th data-field="nomProprio" data-sortable="true" scope="col">Nom Proprio</th>
+						<th data-field="prenomProprio" data-sortable="true" scope="col">Prénom Proprio</th>
 						<th data-field="adresseProprio" data-sortable="true" scope="col">Adresse Proprio</th>
 						<th data-field="cpProprio" data-sortable="true" scope="col">CP Proprio</th>
 						<th data-field="villeProprio" data-sortable="true" scope="col">Ville Proprio</th>
@@ -77,11 +78,11 @@
 								<i class="bi bi-trash3"></i>
 							</a>
 						</td>
-
 						<td>{{ immeuble.IDImmeuble.CP }}</td>
 						<td>{{ immeuble.IDImmeuble.Ville }}</td>
 						<td>{{ immeuble.IDContact.Civilite }}</td>
 						<td>{{ immeuble.IDContact.Nom }}</td>
+						<td>{{ immeuble.IDContact.Prenom }}</td>
 						<td>{{ immeuble.IDContact.Adresse }}</td>
 						<td>{{ immeuble.IDContact.CP }}</td>
 						<td>{{ immeuble.IDContact.Ville }}</td>
@@ -114,6 +115,7 @@
 						<td>{{ contact.IDImmeuble.Ville }}</td>
 						<td>{{ contact.IDContact.Civilite }}</td>
 						<td>{{ contact.IDContact.Nom }}</td>
+						<td>{{ contact.IDContact.Prenom }}</td>
 						<td>{{ contact.IDContact.Adresse }}</td>
 						<td>{{ contact.IDContact.CP }}</td>
 						<td>{{ contact.IDContact.Ville }}</td>

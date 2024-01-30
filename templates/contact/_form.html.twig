@@ -25,156 +25,151 @@
 					</h2>
 					<div id="collapseOne" style="padding:2%" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample" style="">
 						<div class="accordion-body">
-							<form>
-								<div class="form-group row">
-									<div class="col-md-4 mb-3">
-										<label for="readOnlyInput">Civilité</label>
-										{{ form_widget(form.Civilite) }}
-										<a href="{{ path('civilite_new') }}" id="addCivilite">
-											<i class="fa-regular fa-square-plus"></i>
-										</a>
-									</div>
+							<div class="form-group row">
+								<div class="col-md-4 mb-3">
+									<label for="readOnlyInput">Civilité</label>
+									{{ form_widget(form.Civilite) }}
+									<a href="{{ path('civilite_new') }}" id="addCivilite">
+										<i class="fa-regular fa-square-plus"></i>
+									</a>
+								</div>
 
-									<div class="col-md-4 mb-3">
-										<label for="flexCheckDefault">
-											NPAI
-										</label>
-										{{ form_widget(form.NPAI) }}
-									</div>
-									<div class="col-md-4 mb-3">
-										<label for="flexCheckDefault">
-											Décédé
-										</label>
-										{{ form_widget(form.DCD) }}
-									</div>
+								<div class="col-md-4 mb-3">
+									<label for="flexCheckDefault">
+										NPAI
+									</label>
+									{{ form_widget(form.NPAI) }}
 								</div>
-								<div class="form-group row">
-									<div class="col-md-6 mb-3">
-										<label for="readOnlyInput">Nom</label>
-										{{ form_widget(form.Nom) }}
-									</div>
-									<div class="col-md-4 mb-3">
-										<label for="readOnlyInput">Prénom</label>
-										{{ form_widget(form.Prenom) }}
-									</div>
+								<div class="col-md-4 mb-3">
+									<label for="flexCheckDefault">
+										Décédé
+									</label>
+									{{ form_widget(form.DCD) }}
 								</div>
-								<div class="form-group row">
-									<div class="col-md-6 mb-3">
-										<label for="readOnlyInput">Fonction</label>
-										{{ form_widget(form.Fonction) }}
-										<a href="{{ path('fonction_new') }}" id="addFonction">
-											<i class="fa-regular fa-square-plus"></i>
-										</a>
-									</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-md-6 mb-3">
+									<label for="readOnlyInput">Nom</label>
+									{{ form_widget(form.Nom) }}
 								</div>
-								<div class="form-group row">
-									<div class="col-md-4 mb-3">
-										<label for="readOnlyInput">Fax</label>
-										{{ form_widget(form.Fax) }}
-									</div>
-									<div class="col-md-4 mb-3">
-										<label for="readOnlyInput">Bureau</label>
-										{{ form_widget(form.TelephoneDomicile) }}
-									</div>
+								<div class="col-md-4 mb-3">
+									<label for="readOnlyInput">Prénom</label>
+									{{ form_widget(form.Prenom) }}
 								</div>
-								<div class="form-group row">
-									<div class="col-md-4 mb-3">
-										<label for="readOnlyInput">Portable</label>
-										{{ form_widget(form.TelephonePortable) }}
-									</div>
-									<div class="col-md-4 mb-3">
-										<label for="readOnlyInput">Téléphone</label>
-										{{ form_widget(form.Telephone) }}
-									</div>
-									<div class="col-md-4 mb-3">
-										<label for="flexCheckDefault">
-											Liste rouge
-										</label>
-										{{ form_widget(form.ListeRouge) }}
-									</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-md-6 mb-3">
+									<label for="readOnlyInput">Fonction</label>
+									{{ form_widget(form.Fonction) }}
+									<a href="{{ path('fonction_new') }}" id="addFonction">
+										<i class="fa-regular fa-square-plus"></i>
+									</a>
 								</div>
-								<div class="form-group row">
-									<div class="col-md-6 mb-3">
-										<label for="readOnlyInput">Correspondant</label>
-										{{ form_widget(form.Correspondant) }}
-									</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-md-4 mb-3">
+									<label for="readOnlyInput">Fax</label>
+									{{ form_widget(form.Fax) }}
 								</div>
-								<div class="form-group row">
-									<div class="col-md-6 mb-3">
-										<label for="readOnlyInput">Email</label>
-										{{ form_widget(form.Email) }}
-									</div>
-									<div class="col-md-6 mb-3">
-										<label for="readOnlyInput">AntiMailing</label>
-										{{ form_widget(form.AntiMailing) }}
-									</div>
+								<div class="col-md-4 mb-3">
+									<label for="readOnlyInput">Bureau</label>
+									{{ form_widget(form.TelephoneDomicile) }}
 								</div>
-								<div class="form-group row">
-									<div class="col-md-6 mb-3">
-										<label for="readOnlyInput">Date naissance</label>
-										{{ form_widget(form.DateNaissance) }}
-									</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-md-4 mb-3">
+									<label for="readOnlyInput">Portable</label>
+									{{ form_widget(form.TelephonePortable) }}
 								</div>
-							</form>
-
+								<div class="col-md-4 mb-3">
+									<label for="readOnlyInput">Téléphone</label>
+									{{ form_widget(form.Telephone) }}
+								</div>
+								<div class="col-md-4 mb-3">
+									<label for="flexCheckDefault">
+										Liste rouge
+									</label>
+									{{ form_widget(form.ListeRouge) }}
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-md-6 mb-3">
+									<label for="readOnlyInput">Correspondant</label>
+									{{ form_widget(form.Correspondant) }}
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-md-6 mb-3">
+									<label for="readOnlyInput">Email</label>
+									{{ form_widget(form.Email) }}
+								</div>
+								<div class="col-md-6 mb-3">
+									<label for="readOnlyInput">AntiMailing</label>
+									{{ form_widget(form.AntiMailing) }}
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-md-6 mb-3">
+									<label for="readOnlyInput">Date naissance</label>
+									{{ form_widget(form.DateNaissance) }}
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
-				<!--div class="accordion-item">
-									<h2 class="accordion-header" id="headingTwo">
-										<button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-											Renseignements société
-										</button>
-									</h2>
-									<div id="collapseTwo" style="padding:2%" class="accordion-collapse collapse " aria-labelledby="headingTwo" data-bs-parent="#accordionExample" style="">
-										<form>
-											<div class="form-group row">
-												<div class="col-md-6 mb-3">
-													<label for="readOnlyInput">Raison sociale</label>
-													{{ form_widget(form.Societe) }}
-												</div>
-											</div>
-				
-											<div class="form-group row">
-												<div class="col-md-6 mb-3">
-													<label for="readOnlyInput">Activité</label>
-													{{ form_widget(form.Activite) }}
-												</div>
-											</div>
-				
-											<div class="form-group row">
-												<div class="col-md-6 mb-3">
-													<label for="readOnlyInput">Adresse</label>
-													{{ form_widget(form.Adresse) }}
-												</div>
-											</div>
-				
-											<div class="form-group row">
-												<div class="col-md-4 mb-3">
-													<label for="readOnlyInput">CP</label>
-													{{ form_widget(form.CP) }}
-												</div>
-												<div class="col-md-4 mb-3">
-													<label for="readOnlyInput">Ville</label>
-													{{ form_widget(form.Ville) }}
-												</div>
-												<div class="col-md-4 mb-3">
-													<label for="readOnlyInput">Pays</label>
-													{{ form_widget(form.Pays) }}
-													<a href="{{ path('pays_new') }}" id="addPays">
-														<i class="fa-regular fa-square-plus"></i>
-													</a>
-												</div>
-											</div>
-											<div class="form-group row">
-												<div class="col-md-6 mb-3">
-													<label for="readOnlyInput">RCS</label>
-													{{ form_widget(form.RCS) }}
-												</div>
-											</div>
-										</form>
-									</div>
-								</div-->
+				<div class="accordion-item">
+					<h2 class="accordion-header" id="headingTwo">
+						<button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+							Renseignements société
+						</button>
+					</h2>
+					<div id="collapseTwo" style="padding:2%" class="accordion-collapse collapse " aria-labelledby="headingTwo" data-bs-parent="#accordionExample" style="">
+						<div class="form-group row">
+							<div class="col-md-6 mb-3">
+								<label for="readOnlyInput">Raison sociale</label>
+								{{ form_widget(form.Societe) }}
+							</div>
+						</div>
+
+						<div class="form-group row">
+							<div class="col-md-6 mb-3">
+								<label for="readOnlyInput">Activité</label>
+								{{ form_widget(form.Activite) }}
+							</div>
+						</div>
+
+						<div class="form-group row">
+							<div class="col-md-6 mb-3">
+								<label for="readOnlyInput">Adresse</label>
+								{{ form_widget(form.Adresse) }}
+							</div>
+						</div>
+
+						<div class="form-group row">
+							<div class="col-md-4 mb-3">
+								<label for="readOnlyInput">CP</label>
+								{{ form_widget(form.CP) }}
+							</div>
+							<div class="col-md-4 mb-3">
+								<label for="readOnlyInput">Ville</label>
+								{{ form_widget(form.Ville) }}
+							</div>
+							<div class="col-md-4 mb-3">
+								<label for="readOnlyInput">Pays</label>
+								{{ form_widget(form.Pays) }}
+								<a href="{{ path('pays_new') }}" id="addPays">
+									<i class="fa-regular fa-square-plus"></i>
+								</a>
+							</div>
+						</div>
+						<div class="form-group row">
+							<div class="col-md-6 mb-3">
+								<label for="readOnlyInput">RCS</label>
+								{{ form_widget(form.RCS) }}
+							</div>
+						</div>
+					</div>
+				</div>
 				<div class="accordion-item">
 					<h2 class="accordion-header" id="headingThree">
 						<button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">

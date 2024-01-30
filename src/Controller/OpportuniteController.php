@@ -24,6 +24,7 @@ class OpportuniteController extends AbstractController
     #[Route('/new', name: 'opportunite_new', methods: ['GET', 'POST'])]
     public function new(Request $request, OpportuniteRepository $opportuniteRepository): Response
     {
+        $idm = $request->query->get("immeuble");
         $opportunite = new Opportunite();
         $form = $this->createForm(OpportuniteType::class, $opportunite);
         $form->handleRequest($request);
@@ -31,7 +32,7 @@ class OpportuniteController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $opportuniteRepository->save($opportunite, true);
 
-            return $this->redirectToRoute('immeubles', [], Response::HTTP_SEE_OTHER);
+            return $this->redirect('/immeubles' . '/' . $idm, Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('opportunite/new.html.twig', [

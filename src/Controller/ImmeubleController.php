@@ -474,9 +474,11 @@ class ImmeubleController extends AbstractController
             $adresse->setNumPrincipal($form->get('NumPrincipal')->getData());
             $adresse->setNumSecondaire($form->get('NumSecondaire')->getData());
             $adresse->setTypeVoie($form->get('TypeVoie')->getData());
-            $adresse->setAdresse($form->get('Adresse')->getData());
             $adresse->setCP($form->get('CP')->getData());
             $adresse->setVille($form->get('Ville')->getData());
+            $ad = $adresse->getNumPrincipal() . " " . $adresse->getNumSecondaire() . " " . $adresse->getTypeVoie() . " " . $adresse->getCP() . " " . $adresse->getVille();
+            $adresse->setAdresse($ad);
+            $adrs = $form->get('Adresse')->getData();
             $adresse->setAdressePrincipale(0);
             $imcon = $form->getData();
             if ($enquete != null) {
@@ -491,6 +493,11 @@ class ImmeubleController extends AbstractController
             if ($origineContact != null) {
                 $imcon->setOrigineContact($origineContact->getLibelle());
             }
+            if ($adrs == null) {
+                $imcon->setAdresse($ad);
+            }
+            //dd($form->getData());
+
             $immeuble->setReferenceProprio($lastId + 1);
             $immeubleRepository->save($immeuble, true);
             $lastImmeuble = $immeubleRepository->findOneBy([], ['IDImmeuble' => 'desc']);
@@ -572,6 +579,10 @@ class ImmeubleController extends AbstractController
             $adresse->setAdresse($form->get('Adresse')->getData());
             $adresse->setCP($form->get('CP')->getData());
             $adresse->setVille($form->get('Ville')->getData());
+            if ($adresse->getAdresse() == null) {
+                $adresse->setAdresse($adresse->getNumPrincipal() . " " . $adresse->getNumSecondaire() . " " . $adresse->getTypeVoie() . " " . $adresse->getCP() . " " . $adresse->getVille());
+            }
+            //dd($adresse->getAdresse());
             $adresse->setAdressePrincipale(0);
             $adresse->setIDImmeuble($immeuble);
             //dd($immeuble);

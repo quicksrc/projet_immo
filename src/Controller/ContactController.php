@@ -598,17 +598,18 @@ class ContactController extends AbstractController
 
         $form->handleRequest($request);
 
-        //dd($form->isValid());
         if ($form->isSubmitted()) {
+            //dd($request);
             // Modification des selects en bdd
 
             // // Récupération des données du form
             $contact = $form->getData();
             // // Récupération des données du select
+            //dd($form->getData());
             $civilite = $form->get('Civilite')->getData();
             $fonction = $form->get('Fonction')->getData();
             $pays = $form->get('Pays')->getData();
-            // dd($form->get('Pays')->getData());
+            //dd($form->getData());
             // // Set du libelle en bdd
             if ($civilite != null) {
                 $contact->setCivilite($civilite->getLibelle());

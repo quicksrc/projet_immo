@@ -4,6 +4,11 @@
 {% endblock %}
 
 {% block body %}
+	<style>
+		.hideInEdit {
+			display: block;
+		}
+	</style>
 	<h1>Créer une association Immeuble/Contact</h1>
 
 	{{ include('immeuble_contact/_form.html.twig') }}

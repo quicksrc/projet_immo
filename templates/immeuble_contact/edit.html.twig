@@ -4,11 +4,17 @@
 {% endblock %}
 
 {% block body %}
+	<style>
+		.hideInEdit {
+			display: none;
+		}
+	</style>
 	<h1>Modifier l'association Immeuble/Contact</h1>
+	{# {{ dump("toto") }} #}
 
 	{{ include('immeuble_contact/_form.html.twig', {'button_label': 'Update'}) }}
 
-	<a href="{{ path('immeubles_contacts') }}">back to list</a>
+	{# <a href="{{ path('immeubles_contacts') }}">back to list</a> #}
 
 	{{ include('immeuble_contact/_delete_form.html.twig') }}
 {% endblock %}

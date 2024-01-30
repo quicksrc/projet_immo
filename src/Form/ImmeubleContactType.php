@@ -54,6 +54,13 @@ class ImmeubleContactType extends AbstractType
                     'class' => 'form-control',
                     'readonly' => false,
                 ],
+
+                // 'value' => $request->query->get('contact'),
+                // 'query_builder' => function (EntityRepository $er): ORMQueryBuilder {
+                //     $request = $this->requestStack->getCurrentRequest();
+                //     // return $er->createQueryBuilder('i')
+                //     //     ->where('i.IDContact = ' . $request->query->get('contact'));
+                // }
                 // 'class' => Contact::class,
                 // 'query_builder' => function (EntityRepository $er) {
                 //     return $er->createQueryBuilder('c')
@@ -75,7 +82,6 @@ class ImmeubleContactType extends AbstractType
                 ],
                 'class' => Qualite::class,
                 'choice_label' => 'libelle',
-                'choice_value' => 'libelle'
             ])
             ->add('QualiteProprietaire', EntityType::class, [
                 'required' => false,
@@ -83,7 +89,7 @@ class ImmeubleContactType extends AbstractType
                 'label' => 'Qualité Propriétaire',
                 'attr' => [
                     'class' => 'form-control',
-                    'readonly' => true,
+                    // 'readonly' => true,
                 ],
                 'class' => QualiteProprietaire::class,
                 'choice_label' => 'libelle',
@@ -94,7 +100,7 @@ class ImmeubleContactType extends AbstractType
                 'label' => 'Civilite',
                 'attr' => [
                     'class' => 'form-control',
-                    'readonly' => true,
+                    // 'readonly' => true,
                 ],
                 'class' => Civilite::class,
                 'choice_label' => 'libelle',
@@ -141,6 +147,7 @@ class ImmeubleContactType extends AbstractType
                 ]
             ]);
     }
+
 
     public function configureOptions(OptionsResolver $resolver): void
     {
