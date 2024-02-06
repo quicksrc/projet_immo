@@ -1,12 +1,24 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}OrigineContactImmeuble index
+{% block title %}Origine Contact d'Immeuble
 {% endblock %}
-
 {% block body %}
-	<h1>OrigineContactImmeuble index</h1>
-
-	<table class="table">
+	<style>
+		.fixed-table-toolbar {
+			margin-left: 20% !important;
+			margin-right: 20% !important;
+		}
+	</style>
+	<h1>Origine Contact d'Immeuble</h1>
+	<div id="toolbar">
+		<button class="btn btn-l btn-light no-print me-2 mb-2" type="button">
+			<a href="{{ path('origine_contact_immeuble_new') }}">
+				<i class="bi bi-file-earmark-plus"></i>
+			</a>
+		</button>
+	</div>
+	{# <table class="table"> #}
+	<table style="width:70%" data-pagination="true" data-toolbar="#toolbar" data-page-size="15" data-search="true" data-show-export="false" data-toggle="table" data-click-to-select="true" data-search-align="left" data-show-columns="false" data-show-print="false" class="table table-list table-bordered table-striped m-auto">
 		<thead>
 			<tr>
 				<th>IDOrigineContactImmeuble</th>
@@ -20,8 +32,10 @@
 					<td>{{ origine_contact_immeuble.IDOrigineContactImmeuble }}</td>
 					<td>{{ origine_contact_immeuble.Libelle }}</td>
 					<td>
-						<a href="{{ path('app_origine_contact_immeuble_show', {'IDOrigineContactImmeuble': origine_contact_immeuble.IDOrigineContactImmeuble}) }}">show</a>
-						<a href="{{ path('origine_contact_immeuble_edit', {'IDOrigineContactImmeuble': origine_contact_immeuble.IDOrigineContactImmeuble}) }}">edit</a>
+						{# <a href="{{ path('app_origine_contact_immeuble_show', {'IDOrigineContactImmeuble': origine_contact_immeuble.IDOrigineContactImmeuble}) }}">show</a> #}
+						<a href="{{ path('origine_contact_immeuble_edit', {'IDOrigineContactImmeuble': origine_contact_immeuble.IDOrigineContactImmeuble}) }}">
+							<i class="bi bi-pen" style="margin-right:10px"></i>
+						</a>
 					</td>
 				</tr>
 			{% else %}
@@ -32,5 +46,5 @@
 		</tbody>
 	</table>
 
-	<a href="{{ path('origine_contact_immeuble_new') }}">Create new</a>
+	{# <a href="{{ path('origine_contact_immeuble_new') }}">Create new</a> #}
 {% endblock %}

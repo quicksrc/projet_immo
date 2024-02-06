@@ -80,6 +80,16 @@ class SearchImmeubleType extends AbstractType
                     'class' => 'form-control col-5'
                 ]
             ])
+            ->add('numSecondaire', TextType::class, [
+                'required' => false,
+                'label' => 'Numéro Secondaire',
+                'label_attr' => [
+                    'class' => 'form-label'
+                ],
+                'attr' => [
+                    'class' => 'form-control col-5'
+                ]
+            ])
             ->add('typeVoie', EntityType::class, [
                 'required' => false,
                 'mapped' => false,

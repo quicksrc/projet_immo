@@ -1,14 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit SuiviPar
+{% block title %}Modifier Suivi Par
 {% endblock %}
 
 {% block body %}
-	<h1>Edit SuiviPar</h1>
+	{# <h1>Modifier Suivi Par</h1> #}
 
-	{{ include('suivi_par/_form.html.twig', {'button_label': 'Update'}) }}
+	{{ include('suivi_par/_form.html.twig', {'button_label': 'Modifier'}) }}
 
-	<a href="{{ path('suivis_par') }}">back to list</a>
+	{# <a href="{{ path('suivis_par') }}">back to list</a> #}
 
 	{{ include('suivi_par/_delete_form.html.twig') }}
 {% endblock %}

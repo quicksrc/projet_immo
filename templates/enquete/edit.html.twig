@@ -4,11 +4,11 @@
 {% endblock %}
 
 {% block body %}
-	<h1>Edit Enquete</h1>
+	<h1>Modifier Enquête</h1>
 
-	{{ include('enquete/_form.html.twig', {'button_label': 'Update'}) }}
+	{{ include('enquete/_form.html.twig', {'button_label': 'Modifier'}) }}
 
-	<a href="{{ path('enquetes') }}">back to list</a>
+	{# <a href="{{ path('enquetes') }}">back to list</a> #}
 
 	{{ include('enquete/_delete_form.html.twig') }}
 {% endblock %}

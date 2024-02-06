@@ -2,13 +2,13 @@
 	<div class="container-fluid">
 		<!--a class="navbar-brand" href="#">Projet Immo</a-->
 		{# <button class="navbar-toggler no-print" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
-																																																																					<span class="navbar-toggler-icon"></span>
-																																																																				</button> #}
+																																																																																																																																																									<span class="navbar-toggler-icon"></span>
+																																																																																																																																																								</button> #}
 			<nav class="navbar navbarnoneborder d-flex justify-content-center mx-auto"> <form
 				class="form-inline">
 				{# <button class="btn btn-light no-print btn-lg" type="button">
-																																																																																																																																																																																																																																																																																																																																																																																																																					<a class="nav-link" href="/home">Accueil</a>
-																																																																																																																																																																																																																																																																																																																																																																																																																				</button> #}
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																													<a class="nav-link" href="/home">Accueil</a>
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																												</button> #}
 				<button class="btn btn-light no-print btn-lg no-print" type="button">
 					<a class="nav-link" href="{{ path('immeubles') }}">Immeubles</a>
 				</button>
@@ -16,11 +16,30 @@
 					<a class="nav-link" href="{{ path('contacts') }}">Contacts</a>
 				</button>
 				{# <button class="btn btn-light no-print btn-lg" type="button">
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																									<a class="nav-link" href="#">Adresses</a>
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																								</button> #}
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																	<a class="nav-link" href="#">Adresses</a>
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																</button> #}
 				<button class="btn btn-light no-print btn-lg no-print" type="button">
 					<a class="nav-link" href="{{ path('societes') }}">Sociétés</a>
 				</button>
+
+				<div class="btn-group">
+					<button class="btn btn-light no-print btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Admin
+					</button>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="{{ path('types_voie') }}">Type de voie</a>
+						<div class="dropdown-divider"></div>
+						<a class="dropdown-item" href="{{ path('suivis_par') }}">Suivie par</a>
+						<div class="dropdown-divider"></div>
+						<a class="dropdown-item" href="{{ path('origines_contact_immeuble') }}">Origine Contact</a>
+						<div class="dropdown-divider"></div>
+						<a class="dropdown-item" href="{{ path('enquetes') }}">Enquête</a>
+						<div class="dropdown-divider"></div>
+						<a class="dropdown-item" href="{{ path('descriptions') }}">Description</a>
+						<div class="dropdown-divider"></div>
+						<a class="dropdown-item" href="{{ path('pays') }}">Pays</a>
+					</div>
+				</div>
 				<script>
 					function printImmeuble() {
 document.querySelector('#myTabContents').classList.remove('tab-content');
@@ -61,7 +80,8 @@ window.print();
 window.close(location.reload());
 }
 
-{# function printSelection() {
+{
+# function printSelection() {
 $.get("https://127.0.0.1:8000/immeubles/94654", function (data) {
 
 var printWindow = window.open('', '', 'height=400,width=800');
@@ -73,7 +93,9 @@ printWindow.document.close();
 
 printWindow.print();
 });
-} #}
+}
+#
+}
 				</script>
 			</form>
 		</nav>

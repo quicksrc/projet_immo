@@ -1,12 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Pays index
+{% block title %}Pays
 {% endblock %}
 
 {% block body %}
-	<h1>Pays index</h1>
-
-	<table class="table">
+	<h1>Pays</h1>
+	<button id="toolbar" class="btn btn-l btn-light no-print me-2 mb-2" type="button">
+		<a href="{{ path('pays_new') }}">
+			<i class="bi bi-file-earmark-plus"></i>
+		</a>
+	</button>
+	<br>
+	{# <table class="table"> #}
+	<table style="width:70%" data-pagination="true" data-toolbar="#toolbar" data-page-size="15" data-search="true" data-show-export="false" data-toggle="table" data-click-to-select="true" data-search-align="left" data-show-columns="false" data-show-print="false" class="table table-list table-bordered table-striped m-auto">
 		<thead>
 			<tr>
 				<th>IDPays</th>
@@ -20,8 +26,10 @@
 					<td>{{ pay.IDPays }}</td>
 					<td>{{ pay.Libelle }}</td>
 					<td>
-						<a href="{{ path('pays_show', {'IDPays': pay.IDPays}) }}">show</a>
-						<a href="{{ path('pays_edit', {'IDPays': pay.IDPays}) }}">edit</a>
+						{# <a href="{{ path('pays_show', {'IDPays': pay.IDPays}) }}">show</a> #}
+						<a href="{{ path('pays_edit', {'IDPays': pay.IDPays}) }}">
+							<i class="bi bi-pen" style="margin-right:10px"></i>
+						</a>
 					</td>
 				</tr>
 			{% else %}
@@ -32,5 +40,5 @@
 		</tbody>
 	</table>
 
-	<a href="{{ path('pays_new') }}">Create new</a>
+	{# <a href="{{ path('pays_new') }}">Create new</a> #}
 {% endblock %}

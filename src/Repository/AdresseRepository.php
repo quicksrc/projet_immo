@@ -58,6 +58,11 @@ class AdresseRepository extends ServiceEntityRepository
                 ->andWhere('a.NumPrincipal LIKE :numPrincipal')
                 ->setParameter('numPrincipal', $rechercheImmeuble->getNumPrincipal());
         }
+        if (!empty($rechercheImmeuble->getNumSecondaire())) {
+            $qb
+                ->andWhere('a.NumSecondaire LIKE :numSecondaire')
+                ->setParameter('numSecondaire', $rechercheImmeuble->getNumSecondaire());
+        }
         if (!empty($rechercheImmeuble->getTypeVoie())) {
             $qb
                 ->andWhere('a.TypeVoie LIKE :typeVoie')

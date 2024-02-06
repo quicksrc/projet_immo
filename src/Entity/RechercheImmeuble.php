@@ -53,6 +53,9 @@ class RechercheImmeuble
     #[ORM\Column(nullable: true)]
     private ?int $numPrincipal = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $numSecondaire = null;
+
     #[ORM\Column(length: 20, nullable: true)]
     private ?string $typeVoie = null;
 
@@ -272,6 +275,17 @@ class RechercheImmeuble
     public function setNumPrincipal(?int $numPrincipal): self
     {
         $this->numPrincipal = $numPrincipal;
+
+        return $this;
+    }
+    public function getNumSecondaire(): ?string
+    {
+        return $this->numSecondaire;
+    }
+
+    public function setNumSecondaire(?string $numSecondaire): self
+    {
+        $this->numSecondaire = $numSecondaire;
 
         return $this;
     }

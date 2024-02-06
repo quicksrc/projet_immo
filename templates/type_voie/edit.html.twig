@@ -4,11 +4,11 @@
 {% endblock %}
 
 {% block body %}
-	<h1>Edit TypeVoie</h1>
+	<h1>Modifier Type de Voie</h1>
 
-	{{ include('type_voie/_form.html.twig', {'button_label': 'Update'}) }}
+	{{ include('type_voie/_form.html.twig', {'button_label': 'Modifier'}) }}
 
-	<a href="{{ path('types_voie') }}">back to list</a>
+	{# <a href="{{ path('types_voie') }}">back to list</a> #}
 
 	{{ include('type_voie/_delete_form.html.twig') }}
 {% endblock %}

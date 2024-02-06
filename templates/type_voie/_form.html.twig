@@ -1,4 +1,37 @@
+{# {{ form_start(form) }}
+{{ form_widget(form) }}
+<button class="btn btn-light float-end mt-2">{{ button_label|default('Créer') }}</button>
+{{ form_end(form) }} #}
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+<div id="myTabContent" class="tab-content">
+	<div class="tab-pane fade active show" id="home" role="tabpanel">
+		<div class="accordion" id="accordionExample">
+			<div class="accordion-item">
+				<h2 class="accordion-header" id="headingOne">
+					<button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+						Type de voie
+					</button>
+				</h2>
+				<div id="collapseOne" style="padding:2%" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample" style="">
+					<div class="accordion-body">
+						<div class="form-group row">
+							<div class="col-md-4 mb-3">
+								<label for="readOnlyInput">Libelle</label>
+								{{ form_widget(form.Libelle) }}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<br>
+{% if app.request.get('_route') == 'type_voie_new' %}
+	<button class="btn btn-light float-end">{{ button_label|default('Créer') }}</button>
+{% elseif app.request.get('_route') == 'type_voie_edit' %}
+	<button class="btn btn-light float-end">{{ button_label|default('Modifier') }}</button>
+{% else %}
+	<button class="btn btn-light float-end">{{ button_label|default('Enregistrer') }}</button>
+{% endif %}
 {{ form_end(form) }}

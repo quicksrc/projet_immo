@@ -1,12 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}SuiviPar index
+{% block title %}Suivi Par
 {% endblock %}
 
 {% block body %}
-	<h1>SuiviPar index</h1>
-
-	<table class="table">
+	<h1>Suivi Par</h1>
+	<button id="toolbar" class="btn btn-l btn-light no-print me-2 mb-2" type="button">
+		<a href="{{ path('suivi_par_new') }}">
+			<i class="bi bi-file-earmark-plus"></i>
+		</a>
+	</button>
+	{# <table class="table"> #}
+	<table style="width:70%" data-pagination="true" data-toolbar="#toolbar" data-page-size="15" data-search="true" data-show-export="false" data-toggle="table" data-click-to-select="true" data-search-align="left" data-show-columns="false" data-show-print="false" class="table table-list table-bordered table-striped m-auto">
 		<thead>
 			<tr>
 				<th>IDSuiviPar</th>
@@ -20,8 +25,11 @@
 					<td>{{ suivi_par.IDSuiviPar }}</td>
 					<td>{{ suivi_par.Libelle }}</td>
 					<td>
-						<a href="{{ path('suivi_par_show', {'IDSuiviPar': suivi_par.IDSuiviPar}) }}">show</a>
-						<a href="{{ path('suivi_par_edit', {'IDSuiviPar': suivi_par.IDSuiviPar}) }}">edit</a>
+						{# <a href="{{ path('suivi_par_show', {'IDSuiviPar': suivi_par.IDSuiviPar}) }}">show</a> #}
+
+						<a href="{{ path('suivi_par_edit', {'IDSuiviPar': suivi_par.IDSuiviPar}) }}">
+							<i class="bi bi-pen" style="margin-right:10px"></i>
+						</a>
 					</td>
 				</tr>
 			{% else %}
@@ -32,5 +40,5 @@
 		</tbody>
 	</table>
 
-	<a href="{{ path('suivi_par_new') }}">Create new</a>
+	{# <a href="{{ path('suivi_par_new') }}">Create new</a> #}
 {% endblock %}

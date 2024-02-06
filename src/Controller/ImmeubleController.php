@@ -313,6 +313,9 @@ class ImmeubleController extends AbstractController
                 if (!empty($rechercheImmeuble->getNumPrincipal())) {
                     array_push($keyValueAdress, array("NumPrincipal", $rechercheImmeuble->getNumPrincipal()));
                 }
+                if (!empty($rechercheImmeuble->getNumSecondaire())) {
+                    array_push($keyValueAdress, array("NumSecondaire", $rechercheImmeuble->getNumSecondaire()));
+                }
                 if (!empty($rechercheImmeuble->getTypeVoie())) {
                     array_push($keyValueAdress, array("TypeVoie", $rechercheImmeuble->getTypeVoie()));
                 }
@@ -570,23 +573,23 @@ class ImmeubleController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
 
             // Modification des selects en bdd
-
+            //dd($form);
             // // Récupération des données du form
-            $adresse = new Adresse();
-            $adresse->setNumPrincipal($form->get('NumPrincipal')->getData());
-            $adresse->setNumSecondaire($form->get('NumSecondaire')->getData());
-            $adresse->setTypeVoie($form->get('TypeVoie')->getData());
-            $adresse->setAdresse($form->get('Adresse')->getData());
-            $adresse->setCP($form->get('CP')->getData());
-            $adresse->setVille($form->get('Ville')->getData());
-            if ($adresse->getAdresse() == null) {
-                $adresse->setAdresse($adresse->getNumPrincipal() . " " . $adresse->getNumSecondaire() . " " . $adresse->getTypeVoie() . " " . $adresse->getCP() . " " . $adresse->getVille());
-            }
-            //dd($adresse->getAdresse());
-            $adresse->setAdressePrincipale(0);
-            $adresse->setIDImmeuble($immeuble);
-            //dd($immeuble);
-            $adresseRepository->save($adresse, true);
+            // $adresse = new Adresse();
+            // $adresse->setNumPrincipal($form->get('NumPrincipal')->getData());
+            // $adresse->setNumSecondaire($form->get('NumSecondaire')->getData());
+            // $adresse->setTypeVoie($form->get('TypeVoie')->getData());
+            // $adresse->setAdresse($form->get('Adresse')->getData());
+            // $adresse->setCP($form->get('CP')->getData());
+            // $adresse->setVille($form->get('Ville')->getData());
+            // if ($adresse->getAdresse() == null) {
+            //     $adresse->setAdresse($adresse->getNumPrincipal() . " " . $adresse->getNumSecondaire() . " " . $adresse->getTypeVoie() . " " . $adresse->getCP() . " " . $adresse->getVille());
+            // }
+            // //dd($adresse->getAdresse());
+            // $adresse->setAdressePrincipale(0);
+            // $adresse->setIDImmeuble($immeuble);
+            // //dd($immeuble);
+            // $adresseRepository->save($adresse, true);
 
             $immeuble = $form->getData();
             // // Récupération des données du select
